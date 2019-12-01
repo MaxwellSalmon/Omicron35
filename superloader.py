@@ -19,7 +19,6 @@ class SuperLoader():
     def __init__(self):
         self.load_scene()
         self.load_mouse()
-        self.load_player()
         self.load_light()
         self.load_collision()
         self.load_models()
@@ -48,13 +47,6 @@ class SuperLoader():
         props = WindowProperties()
         props.setCursorHidden(True)
         base.win.requestProperties(props)
-
-    def load_player(self):
-        base.player = render.attachNewNode("player node")
-        base.camera.reparentTo(base.player)
-        base.camera.setPos(0,3,2)
-        base.camLens.setFov(80)
-        base.camLens.setNear(0.2)
 
     def load_light(self): #Must be redone
         #Nødvendig for skygger og sådan.
@@ -89,14 +81,6 @@ class SuperLoader():
         pickerNode.addSolid(base.pickerRay)
         base.cTrav.addCollider(pickerNP, base.queue)
 
-        #Player
-        base.player_col = base.player.attachNewNode(CollisionNode('cnode'))
-        base.player_col.node().addSolid(CollisionSphere(0,3,0,0.4))
-
-        base.pusher.setHorizontal(True)
-        base.cTrav.addCollider(base.player_col, base.pusher)
-        base.pusher.addCollider(base.player_col, base.player)
-
         #Eksempler
         #Skab
 ##        skab = base.skab.attachNewNode(CollisionNode('skab'))
@@ -115,22 +99,22 @@ class SuperLoader():
 
 #---------------Put these functions into a file on its own-----------------------------
     def door_function(self):
-        if settings.variables['clothes_on']:
-            if settings.variables['environment'] == "inside":
+        if settings.clothes_on:
+            if settings.environment == "inside":
                 self.outside.reparentTo(self.render)
                 self.scene.detachNode()
-                settings.variables['environment'] = "outside"
+                settings.environment = "outside"
                 self.door.setPos(6.5,1.2,0.4)
             else:
                 self.outside.detachNode()
                 self.scene.reparentTo(self.render)
-                settings.variables['environment'] = "inside"
+                settings.environment = "inside"
                 self.door.setX(0)
         else:
             print("Jeg skal have tøj på først")
 
     def put_on_clothes(self, test):
-        settings.variables['clothes_on'] = True
+        settings.clothes_on = True
         self.clothes.set_z(10)
         print("Jeg har taget tøjet på")
         print(test)

@@ -181,6 +181,8 @@ class MyApp(ShowBase):
         self.player_col = self.player.attachNewNode(CollisionNode('cnode'))
         self.player_col.node().addSolid(CollisionSphere(0,3,0,0.4))
 
+        self.player_col.show()
+
         self.pusher.setHorizontal(True)
         self.cTrav.addCollider(self.player_col, self.pusher)
         self.pusher.addCollider(self.player_col, self.player)
