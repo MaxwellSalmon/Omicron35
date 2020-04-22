@@ -4,20 +4,20 @@ A work in progress Panda3D game by MaxwellSalmon.
 # Documentation
 #### Setting up a function that should run when an object is interacted with:
 
-- Simply execute a function with no parameters:
+Simply execute a function with no parameters:
 
 ```object_functions[str(object)] = object_function```
 
-- Execute a function with parameters:
+Execute a function with parameters:
 
 ```object_functions[str(object)] = [object_function, {'a':1, 'b':2, 'c':3}]```
 
-- Function should be defined in **functions.py** and loaded in **models.py**
+Function should be defined in **functions.py** and loaded in **models.py**
 
 #### Loading models the fast way
-Models can be loaded by using the load_model function. It needs a path or simply just the name of the file.
-
+Models can be loaded by using the load_model function. It needs a path or simply just the name of the file.<br>
 It can also take keyword arguments being the following:
+
 ```
 parent = node path
 scale = float
