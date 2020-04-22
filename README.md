@@ -39,6 +39,5 @@ h, p, r = object rotation
 d = duration
 b = blend mode - 'easeIn', 'easeOut', 'noBlend', default is 'easeInOut'
 ```
-Note, that the player's p value can only be between -90 and 90.
-
+Note, that the player's p value can only be between -90 and 90.<br>
 This is done in script **main.py**
