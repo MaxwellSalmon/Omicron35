@@ -1,15 +1,15 @@
 # Omicron35
-A work in progress Panda3D game
+A work in progress Panda3D game by MaxwellSalmon.
 
-#Documentation
-Setting up a function that should run when an object is interacted with:
+# Documentation
+###### Setting up a function that should run when an object is interacted with:
 Simply execute a function with no parameters:
    object_functions[str(object)] = object_function
 Execute a function with parameters:
    object_functions[str(object)] = [object_function, {'a':1, 'b':2, 'c':3}]
 Function should be defined in functions.py and loaded in models.py
 
-Loading models the fast way - superloader.py
+###### Loading models the fast way - superloader.py
 Models can be loaded by using the load_model function. It needs a path or simply just the name of the file.
 It can also take keyword arguments being the following:
 parent = node path
@@ -19,7 +19,7 @@ hpr = tuple 3
 tag = string
 function = object_function
 
-Creating cutscenes - main.py:
+###### Creating cutscenes - main.py:
 self.cutscene([self, [{point},{point},{point}]])
 Points are dictionaries with following keys:
 x, y, z = world coordinates
