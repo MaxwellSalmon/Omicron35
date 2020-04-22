@@ -6,11 +6,11 @@ A work in progress Panda3D game by MaxwellSalmon.
 
 Simply execute a function with no parameters:
 
-   object_functions[str(object)] = object_function
+   ```object_functions[str(object)] = object_function```
 
 Execute a function with parameters:
 
-   object_functions[str(object)] = [object_function, {'a':1, 'b':2, 'c':3}]
+   ```object_functions[str(object)] = [object_function, {'a':1, 'b':2, 'c':3}]```
 
 Function should be defined in functions.py and loaded in models.py
 
