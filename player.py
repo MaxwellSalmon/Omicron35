@@ -3,7 +3,7 @@ from direct.showbase import DirectObject
 from direct.task import Task
 from panda3d.core import (
     CollisionNode,
-    CollisionSphere,
+    CollisionCapsule,
     )
 
 
@@ -22,17 +22,21 @@ class Player(DirectObject.DirectObject):
         self.camLens.setNear(0.2)
 
         self.speed = settings.player_speed
+        self.load_collision()
         
     def load_collision(self):
         self.col = self.body.attachNewNode(CollisionNode('cnode'))
-        self.col.node().addSolid(CollisionSphere(0,0,0,0.4))
-        self.col.show()
-
+        self.col.node().addSolid(CollisionCapsule(0,3,-1,0,3,2,0.5))
+       # self.col.show()
+        # Why is 0,0,0 not center of player??
         base.pusher.setHorizontal(True)
-        base.cTrav.addCollider(self.col, base.pusher) ##Få til at virke
+        base.cTrav.addCollider(self.col, base.pusher)
         base.pusher.addCollider(self.col, self.body)
 
     def control_task(self, task):
+        if self.check_cutscene():
+            return Task.cont
+        
         old_pos = self.body.getPos()
         new_pos = old_pos
         add_pos = [0,0,0]
@@ -66,6 +70,8 @@ class Player(DirectObject.DirectObject):
             mpos = self.control_mouse()
 
         self.fps_camera(mpos)
+
+        
             
         return Task.cont
 
@@ -106,11 +112,11 @@ class Player(DirectObject.DirectObject):
 
     def click_mouse(self, obj):
         s = str(obj)
-        if s not in self.object_functions: #Find ud af, hvad der skal gøres med object functions
+        if s not in settings.object_functions: #Find ud af, hvad der skal gøres med object functions
             print(f"'{s}' is not a keyword!")
             return
         else:
-            v = self.object_functions[s]
+            v = settings.object_functions[s]
 
         if callable(v):
             #If v just a function?
@@ -144,3 +150,11 @@ class Player(DirectObject.DirectObject):
                     settings.picked_obj = pickedObj
                 
         return Task.cont
+
+    def check_cutscene(self):
+        if base.pos_seq.isPlaying():
+            self.col.detachNode()
+            return True
+        elif not self.col.parent:
+            self.col.reparentTo(self.body)
+        return False

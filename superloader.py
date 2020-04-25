@@ -13,15 +13,19 @@ from panda3d.core import (
     CollisionSphere,)
 
 from model import *
+import functions
+import colliders
 
 class SuperLoader():
 
-    def __init__(self):
+    def load(self, scene):
+        #Load bestemt scene
         self.load_scene()
         self.load_mouse()
         self.load_light()
         self.load_collision()
         self.load_models()
+
 
     def load_scene(self): #Make individual methods for each scene
         scene = loader.loadModel("models/interior.egg")
@@ -81,6 +85,11 @@ class SuperLoader():
         pickerNode.addSolid(base.pickerRay)
         base.cTrav.addCollider(pickerNP, base.queue)
 
+        self.load_collision_scene(None) #placeholder argument
+
+    def load_collision_scene(self, scene):
+        colliders.house_interior(False)
+
         #Eksempler
         #Skab
 ##        skab = base.skab.attachNewNode(CollisionNode('skab'))
@@ -92,37 +101,9 @@ class SuperLoader():
 
     def load_models(self): #perhaps make into a loop taking info from another file.
         base.door = Model('door', parent=render, tag='interactive',
-                          function=self.door_function, pos=(10,1.35,0.4), scale=0.5, solid=True)
+                          function=functions.door_function, pos=(10,1.35,0.4), scale=0.5, solid=True)
         base.clothes = Model('clothes', parent=base.scene, tag='interactive',
-                             function=[self.put_on_clothes, {'test' : 'Her er en string'}])
-
-
-#---------------Put these functions into a file on its own-----------------------------
-    def door_function(self):
-        if settings.clothes_on:
-            if settings.environment == "inside":
-                self.outside.reparentTo(self.render)
-                self.scene.detachNode()
-                settings.environment = "outside"
-                self.door.setPos(6.5,1.2,0.4)
-            else:
-                self.outside.detachNode()
-                self.scene.reparentTo(self.render)
-                settings.environment = "inside"
-                self.door.setX(0)
-        else:
-            print("Jeg skal have tøj på først")
-
-    def put_on_clothes(self, test):
-        settings.clothes_on = True
-        self.clothes.set_z(10)
-        print("Jeg har taget tøjet på")
-        print(test)
-
-        self.cutscene([{'h':0,'p':90,'r':0, 'x':-0.36, 'y':-11.36, 'z':-1.5, 'd':0},
-                        {'p':0, 'y':-11,'z':-1, 'd':2},
-                        {'h':85, 'p':-5, 'y':-10.5, 'd':2},
-                        {'x':-2.3, 'p':-8, 'z':0, 'd':2}])
+                             function=[functions.put_on_clothes, {'test' : 'Her er en string'}])
 
 
 

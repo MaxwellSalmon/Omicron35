@@ -35,4 +35,7 @@ class Model():
             col = model.attachNewNode(CollisionNode(name))
             col.node().add_solid(CollisionBox((0,0,0), bounds[0], bounds[1], bounds[2]))
 
-            col.show()
+            col.show() #Skal væk
+
+        self.model = model
+        self.name = name
