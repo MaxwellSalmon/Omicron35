@@ -14,15 +14,18 @@ from panda3d.core import (
 
 from model import *
 import functions
+import colliders
 
 class SuperLoader():
 
-    def __init__(self):
+    def load(self, scene):
+        #Load bestemt scene
         self.load_scene()
         self.load_mouse()
         self.load_light()
         self.load_collision()
         self.load_models()
+
 
     def load_scene(self): #Make individual methods for each scene
         scene = loader.loadModel("models/interior.egg")
@@ -82,6 +85,11 @@ class SuperLoader():
         pickerNode.addSolid(base.pickerRay)
         base.cTrav.addCollider(pickerNP, base.queue)
 
+        self.load_collision_scene(None) #placeholder argument
+
+    def load_collision_scene(self, scene):
+        colliders.house_interior(False)
+
         #Eksempler
         #Skab
 ##        skab = base.skab.attachNewNode(CollisionNode('skab'))
@@ -96,10 +104,6 @@ class SuperLoader():
                           function=functions.door_function, pos=(10,1.35,0.4), scale=0.5, solid=True)
         base.clothes = Model('clothes', parent=base.scene, tag='interactive',
                              function=[functions.put_on_clothes, {'test' : 'Her er en string'}])
-
-
-#---------------Put these functions into a file on its own-----------------------------
-    
 
 
 

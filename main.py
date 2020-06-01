@@ -10,39 +10,13 @@ from superloader import *
 from player import *
 import settings
 
-
-#Setting up a function that should run when an object is interacted with:
-#Simply execute a function with no parameters:
-#   object_functions[str(object)] = object_function
-#Execute a function with parameters:
-#   object_functions[str(object)] = [object_function, {'a':1, 'b':2, 'c':3}]
-#Function should be defined in functions.py and loaded in models.py
-
-#Loading models the fast way - superloader.py
-#Models can be loaded by using the load_model function. It needs a path or simply just the name of the file.
-#It can also take keyword arguments being the following:
-#parent = node path
-#scale = float
-#pos = tuple 3
-#hpr = tuple 3
-#tag = string
-#function = object_function
-
-#Creating cutscenes - main.py:
-#self.cutscene([self, [{point},{point},{point}]])
-#Points are dictionaries with following keys:
-#x, y, z = world coordinates
-#h, p, r = object rotation
-#d = duration
-#b = blend mode - 'easeIn', 'easeOut', 'noBlend', default is 'easeInOut'
-#Note, that the player's p value can only be between -90 and 90.
-
 class MyApp(ShowBase):
 
     def __init__(self):
         ShowBase.__init__(self)
 
-        self.superload = SuperLoader()
+        self.superloader = SuperLoader()
+        self.superloader.load("dayone")
         self.player = Player()
         
         #Smid ind i en funktion
@@ -55,6 +29,8 @@ class MyApp(ShowBase):
         
         self.audio3d = Audio3DManager.Audio3DManager(self.sfxManagerList[0], self.player.camera)
         self.audio3d.attachListener(self.player.camera)
+        self.pos_seq = Sequence()
+        self.hpr_seq = Sequence()
 
         
 
@@ -64,8 +40,8 @@ class MyApp(ShowBase):
               
     def cutscene(self, points):
 
-        pos_seq = Sequence()
-        hpr_seq = Sequence()
+        self.pos_seq = Sequence()
+        self.hpr_seq = Sequence()
         h,p,r = self.camera.get_hpr()
         x,y,z = self.player.body.get_pos()
         for point in points:
@@ -89,12 +65,17 @@ class MyApp(ShowBase):
             if 'b' in point:
                 b = point['b']
             
+<<<<<<< HEAD
             pos_seq.append(LerpPosInterval(self.player.body, d, (x,y,z), blendType=b))
             hpr_seq.append(LerpHprInterval(self.camera, d, (h,p,r), blendType=b))
+=======
+            self.pos_seq.append(LerpPosInterval(self.player.body, d, (x,y,z), blendType=b))
+            self.hpr_seq.append(LerpHprInterval(self.camera, d, (h,p,r), blendType=b))
+>>>>>>> f5e97686b4dc7f71aa9fe39ff61fef7e12925388
         
 
-        pos_seq.start()
-        hpr_seq.start()
+        self.pos_seq.start()
+        self.hpr_seq.start()
 
     def load_sound(self, path, obj, *args): #Smid over i superloader
         #Args[0] is dropoff factor
