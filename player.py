@@ -106,11 +106,11 @@ class Player(DirectObject.DirectObject):
 
     def click_mouse(self, obj):
         s = str(obj)
-        if s not in self.object_functions: #Find ud af, hvad der skal gøres med object functions
+        if s not in settings.object_functions: #Find ud af, hvad der skal gøres med object functions
             print(f"'{s}' is not a keyword!")
             return
         else:
-            v = self.object_functions[s]
+            v = settings.object_functions[s]
 
         if callable(v):
             #If v just a function?

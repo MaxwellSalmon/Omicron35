@@ -16,8 +16,9 @@ import settings
 #   object_functions[str(object)] = object_function
 #Execute a function with parameters:
 #   object_functions[str(object)] = [object_function, {'a':1, 'b':2, 'c':3}]
+#Function should be defined in functions.py and loaded in models.py
 
-#Loading models the fast way
+#Loading models the fast way - superloader.py
 #Models can be loaded by using the load_model function. It needs a path or simply just the name of the file.
 #It can also take keyword arguments being the following:
 #parent = node path
@@ -27,7 +28,7 @@ import settings
 #tag = string
 #function = object_function
 
-#Creating cutscenes:
+#Creating cutscenes - main.py:
 #self.cutscene([self, [{point},{point},{point}]])
 #Points are dictionaries with following keys:
 #x, y, z = world coordinates
@@ -66,7 +67,7 @@ class MyApp(ShowBase):
         pos_seq = Sequence()
         hpr_seq = Sequence()
         h,p,r = self.camera.get_hpr()
-        x,y,z = self.player.get_pos()
+        x,y,z = self.player.body.get_pos()
         for point in points:
             d = 1
             b = 'easeInOut'
@@ -88,7 +89,7 @@ class MyApp(ShowBase):
             if 'b' in point:
                 b = point['b']
             
-            pos_seq.append(LerpPosInterval(self.player, d, (x,y,z), blendType=b))
+            pos_seq.append(LerpPosInterval(self.player.body, d, (x,y,z), blendType=b))
             hpr_seq.append(LerpHprInterval(self.camera, d, (h,p,r), blendType=b))
         
 
