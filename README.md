@@ -16,7 +16,7 @@ Execute a function with parameters:
 Function should be defined in **functions.py** and loaded when creating a model.
 
 ### Loading models the fast way
-Models are tied to a scene and automatically loaded when the scene is loaded. Only argument is a path or simply just the name of the file.<br>
+Models are tied to a scene and automatically loaded when the scene is loaded. The only argument is a path or simply just the name of the file.
 It can also take keyword arguments being the following:
 
 ```
@@ -32,8 +32,10 @@ The keyword, ```name``` is only necessary, for interactive models, if there are 
 This is done in the script **scene_setup.py**
 
 An example for loading an interactive model, which changes the scene can be seen here:
-```Model('door', name='ext_door', tag='interactive', pos=(14,1.35,0.4), scale=0.5, solid=True,
-                        function=[functions.change_scene, {'to_scene':'inte_d1_t1'}])```
+```
+Model('door', name='ext_door', tag='interactive', pos=(14,1.35,0.4), scale=0.5, solid=True,
+                        function=[functions.change_scene, {'to_scene':'inte_d1_t1'}])
+```
 
 ### Creating scenes:
 A scene consists of base elements and scene-specific elements. The base elements are the scene model and its colliders. To create a scene, add the following to **scene_setup.py**:
