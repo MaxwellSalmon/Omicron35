@@ -15,8 +15,9 @@ class Model():
         
         if kg('parent'):
             model.reparent_to(kg('parent'))
-        else:
-            model.reparent_to(render)
+        if kg('name'):
+            #If interactive objects share the model, differentiate between them with custom name
+            name = kg('name')
         if kg('pos'):
             p = kg('pos')
             model.set_pos(p[0], p[1], p[2])
@@ -28,14 +29,15 @@ class Model():
         if kg('scale'):
             model.set_scale(kg('scale'))
         if kg('function'):
-            settings.object_functions[str(model)] = kg('function')
+            settings.object_functions[str(name)] = kg('function')
         if kg('solid'):
             bmin, bmax = model.get_tight_bounds()
             bounds = bmax-bmin
             col = model.attachNewNode(CollisionNode(name))
             col.node().add_solid(CollisionBox((0,0,0), bounds[0], bounds[1], bounds[2]))
 
-            col.show() #Skal væk
+            if settings.show_col:
+                col.show()
 
         self.model = model
         self.name = name

@@ -19,6 +19,14 @@ def door_function():
     else:
         print("Jeg skal have tøj på først")
 
+def change_scene(to_scene):
+    print(to_scene)
+    for model in settings.scenes[settings.environment].models:
+        model.model.detachNode()
+    base.scene.detachNode()
+    base.superloader.load(to_scene, None)
+    base.scene.flattenStrong()
+
 def put_on_clothes(test):
     settings.clothes_on = True
     base.clothes.model.set_z(10)

@@ -6,6 +6,7 @@ import math
 from direct.gui.OnscreenText import OnscreenText
 from direct.interval.IntervalGlobal import *
 
+import scene_setup
 from superloader import *
 from player import *
 import settings
@@ -16,8 +17,9 @@ class MyApp(ShowBase):
         ShowBase.__init__(self)
 
         self.superloader = SuperLoader()
-        self.superloader.load("dayone")
+        self.superloader.load(settings.environment, True)
         self.player = Player()
+        base.scene.flattenStrong()
         
         #Smid ind i en funktion
         self.taskMgr.add(self.player.control_task, "ControlTask")
@@ -64,14 +66,9 @@ class MyApp(ShowBase):
                 d = point['d']
             if 'b' in point:
                 b = point['b']
-            
-<<<<<<< HEAD
-            pos_seq.append(LerpPosInterval(self.player.body, d, (x,y,z), blendType=b))
-            hpr_seq.append(LerpHprInterval(self.camera, d, (h,p,r), blendType=b))
-=======
+
             self.pos_seq.append(LerpPosInterval(self.player.body, d, (x,y,z), blendType=b))
             self.hpr_seq.append(LerpHprInterval(self.camera, d, (h,p,r), blendType=b))
->>>>>>> f5e97686b4dc7f71aa9fe39ff61fef7e12925388
         
 
         self.pos_seq.start()
@@ -92,10 +89,6 @@ class MyApp(ShowBase):
             self.audio3d.setDropOffFactor(args[0])
         
         return sound
-        
-        
-        
-
             
 class FreeMouse(DirectObject.DirectObject):
 

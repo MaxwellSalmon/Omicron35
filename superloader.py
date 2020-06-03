@@ -13,33 +13,34 @@ from panda3d.core import (
     CollisionSphere,)
 
 from model import *
-import functions
+import functions, scene_setup
 import colliders
 
 class SuperLoader():
 
-    def load(self, scene):
-        #Load bestemt scene
+    def load(self, scene_name, init):
+        if init:
+            scene_setup.create_scenes(settings.day)
+        settings.environment = scene_name
         self.load_scene()
-        self.load_mouse()
-        self.load_light()
         self.load_collision()
         self.load_models()
-
-
-    def load_scene(self): #Make individual methods for each scene
-        scene = loader.loadModel("models/interior.egg")
-        scene.setDepthOffset(1)
-        scene.reparentTo(render)
-        scene.setScale(0.5)
-        scene.setPos(0,0,-1.8)
-        base.scene = scene
+        if init:
+            self.load_mouse()
+            self.load_light()
         
-        outside = loader.loadModel("models/exterior.egg")
-        outside.setDepthOffset(1)
-        outside.setScale(0.5)
-        outside.setPos(-3,0,-1.8)
-        base.outside = outside
+
+
+    def load_scene(self):
+        #Sets current base.scene
+        scene = settings.scenes[settings.environment]
+        
+        scene_model = loader.loadModel(scene.scene)
+        scene_model.setDepthOffset(1)
+        scene_model.reparentTo(render)
+        scene_model.setScale(0.5)
+        scene_model.setPos(0,0,-1.8)
+        base.scene = scene_model
         
 
        # mat = Material()
@@ -85,27 +86,15 @@ class SuperLoader():
         pickerNode.addSolid(base.pickerRay)
         base.cTrav.addCollider(pickerNP, base.queue)
 
-        self.load_collision_scene(None) #placeholder argument
+        self.load_collision_scene()
 
-    def load_collision_scene(self, scene):
-        colliders.house_interior(False)
-
-        #Eksempler
-        #Skab
-##        skab = base.skab.attachNewNode(CollisionNode('skab'))
-##        skab.node().addSolid(CollisionSphere(0,0,0.1,0.15))
-##
-##        #Lampe
-##        lampe = base.lampe.attachNewNode(CollisionNode('lampe'))
-##        lampe.node().addSolid(CollisionSphere(0,0,0.1,0.2))
+    def load_collision_scene(self):
+        if settings.scenes[settings.environment].collisions:
+            settings.scenes[settings.environment].collisions()
 
     def load_models(self): #perhaps make into a loop taking info from another file.
-        base.door = Model('door', parent=render, tag='interactive',
-                          function=functions.door_function, pos=(10,1.35,0.4), scale=0.5, solid=True)
-        base.clothes = Model('clothes', parent=base.scene, tag='interactive',
-                             function=[functions.put_on_clothes, {'test' : 'Her er en string'}])
-
-
+        for model in settings.scenes[settings.environment].models:
+            model.model.reparent_to(render)
 
 
 

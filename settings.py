@@ -2,10 +2,14 @@ from panda3d.core import (
     KeyboardButton,
     )
 
+#This script contains settings as well as variables exchanged between scripts.
+
 object_functions = {}
 
 #Environmental variables
-environment = 'inside'
+environment = 'inte_d1_t1'
+day = 1
+time = 1
 
 #Player variables
 player_speed = 0.08
@@ -24,3 +28,7 @@ clothes_on = False
 
 #Developer variables
 show_fps = True
+show_col = False
+
+#Scenes
+scenes = {}

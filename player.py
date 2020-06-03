@@ -27,7 +27,8 @@ class Player(DirectObject.DirectObject):
     def load_collision(self):
         self.col = self.body.attachNewNode(CollisionNode('cnode'))
         self.col.node().addSolid(CollisionCapsule(0,3,-1,0,3,2,0.5))
-       # self.col.show()
+        if settings.show_col:
+            self.col.show()
         # Why is 0,0,0 not center of player??
         base.pusher.setHorizontal(True)
         base.cTrav.addCollider(self.col, base.pusher)
@@ -71,17 +72,15 @@ class Player(DirectObject.DirectObject):
 
         self.fps_camera(mpos)
 
-        
-            
         return Task.cont
 
     def control_mouse(self):
-        #Siden relative mouse ikke virker med Windows, gøres det manuelt.
+        #Relative mouse does not work with Windows, has to be done manually.
         md = base.win.getPointer(0)
         x, y = md.get_x(), md.get_y()
         props = base.win.getProperties()
         
-        #Flyt musemarkør til midten af skærmen.
+        #Move mouse to the center of the screen
         center = [int(props.getXSize() / 2), int(props.getYSize() / 2)]
         if base.win.movePointer(0, center[0], center[1]):
             return [x-center[0], center[1]-y]
@@ -111,19 +110,25 @@ class Player(DirectObject.DirectObject):
         self.camera.set_p(p)
 
     def click_mouse(self, obj):
-        s = str(obj)
-        if s not in settings.object_functions: #Find ud af, hvad der skal gøres med object functions
-            print(f"'{s}' is not a keyword!")
+        s = self.get_model_string(obj)
+        if s not in settings.object_functions:
+            print(f"player.py: '{s}' is not a keyword!")
             return
         else:
             v = settings.object_functions[s]
 
         if callable(v):
-            #If v just a function?
+            #Is v just a function?
             v()
         elif type(v) is list:
             #It is a list with v and parameters.
             v[0](**v[1])
+
+    def get_model_string(self, obj):
+        #Get the name of the model being clicked on.
+        s = [x for x in settings.scenes[settings.environment].models if x.model == obj]
+        if s:
+            return s[0].name
 
     def check_ray_collision(self, task):
         if settings.picked_obj:

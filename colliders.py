@@ -1,8 +1,9 @@
 #This script contains information about colliders.
-#Everything is strings, as the code will be executed in superloader.py
+#Each function is tied to a scene.
 from panda3d.core import CollisionNode, CollisionBox, CollisionSphere, CollisionCapsule
+import settings
 
-def house_interior(show):
+def house_interior():
     #Standard house interior
     kitchen = base.scene.attachNewNode(CollisionNode('kitchen'))
     kitchen.node().addSolid(CollisionCapsule(0,16.4,0, 10,16.4,0,2.5))
@@ -43,7 +44,7 @@ def house_interior(show):
     wcarchives = base.scene.attachNewNode(CollisionNode('wcarchives'))
     wcarchives.node().addSolid(CollisionCapsule(10.5,-7.5,0.5,10.5,-9,0.5,1.5))
     
-    if show:
+    if settings.show_col:
         kitchenwall.show()
         kitchen.show()
         radiowall.show()
