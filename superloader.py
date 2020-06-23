@@ -36,7 +36,7 @@ class SuperLoader():
         scene = settings.scenes[settings.environment]
         
         scene_model = loader.loadModel(scene.scene)
-        scene_model.setDepthOffset(1)
+        scene_model.setDepthOffset(0)
         scene_model.reparentTo(render)
         scene_model.setScale(0.5)
         scene_model.setPos(0,0,-1.8)

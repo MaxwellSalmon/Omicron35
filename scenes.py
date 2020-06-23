@@ -14,6 +14,7 @@ class Scene:
         self.collisions = base_collisions
         self.models = []
         self.add_to_settings()
+        self.player_position = ()
 
     def add_to_settings(self):
         settings.scenes[self.name] = self

@@ -2,7 +2,8 @@
 A work in progress Panda3D game by MaxwellSalmon.
 
 # Documentation
-Note, that this may not be accurate, as the system is still in development and might have changed. Let me know if you spot an error.
+Note, that this may not be accurate, as the system is still in development and might have changed. Let me know if you spot an error. Also, I am not
+used to writing documentation and mainly did this for my own sake, so feel free to request improvements. 
 ### Setting up a function that should run when an object is interacted with:
 
 Simply execute a function with no parameters:

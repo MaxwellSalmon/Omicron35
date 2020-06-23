@@ -31,9 +31,9 @@ def convert(args):
 def view(args):
     lim = 65535
     exp = 65535 * int(args[-1])
-    for file in os.listdir(args[1]):
+    for file in os.listdir(args[0]):
         if file.endswith(".exr"):
-            img = cv2.imread(os.path.join(args[1], file), -1)
+            img = cv2.imread(os.path.join(args[0], file), -1)
             img = img * exp
             img[img>lim] = lim
             img = np.uint16(img)
@@ -44,10 +44,9 @@ def view(args):
                    
             
     
-
-if args[0] != '-v' and args[0] != 'v':     
+if args[-1] != '-v' and args[-1] != 'v':
     convert(args)
 else:
-    view(args)
+    view(args[:-1])
 
 

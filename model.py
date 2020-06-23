@@ -30,6 +30,9 @@ class Model():
             model.set_scale(kg('scale'))
         if kg('function'):
             settings.object_functions[str(name)] = kg('function')
+        if kg('culling'):
+            if kg('culling') == 'both':
+                model.setTwoSided(True)
         if kg('solid'):
             bmin, bmax = model.get_tight_bounds()
             bounds = bmax-bmin

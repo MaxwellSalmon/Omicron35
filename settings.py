@@ -12,7 +12,7 @@ day = 1
 time = 1
 
 #Player variables
-player_speed = 0.08
+player_speed = 0.5#0.08
 forward_btn = KeyboardButton.ascii_key('w')
 strafe_left_btn = KeyboardButton.ascii_key('a')
 backward_btn = KeyboardButton.ascii_key('s')

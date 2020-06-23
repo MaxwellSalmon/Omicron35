@@ -34,10 +34,8 @@ class MyApp(ShowBase):
         self.pos_seq = Sequence()
         self.hpr_seq = Sequence()
 
-        
-
-    #    z = self.load_sound('duga.ogg', self.door, 1) Maybe set audio as a parameter on model class.
-     #   z.play()
+        z = self.load_sound('piano.mp3', self.scene, 1) # Maybe set audio as a parameter on model class.
+        z.play()
         
               
     def cutscene(self, points):

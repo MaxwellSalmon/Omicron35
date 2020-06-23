@@ -1,11 +1,7 @@
 import settings
 
-#Disse funktioner bør følge et state-system, så jeg undgår utallige
-#if-statements. F.eks. state start er uden tøj og indenfor. Brug kun tid på
-#det, hvis det kan spare nok tid. 
-
-def door_function():
-    if settings.clothes_on: #Lav evt om til en change_Scene funktion
+def door_function(): #Redundant
+    if settings.clothes_on:
         if settings.environment == "inside":
             self.outside.reparentTo(self.render)
             self.scene.detachNode()
@@ -19,8 +15,17 @@ def door_function():
     else:
         print("Jeg skal have tøj på først")
 
-def change_scene(to_scene):
-    print(to_scene)
+def change_scene(to_scene, **kwargs):
+    kw = kwargs.get
+    #Player position
+    if kw('player_pos'):
+        p = kw('player_pos')
+        base.player.body.set_pos(p[0], p[1], p[2])
+    else:
+        print(to_scene)
+        p = settings.scenes[to_scene].player_position
+        base.player.body.set_pos(p[0], p[1], p[2])
+    
     for model in settings.scenes[settings.environment].models:
         model.model.detachNode()
     base.scene.detachNode()
