@@ -17,6 +17,11 @@ def door_function(): #Redundant
 
 def change_scene(to_scene, **kwargs):
     kw = kwargs.get
+
+    if 'bool' in kwargs and not settings.g_bools[kw('bool')]:
+        print("Something is missing")
+        return
+    
     #Player position
     if kw('player_pos'):
         p = kw('player_pos')
@@ -24,7 +29,7 @@ def change_scene(to_scene, **kwargs):
     else:
         print(to_scene)
         p = settings.scenes[to_scene].player_position
-        base.player.body.set_pos(p[0], p[1], p[2])
+        base.player.body.set_pos(p[0], p[1], p[2])       
     
     for model in settings.scenes[settings.environment].models:
         model.model.detachNode()
@@ -33,8 +38,12 @@ def change_scene(to_scene, **kwargs):
     base.scene.flattenStrong()
 
 def put_on_clothes(test):
-    settings.clothes_on = True
-    base.clothes.model.set_z(10)
+    settings.g_bools['clothes_on'] = True
+    clothes_model = [x for x in settings.scenes[settings.environment].models if x.name == 'clothes']
+    if not clothes_model:
+        print("Clothes not found in scene models!")
+        return
+    clothes_model[0].model.set_pos(0,0,-10)
     print("Jeg har taget tøjet på")
     print(test)
 

@@ -25,8 +25,8 @@ def create_scenes(day):
 def create_models(scene_name):
     if scene_name[:4] == "inte":
         models = [Model('door', tag='interactive', pos=(10,0.1,0.4), scale=0.5, solid=True,
-                        function=[functions.change_scene, {'to_scene':'exte_d1_t1'}]),
-                  Model('clothes', tag='interactive',
+                        function=[functions.change_scene, {'to_scene':'exte_d1_t1', 'bool':'clothes_on'}]),
+                  Model('clothes', tag='interactive', pos=(-7,-0.5,-5),
                         function=[functions.put_on_clothes, {'test' : 'Her er en string'}]),
                   ]
     elif scene_name[:4] == "exte":

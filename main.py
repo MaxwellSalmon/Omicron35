@@ -65,6 +65,9 @@ class MyApp(ShowBase):
             if 'b' in point:
                 b = point['b']
 
+            if settings.dev_control:
+                d=0
+
             self.pos_seq.append(LerpPosInterval(self.player.body, d, (x,y,z), blendType=b))
             self.hpr_seq.append(LerpHprInterval(self.camera, d, (h,p,r), blendType=b))
         
