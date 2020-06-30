@@ -23,7 +23,7 @@ class SuperLoader():
             scene_setup.create_scenes(settings.day)
         settings.environment = scene_name
         self.load_scene()
-        self.load_collision()
+        self.load_collision(init)
         self.load_models()
         if init:
             self.load_mouse()
@@ -67,24 +67,25 @@ class SuperLoader():
         base.light.node().setLens(lens)
         base.light.node().setShadowCaster(True, 1024, 1024)
         ambient_light = render.attachNewNode(AmbientLight("alight"))
-        ambient_light.node().setColor((0.7, 0.7, 0.7, 1))
+        ambient_light.node().setColor((1, 1, 1, 1))
         base.light.lookAt(base.scene)
-        render.setLight(base.light)
+        #render.setLight(base.light)
         render.setLight(ambient_light)
-        render.setLight(dlight)
+        #render.setLight(dlight)
 
-    def load_collision(self):
-        base.cTrav = CollisionTraverser()
-        base.pusher = CollisionHandlerPusher()
-        base.queue = CollisionHandlerQueue()
+    def load_collision(self, init):
+        if init:
+            base.cTrav = CollisionTraverser()
+            base.pusher = CollisionHandlerPusher()
+            base.queue = CollisionHandlerQueue()
 
-        #Camera
-        pickerNode = CollisionNode('mouseRay')
-        pickerNP = base.camera.attachNewNode(pickerNode)
-        pickerNode.setFromCollideMask(GeomNode.getDefaultCollideMask())
-        base.pickerRay = CollisionRay()
-        pickerNode.addSolid(base.pickerRay)
-        base.cTrav.addCollider(pickerNP, base.queue)
+            #Camera
+            pickerNode = CollisionNode('mouseRay')
+            pickerNP = base.camera.attachNewNode(pickerNode)
+            pickerNode.setFromCollideMask(GeomNode.getDefaultCollideMask())
+            base.pickerRay = CollisionRay()
+            pickerNode.addSolid(base.pickerRay)
+            base.cTrav.addCollider(pickerNP, base.queue)
 
         self.load_collision_scene()
 

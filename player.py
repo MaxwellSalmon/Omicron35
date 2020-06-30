@@ -20,6 +20,8 @@ class Player(DirectObject.DirectObject):
         self.camera.set_pos(0,3,2)
         self.camLens.setFov(80)
         self.camLens.setNear(0.2)
+        pos = settings.scenes[settings.environment].player_position
+        self.body.set_pos(pos[0], pos[1], pos[2])
 
         self.speed = settings.player_speed
         self.load_collision()

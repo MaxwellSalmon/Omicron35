@@ -7,12 +7,12 @@ from panda3d.core import (
 object_functions = {}
 
 #Environmental variables
-environment = 'inte_d1_t1'
+environment = 'exte_d1_t1'
 day = 1
 time = 1
 
 #Player variables
-player_speed = 0.5#0.08
+player_speed = 0.2#0.08
 forward_btn = KeyboardButton.ascii_key('w')
 strafe_left_btn = KeyboardButton.ascii_key('a')
 backward_btn = KeyboardButton.ascii_key('s')
@@ -28,7 +28,7 @@ clothes_on = False
 
 #Developer variables
 show_fps = True
-show_col = False
+show_col = True
 
 #Scenes
 scenes = {}
