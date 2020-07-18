@@ -28,13 +28,15 @@ pos = tuple 3
 hpr = tuple 3
 tag = string
 function = object_function
+culling = string
+solid = boolean
 ```
 The keyword, ```name``` is only necessary, for interactive models, if there are multiple objects sharing the same 3D-model.<br>
 This is done in the script **scene_setup.py**
 
 An example for loading an interactive model, which changes the scene can be seen here:
 ```
-Model('door', name='ext_door', tag='interactive', pos=(14,1.35,0.4), scale=0.5, solid=True,
+Model('door', name='ext_door', tag='interactive', pos=(14,1.35,0.4), scale=0.5, solid=True, culling='both'
                         function=[functions.change_scene, {'to_scene':'inte_d1_t1'}])
 ```
 
