@@ -1,0 +1,11 @@
+__pycache__/
+other_files/
+.mayaSwatches/
+
+*.tx
+*.exr
+*.meta
+*.mb
+*.tif
+*.swatch
+*.pyc
