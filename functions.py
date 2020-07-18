@@ -39,7 +39,8 @@ def change_scene(to_scene, **kwargs):
 
 def put_on_clothes(test):
     settings.g_bools['clothes_on'] = True
-    clothes_model = [x for x in settings.scenes[settings.environment].models if x.name == 'clothes']
+    #Long ass generator for checking if the name of the model has 'suit' in it.
+    clothes_model = [x for x in settings.scenes[settings.environment].models if x.name.split('/')[-1][:-1] == 'suit']
     if not clothes_model:
         print("Clothes not found in scene models!")
         return

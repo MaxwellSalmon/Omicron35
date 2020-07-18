@@ -12,6 +12,9 @@ class Model():
             path = 'models/'+path
         model = loader.load_model(path)
         name = path[7:]
+
+        model.set_scale(0.5) #default scale
+        model.set_pos(0, 0, -1.8)
         
         if kg('parent'):
             model.reparent_to(kg('parent'))

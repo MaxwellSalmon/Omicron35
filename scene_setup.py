@@ -23,11 +23,13 @@ def create_scenes(day):
         setup("exte_d1_t1", os.path.join('models', 'exterior.egg'), colliders.exterior)
 
 def create_models(scene_name):
-    if scene_name[:4] == "inte":
+    if scene_name[:4] == "inte": #Divide into days and time
         models = [Model('door', tag='interactive', pos=(10,0.1,0.4), scale=0.5, solid=True,
                         function=[functions.change_scene, {'to_scene':'exte_d1_t1', 'bool':'clothes_on'}]),
-                  Model('clothes', tag='interactive', pos=(-7,-0.5,-5),
-                        function=[functions.put_on_clothes, {'test' : 'Her er en string'}]),
+                  Model('interior/suit1', tag='interactive', function=[functions.put_on_clothes, {'test' : 'Here is suit1'}]),
+                  Model('interior/suit2', tag='interactive', function=[functions.put_on_clothes, {'test' : 'Here is suit2'}]),
+                  Model('interior/suit3', tag='interactive', function=[functions.put_on_clothes, {'test' : 'Here is suit3'}]),
+                  Model('interior/showercurtain', pos=(1.65,-8.6,-1.8), solid=True, culling='both'),
                   ]
     elif scene_name[:4] == "exte":
         models = [Model('door', name='ext2int_door', tag='interactive', pos=(10.3,0.1,0.4), scale=0.5, solid=True,
