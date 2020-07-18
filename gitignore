@@ -16,9 +16,7 @@ lib64/
 parts/
 sdist/
 var/
-*.egg-info/
-.installed.cfg
-*.egg
+
 
 # Installer logs
 pip-log.txt
@@ -31,20 +29,15 @@ pip-delete-this-directory.txt
 nosetests.xml
 coverage.xml
 
-# Translations
-*.mo
-
-# Mr Developer
-.mr.developer.cfg
-.project
-.pydevproject
-
-# Rope
-.ropeproject
-
-# Django stuff:
 *.log
 *.pot
+*.mb
+*.tif
+*.exr
 
 # Sphinx documentation
 docs/_build/
+
+old_models/
+other_files/
+.mayaSwatches/
