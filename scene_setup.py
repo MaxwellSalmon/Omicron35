@@ -30,6 +30,7 @@ def create_models(scene_name):
                   Model('interior/suit2', tag='interactive', function=[functions.put_on_clothes, {'test' : 'Here is suit2'}]),
                   Model('interior/suit3', tag='interactive', function=[functions.put_on_clothes, {'test' : 'Here is suit3'}]),
                   Model('interior/showercurtain', pos=(1.65,-8.6,-1.8), solid=True, culling='both'),
+                  Model('skydome', scale=21, hpr=(240,0,0)),
                   ]
     elif scene_name[:4] == "exte":
         models = [Model('door', name='ext2int_door', tag='interactive', pos=(10.3,0.1,0.4), scale=0.5, solid=True,
