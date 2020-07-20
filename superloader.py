@@ -12,11 +12,16 @@ from panda3d.core import (
     CollisionRay,
     CollisionSphere,)
 
+from direct.showbase import Audio3DManager
+
 from model import *
 import functions, scene_setup
 import colliders
 
 class SuperLoader():
+
+    def __init__(self):
+        self.audio3d_queue = []
 
     def load(self, scene_name, init):
         if init:
@@ -96,6 +101,35 @@ class SuperLoader():
     def load_models(self): #perhaps make into a loop taking info from another file.
         for model in settings.scenes[settings.environment].models:
             model.model.reparent_to(render)
+
+    def load_audio3d(self):
+        base.audio3d = Audio3DManager.Audio3DManager(base.sfxManagerList[0], base.player.camera)
+        base.audio3d.attachListener(base.player.camera)
+
+        for a in self.audio3d_queue:
+            sound = self.load_sound(a[0], a[1], a[2])
+            a[-1].audio = sound
+        self.audio3d_queue = []
+
+    def load_sound_queue(self, arguments):
+        #Audio3D may not be initialised at this point. Add sounds to loading queue.
+        self.audio3d_queue.append(arguments)
+
+    def load_sound(self, path, obj, *args):
+        #Args[0] is dropoff factor
+        if 'sounds/' not in path:
+            path = 'sounds/'+path
+        
+        sound = base.audio3d.loadSfx(path)
+        if str(sound)[:14] == 'NullAudioSound':
+            print(f"Audio file {path} is not found")
+        
+        base.audio3d.attachSoundToObject(sound, obj)
+
+        if args:
+            base.audio3d.setDropOffFactor(args[0])
+        
+        return sound
 
 
 

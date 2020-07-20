@@ -15,13 +15,13 @@ class MyApp(ShowBase):
 
     def __init__(self):
         ShowBase.__init__(self)
-
+    
         self.superloader = SuperLoader()
         self.superloader.load(settings.environment, True)
         self.player = Player()
+        self.superloader.load_audio3d()
         base.scene.flattenStrong()
         
-        #Smid ind i en funktion
         self.taskMgr.add(self.player.control_task, "ControlTask")
         self.taskMgr.add(self.player.check_ray_collision, "RayTask")
 
@@ -29,8 +29,6 @@ class MyApp(ShowBase):
         self.crosshair = OnscreenText(text='+', pos=(0,0), scale=(0.1), fg=(0,0.5,0,0.8))
 
         
-        self.audio3d = Audio3DManager.Audio3DManager(self.sfxManagerList[0], self.player.camera)
-        self.audio3d.attachListener(self.player.camera)
         self.pos_seq = Sequence()
         self.hpr_seq = Sequence()
 
@@ -75,21 +73,6 @@ class MyApp(ShowBase):
         self.pos_seq.start()
         self.hpr_seq.start()
 
-    def load_sound(self, path, obj, *args): #Smid over i superloader
-        #Args[0] is dropoff factor
-        if 'sounds/' not in path:
-            path = 'sounds/'+path
-        
-        sound = self.audio3d.loadSfx(path)
-        if str(sound)[:14] == 'NullAudioSound':
-            print(f"Audio file {path} is not found")
-        
-        self.audio3d.attachSoundToObject(sound, obj)
-
-        if args:
-            self.audio3d.setDropOffFactor(args[0])
-        
-        return sound
             
 class FreeMouse(DirectObject.DirectObject):
 

@@ -15,6 +15,8 @@ class Model():
 
         model.set_scale(0.5) #default scale
         model.set_pos(0, 0, -1.8)
+
+        self.audio = None
         
         if kg('parent'):
             model.reparent_to(kg('parent'))
@@ -33,6 +35,8 @@ class Model():
             model.set_scale(kg('scale'))
         if kg('function'):
             settings.object_functions[str(name)] = kg('function')
+        if kg('audio'):
+            self.audio = base.superloader.load_sound_queue((kg('audio'), model, 1, self))
         if kg('culling'):
             if kg('culling') == 'both':
                 model.setTwoSided(True)
@@ -47,3 +51,7 @@ class Model():
 
         self.model = model
         self.name = name
+
+    def play_audio(self):
+        if self.audio:
+            self.audio.play()

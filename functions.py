@@ -1,19 +1,11 @@
 import settings
 
-def door_function(): #Redundant
-    if settings.clothes_on:
-        if settings.environment == "inside":
-            self.outside.reparentTo(self.render)
-            self.scene.detachNode()
-            settings.environment = "outside"
-            self.door.setPos(6.5,1.2,0.4)
-        else:
-            self.outside.detachNode()
-            self.scene.reparentTo(self.render)
-            settings.environment = "inside"
-            self.door.setX(0)
-    else:
-        print("Jeg skal have tøj på først")
+def get_model():
+    #Does not take custon model names into account. Perhaps it needs attention later.
+    obj_name = str(settings.picked_obj).split('/')[-1][:-4]
+    model = [x for x in settings.scenes[settings.environment].models if str(x.name).split('/')[-1] == obj_name]
+    if model:
+        return model[0]
 
 def change_scene(to_scene, **kwargs):
     kw = kwargs.get
@@ -38,17 +30,13 @@ def change_scene(to_scene, **kwargs):
     base.scene.flattenStrong()
 
 def put_on_clothes(test):
-    settings.g_bools['clothes_on'] = True
-    #Long ass generator for checking if the name of the model has 'suit' in it.
-    clothes_model = [x for x in settings.scenes[settings.environment].models if x.name.split('/')[-1][:-1] == 'suit']
-    if not clothes_model:
-        print("Clothes not found in scene models!")
-        return
-    clothes_model[0].model.set_pos(0,0,-10)
-    print("Jeg har taget tøjet på")
-    print(test)
+    if not settings.g_bools['clothes_on']:
+        settings.g_bools['clothes_on'] = True
+        settings.picked_obj.set_pos(0,0,-10)
+        print("You put on your clothes")
+        get_model().play_audio()
 
-    base.cutscene([{'h':0,'p':90,'r':0, 'x':-0.36, 'y':-11.36, 'z':-1.5, 'd':0},
-                    {'p':0, 'y':-11,'z':-1, 'd':2},
-                    {'h':85, 'p':-5, 'y':-10.5, 'd':2},
-                    {'x':-2.3, 'p':-8, 'z':0, 'd':2}])
+        #base.cutscene([{'h':0,'p':90,'r':0, 'x':-0.36, 'y':-11.36, 'z':-1.5, 'd':0},
+        #                {'p':0, 'y':-11,'z':-1, 'd':2},
+        #                {'h':85, 'p':-5, 'y':-10.5, 'd':2},
+        #                {'x':-2.3, 'p':-8, 'z':0, 'd':2}])
