@@ -62,3 +62,15 @@ b = blend mode - 'easeIn', 'easeOut', 'noBlend', default is 'easeInOut'
 ```
 Note, that the player's p value can only be between -90 and 90.<br>
 This is done in script **main.py**
+
+### Converting .exr to .png:
+I made a simple script which can convert .exr images to .png images. This is used when baking textures in Maya. The script is executed in the terminal. Use the following arguments for a description on how to use it:
+```
+exr2png.py -h
+```
+It has various keywords, which are explained there. An example of a conversion could look like this:
+```
+exr2png.py exr_folder png_folder 2 -o
+```
+Arguments are: input folder, output folder, exposure and overwrite files with the same names. <br>
+**Note that this script required Numpy and OpenCV**

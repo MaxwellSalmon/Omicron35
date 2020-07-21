@@ -30,6 +30,7 @@ def create_models(scene_name):
                   Model('interior/suit2', tag='interactive', audio='zipper.wav', function=[functions.put_on_clothes, {'test' : 'Here is suit2'}]),
                   Model('interior/suit3', tag='interactive', audio='zipper.wav', function=[functions.put_on_clothes, {'test' : 'Here is suit3'}]),
                   Model('interior/showercurtain', pos=(1.65,-8.6,-1.8), solid=True, culling='both'),
+                  Model('interior/clipboard', pos=(-4.1,-8.6,0.45)),
                   Model('skydome', scale=21, hpr=(240,0,0)),
                   ]
     elif scene_name[:4] == "exte":
