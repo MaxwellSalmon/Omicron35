@@ -61,7 +61,7 @@ d = duration
 b = blend mode - 'easeIn', 'easeOut', 'noBlend', default is 'easeInOut'
 ```
 Note, that the player's p value can only be between -90 and 90.<br>
-This is done in script **main.py**
+Cutscenes are normally created in **functions.py**, reffering to base.
 
 ### Converting .exr to .png:
 I made a simple script which can convert .exr images to .png images. This is used when baking textures in Maya. The script is executed in the terminal. Use the following arguments for a description on how to use it:

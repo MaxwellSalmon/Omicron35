@@ -27,6 +27,7 @@ class SuperLoader():
         if init:
             scene_setup.create_scenes(settings.day)
         settings.environment = scene_name
+        settings.scene = settings.scenes[scene_name]
         self.load_scene()
         self.load_collision(init)
         self.load_models()
@@ -34,7 +35,6 @@ class SuperLoader():
             self.load_mouse()
             self.load_light()
         
-
 
     def load_scene(self):
         #Sets current base.scene
@@ -130,8 +130,3 @@ class SuperLoader():
             base.audio3d.setDropOffFactor(args[0])
         
         return sound
-
-
-
-
-        

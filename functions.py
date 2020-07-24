@@ -1,5 +1,7 @@
 import settings
 
+#This script contains functions which execute when interacting with an object or entering a scene.
+
 def get_model():
     #Does not take custon model names into account. Perhaps it needs attention later.
     obj_name = str(settings.picked_obj).split('/')[-1][:-4]
@@ -9,6 +11,7 @@ def get_model():
 
 def change_scene(to_scene, **kwargs):
     kw = kwargs.get
+    get_model().play_audio()
 
     if 'bool' in kwargs and not settings.g_bools[kw('bool')]:
         print("Something is missing")
@@ -36,7 +39,17 @@ def put_on_clothes(test):
         print("You put on your clothes")
         get_model().play_audio()
 
-        #base.cutscene([{'h':0,'p':90,'r':0, 'x':-0.36, 'y':-11.36, 'z':-1.5, 'd':0},
-        #                {'p':0, 'y':-11,'z':-1, 'd':2},
-        #                {'h':85, 'p':-5, 'y':-10.5, 'd':2},
-        #                {'x':-2.3, 'p':-8, 'z':0, 'd':2}])
+def take_clipboard():
+    settings.picked_obj.set_pos(0,0,-10)
+    get_model().play_audio()
+    #SHOW CLIPBOARD as UI overlay
+
+        
+def d1_wake_up():
+    base.cutscene([{'h':0,'p':90,'r':0, 'x':-0.36, 'y':-11.36, 'z':-1.5, 'd':0},
+                    {'p':0, 'y':-11,'z':-1, 'd':2},
+                    {'h':85, 'p':-5, 'y':-10.5, 'd':2},
+                    {'x':-2.3, 'p':-8, 'z':0, 'd':2},
+                   {'h':120, 'p':-35},
+                   {'x':-3.4, 'y':-11.2, 'p':-65, 'd':2.5}])
+    settings.g_bools['woken_up'] = True

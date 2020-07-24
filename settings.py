@@ -6,7 +6,8 @@ from panda3d.core import (
 
 object_functions = {}
 g_bools = {
-    'clothes_on' : False}
+    'clothes_on' : False,
+    'woken_up' : False}
 
 #Environmental variables
 environment = 'inte_d1_t1'
@@ -29,7 +30,8 @@ picked_obj = None
 #Developer variables
 show_fps = True
 show_col = False
-dev_control = True
+dev_control = False
 
 #Scenes
 scenes = {}
+scene = None

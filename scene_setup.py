@@ -24,13 +24,13 @@ def create_scenes(day):
 
 def create_models(scene_name):
     if scene_name[:4] == "inte": #Divide into days and time
-        models = [Model('door', tag='interactive', pos=(10,0.1,0.4), scale=0.5, solid=True,
+        models = [Model('door', tag='interactive', pos=(10,0.1,0.4), scale=0.5, solid=True, audio='door.wav',
                         function=[functions.change_scene, {'to_scene':'exte_d1_t1', 'bool':'clothes_on'}]),
                   Model('interior/suit1', tag='interactive', audio='zipper.wav', function=[functions.put_on_clothes, {'test' : 'Here is suit1'}]),
                   Model('interior/suit2', tag='interactive', audio='zipper.wav', function=[functions.put_on_clothes, {'test' : 'Here is suit2'}]),
                   Model('interior/suit3', tag='interactive', audio='zipper.wav', function=[functions.put_on_clothes, {'test' : 'Here is suit3'}]),
                   Model('interior/showercurtain', pos=(1.65,-8.6,-1.8), solid=True, culling='both'),
-                  Model('interior/clipboard', pos=(-4.1,-8.6,0.45)),
+                  Model('interior/clipboard', pos=(-4.1,-8.6,0.45), tag='interactive', audio='clipboard.wav', function=functions.take_clipboard),
                   Model('skydome', scale=21, hpr=(240,0,0)),
                   ]
     elif scene_name[:4] == "exte":

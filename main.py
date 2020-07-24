@@ -6,7 +6,7 @@ import math
 from direct.gui.OnscreenText import OnscreenText
 from direct.interval.IntervalGlobal import *
 
-import scene_setup
+import scene_setup, manager
 from superloader import *
 from player import *
 import settings
@@ -24,6 +24,7 @@ class MyApp(ShowBase):
         
         self.taskMgr.add(self.player.control_task, "ControlTask")
         self.taskMgr.add(self.player.check_ray_collision, "RayTask")
+        self.taskMgr.doMethodLater(0.3, manager.manage, "ManageTask")
 
         self.setFrameRateMeter(settings.show_fps)
         self.crosshair = OnscreenText(text='+', pos=(0,0), scale=(0.1), fg=(0,0.5,0,0.8))
@@ -32,7 +33,7 @@ class MyApp(ShowBase):
         self.pos_seq = Sequence()
         self.hpr_seq = Sequence()
 
-        #z = self.load_sound('piano.mp3', self.scene, 1) # Maybe set audio as a parameter on model class.
+        #z = self.load_sound('piano.mp3', self.scene, 1)
         #z.play()
         
               

@@ -15,6 +15,7 @@ class Scene:
         self.models = []
         self.add_to_settings()
         self.player_position = ()
+        self.functions = []
 
     def add_to_settings(self):
         settings.scenes[self.name] = self
