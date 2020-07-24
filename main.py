@@ -29,7 +29,6 @@ class MyApp(ShowBase):
         self.setFrameRateMeter(settings.show_fps)
         self.crosshair = OnscreenText(text='+', pos=(0,0), scale=(0.1), fg=(0,0.5,0,0.8))
 
-        
         self.pos_seq = Sequence()
         self.hpr_seq = Sequence()
 

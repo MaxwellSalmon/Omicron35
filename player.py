@@ -1,9 +1,11 @@
 from math import radians, sin, cos
 from direct.showbase import DirectObject
+from direct.gui.OnscreenImage import OnscreenImage
 from direct.task import Task
 from panda3d.core import (
     CollisionNode,
     CollisionCapsule,
+    TransparencyAttrib,
     )
 
 
@@ -25,6 +27,8 @@ class Player(DirectObject.DirectObject):
 
         self.speed = settings.player_speed
         self.load_collision()
+
+        self.clipboard_ui = None
         
     def load_collision(self):
         self.col = self.body.attachNewNode(CollisionNode('cnode'))
@@ -37,6 +41,8 @@ class Player(DirectObject.DirectObject):
         base.pusher.addCollider(self.col, self.body)
 
     def control_task(self, task):
+        settings.dt = globalClock.getDt()
+        
         if self.check_cutscene():
             return Task.cont
         
@@ -48,14 +54,16 @@ class Player(DirectObject.DirectObject):
         h = radians(self.camera.getH())
         add_pos = [[0,0,0],[0,0,0],[0,0,0],[0,0,0]]
 
+        speed = self.speed * settings.dt
+
         if is_down(settings.forward_btn):
-            add_pos[0] = [-sin(h)*self.speed,cos(h)*self.speed,0]
+            add_pos[0] = [-sin(h)*speed,cos(h)*speed,0]
         if is_down(settings.backward_btn):
-            add_pos[1] = [-sin(h)*-self.speed,cos(h)*-self.speed,0]
+            add_pos[1] = [-sin(h)*-speed,cos(h)*-speed,0]
         if is_down(settings.strafe_right_btn):
-            add_pos[2] = [cos(h)*self.speed,sin(h)*self.speed,0]
+            add_pos[2] = [cos(h)*speed,sin(h)*speed,0]
         if is_down(settings.strafe_left_btn):
-            add_pos[3] = [cos(h)*-self.speed,sin(h)*-self.speed,0]
+            add_pos[3] = [cos(h)*-speed,sin(h)*-speed,0]
 
         move_pos = [0,0,0]
         for i in add_pos:
@@ -74,7 +82,21 @@ class Player(DirectObject.DirectObject):
 
         self.fps_camera(mpos)
 
+        base.accept('tab', self.open_ui)
+
         return Task.cont
+
+    def open_ui(self):
+        if settings.g_bools['has_clipboard']:
+            #Add animation to the UI
+            if not settings.ui_open:
+                self.clipboard_ui = OnscreenImage(image='textures/clipboardUI.png', pos=(0,0,0), scale=(0.7,1,0.9))
+                self.clipboard_ui.setTransparency(TransparencyAttrib.MAlpha)
+                settings.ui_open = True
+            else:
+                self.clipboard_ui.destroy()
+                settings.ui_open = False
+            
 
     def control_mouse(self):
         #Relative mouse does not work with Windows, has to be done manually.

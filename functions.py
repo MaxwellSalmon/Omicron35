@@ -3,11 +3,10 @@ import settings
 #This script contains functions which execute when interacting with an object or entering a scene.
 
 def get_model():
-    #Does not take custon model names into account. Perhaps it needs attention later.
-    obj_name = str(settings.picked_obj).split('/')[-1][:-4]
-    model = [x for x in settings.scenes[settings.environment].models if str(x.name).split('/')[-1] == obj_name]
+    model = [x for x in settings.scene.models if x.model == settings.picked_obj]
     if model:
         return model[0]
+    print("Could not fetch model ", settings.picked_obj)
 
 def change_scene(to_scene, **kwargs):
     kw = kwargs.get
@@ -42,7 +41,7 @@ def put_on_clothes(test):
 def take_clipboard():
     settings.picked_obj.set_pos(0,0,-10)
     get_model().play_audio()
-    #SHOW CLIPBOARD as UI overlay
+    settings.g_bools['has_clipboard'] = True
 
         
 def d1_wake_up():
