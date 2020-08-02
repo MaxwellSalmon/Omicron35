@@ -31,18 +31,19 @@ def create_models(scene_name):
                   Model('interior/suit3', tag='interactive', audio='zipper.wav', function=[functions.put_on_clothes, {'test' : 'Here is suit3'}]),
                   Model('interior/showercurtain', pos=(1.65,-8.6,-1.8), solid=True, culling='both'),
                   Model('interior/clipboard', pos=(-4.1,-8.6,0.45), tag='interactive', audio='clipboard.wav', function=functions.take_clipboard),
-                  Model('skydome', scale=21, hpr=(240,0,0)),
+                  Model('d1t1', scale=21, hpr=(240,0,0)),
                   ]
     elif scene_name[:4] == "exte":
         models = [Model('door', name='ext2int_door', tag='interactive', pos=(10.3,0.1,0.4), scale=0.5, solid=True,
                         function=[functions.change_scene, {'to_scene':'inte_d1_t1'}]),
                   Model('door', name='ext2hang_door', tag='interactive', pos=(77.4,40.25,0.65), hpr=(22.3,0,0), scale=0.5, solid=True,
                         function=[functions.change_scene, {'to_scene':'hang_d1_t1'}]),
-                  Model('skydome', scale=21, hpr=(240,0,0)),
+                  Model('d1t1', scale=21, hpr=(240,0,0)),
                   ]
     elif scene_name[:4] == "hang":
         models = [Model('door', name='hang2ext_door', tag='interactive', pos=(-16.4,-9.4,0.4), scale=0.5, solid=True,
                         function=[functions.change_scene, {'to_scene':'exte_d1_t1', 'player_pos':(76,37,0.3)}]),
+                  Model('d1t1', scale=21, hpr=(240,0,0)),
                   ]
     else:
         models = []

@@ -21,6 +21,8 @@ forward_btn = KeyboardButton.ascii_key('w')
 strafe_left_btn = KeyboardButton.ascii_key('a')
 backward_btn = KeyboardButton.ascii_key('s')
 strafe_right_btn = KeyboardButton.ascii_key('d')
+sprint_btn = 'lshift'
+inventory_btn = 'tab'
 sensitivity = 0.21
 
 free_mouse = False

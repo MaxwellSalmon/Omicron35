@@ -53,7 +53,7 @@ class Player(DirectObject.DirectObject):
 
         h = radians(self.camera.getH())
         add_pos = [[0,0,0],[0,0,0],[0,0,0],[0,0,0]]
-
+        
         speed = self.speed * settings.dt
 
         if is_down(settings.forward_btn):
@@ -82,9 +82,18 @@ class Player(DirectObject.DirectObject):
 
         self.fps_camera(mpos)
 
-        base.accept('tab', self.open_ui)
+        base.accept(settings.inventory_btn, self.open_ui)
+        base.accept(settings.sprint_btn, self.speed_multiplier)
+        
 
         return Task.cont
+
+    def speed_multiplier(self):
+        if settings.dev_control:
+            if self.speed == settings.player_speed:
+                self.speed = settings.player_speed * 3
+            else:
+                self.speed = settings.player_speed
 
     def open_ui(self):
         if settings.g_bools['has_clipboard']:
