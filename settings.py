@@ -11,7 +11,7 @@ g_bools = {
     'has_clipboard' : False}
 
 #Environmental variables
-environment = 'inte_d1_t1'
+environment = 'hang_d1_t1'
 day = 1
 time = 1
 
@@ -33,7 +33,7 @@ picked_obj = None
 
 #Developer variables
 show_fps = True
-show_col = False
+show_col = True
 dev_control = True
 
 #Functionality variables

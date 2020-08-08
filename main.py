@@ -6,6 +6,8 @@ import math
 from direct.gui.OnscreenText import OnscreenText
 from direct.interval.IntervalGlobal import *
 
+from direct.particles.ParticleEffect import ParticleEffect #Temp?
+
 import scene_setup, manager
 from superloader import *
 from player import *
@@ -15,7 +17,8 @@ class MyApp(ShowBase):
 
     def __init__(self):
         ShowBase.__init__(self)
-    
+
+        self.interactive_objects = render.attachNewNode("interactive_objects")
         self.superloader = SuperLoader()
         self.superloader.load(settings.environment, True)
         self.player = Player()
@@ -23,7 +26,7 @@ class MyApp(ShowBase):
         base.scene.flattenStrong()
         
         self.taskMgr.add(self.player.control_task, "ControlTask")
-        self.taskMgr.add(self.player.check_ray_collision, "RayTask")
+        self.taskMgr.doMethodLater(0.05, self.player.check_ray_collision, "RayTask")
         self.taskMgr.doMethodLater(0.3, manager.manage, "ManageTask")
 
         self.setFrameRateMeter(settings.show_fps)
@@ -32,8 +35,23 @@ class MyApp(ShowBase):
         self.pos_seq = Sequence()
         self.hpr_seq = Sequence()
 
+
+##        self.enableParticles() #Make better
+##
+##        self.p = ParticleEffect()
+##        self.p.loadConfig('particles/light_snow.ptf')
+##        self.p.start(parent=render, renderParent=render)
+##        self.taskMgr.add(self.temp, "temp")
+
         #z = self.load_sound('piano.mp3', self.scene, 1)
         #z.play()
+
+        PStatClient.connect()
+
+    def temp(self, task):
+        self.p.set_pos(self.player.body.get_pos())
+        self.p.set_z(8)
+        return Task.cont
         
               
     def cutscene(self, points):

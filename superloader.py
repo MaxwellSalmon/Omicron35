@@ -91,7 +91,7 @@ class SuperLoader():
             base.pickerRay = CollisionRay()
             pickerNode.addSolid(base.pickerRay)
             base.cTrav.addCollider(pickerNP, base.queue)
-
+            
         self.load_collision_scene()
 
     def load_collision_scene(self):
@@ -99,8 +99,11 @@ class SuperLoader():
             settings.scenes[settings.environment].collisions()
 
     def load_models(self): #perhaps make into a loop taking info from another file.
-        for model in settings.scenes[settings.environment].models:
-            model.model.reparent_to(render)
+        for model in settings.scene.models:
+            if model.model.getTag('interactive'):
+                model.model.reparent_to(base.interactive_objects)
+            else:
+                model.model.reparent_to(render)
 
     def load_audio3d(self):
         base.audio3d = Audio3DManager.Audio3DManager(base.sfxManagerList[0], base.player.camera)

@@ -18,8 +18,6 @@ class Model():
 
         self.audio = None
         
-        if kg('parent'):
-            model.reparent_to(kg('parent'))
         if kg('name'):
             #If interactive objects share the model, differentiate between them with custom name
             name = kg('name')

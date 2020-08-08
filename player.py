@@ -174,7 +174,7 @@ class Player(DirectObject.DirectObject):
         #Set ray from center of screen (0,0)
         base.pickerRay.setFromLens(base.camNode, 0,0)
 
-        base.cTrav.traverse(base.render)
+        base.cTrav.traverse(base.interactive_objects)
         #Get all objects that are collinding with the ray.
         if base.queue.getNumEntries() > 0:
             #Sort by distance.
@@ -187,7 +187,7 @@ class Player(DirectObject.DirectObject):
                     pickedObj.set_color(1,1,0)
                     settings.picked_obj = pickedObj
                 
-        return Task.cont
+        return Task.again
 
     def check_cutscene(self):
         if base.pos_seq.isPlaying():

@@ -105,6 +105,14 @@ def exterior():
     shedbox.node().addSolid(CollisionSphere(133,-18,0.5,1.5))
     shedshelves = base.scene.attachNewNode(CollisionNode('shedshelves'))
     shedshelves.node().addSolid(CollisionCapsule(126,-16,0.5, 118,-13,0.5, 1))
+    hangarwall1 = base.scene.attachNewNode(CollisionNode('hangarwall1'))
+    hangarwall1.node().addSolid(CollisionCapsule(158,72,0.5, 220,97.2,0.5, 2))
+    hangarwall2 = base.scene.attachNewNode(CollisionNode('hangarwall2'))
+    hangarwall2.node().addSolid(CollisionCapsule(220,97.2,0.5, 198,150,0.5, 2))
+    hangarwall3 = base.scene.attachNewNode(CollisionNode('hangarwall3'))
+    hangarwall3.node().addSolid(CollisionCapsule(198,150,0.5, 136,125,0.5, 2))
+    hangarwall4 = base.scene.attachNewNode(CollisionNode('hangarwall4'))
+    hangarwall4.node().addSolid(CollisionCapsule(158,72,0.5, 136,125,0.5, 2))
 
     if settings.show_col:
         houseback.show()
@@ -126,4 +134,13 @@ def exterior():
         shedstuff2.show()
         shedbox.show()
         shedshelves.show()
+        hangarwall1.show()
+        hangarwall2.show()
+        hangarwall3.show()
+        hangarwall4.show()
     
+def hangar():
+    pass
+
+    if settings.show_col:
+        pass
