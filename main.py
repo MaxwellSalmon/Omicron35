@@ -46,7 +46,7 @@ class MyApp(ShowBase):
         #z = self.load_sound('piano.mp3', self.scene, 1)
         #z.play()
 
-        PStatClient.connect()
+       # PStatClient.connect()
 
     def temp(self, task):
         self.p.set_pos(self.player.body.get_pos())

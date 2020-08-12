@@ -33,7 +33,7 @@ picked_obj = None
 
 #Developer variables
 show_fps = True
-show_col = True
+show_col = False
 dev_control = True
 
 #Functionality variables

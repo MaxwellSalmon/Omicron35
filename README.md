@@ -1,5 +1,6 @@
 # Omicron35
 A work in progress Panda3D game by MaxwellSalmon.
+![What it looks like so far](https://i.imgur.com/QqMewsN.png)
 
 # Documentation
 Note, that this may not be accurate, as the system is still in development and might have changed. Let me know if you spot an error. Also, I am not
@@ -22,7 +23,6 @@ It can also take keyword arguments being the following:
 
 ```
 name = string
-parent = node path
 scale = float
 pos = tuple 3
 hpr = tuple 3
@@ -30,6 +30,7 @@ tag = string
 function = object_function
 culling = string
 solid = boolean
+audio = string
 ```
 The keyword, ```name``` is only necessary, for interactive models, if there are multiple objects sharing the same 3D-model.<br>
 This is done in the script **scene_setup.py**
