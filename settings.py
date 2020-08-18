@@ -11,7 +11,7 @@ g_bools = {
     'has_clipboard' : False}
 
 #Environmental variables
-environment = 'hang_d1_t1'
+environment = 'exte_d1_t1'
 day = 1
 time = 1
 

@@ -29,6 +29,8 @@ class Model():
             model.set_hpr(hpr[0], hpr[1], hpr[2])
         if kg('tag'):
             model.set_tag(kg('tag'), '1')
+            if kg('tag') == 'place':
+                model.place()
         if kg('scale'):
             model.set_scale(kg('scale'))
         if kg('function'):
