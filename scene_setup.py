@@ -38,11 +38,12 @@ def create_models(scene_name):
                         function=[functions.change_scene, {'to_scene':'inte_d1_t1'}]),
                   Model('door', name='ext2hang_door', tag='interactive', pos=(77.4,40.25,0.65), hpr=(22.3,0,0), scale=0.5, solid=True,
                         function=[functions.change_scene, {'to_scene':'hang_d1_t1'}]),
+                  Model('exterior/culext', culling='both'),
                   Model('d1t1', scale=21, pos=(0,0,-5)),
                   ]
     elif scene_name[:4] == "hang":
         models = [Model('door', name='hang2ext_door', tag='interactive', pos=(-16.4,-9.4,0.4), scale=0.5, solid=True,
-                        function=[functions.change_scene, {'to_scene':'exte_d1_t1', 'player_pos':(76,37,0.3)}]),
+                        function=[functions.change_scene, {'to_scene':'exte_d1_t1', 'player_pos':(76,37,-0.2)}]),
                   Model('hangar/shelves', culling='both'),
                   Model('d1t1', scale=21, pos=(0,0,-200)),
                   ]
