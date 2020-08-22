@@ -9,7 +9,6 @@ args = sys.argv[1:]
 
 def convert(args, overwrite=False):
     lim = 65535
-
         
     if len(args) != 3:
         if not os.path.isdir(args[0]):
@@ -42,9 +41,14 @@ def convert(args, overwrite=False):
 def view(args):
     lim = 65535
     exp = 65535 * int(args[-1])
-    for file in os.listdir(args[0]):
+    if not os.path.isdir(args[0]):
+        path = os.getcwd()
+    else:
+        path = args[0]
+        
+    for file in os.listdir(path):
         if file.endswith(".exr"):
-            img = cv2.imread(os.path.join(args[0], file), -1)
+            img = cv2.imread(os.path.join(path, file), -1)
             img = img * exp
             img[img>lim] = lim
             img = np.uint16(img)
@@ -64,11 +68,13 @@ if [x for x in ['h', '-h', 'help', '?'] if x in args] or not args:
    print("-h : help page")
    print("-v : view images instead of converting")
    print("-o : overwrite images in output folder")
+   print("")
+   print("When viewing images:")
+   print("Press ESC or Q to stop viewing")
+   print("Press any other key to view next image")
 elif args[-1] == '-o' or args[-1] == 'o':
     convert(args[:-1], True)
 elif args[-1] != '-v' and args[-1] != 'v':
     convert(args)
 else:
     view(args[:-1])
-
-

@@ -97,6 +97,14 @@ class FreeMouse(DirectObject.DirectObject):
     def __init__(self):
         self.accept('escape', self.free_mouse)
         self.accept('g', self.move_camera)
+        
+        if settings.dev_control:
+            self.accept('arrow_up', self.add_fov, [-10])
+            self.accept('arrow_down', self.add_fov, [10])
+
+    def add_fov(self, added):
+        settings.fov += added
+        base.player.camLens.setFov(settings.fov)
 
     def free_mouse(self):
         settings.free_mouse = not settings.free_mouse

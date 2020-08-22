@@ -73,5 +73,5 @@ It has various keywords, which are explained there. An example of a conversion c
 ```
 exr2png.py exr_folder png_folder 2 -o
 ```
-Arguments are: input folder, output folder, exposure and overwrite files with the same names. <br>
+Arguments are: input folder, output folder, exposure and overwrite files with the same names. If the input folder argument is omitted, the current directory will be used as input.<br>
 **Note that this script required Numpy and OpenCV**

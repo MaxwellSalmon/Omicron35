@@ -164,6 +164,10 @@ def hangar():
     vehicle.node().addSolid(CollisionCapsule(-9,-0.2,0.5, -2,-0.2,0.5,7))
     box = base.scene.attachNewNode(CollisionNode('box'))
     box.node().addSolid(CollisionCapsule(-32,-25,0.5, -25,-25,0.5,1))
+    axe = base.scene.attachNewNode(CollisionNode('axe'))
+    box.node().addSolid(CollisionSphere(-8,-20,1,3))
+    firewood = base.scene.attachNewNode(CollisionNode('firewood'))
+    shelves1.node().addSolid(CollisionCapsule(-22,-23,0.5, -10,-23,1,3))
 
     if settings.show_col:
         sidewall.show()
@@ -178,4 +182,6 @@ def hangar():
         fuel.show()
         vehicle.show()
         box.show()
+        axe.show()
+        firewood.show()
         

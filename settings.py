@@ -24,6 +24,7 @@ strafe_right_btn = KeyboardButton.ascii_key('d')
 sprint_btn = 'lshift'
 inventory_btn = 'tab'
 sensitivity = 0.21
+fov = 120
 
 free_mouse = False
 ui_open = False
@@ -34,7 +35,7 @@ picked_obj = None
 #Developer variables
 show_fps = True
 show_col = False
-dev_control = True
+dev_control = False
 
 #Functionality variables
 dt = 0
