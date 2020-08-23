@@ -38,16 +38,18 @@ def create_models(scene_name):
                         function=[functions.change_scene, {'to_scene':'inte_d1_t1'}]),
                   Model('door', name='ext2hang_door', tag='interactive', pos=(77.4,40.25,0.65), hpr=(22.3,0,0), scale=0.5, solid=True,
                         function=[functions.change_scene, {'to_scene':'hang_d1_t1'}]),
-                  Model('exterior/jerrycan', tag='interactive', pos=(63.8,-3,-1.65)),
+                  Model('exterior/jerrycan', tag='interactive', pos=(63.8,-3,-1.65), scale=0.6, function=functions.take_jerrycan),
                   Model('exterior/culext', culling='both'),
+                  Model('exterior/generatortank', tag='interactive', function=functions.refill_generator),
                   Model('d1t1', scale=21, pos=(0,0,-200)),
                   ]
     elif scene_name[:4] == "hang":
         models = [Model('door', name='hang2ext_door', tag='interactive', pos=(-16.4,-9.4,0.4), scale=0.5, solid=True,
                         function=[functions.change_scene, {'to_scene':'exte_d1_t1', 'player_pos':(76,37,-0.2)}]),
                   Model('hangar/shelves', culling='both'),
-                  Model('hangar/axe', tag='interactive', pos=(-4.17,-9.62,-1.81), scale=0.5),
+                  Model('hangar/axe', tag='interactive', pos=(-4.17,-9.62,-1.81), scale=0.5, function=functions.split_firewood),
                   Model('hangar/lamps', culling='both'),
+                  Model('hangar/dispenser', tag='interactive', pos=(8.05,-3.37,-1.78), scale=0.5, function=functions.take_fuel),
                   Model('d1t1', scale=21, pos=(0,0,-200)),
                   ]
     else:

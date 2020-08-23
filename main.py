@@ -30,16 +30,16 @@ class MyApp(ShowBase):
         self.taskMgr.doMethodLater(0.3, manager.manage, "ManageTask")
 
         self.setFrameRateMeter(settings.show_fps)
-        self.crosshair = OnscreenText(text='+', pos=(0,0), scale=(0.1), fg=(0,0.5,0,0.8))
+        #self.crosshair = OnscreenText(text='+', pos=(0,0), scale=(0.1), fg=(0,0.5,0,0.8))
 
         self.pos_seq = Sequence()
         self.hpr_seq = Sequence()
 
 
-##        self.enableParticles() #Make better
-##
+        self.enableParticles() #Make better
+
 ##        self.p = ParticleEffect()
-##        self.p.loadConfig('particles/light_snow.ptf')
+##        self.p.loadConfig('particles/heavy_snow.ptf')
 ##        self.p.start(parent=render, renderParent=render)
 ##        self.taskMgr.add(self.temp, "temp")
 
@@ -99,8 +99,8 @@ class FreeMouse(DirectObject.DirectObject):
         self.accept('g', self.move_camera)
         
         if settings.dev_control:
-            self.accept('arrow_up', self.add_fov, [-10])
-            self.accept('arrow_down', self.add_fov, [10])
+            self.accept(settings.fov_up_dwn[0], self.add_fov, [-10])
+            self.accept(settings.fov_up_dwn[1], self.add_fov, [10])
 
     def add_fov(self, added):
         settings.fov += added

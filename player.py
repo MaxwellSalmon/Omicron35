@@ -29,6 +29,9 @@ class Player(DirectObject.DirectObject):
         self.load_collision()
 
         self.clipboard_ui = None
+        self.hand_ui = None
+        self.ring_ui = None
+        self.crosshair = 'ring'
         
     def load_collision(self):
         self.col = self.body.attachNewNode(CollisionNode('cnode'))
@@ -99,12 +102,30 @@ class Player(DirectObject.DirectObject):
         if settings.g_bools['has_clipboard']:
             #Add animation to the UI
             if not settings.ui_open:
-                self.clipboard_ui = OnscreenImage(image='textures/clipboardUI.png', pos=(0,0,0), scale=(0.7,1,0.9))
+                self.clipboard_ui = OnscreenImage(image='textures/ui/clipboardUI.png', pos=(0,0,0), scale=(0.7,1,0.9))
                 self.clipboard_ui.setTransparency(TransparencyAttrib.MAlpha)
                 settings.ui_open = True
             else:
                 self.clipboard_ui.destroy()
                 settings.ui_open = False
+
+    def show_crosshair(self):
+        if settings.picked_obj:
+            if self.crosshair != 'hand':
+                if self.ring_ui:
+                    self.ring_ui.destroy()
+                self.hand_ui = OnscreenImage(image='textures/ui/hand2.png', pos=(0,0,0), scale=(0.03,1,0.04))
+                self.hand_ui.setTransparency(TransparencyAttrib.MAlpha)
+                print("hand")
+            self.crosshair = 'hand'
+        else:
+            if self.crosshair != 'ring':
+                if self.hand_ui:
+                    self.hand_ui.destroy()
+                self.ring_ui = OnscreenImage(image='textures/ui/ring2.png', pos=(0,0,0), scale=(0.03,1,0.04))
+                self.ring_ui.setTransparency(TransparencyAttrib.MAlpha)
+                print("ring")
+            self.crosshair = 'ring'
             
 
     def control_mouse(self):
@@ -164,8 +185,8 @@ class Player(DirectObject.DirectObject):
             return s[0].name
 
     def check_ray_collision(self, task):
+        self.show_crosshair()
         if settings.picked_obj:
-            settings.picked_obj.clear_color()
             self.accept("mouse1", self.click_mouse, [settings.picked_obj])
             settings.picked_obj = None
         else:
@@ -184,7 +205,6 @@ class Player(DirectObject.DirectObject):
             if not pickedObj.isEmpty():
                 dist = base.queue.getEntry(0).getSurfacePoint(self.camera).lengthSquared()
                 if dist <= 10:
-                    pickedObj.set_color(1,1,0)
                     settings.picked_obj = pickedObj
                 
         return Task.again

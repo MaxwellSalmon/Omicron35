@@ -31,17 +31,53 @@ def change_scene(to_scene, **kwargs):
     base.superloader.load(to_scene, None)
     base.scene.flattenStrong()
 
+def take_object(g_bool, **kwargs):
+    kw = kwargs.get
+    if ('hide' in kwargs and kw('hide')) or 'hide' not in kwargs:
+        settings.picked_obj.set_pos(0,0,-10)
+    get_model().play_audio
+    settings.g_bools[g_bool] = True
+
 def put_on_clothes(test):
     if not settings.g_bools['clothes_on']:
-        settings.g_bools['clothes_on'] = True
-        settings.picked_obj.set_pos(0,0,-10)
-        print("You put on your clothes")
-        get_model().play_audio()
+        take_object('clothes_on')
 
 def take_clipboard():
-    settings.picked_obj.set_pos(0,0,-10)
-    get_model().play_audio()
-    settings.g_bools['has_clipboard'] = True
+    take_object('has_clipboard')
+
+def take_jerrycan():
+    take_object('has_jerrycan')
+
+def take_fuel():
+    if not settings.g_bools['has_jerrycan']:
+        print("You do not have anything to carry the fuel in")
+        return
+    if not settings.g_bools['has_fuel']:
+        print("You filled the jerry can with fuel")
+        take_object('has_fuel', hide=False)
+    else:
+        print("I already have fuel in the jerrycan")
+
+def split_firewood():
+    if not settings.g_bools['firewood']:
+        take_object('firewood', hide=False)
+        print("You split the firewood")
+    else:
+        print("I already split enough firewood")
+
+def refill_generator():
+    if not settings.g_bools['has_fuel']:
+        print("I do not have any fuel to put in the generator")
+        return
+    if not settings.g_bools['generator_refilled']:
+        take_object('generator', hide=False)
+        print("You refilled the generator")
+    else:
+        print("I alredy refilled the generator")
+
+def read_measurements():
+    take_object('generator', hide=False)
+    print("You read the weather measurements")
 
         
 def d1_wake_up():
