@@ -35,21 +35,21 @@ def create_models(scene_name):
                   ]
     elif scene_name[:4] == "exte":
         models = [Model('door', name='ext2int_door', tag='interactive', pos=(10.3,0.1,0.4), scale=0.5, solid=True,
-                        function=[functions.change_scene, {'to_scene':'inte_d1_t1'}]),
+                        function=[functions.change_scene, {'to_scene':'inte_d1_t1', 'bool' : 'daily_tasks_done'}], audio='door.wav',),
                   Model('door', name='ext2hang_door', tag='interactive', pos=(77.4,40.25,0.65), hpr=(22.3,0,0), scale=0.5, solid=True,
-                        function=[functions.change_scene, {'to_scene':'hang_d1_t1'}]),
-                  Model('exterior/jerrycan', tag='interactive', pos=(63.8,-3,-1.65), scale=0.6, function=functions.take_jerrycan),
+                        function=[functions.change_scene, {'to_scene':'hang_d1_t1'}], audio='door.wav'),
+                  Model('exterior/jerrycan', tag='interactive', pos=(63.8,-3,-1.65), scale=0.6, function=functions.take_jerrycan, audio='jerrycan.wav'),
                   Model('exterior/culext', culling='both'),
-                  Model('exterior/generatortank', tag='interactive', function=functions.refill_generator),
+                  Model('exterior/generatortank', tag='interactive', function=functions.refill_generator, audio='generatortank.wav'),
                   Model('d1t1', scale=21, pos=(0,0,-200)),
                   ]
     elif scene_name[:4] == "hang":
         models = [Model('door', name='hang2ext_door', tag='interactive', pos=(-16.4,-9.4,0.4), scale=0.5, solid=True,
-                        function=[functions.change_scene, {'to_scene':'exte_d1_t1', 'player_pos':(76,37,-0.2)}]),
+                        function=[functions.change_scene, {'to_scene':'exte_d1_t1', 'player_pos':(76,37,-0.2)}], audio='door.wav'),
                   Model('hangar/shelves', culling='both'),
                   Model('hangar/axe', tag='interactive', pos=(-4.17,-9.62,-1.81), scale=0.5, function=functions.split_firewood),
                   Model('hangar/lamps', culling='both'),
-                  Model('hangar/dispenser', tag='interactive', pos=(8.05,-3.37,-1.78), scale=0.5, function=functions.take_fuel),
+                  Model('hangar/dispenser', tag='interactive', pos=(8.05,-3.37,-1.78), scale=0.5, function=functions.take_fuel, audio='filling_jerrycan.wav'),
                   Model('d1t1', scale=21, pos=(0,0,-200)),
                   ]
     else:

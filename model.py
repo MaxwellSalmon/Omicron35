@@ -17,6 +17,7 @@ class Model():
         model.set_pos(0, 0, -1.8)
 
         self.audio = None
+        self.audio_emitter = None
         
         if kg('name'):
             #If interactive objects share the model, differentiate between them with custom name
@@ -36,7 +37,13 @@ class Model():
         if kg('function'):
             settings.object_functions[str(name)] = kg('function')
         if kg('audio'):
-            self.audio = base.superloader.load_sound_queue((kg('audio'), model, 1, self))
+            #Attach audio source to model. Use audio emitter is model is not centered.
+            self.create_audio_emitter(model)
+            if self.audio_emitter:
+                #print(self.audio_emitter)
+                self.audio = base.superloader.load_sound_queue((kg('audio'), self.audio_emitter, 1, self))
+            else:
+                self.audio = base.superloader.load_sound_queue((kg('audio'), model, 1, self))
         if kg('culling'):
             if kg('culling') == 'both':
                 model.setTwoSided(True)
@@ -51,6 +58,26 @@ class Model():
 
         self.model = model
         self.name = name
+
+    def create_audio_emitter(self, model):
+        pos = model.get_pos()
+        if pos[0] == pos[1] == 0:
+            emitter = render.attachNewNode('audioemitter')
+            epos = self.get_tight_pos(model)
+            emitter.set_pos(epos[0], epos[1], epos[2])
+            self.audio_emitter = emitter
+
+    def get_tight_pos(self, model):
+        bmin, bmax = model.get_tight_bounds()
+        avg = []
+        
+        for i in range(3):
+            avg.append((bmin[i] + bmax[i]) / 2)
+        return avg 
+
+       
+
+        
 
     def play_audio(self):
         if self.audio:

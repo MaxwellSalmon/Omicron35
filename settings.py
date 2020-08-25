@@ -13,6 +13,8 @@ g_bools = {
     'has_fuel' : False,
     'firewood' : False,
     'generator_refilled' : False,
+    'weather_measured' : True,
+    'daily_tasks_done': False,
     }
 
 #Environmental variables
@@ -42,6 +44,7 @@ picked_obj = None
 show_fps = True
 show_col = False
 dev_control = True
+noclip = True
 
 #Functionality variables
 dt = 0

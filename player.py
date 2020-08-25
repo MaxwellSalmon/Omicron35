@@ -31,17 +31,16 @@ class Player(DirectObject.DirectObject):
         self.clipboard_ui = None
         self.hand_ui = None
         self.ring_ui = None
-        self.crosshair = 'ring'
+        self.crosshair = ':-)'
         
     def load_collision(self):
         self.col = self.body.attachNewNode(CollisionNode('cnode'))
         self.col.node().addSolid(CollisionCapsule(0,3,-1,0,3,2,0.5))
-        if settings.show_col:
-            self.col.show()
         # Why is 0,0,0 not center of player??
         base.pusher.setHorizontal(True)
-        base.cTrav.addCollider(self.col, base.pusher)
-        base.pusher.addCollider(self.col, self.body)
+        if not settings.noclip:
+            base.cTrav.addCollider(self.col, base.pusher)
+            base.pusher.addCollider(self.col, self.body)
 
     def control_task(self, task):
         settings.dt = globalClock.getDt()
@@ -116,7 +115,6 @@ class Player(DirectObject.DirectObject):
                     self.ring_ui.destroy()
                 self.hand_ui = OnscreenImage(image='textures/ui/hand2.png', pos=(0,0,0), scale=(0.03,1,0.04))
                 self.hand_ui.setTransparency(TransparencyAttrib.MAlpha)
-                print("hand")
             self.crosshair = 'hand'
         else:
             if self.crosshair != 'ring':
@@ -124,7 +122,6 @@ class Player(DirectObject.DirectObject):
                     self.hand_ui.destroy()
                 self.ring_ui = OnscreenImage(image='textures/ui/ring2.png', pos=(0,0,0), scale=(0.03,1,0.04))
                 self.ring_ui.setTransparency(TransparencyAttrib.MAlpha)
-                print("ring")
             self.crosshair = 'ring'
             
 

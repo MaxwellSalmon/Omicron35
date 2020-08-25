@@ -10,18 +10,18 @@ def get_model():
 
 def change_scene(to_scene, **kwargs):
     kw = kwargs.get
-    get_model().play_audio()
 
     if 'bool' in kwargs and not settings.g_bools[kw('bool')]:
         print("Something is missing")
         return
+
+    get_model().play_audio()
     
     #Player position
     if kw('player_pos'):
         p = kw('player_pos')
         base.player.body.set_pos(p[0], p[1], p[2])
     else:
-        print(to_scene)
         p = settings.scenes[to_scene].player_position
         base.player.body.set_pos(p[0], p[1], p[2])       
     
@@ -35,7 +35,7 @@ def take_object(g_bool, **kwargs):
     kw = kwargs.get
     if ('hide' in kwargs and kw('hide')) or 'hide' not in kwargs:
         settings.picked_obj.set_pos(0,0,-10)
-    get_model().play_audio
+    get_model().play_audio()
     settings.g_bools[g_bool] = True
 
 def put_on_clothes(test):
@@ -70,7 +70,7 @@ def refill_generator():
         print("I do not have any fuel to put in the generator")
         return
     if not settings.g_bools['generator_refilled']:
-        take_object('generator', hide=False)
+        take_object('generator_refilled', hide=False)
         print("You refilled the generator")
     else:
         print("I alredy refilled the generator")

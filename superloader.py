@@ -112,6 +112,7 @@ class SuperLoader():
         for a in self.audio3d_queue:
             sound = self.load_sound(a[0], a[1], a[2])
             a[-1].audio = sound
+
         self.audio3d_queue = []
 
     def load_sound_queue(self, arguments):
@@ -126,7 +127,6 @@ class SuperLoader():
         sound = base.audio3d.loadSfx(path)
         if str(sound)[:14] == 'NullAudioSound':
             print(f"Audio file {path} is not found")
-        
         base.audio3d.attachSoundToObject(sound, obj)
 
         if args:
