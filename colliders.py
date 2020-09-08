@@ -43,6 +43,12 @@ def house_interior():
     broomtable.node().addSolid(CollisionCapsule(-9.4,-17.5,0.5, -9.4,-20,0.5,2))
     wcarchives = base.scene.attachNewNode(CollisionNode('wcarchives'))
     wcarchives.node().addSolid(CollisionCapsule(10.5,-7.5,0.5,10.5,-9,0.5,1.5))
+    chair = base.scene.attachNewNode(CollisionNode('chair'))
+    chair.node().addSolid(CollisionSphere(-6,5.8,0.5,2))
+    furnace = base.scene.attachNewNode(CollisionNode('furnace'))
+    furnace.node().addSolid(CollisionCapsule(10,8.5,0.5, 10,4,0.5, 1))
+    wc = base.scene.attachNewNode(CollisionNode('wc'))
+    wc.node().addSolid(CollisionSphere(10,-21,1,2))
     
     if settings.show_col:
         kitchenwall.show()
@@ -64,6 +70,9 @@ def house_interior():
         broomarchives.show()
         broomtable.show()
         wcarchives.show()
+        chair.show()
+        furnace.show()
+        wc.show()
 
 def exterior():
     #Standard exterior
@@ -113,6 +122,8 @@ def exterior():
     hangarwall3.node().addSolid(CollisionCapsule(198,150,0.5, 136,125,0.5, 2))
     hangarwall4 = base.scene.attachNewNode(CollisionNode('hangarwall4'))
     hangarwall4.node().addSolid(CollisionCapsule(158,72,0.5, 136,125,0.5, 2))
+    box = base.scene.attachNewNode(CollisionNode('weatherbox'))
+    box.node().addSolid(CollisionSphere(159,36.6,0.5,2))
 
     if settings.show_col:
         houseback.show()
@@ -138,6 +149,7 @@ def exterior():
         hangarwall2.show()
         hangarwall3.show()
         hangarwall4.show()
+        box.show()
     
 def hangar():
     sidewall = base.scene.attachNewNode(CollisionNode('sidewall1'))

@@ -76,9 +76,54 @@ def refill_generator():
         print("I alredy refilled the generator")
 
 def read_measurements():
-    take_object('generator', hide=False)
-    print("You read the weather measurements")
+    if not settings.g_bools['weather_measure']:
+        take_object('weather_measured', hide=False)
+        print("You read the weather measurements")
+    else:
+        print("You already measured the weather")
 
+def use_radio():
+    if settings.g_bools['daily_tasks_done']:
+        if not settings.g_bools['radio_used']:
+            #Special function
+            take_object('radio_used', hide=False)
+            radio_cutscene('sit')
+            settings.constraints = [90,0]
+            print("You used the radio")
+        else:
+            print("You already used the radio")
+    else:
+        print("It is not time to report yet.")
+
+def make_food():
+    if settings.g_bools['daily_tasks_done']:
+        if not settings.g_bools['has_eaten']:
+            #special function
+            take_object('has_eaten', hide=False)
+            food_cutscene('to_cans')
+            settings.constraints = [0,0]
+        else:
+            print("I have already eaten")
+    else:
+        print("I am not hungry right now")
+
+def take_can():
+    if settings.g_bools['has_eaten'] and not settings.g_bools['has_taken_can']:
+        take_object('has_taken_can')
+        food_cutscene('to_pot')
+        #settings.constraints = [0,-20]
+        print("I made food")
+    else:
+        make_food()
+
+def sleep():
+    if settings.g_bools['can_sleep']:
+        base.cutscene([{'h':85, 'p':-5, 'y':-10.5, 'd':2},
+                       {'p':0, 'y':-11,'z':-1, 'd':2},
+                       {'h':0,'p':90,'r':0, 'x':-0.36, 'y':-11.36, 'z':-1.5, 'd':2}])
+        settings.constraints = [0,40]
+    else:
+        print("I am not tired yet")
         
 def d1_wake_up():
     base.cutscene([{'h':0,'p':90,'r':0, 'x':-0.36, 'y':-11.36, 'z':-1.5, 'd':0},
@@ -88,3 +133,17 @@ def d1_wake_up():
                    {'h':120, 'p':-35},
                    {'x':-3.4, 'y':-11.2, 'p':-65, 'd':2.5}])
     settings.g_bools['woken_up'] = True
+
+def radio_cutscene(direction):
+    if direction=='sit':
+        base.cutscene([{'x':-3, 'y':0, 'z':-0.6},
+                       {'h':100, 'p':-20, 'd':2}])
+    elif direction == 'stand':
+        base.cutscene([{'x':-3, 'y':3, 'z':0}])
+
+def food_cutscene(direction):
+    if direction == 'to_cans':
+        base.cutscene([{'x':1.3, 'y':4.2, 'z':0.5, 'h':0, 'p':0},
+                       {'d':1}])
+    elif direction == 'to_pot':
+        base.cutscene([{'x':0.2, 'y':3.8, 'z':0, 'h':0.8, 'p':-60, 'd':2}])

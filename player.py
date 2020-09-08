@@ -44,8 +44,11 @@ class Player(DirectObject.DirectObject):
 
     def control_task(self, task):
         settings.dt = globalClock.getDt()
-        
+
+        #Do not allow movement during cutscenes or constrained scenes
         if self.check_cutscene():
+            return Task.cont
+        if self.check_constraint():
             return Task.cont
         
         old_pos = self.body.getPos()
@@ -54,9 +57,15 @@ class Player(DirectObject.DirectObject):
         is_down = base.mouseWatcherNode.is_button_down
 
         h = radians(self.camera.getH())
-        add_pos = [[0,0,0],[0,0,0],[0,0,0],[0,0,0]]
+        add_pos = [[0,0,0],[0,0,0],[0,0,0],[0,0,0],[0,0,0]]
         
         speed = self.speed * settings.dt
+
+        if settings.noclip:
+            if is_down(settings.fly_up_dwn[0]):
+                add_pos[4] = [0,0,speed]
+            elif is_down(settings.fly_up_dwn[1]):
+                add_pos[4] = [0,0,-speed]
 
         if is_down(settings.forward_btn):
             add_pos[0] = [-sin(h)*speed,cos(h)*speed,0]
@@ -72,6 +81,7 @@ class Player(DirectObject.DirectObject):
             move_pos[0] += i[0]
             move_pos[1] += i[1]
             move_pos[2] += i[2]
+
 
         new_pos[0] = old_pos[0] + move_pos[0]
         new_pos[1] = old_pos[1] + move_pos[1]
@@ -113,14 +123,14 @@ class Player(DirectObject.DirectObject):
             if self.crosshair != 'hand':
                 if self.ring_ui:
                     self.ring_ui.destroy()
-                self.hand_ui = OnscreenImage(image='textures/ui/hand2.png', pos=(0,0,0), scale=(0.03,1,0.04))
+                self.hand_ui = OnscreenImage(image='textures/ui/hand3.png', pos=(0,0,0), scale=(0.03,1,0.04))
                 self.hand_ui.setTransparency(TransparencyAttrib.MAlpha)
             self.crosshair = 'hand'
         else:
             if self.crosshair != 'ring':
                 if self.hand_ui:
                     self.hand_ui.destroy()
-                self.ring_ui = OnscreenImage(image='textures/ui/ring2.png', pos=(0,0,0), scale=(0.03,1,0.04))
+                self.ring_ui = OnscreenImage(image='textures/ui/ring3.png', pos=(0,0,0), scale=(0.03,1,0.04))
                 self.ring_ui.setTransparency(TransparencyAttrib.MAlpha)
             self.crosshair = 'ring'
             
@@ -144,18 +154,46 @@ class Player(DirectObject.DirectObject):
         p = hpr[1] + y * settings.sensitivity
         r = hpr[2]
 
-        if h > 360:
-            h -= 360
-        elif h < 0:
-            h += 360
-        if p > 90:
-            p = 90
-        elif p < -90:
-            p = -90
-        if r > 360:
-            r -= 360
-        elif r < 0:
-            r += 360
+        if settings.constraints[0] != None or settings.constraints[1] != None:
+            con_h = settings.constraints[0]
+            con_p = settings.constraints[1]
+
+            if con_h - 50 < 0:
+                settings.constraints[0] += 360
+                con_h = settings.constraints[0]
+                h = settings.constraints[0]
+
+            h = max(con_h - 50, min(h, con_h + 50))
+            p = max(con_p - 50, min(p, con_p + 50))
+
+        else:
+            if h > 360:
+                h -= 360
+            elif h < 0:
+                h += 360
+            if p > 90:
+                p = 90
+            elif p < -90:
+                p = -90
+            if r > 360:
+                r -= 360
+            elif r < 0:
+                r += 360
+
+        
+
+
+            #How the fuck do I do this?
+##            if not 0<h<50 and not 310<h<360:
+##                if h > 180:
+##                    if h < 310:
+##                        h = 310
+##                else:
+##                    if h > 50:
+##                        h = 50
+##
+##            h += con_h
+            
         
         self.camera.set_h(h)
         self.camera.set_p(p)
@@ -210,6 +248,21 @@ class Player(DirectObject.DirectObject):
         if base.pos_seq.isPlaying():
             self.col.detachNode()
             return True
+        elif not self.col.parent:
+            self.col.reparentTo(self.body)
+        return False
+
+    def check_constraint(self):
+        if None not in settings.constraints:
+            self.col.detachNode()
+
+            mpos = [0,0]
+            if not settings.free_mouse:
+                mpos = self.control_mouse()
+
+            self.fps_camera(mpos)
+            return True
+        
         elif not self.col.parent:
             self.col.reparentTo(self.body)
         return False

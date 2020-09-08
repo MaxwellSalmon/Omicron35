@@ -7,14 +7,19 @@ from panda3d.core import (
 object_functions = {}
 g_bools = {
     'clothes_on' : False,
-    'woken_up' : False,
+    'woken_up' : True,
     'has_clipboard' : False,
     'has_jerrycan' : False,
     'has_fuel' : False,
     'firewood' : False,
     'generator_refilled' : False,
-    'weather_measured' : True,
-    'daily_tasks_done': False,
+    'weather_measured' : False,
+    'daily_tasks_done': True,
+    'has_eaten' : False,
+    'radio_used' : False,
+    'radio_reported': False,
+    'can_sleep' : False,
+    'has_taken_can': False,
     }
 
 #Environmental variables
@@ -30,10 +35,12 @@ backward_btn = KeyboardButton.ascii_key('s')
 strafe_right_btn = KeyboardButton.ascii_key('d')
 sprint_btn = 'lshift'
 fov_up_dwn = ('arrow_up', 'arrow_down')
+fly_up_dwn = ('space', 'c')
 inventory_btn = 'tab'
 sensitivity = 0.21
 fov = 120
 
+constraints = [None,None]
 free_mouse = False
 ui_open = False
 
@@ -43,8 +50,8 @@ picked_obj = None
 #Developer variables
 show_fps = True
 show_col = False
-dev_control = True
-noclip = True
+dev_control = False
+noclip = False
 
 #Functionality variables
 dt = 0

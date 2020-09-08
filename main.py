@@ -30,7 +30,6 @@ class MyApp(ShowBase):
         self.taskMgr.doMethodLater(0.3, manager.manage, "ManageTask")
 
         self.setFrameRateMeter(settings.show_fps)
-        #self.crosshair = OnscreenText(text='+', pos=(0,0), scale=(0.1), fg=(0,0.5,0,0.8))
 
         self.pos_seq = Sequence()
         self.hpr_seq = Sequence()
@@ -55,7 +54,10 @@ class MyApp(ShowBase):
         
               
     def cutscene(self, points):
-
+        if settings.constraints != [None, None]:
+            print("reset")
+            self.camera.set_h(self.camera.get_h()-360)
+            settings.constraints = [None, None]
         self.pos_seq = Sequence()
         self.hpr_seq = Sequence()
         h,p,r = self.camera.get_hpr()
