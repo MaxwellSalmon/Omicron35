@@ -17,6 +17,7 @@ from direct.showbase import Audio3DManager
 from model import *
 import functions, scene_setup
 import colliders
+import os
 
 class SuperLoader():
 
@@ -25,6 +26,7 @@ class SuperLoader():
 
     def load(self, scene_name, init):
         if init:
+            render.attach_new_node("audioemitters")
             scene_setup.create_scenes(settings.day)
         settings.environment = scene_name
         settings.scene = settings.scenes[scene_name]
@@ -133,3 +135,40 @@ class SuperLoader():
             base.audio3d.setDropOffFactor(args[0])
         
         return sound
+
+    def change_textures(self):
+        #Replace textures in scene accoring to settings time
+        times = [None, 'Day', 'Evening', 'Night']
+        time = times[settings.time]
+        old_time = ''
+        geoms = base.scene.findAllMatches('**/+GeomNode')
+        for geom in geoms:
+            texture = geom.findTexture('*')
+            if not texture:
+                continue
+            #I think strings are easier to work with, okay?
+            path = str(texture.filename)
+            cut = path.find('textures')
+            path = path[cut:]
+            
+            if not old_time:
+                for i in times[1:]:
+                    if i in path:
+                        old_time = i
+
+            replace_index = path.find(old_time)
+            replace_word = path[replace_index:replace_index+len(old_time)]
+            new_path = path.replace(replace_word, time)
+
+            try:
+                t = loader.loadTexture(new_path)
+                geom.setTexture(t, 1)
+            except:
+                print("There is no texture with filepath: ", new_path)
+
+
+
+
+
+
+            

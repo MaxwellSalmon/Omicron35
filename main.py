@@ -23,7 +23,7 @@ class MyApp(ShowBase):
         self.superloader.load(settings.environment, True)
         self.player = Player()
         self.superloader.load_audio3d()
-        base.scene.flattenStrong()
+        #base.scene.flattenStrong()
         
         self.taskMgr.add(self.player.control_task, "ControlTask")
         self.taskMgr.doMethodLater(0.05, self.player.check_ray_collision, "RayTask")
@@ -55,7 +55,6 @@ class MyApp(ShowBase):
               
     def cutscene(self, points):
         if settings.constraints != [None, None]:
-            print("reset")
             self.camera.set_h(self.camera.get_h()-360)
             settings.constraints = [None, None]
         self.pos_seq = Sequence()
@@ -116,6 +115,7 @@ class FreeMouse(DirectObject.DirectObject):
 
     def move_camera(self):
         app.camera.setHpr(0,0,0)
+        base.superloader.change_textures()
         
         
 app = MyApp()

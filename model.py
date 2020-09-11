@@ -62,7 +62,8 @@ class Model():
     def create_audio_emitter(self, model):
         pos = model.get_pos()
         if pos[0] == pos[1] == 0:
-            emitter = render.attachNewNode('audioemitter')
+            audio_node = render.find('audioemitters')
+            emitter = audio_node.attachNewNode('audioemitter')
             epos = self.get_tight_pos(model)
             emitter.set_pos(epos[0], epos[1], epos[2])
             self.audio_emitter = emitter
