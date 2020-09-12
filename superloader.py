@@ -13,6 +13,7 @@ from panda3d.core import (
     CollisionSphere,)
 
 from direct.showbase import Audio3DManager
+from direct.showbase.Transitions import Transitions
 
 from model import *
 import functions, scene_setup
@@ -23,6 +24,7 @@ class SuperLoader():
 
     def __init__(self):
         self.audio3d_queue = []
+        base.transition = Transitions(loader)
 
     def load(self, scene_name, init):
         if init:
@@ -165,6 +167,8 @@ class SuperLoader():
                 geom.setTexture(t, 1)
             except:
                 print("There is no texture with filepath: ", new_path)
+        if len(geoms) == 1:
+            print("Scene is probably flattenedStrong. Cannot change textures.")
 
 
 

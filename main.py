@@ -115,7 +115,6 @@ class FreeMouse(DirectObject.DirectObject):
 
     def move_camera(self):
         app.camera.setHpr(0,0,0)
-        base.superloader.change_textures()
         
         
 app = MyApp()

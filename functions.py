@@ -1,4 +1,6 @@
 import settings
+from direct.showbase.Transitions import Transitions
+from direct.interval.IntervalGlobal import *
 
 #This script contains functions which execute when interacting with an object or entering a scene.
 
@@ -15,8 +17,11 @@ def change_scene(to_scene, **kwargs):
         print("Something is missing")
         return
 
+    Sequence(Func(fade,'out',0.5), Wait(0.5), Func(change_position, to_scene, **kwargs), Wait(0.5), Func(fade,'in', 0.5)).start()
+
+def change_position(to_scene, **kwargs):
+    kw = kwargs.get
     get_model().play_audio()
-    
     #Player position
     if kw('player_pos'):
         p = kw('player_pos')
@@ -29,7 +34,20 @@ def change_scene(to_scene, **kwargs):
         model.model.detachNode()
     base.scene.detachNode()
     base.superloader.load(to_scene, None)
+
+    if 'time' in kwargs and settings.time != kw('time'):
+        settings.time = kw('time')
+        base.superloader.change_textures()
+
     base.scene.flattenStrong()
+    
+
+def fade(direction, time):
+    base.transition.setFadeColor(0,0,0)
+    if direction == 'out':
+        base.transition.fadeOut(time)
+    elif direction == 'in':
+        base.transition.fadeIn(time)
 
 def take_object(g_bool, **kwargs):
     kw = kwargs.get
