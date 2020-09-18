@@ -144,6 +144,7 @@ class SuperLoader():
         time = times[settings.time]
         old_time = ''
         geoms = base.scene.findAllMatches('**/+GeomNode')
+        geoms += [x.model for x in settings.scene.models]
         for geom in geoms:
             texture = geom.findTexture('*')
             if not texture:
@@ -166,7 +167,7 @@ class SuperLoader():
                 t = loader.loadTexture(new_path)
                 geom.setTexture(t, 1)
             except:
-                print("There is no texture with filepath: ", new_path)
+                print("No new texture for %s found." % geom)
         if len(geoms) == 1:
             print("Scene is probably flattenedStrong. Cannot change textures.")
 

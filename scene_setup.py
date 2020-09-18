@@ -44,6 +44,7 @@ def create_base_models(scene_name):
                   Model('interior/can6', tag='interactive', audio='default.wav', function=functions.take_can),
                   Model('interior/can7', tag='interactive', audio='default.wav', function=functions.take_can),
                   Model('interior/can8', tag='interactive', audio='default.wav', function=functions.take_can),
+                  Model('interior/plates'),
                   Model('d1t1', scale=21, pos=(0,0,-200)),
                   ]
     elif scene_name[:4] == "exte":
