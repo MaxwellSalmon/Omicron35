@@ -147,6 +147,7 @@ class SuperLoader():
         geoms += [x.model for x in settings.scene.models]
         for geom in geoms:
             texture = geom.findTexture('*')
+            
             if not texture:
                 continue
             #I think strings are easier to work with, okay?

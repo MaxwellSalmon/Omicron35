@@ -49,7 +49,7 @@ def create_base_models(scene_name):
                   ]
     elif scene_name[:4] == "exte":
         models = [Model('door', name='ext2int_door', tag='interactive', pos=(10.3,0.1,0.4), scale=0.5, solid=True,
-                        function=[functions.change_scene, {'to_scene':'inte_d1_t1', 'bool' : 'daily_tasks_done', 'time': 2}], audio='door.wav',),
+                        function=[functions.change_scene, {'to_scene':'inte_d1_t1', 'bool' : 'daily_tasks_done', 'time': 3}], audio='door.wav',),
                   Model('door', name='ext2hang_door', tag='interactive', pos=(77.4,40.25,0.65), hpr=(22.3,0,0), scale=0.5, solid=True,
                         function=[functions.change_scene, {'to_scene':'hang_d1_t1'}], audio='door.wav'),
                   Model('exterior/jerrycan', tag='interactive', pos=(63.8,-3,-1.65), scale=0.6, function=functions.take_jerrycan, audio='jerrycan.wav'),

@@ -41,6 +41,11 @@ class MyApp(ShowBase):
 ##        self.p.loadConfig('particles/heavy_snow.ptf')
 ##        self.p.start(parent=render, renderParent=render)
 ##        self.taskMgr.add(self.temp, "temp")
+##
+##        self.fog = Fog("fog")
+##        self.fog.setColor(1,1,1)
+##        self.fog.setExpDensity(0.1)
+##        render.setFog(self.fog)
 
         #z = self.load_sound('piano.mp3', self.scene, 1)
         #z.play()
