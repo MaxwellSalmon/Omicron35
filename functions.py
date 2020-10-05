@@ -37,8 +37,8 @@ def change_position(to_scene, **kwargs):
 
     if 'time' in kwargs and settings.time != kw('time'):
         settings.time = kw('time')
-        base.superloader.change_textures()
-
+        
+    base.superloader.change_textures()
     base.scene.flattenStrong()
     
 

@@ -119,20 +119,21 @@ class Player(DirectObject.DirectObject):
                 settings.ui_open = False
 
     def show_crosshair(self):
-        if settings.picked_obj:
-            if self.crosshair != 'hand':
-                if self.ring_ui:
-                    self.ring_ui.destroy()
-                self.hand_ui = OnscreenImage(image='textures/ui/hand3.png', pos=(0,0,0), scale=(0.03,1,0.04))
-                self.hand_ui.setTransparency(TransparencyAttrib.MAlpha)
-            self.crosshair = 'hand'
-        else:
-            if self.crosshair != 'ring':
-                if self.hand_ui:
-                    self.hand_ui.destroy()
-                self.ring_ui = OnscreenImage(image='textures/ui/ring3.png', pos=(0,0,0), scale=(0.03,1,0.04))
-                self.ring_ui.setTransparency(TransparencyAttrib.MAlpha)
-            self.crosshair = 'ring'
+        pass
+##        if settings.picked_obj:
+##            if self.crosshair != 'hand':
+##                if self.ring_ui:
+##                    self.ring_ui.destroy()
+##                self.hand_ui = OnscreenImage(image='textures/ui/hand3.png', pos=(0,0,0), scale=(0.03,1,0.04))
+##                self.hand_ui.setTransparency(TransparencyAttrib.MAlpha)
+##            self.crosshair = 'hand'
+##        else:
+##            if self.crosshair != 'ring':
+##                if self.hand_ui:
+##                    self.hand_ui.destroy()
+##                self.ring_ui = OnscreenImage(image='textures/ui/ring3.png', pos=(0,0,0), scale=(0.03,1,0.04))
+##                self.ring_ui.setTransparency(TransparencyAttrib.MAlpha)
+##            self.crosshair = 'ring'
             
 
     def control_mouse(self):
