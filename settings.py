@@ -14,11 +14,11 @@ g_bools = {
     'firewood' : False,
     'generator_refilled' : False,
     'weather_measured' : False,
-    'daily_tasks_done': True,
+    'daily_tasks_done': False,
     'has_eaten' : False,
     'radio_used' : False,
     'radio_reported': False,
-    'can_sleep' : False,
+    'can_sleep' : True,
     'has_taken_can': False,
     }
 
@@ -28,7 +28,7 @@ day = 1
 time = 1
 
 #Player variables
-player_speed = 0.03 * 50
+player_speed = 0.08 * 50
 forward_btn = KeyboardButton.ascii_key('w')
 strafe_left_btn = KeyboardButton.ascii_key('a')
 backward_btn = KeyboardButton.ascii_key('s')
@@ -50,8 +50,8 @@ picked_obj = None
 #Developer variables
 show_fps = False
 show_col = False
-dev_control = True
-noclip = True
+dev_control = False
+noclip = False
 
 #Functionality variables
 dt = 0

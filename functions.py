@@ -94,7 +94,7 @@ def refill_generator():
         print("I alredy refilled the generator")
 
 def read_measurements():
-    if not settings.g_bools['weather_measure']:
+    if not settings.g_bools['weather_measured']:
         take_object('weather_measured', hide=False)
         print("You read the weather measurements")
     else:
@@ -135,22 +135,41 @@ def take_can():
         make_food()
 
 def sleep():
-    if settings.g_bools['can_sleep']:
-        base.cutscene([{'h':85, 'p':-5, 'y':-10.5, 'd':2},
-                       {'p':0, 'y':-11,'z':-1, 'd':2},
-                       {'h':0,'p':90,'r':0, 'x':-0.36, 'y':-11.36, 'z':-1.5, 'd':2}])
-        settings.constraints = [0,40]
+    if settings.g_bools['can_sleep'] and settings.time != 3:
+        settings.time = 3
+        Sequence(Func(sleep_cutscene), Wait(8), Func(fade,'out',3), Wait(3),
+                 Func(base.superloader.change_textures), Wait(4), Func(fade,'in', 2), Wait(2), Func(night_wake_up)).start()
+    elif settings.g_bools['can_sleep'] and settings.time == 3:
+        settings.time = 1
+        settings.day += 1
+        Sequence(Func(sleep_cutscene), Wait(8), Func(fade,'out',3), Wait(3),
+                 Func(base.superloader.change_textures), Wait(4), Func(fade,'in', 2), Wait(2), Func(d1_wake_up)).start()
     else:
         print("I am not tired yet")
+    
+
+def sleep_cutscene():
+    base.cutscene([{'h':85, 'p':-5, 'y':-10.5, 'd':2},
+                       {'p':0, 'y':-11,'z':-1, 'd':2},
+                       {'h':0,'p':90,'r':0, 'x':-0.36, 'y':-12.36, 'z':-1.5, 'd':2}])
+    settings.constraints = [0,40]
         
 def d1_wake_up():
-    base.cutscene([{'h':0,'p':90,'r':0, 'x':-0.36, 'y':-11.36, 'z':-1.5, 'd':0},
-                    {'p':0, 'y':-11,'z':-1, 'd':2},
-                    {'h':85, 'p':-5, 'y':-10.5, 'd':2},
-                    {'x':-2.3, 'p':-8, 'z':0, 'd':2},
-                   {'h':120, 'p':-35},
-                   {'x':-3.4, 'y':-11.2, 'p':-65, 'd':2.5}])
+    sequence = [{'h':0,'p':90,'r':0, 'x':-0.36, 'y':-12.36, 'z':-1.5, 'd':1},
+                {'p':0, 'y':-11,'z':-1, 'd':2},
+                {'h':85, 'p':-5, 'y':-10.5, 'd':2},
+                {'x':-2.3, 'p':-8, 'z':0, 'd':2},
+                {'h':120, 'p':-35},
+                {'x':-3.4, 'y':-11.2, 'p':-65, 'd':2.5}]
+    if settings.day == 1:
+        sequence[0]['d'] = 0
+    base.cutscene(sequence)
     settings.g_bools['woken_up'] = True
+
+def night_wake_up():
+    base.cutscene([{'p':0, 'y':-12,'z':-1, 'd':2},
+                   {'h':85, 'p':-5, 'y':-10.5, 'd':2},
+                   {'x':-2.3, 'p':-8, 'z':0, 'd':2},])
 
 def radio_cutscene(direction):
     if direction=='sit':

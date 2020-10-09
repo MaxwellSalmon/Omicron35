@@ -174,8 +174,7 @@ class SuperLoader():
         if len(geoms) == 1:
             print("Scene is probably flattenedStrong. Cannot change textures.")
 
-
-
+        #Edit method so weather textures can also be changed.
 
 
 
