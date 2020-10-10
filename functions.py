@@ -17,7 +17,8 @@ def change_scene(to_scene, **kwargs):
         print("Something is missing")
         return
 
-    Sequence(Func(fade,'out',0.5), Wait(0.5), Func(change_position, to_scene, **kwargs), Wait(0.5), Func(fade,'in', 0.5)).start()
+    Sequence(Func(fade,'out',0.5), Wait(0.5), Func(change_position, to_scene, **kwargs),
+             Wait(0.5), Func(fade,'in', 0.5)).start()
 
 def change_position(to_scene, **kwargs):
     kw = kwargs.get
@@ -147,7 +148,6 @@ def sleep():
     else:
         print("I am not tired yet")
     
-
 def sleep_cutscene():
     base.cutscene([{'h':85, 'p':-5, 'y':-10.5, 'd':2},
                        {'p':0, 'y':-11,'z':-1, 'd':2},

@@ -6,9 +6,7 @@ import math
 from direct.gui.OnscreenText import OnscreenText
 from direct.interval.IntervalGlobal import *
 
-from direct.particles.ParticleEffect import ParticleEffect #Temp?
-
-import scene_setup, manager
+import scene_setup, manager, weather
 from superloader import *
 from player import *
 import settings
@@ -17,7 +15,8 @@ class MyApp(ShowBase):
 
     def __init__(self):
         ShowBase.__init__(self)
-
+        
+        self.weather = weather.Weather()
         self.interactive_objects = render.attachNewNode("interactive_objects")
         self.superloader = SuperLoader()
         self.superloader.load(settings.environment, True)
@@ -34,13 +33,10 @@ class MyApp(ShowBase):
         self.pos_seq = Sequence()
         self.hpr_seq = Sequence()
 
-
-        self.enableParticles() #Make better
-
 ##        self.p = ParticleEffect()
 ##        self.p.loadConfig('particles/heavy_snow.ptf')
 ##        self.p.start(parent=render, renderParent=render)
-##        self.taskMgr.add(self.temp, "temp")
+        self.taskMgr.add(self.snow, "snow") #Perhaps move to manager.py
 ##
 ##        self.fog = Fog("fog")
 ##        self.fog.setColor(0.1,0.1,0.2)
@@ -52,9 +48,8 @@ class MyApp(ShowBase):
 
        # PStatClient.connect()
 
-    def temp(self, task):
-        self.p.set_pos(self.player.body.get_pos())
-        self.p.set_z(8)
+    def snow(self, task):
+        self.weather.move_player_snow()
         return Task.cont
         
               

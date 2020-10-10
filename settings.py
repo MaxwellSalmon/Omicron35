@@ -26,6 +26,9 @@ g_bools = {
 environment = 'inte_d1_t1'
 day = 1
 time = 1
+sun = False
+#light, medium, heavy
+snow = "heavy"
 
 #Player variables
 player_speed = 0.08 * 50
@@ -50,8 +53,8 @@ picked_obj = None
 #Developer variables
 show_fps = False
 show_col = False
-dev_control = False
-noclip = False
+dev_control = True
+noclip = True
 
 #Functionality variables
 dt = 0

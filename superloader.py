@@ -27,6 +27,7 @@ class SuperLoader():
         base.transition = Transitions(loader)
 
     def load(self, scene_name, init):
+        self.init = init
         if init:
             render.attach_new_node("audioemitters")
             scene_setup.create_scenes(settings.day)
@@ -35,9 +36,12 @@ class SuperLoader():
         self.load_scene()
         self.load_collision(init)
         self.load_models()
+        base.weather.control_snow()
+        base.weather.control_fog()
         if init:
             self.load_mouse()
             self.load_light()
+            self.change_textures()
         
 
     def load_scene(self):
@@ -159,12 +163,15 @@ class SuperLoader():
                 for i in times[1:]:
                     if i in path:
                         old_time = i
-            if old_time == time:
-                return            
+            if old_time == time and not self.init:
+                return
 
             replace_index = path.find(old_time)
             replace_word = path[replace_index:replace_index+len(old_time)]
             new_path = path.replace(replace_word, time)
+
+            if not settings.sun:
+                new_path = self.overcast_path(new_path)
 
             try:
                 t = loader.loadTexture(new_path)
@@ -174,8 +181,11 @@ class SuperLoader():
         if len(geoms) == 1:
             print("Scene is probably flattenedStrong. Cannot change textures.")
 
-        #Edit method so weather textures can also be changed.
-
-
+    def overcast_path(self, path):
+        #Find out whether or not path has overcast texture
+        if os.path.isfile(path[:-4]+'Overcast.png'):
+            return path[:-4]+'Overcast.png'
+        return path
+        
 
             
