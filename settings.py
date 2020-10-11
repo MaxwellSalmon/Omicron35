@@ -23,7 +23,7 @@ g_bools = {
     }
 
 #Environmental variables
-environment = 'inte_d1_t1'
+environment = 'hang_d1_t1'
 day = 1
 time = 1
 sun = False

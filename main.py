@@ -33,15 +33,7 @@ class MyApp(ShowBase):
         self.pos_seq = Sequence()
         self.hpr_seq = Sequence()
 
-##        self.p = ParticleEffect()
-##        self.p.loadConfig('particles/heavy_snow.ptf')
-##        self.p.start(parent=render, renderParent=render)
-        self.taskMgr.add(self.snow, "snow") #Perhaps move to manager.py
-##
-##        self.fog = Fog("fog")
-##        self.fog.setColor(0.1,0.1,0.2)
-##        self.fog.setExpDensity(0.1)
-##        render.setFog(self.fog)
+        self.taskMgr.add(self.snow, "snow") #perhaps move to manager.py
 
         #z = self.load_sound('piano.mp3', self.scene, 1)
         #z.play()
