@@ -45,7 +45,7 @@ def create_base_models(scene_name):
                   Model('interior/can7', tag='interactive', audio='default.wav', function=functions.take_can),
                   Model('interior/can8', tag='interactive', audio='default.wav', function=functions.take_can),
                   Model('interior/plates'),
-                  Model('d1t1', scale=21, pos=(0,0,-200)),
+                  Model('skybox', scale=21, pos=(0,0,-200)),
                   ]
     elif scene_name[:4] == "exte":
         models = [Model('door', name='ext2int_door', tag='interactive', pos=(10.3,0.1,0.4), scale=0.5, solid=True,
@@ -56,7 +56,7 @@ def create_base_models(scene_name):
                   Model('exterior/culext', culling='both'),
                   Model('exterior/generatortank', tag='interactive', function=functions.refill_generator, audio='generatortank.wav'),
                   Model('exterior/box', tag='interactive', culling='both', function=functions.read_measurements, audio='default.wav'),
-                  Model('d1t1', scale=21, pos=(0,0,-200)),
+                  Model('skybox', scale=21, pos=(0,0,-200)),
                   ]
     elif scene_name[:4] == "hang":
         models = [Model('door', name='hang2ext_door', tag='interactive', pos=(-16.4,-9.4,0.4), scale=0.5, solid=True,
@@ -65,7 +65,7 @@ def create_base_models(scene_name):
                   Model('hangar/axe', tag='interactive', pos=(-4.17,-9.62,-1.81), scale=0.5, function=functions.split_firewood, audio='default.wav'),
                   Model('hangar/lamps', culling='both'),
                   Model('hangar/dispenser', tag='interactive', pos=(8.05,-3.37,-1.78), scale=0.5, function=functions.take_fuel, audio='filling_jerrycan.wav'),
-                  Model('d1t1', scale=21, pos=(0,0,-200)),
+                  Model('skybox', scale=21, pos=(0,0,-200)),
                   ]
     else:
         print(scene_name, " not recognized in models")

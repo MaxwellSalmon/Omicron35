@@ -8,12 +8,15 @@ class Weather:
 
     def __init__(self):
         base.enableParticles()
-        snow_path= 'particles/'+settings.snow+'_snow.ptf'
+        path = 'light'
+        if settings.snow:
+            path = settings.snow
+        snow_path= 'particles/'+path+'_snow.ptf'
         self.player_snow = ParticleEffect()
         self.player_snow.loadConfig(snow_path)
         self.start_snow()
         
-        wsnowpath = 'particles/'+settings.snow+'_window_snow.ptf'
+        wsnowpath = 'particles/'+path+'_window_snow.ptf'
         self.wsnows = [ParticleEffect(), ParticleEffect(),
                   ParticleEffect(), ParticleEffect()]
         for snow in self.wsnows:
@@ -95,4 +98,11 @@ class Weather:
             self.fog.setColor(0.9,0.9,0.9)
         elif setting.time == 3:
             self.fog.setColor(0.1,0.1,0.2)
+
+
+
+
+
+
+
 

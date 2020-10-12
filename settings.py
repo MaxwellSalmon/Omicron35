@@ -23,12 +23,12 @@ g_bools = {
     }
 
 #Environmental variables
-environment = 'hang_d1_t1'
+environment = 'exte_d1_t1'
 day = 1
 time = 1
 sun = False
 #light, medium, heavy
-snow = "heavy"
+snow = ""
 
 #Player variables
 player_speed = 0.08 * 50

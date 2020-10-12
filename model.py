@@ -76,10 +76,6 @@ class Model():
             avg.append((bmin[i] + bmax[i]) / 2)
         return avg 
 
-       
-
-        
-
     def play_audio(self):
         if self.audio:
             self.audio.play()

@@ -170,6 +170,9 @@ class SuperLoader():
             replace_word = path[replace_index:replace_index+len(old_time)]
             new_path = path.replace(replace_word, time)
 
+            if geom.name == 'skybox.egg':
+                new_path = self.skybox_path()
+
             if not settings.sun:
                 new_path = self.overcast_path(new_path)
 
@@ -186,6 +189,24 @@ class SuperLoader():
         if os.path.isfile(path[:-4]+'Overcast.png'):
             return path[:-4]+'Overcast.png'
         return path
-        
 
-            
+    def skybox_path(self):
+        #Perhaps return different files, depending on day.
+        file = 'overcast.png'
+        if settings.time == 1:
+            if settings.sun:
+                path = 'clearsun.png'
+            else:
+                path = 'overcast.png'
+        elif settings.time == 2:
+            if settings.sun:
+                pass
+            else:
+                pass
+        else:
+            if settings.sun:
+                pass
+            else:
+                path = 'overcastnight.png'
+
+        return 'textures/skymaps/'+file
