@@ -23,12 +23,12 @@ g_bools = {
     }
 
 #Environmental variables
-environment = 'exte_d1_t1'
+environment = 'inte_d1_t1'
 day = 1
 time = 1
 sun = False
 #light, medium, heavy
-snow = ""
+snow = "light"
 
 #Player variables
 player_speed = 0.08 * 50
@@ -46,6 +46,10 @@ fov = 120
 constraints = [None,None]
 free_mouse = False
 ui_open = False
+
+#Game variables
+#free/paid/pirated/source
+game_version = "free"
 
 #Interaction variables
 picked_obj = None

@@ -33,16 +33,15 @@ class MyApp(ShowBase):
         self.pos_seq = Sequence()
         self.hpr_seq = Sequence()
 
-        self.taskMgr.add(self.snow, "snow") #perhaps move to manager.py
-
         #z = self.load_sound('piano.mp3', self.scene, 1)
         #z.play()
 
        # PStatClient.connect()
-
-    def snow(self, task):
-        self.weather.move_player_snow()
-        return Task.cont
+      #  font1 = loader.loadFont('models/font.egg')
+     #   font1.setPixelsPerUnit(60)
+        string = 'my text string and it gets longer and longer and you know it and we will see how long it can get here'
+        textObject = OnscreenText(text=string, pos=(0, -0.8), scale=0.07, align=TextNode.ACenter,
+                                  wordwrap=30, fg=(255,255,255,1), shadow=(0,0,0,0.8), mayChange=True)
         
               
     def cutscene(self, points):

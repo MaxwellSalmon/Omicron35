@@ -15,6 +15,7 @@ def manage(task):
 
     if settings.environment[:4] == 'exte':
         check_work_done()
+        move_snow()
     
     return Task.again
 
@@ -34,6 +35,11 @@ def check_can_sleep():
     settings.g_bools['radio_used']]
     if False not in last_tasks:
         settings.g_bools['can_sleep'] = True
+
+def move_snow():
+    if settings.snow:
+        base.weather.move_player_snow()
+    
 
 def report_radio():
     if settings.g_bools['radio_used'] and not base.pos_seq.isPlaying() and not settings.g_bools['radio_reported']:

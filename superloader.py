@@ -163,8 +163,8 @@ class SuperLoader():
                 for i in times[1:]:
                     if i in path:
                         old_time = i
-            if old_time == time and not self.init:
-                return
+     #       if old_time == time and not self.init:
+     #           return
 
             replace_index = path.find(old_time)
             replace_word = path[replace_index:replace_index+len(old_time)]

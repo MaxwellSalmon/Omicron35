@@ -45,6 +45,7 @@ class Weather:
                 self.start_window_snow()
         else:
             self.player_snow.disable()
+            self.stop_window_snow()
 
     def start_snow(self):
         self.player_snow.start(parent=render, renderParent=render)
