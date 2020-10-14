@@ -198,4 +198,5 @@ def hangar():
         box.show()
         axe.show()
         firewood.show()
+
         

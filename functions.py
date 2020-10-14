@@ -184,3 +184,9 @@ def food_cutscene(direction):
                        {'d':1}])
     elif direction == 'to_pot':
         base.cutscene([{'x':0.2, 'y':3.8, 'z':0, 'h':0.8, 'p':-60, 'd':2}])
+
+### Trigger functions ###
+
+def shed_snow():
+    if settings.snow:
+        base.weather.shed_snow()

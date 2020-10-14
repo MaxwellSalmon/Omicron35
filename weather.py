@@ -1,6 +1,7 @@
 from direct.particles.ParticleEffect import ParticleEffect
 from panda3d.core import *
 from panda3d.physics import LinearVectorForce
+from panda3d.core import CollisionNode, CollisionSphere
 
 import settings
 
@@ -28,7 +29,9 @@ class Weather:
         self.control_fog()
         self.control_snow()
 
-       # self.wsnows[1].place()
+        self.shed_window_snow = False
+
+    #    self.wsnows[3].place()
 
     def move_player_snow(self):
         if self.player_snow.is_enabled():
@@ -99,6 +102,31 @@ class Weather:
             self.fog.setColor(0.9,0.9,0.9)
         elif setting.time == 3:
             self.fog.setColor(0.1,0.1,0.2)
+
+    def shed_snow(self):
+        if not self.shed_window_snow:
+            self.shed_window_snow = True
+            self.player_snow.disable()
+            self.start_window_snow()
+
+            self.wsnows[0].set_pos_hpr(55,6,5, 250,0,0)
+            self.wsnows[0].set_scale(1.5)
+            self.wsnows[0].get_force_group_list()[1].disable()
+            self.wsnows[1].set_pos_hpr(67,6,5, 336,0,0)
+            self.wsnows[1].set_scale(1.5)
+            self.wsnows[1].get_force_group_list()[1].disable()
+            self.wsnows[2].set_pos_hpr(63,-13.5,5, 156,0,0)
+            self.wsnows[2].set_scale(1.5)
+            self.wsnows[2].get_force_group_list()[1].disable()
+            self.wsnows[3].set_pos_hpr(50,-5,5, 250,0,0)
+            self.wsnows[3].get_force_group_list()[1].disable()
+            self.wsnows[3].set_scale(1.5)
+        else:
+            self.shed_window_snow = False
+            self.start_snow()
+            self.stop_window_snow()
+            
+        
 
 
 

@@ -16,6 +16,8 @@ def manage(task):
     if settings.environment[:4] == 'exte':
         check_work_done()
         move_snow()
+
+    check_triggers()
     
     return Task.again
 
@@ -39,6 +41,10 @@ def check_can_sleep():
 def move_snow():
     if settings.snow:
         base.weather.move_player_snow()
+
+def check_triggers():
+    for trigger in settings.scene.triggers:
+        trigger.check()
     
 
 def report_radio():

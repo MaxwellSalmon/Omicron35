@@ -18,6 +18,7 @@ class MyApp(ShowBase):
         
         self.weather = weather.Weather()
         self.interactive_objects = render.attachNewNode("interactive_objects")
+        self.triggers = render.attachNewNode("triggers")
         self.superloader = SuperLoader()
         self.superloader.load(settings.environment, True)
         self.player = Player()

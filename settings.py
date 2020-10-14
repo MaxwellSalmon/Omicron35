@@ -23,12 +23,12 @@ g_bools = {
     }
 
 #Environmental variables
-environment = 'inte_d1_t1'
+environment = 'exte_d1_t1'
 day = 1
 time = 1
 sun = False
 #light, medium, heavy
-snow = "light"
+snow = "heavy"
 
 #Player variables
 player_speed = 0.08 * 50
@@ -56,7 +56,7 @@ picked_obj = None
 
 #Developer variables
 show_fps = False
-show_col = False
+show_col = True
 dev_control = True
 noclip = True
 

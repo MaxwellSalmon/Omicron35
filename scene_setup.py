@@ -1,6 +1,7 @@
 import scenes, settings, colliders, functions
 import os
 from model import *
+from trigger import *
 
 def setup(name, base_scene, base_colliders):
     player_pos = {
@@ -10,6 +11,7 @@ def setup(name, base_scene, base_colliders):
     temp_scene = scenes.Scene(name, base_scene, base_colliders)
     temp_scene.models = create_base_models(name) + create_specific_models(name)
     temp_scene.player_position = player_pos[name[:4]]
+    temp_scene.triggers = create_triggers(name)
     
     settings.scenes[name] = temp_scene
 
@@ -75,3 +77,10 @@ def create_base_models(scene_name):
 
 def create_specific_models(scene_name):
    return []
+
+def create_triggers(scene_name):
+    triggers = []
+    if scene_name[:4] == 'exte':
+        triggers = [Trigger(60,-2,-1.65,8,functions.shed_snow)]
+
+    return triggers
