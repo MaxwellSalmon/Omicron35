@@ -64,6 +64,18 @@ b = blend mode - 'easeIn', 'easeOut', 'noBlend', default is 'easeInOut'
 Note, that the player's p value can only be between -90 and 90.<br>
 Cutscenes are normally created in **functions.py**, reffering to base.
 
+### Creating triggers:
+```
+Trigger(x, y, z, radius, function, **kwargs)
+```
+Similar to models, this is loaded in **scene_setup.py** and should be in a list for scenes. Possible kwargs are:
+```
+mode = string
+name = string
+```
+`mode` can be either `enter` or `enterleave` right now, controlling when the function should be called. `name` is just to easier refer to the trigger in case of an error.
+All triggers are spheres and will be visible if `show_cols` in **settings.py** is enabled.
+
 ### Converting .exr to .png:
 I made a simple script which can convert .exr images to .png images. This is used when baking textures in Maya. The script is executed in the terminal. Use the following arguments for a description on how to use it:
 ```

@@ -55,10 +55,10 @@ game_version = "free"
 picked_obj = None
 
 #Developer variables
-show_fps = False
+show_fps = True
 show_col = True
 dev_control = True
-noclip = True
+noclip = False
 
 #Functionality variables
 dt = 0

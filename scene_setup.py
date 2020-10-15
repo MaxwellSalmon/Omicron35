@@ -81,6 +81,6 @@ def create_specific_models(scene_name):
 def create_triggers(scene_name):
     triggers = []
     if scene_name[:4] == 'exte':
-        triggers = [Trigger(60,-2,-1.65,8,functions.shed_snow)]
+        triggers = [Trigger(65,-7,-1.65,10,functions.shed_snow, mode='enterleave')]
 
     return triggers
