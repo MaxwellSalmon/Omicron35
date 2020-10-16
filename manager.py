@@ -2,7 +2,7 @@
 #The function, "manage" is executed 0.3 seconds.
 
 from direct.task import Task
-import settings, functions
+import settings, functions, voice_strings
 
 def manage(task):
 
@@ -50,15 +50,16 @@ def check_triggers():
 def report_radio():
     if settings.g_bools['radio_used'] and not base.pos_seq.isPlaying() and not settings.g_bools['radio_reported']:
         if settings.day == 1:
-            print("Talking in radio")
-            print("Station Omicron 35 South, ready to report.")
-            print("Your measurements, Omicron?")
-            print("Temperature: -18C, wind speed is 8 m/s, air pressure is 988 mb")
-            print("Acknowledged, Omicron 35. There is a message from HQ: The replacement observer for Omicron 35 is delayed with yet another month.")
-            print("What!? Again? You already delayed it once...")
-            print("Noted, Omicron 35, over and out. --")
-            print("Those god damned... bastards.")
+##            print("Talking in radio")
+##            print("Station Omicron 35 South, ready to report.")
+##            print("Your measurements, Omicron?")
+##            print("Temperature: -18C, wind speed is 8 m/s, air pressure is 988 mb")
+##            print("Acknowledged, Omicron 35. There is a message from HQ: The replacement observer for Omicron 35 is delayed with yet another month.")
+##            print("What!? Again? You already delayed it once...")
+##            print("Noted, Omicron 35, over and out. --")
+##            print("Those god damned... bastards.")
             settings.g_bools['radio_reported'] = True
             functions.radio_cutscene("stand")
+            voice_strings.talk()
             
         

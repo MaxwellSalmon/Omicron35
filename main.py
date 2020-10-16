@@ -3,10 +3,9 @@ from direct.showbase import DirectObject, Audio3DManager
 from panda3d.core import *
 from direct.task import Task
 import math
-from direct.gui.OnscreenText import OnscreenText
 from direct.interval.IntervalGlobal import *
 
-import scene_setup, manager, weather
+import scene_setup, manager, weather, text, voice_strings
 from superloader import *
 from player import *
 import settings
@@ -24,6 +23,7 @@ class MyApp(ShowBase):
         self.player = Player()
         self.superloader.load_audio3d()
         #base.scene.flattenStrong()
+        self.text = text.Text()
         
         self.taskMgr.add(self.player.control_task, "ControlTask")
         self.taskMgr.doMethodLater(0.05, self.player.check_ray_collision, "RayTask")
@@ -34,15 +34,17 @@ class MyApp(ShowBase):
         self.pos_seq = Sequence()
         self.hpr_seq = Sequence()
 
+        voice_strings.load_strings()
+
         #z = self.load_sound('piano.mp3', self.scene, 1)
         #z.play()
 
        # PStatClient.connect()
       #  font1 = loader.loadFont('models/font.egg')
      #   font1.setPixelsPerUnit(60)
-        string = 'my text string and it gets longer and longer and you know it and we will see how long it can get here'
-        textObject = OnscreenText(text=string, pos=(0, -0.8), scale=0.07, align=TextNode.ACenter,
-                                  wordwrap=30, fg=(255,255,255,1), shadow=(0,0,0,0.8), mayChange=True)
+#        string = 'my text string and it gets longer and longer and you know it and we will see how long it can get here'
+ #       textObject = OnscreenText(text=string, pos=(0, -0.8), scale=0.07, align=TextNode.ACenter,
+ #                                 wordwrap=30, fg=(255,255,255,1), shadow=(0,0,0,0.8), mayChange=True)
         
               
     def cutscene(self, points):
