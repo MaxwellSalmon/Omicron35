@@ -34,8 +34,6 @@ class MyApp(ShowBase):
         self.pos_seq = Sequence()
         self.hpr_seq = Sequence()
 
-        voice_strings.load_strings()
-
         #z = self.load_sound('piano.mp3', self.scene, 1)
         #z.play()
 

@@ -17,7 +17,7 @@ from direct.showbase.Transitions import Transitions
 
 from model import *
 import functions, scene_setup
-import colliders
+import colliders, voice_strings
 import os
 
 class SuperLoader():
@@ -31,6 +31,7 @@ class SuperLoader():
         if init:
             render.attach_new_node("audioemitters")
             scene_setup.create_scenes(settings.day)
+
         settings.environment = scene_name
         settings.scene = settings.scenes[scene_name]
         self.load_scene()
@@ -47,7 +48,8 @@ class SuperLoader():
     def load_scene(self):
         #Sets current base.scene
         scene = settings.scenes[settings.environment]
-        
+
+        self.stop_ambience()        
         scene_model = loader.loadModel(scene.scene)
         scene_model.setDepthOffset(0)
         scene_model.reparentTo(render)
@@ -106,12 +108,15 @@ class SuperLoader():
         if settings.scenes[settings.environment].collisions:
             settings.scenes[settings.environment].collisions()
 
-    def load_models(self): #perhaps make into a loop taking info from another file.
+    def load_models(self):
         for model in settings.scene.models:
             if model.model.getTag('interactive'):
                 model.model.reparent_to(base.interactive_objects)
             else:
                 model.model.reparent_to(render)
+
+            if model.ambience:
+                model.ambience.play() #Sounds are not stopping yet.
 
     def load_audio3d(self):
         base.audio3d = Audio3DManager.Audio3DManager(base.sfxManagerList[0], base.player.camera)
@@ -119,9 +124,20 @@ class SuperLoader():
 
         for a in self.audio3d_queue:
             sound = self.load_sound(a[0], a[1], a[2])
-            a[-1].audio = sound
-
+            if 'ambience' in a:
+                a[3].ambience = sound
+                a[3].ambience.setLoop(True)
+            else:
+                a[3].audio = sound
+            
         self.audio3d_queue = []
+
+        voice_strings.load_voices()
+
+    def stop_ambience(self):
+        for model in settings.scene.models:
+            if model.ambience:
+                model.ambience.stop()
 
     def load_sound_queue(self, arguments):
         #Audio3D may not be initialised at this point. Add sounds to loading queue.

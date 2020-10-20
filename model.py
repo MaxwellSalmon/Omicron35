@@ -18,6 +18,7 @@ class Model():
 
         self.audio = None
         self.audio_emitter = None
+        self.ambience = None
         
         if kg('name'):
             #If interactive objects share the model, differentiate between them with custom name
@@ -40,10 +41,15 @@ class Model():
             #Attach audio source to model. Use audio emitter is model is not centered.
             self.create_audio_emitter(model)
             if self.audio_emitter:
-                #print(self.audio_emitter)
                 self.audio = base.superloader.load_sound_queue((kg('audio'), self.audio_emitter, 1, self))
             else:
                 self.audio = base.superloader.load_sound_queue((kg('audio'), model, 1, self))
+        if kg('ambience'):
+            self.create_audio_emitter(model)
+            if self.audio_emitter:
+                self.ambience = base.superloader.load_sound_queue((kg('ambience'), self.audio_emitter, 1, self, 'ambience'))
+            else:
+                self.ambience = base.superloader.load_sound_queue((kg('ambience'), model, 1, self, 'ambience'))
         if kg('culling'):
             if kg('culling') == 'both':
                 model.setTwoSided(True)
@@ -60,13 +66,14 @@ class Model():
         self.name = name
 
     def create_audio_emitter(self, model):
-        pos = model.get_pos()
-        if pos[0] == pos[1] == 0:
-            audio_node = render.find('audioemitters')
-            emitter = audio_node.attachNewNode('audioemitter')
-            epos = self.get_tight_pos(model)
-            emitter.set_pos(epos[0], epos[1], epos[2])
-            self.audio_emitter = emitter
+        if not self.audio_emitter:
+            pos = model.get_pos()
+            if pos[0] == pos[1] == 0:
+                audio_node = render.find('audioemitters')
+                emitter = audio_node.attachNewNode('audioemitter')
+                epos = self.get_tight_pos(model)
+                emitter.set_pos(epos[0], epos[1], epos[2])
+                self.audio_emitter = emitter
 
     def get_tight_pos(self, model):
         bmin, bmax = model.get_tight_bounds()

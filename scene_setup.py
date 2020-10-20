@@ -27,7 +27,7 @@ def create_scenes(day):
 def create_base_models(scene_name):
     if scene_name[:4] == "inte":
         models = [Model('door', tag='interactive', pos=(10,0.1,0.4), scale=0.5, solid=True, audio='door.wav',
-                        function=[functions.change_scene, {'to_scene':'exte_d1_t1', 'bool':'clothes_on'}]),
+                        function=[functions.change_scene, {'to_scene':'exte_d1_t1', 'bool':'clothes_on', 'voice':'no_clothes'}]),
                   Model('interior/suit1', tag='interactive', audio='zipper.wav', function=[functions.put_on_clothes, {'test' : 'Here is suit1'}]),
                   Model('interior/suit2', tag='interactive', audio='zipper.wav', function=[functions.put_on_clothes, {'test' : 'Here is suit2'}]),
                   Model('interior/suit3', tag='interactive', audio='zipper.wav', function=[functions.put_on_clothes, {'test' : 'Here is suit3'}]),
@@ -51,11 +51,11 @@ def create_base_models(scene_name):
                   ]
     elif scene_name[:4] == "exte":
         models = [Model('door', name='ext2int_door', tag='interactive', pos=(10.3,0.1,0.4), scale=0.5, solid=True,
-                        function=[functions.change_scene, {'to_scene':'inte_d1_t1', 'bool' : 'daily_tasks_done', 'time': 3}], audio='door.wav',),
+                        function=[functions.change_scene, {'to_scene':'inte_d1_t1', 'bool' : 'daily_tasks_done', 'time': 3, 'voice':'not_done_with_tasks'}], audio='door.wav',),
                   Model('door', name='ext2hang_door', tag='interactive', pos=(77.4,40.25,0.65), hpr=(22.3,0,0), scale=0.5, solid=True,
                         function=[functions.change_scene, {'to_scene':'hang_d1_t1'}], audio='door.wav'),
                   Model('exterior/jerrycan', tag='interactive', pos=(63.8,-3,-1.65), scale=0.6, function=functions.take_jerrycan, audio='jerrycan.wav'),
-                  Model('exterior/culext', culling='both'),
+                  Model('exterior/culext', culling='both', ambience='buzz.wav'),
                   Model('exterior/generatortank', tag='interactive', function=functions.refill_generator, audio='generatortank.wav'),
                   Model('exterior/box', tag='interactive', culling='both', function=functions.read_measurements, audio='default.wav'),
                   Model('skybox', scale=21, pos=(0,0,-200)),

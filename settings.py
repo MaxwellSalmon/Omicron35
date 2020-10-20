@@ -14,12 +14,13 @@ g_bools = {
     'firewood' : False,
     'generator_refilled' : False,
     'weather_measured' : False,
-    'daily_tasks_done': True,
+    'daily_tasks_done': False,
     'has_eaten' : False,
     'radio_used' : False,
     'radio_reported': False,
-    'can_sleep' : True,
+    'can_sleep' : False,
     'has_taken_can': False,
+    'radio_conv_done':False,
     }
 
 #Environmental variables

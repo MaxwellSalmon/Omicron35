@@ -1,4 +1,4 @@
-import settings
+import settings, voice_strings
 from direct.showbase.Transitions import Transitions
 from direct.interval.IntervalGlobal import *
 
@@ -12,9 +12,10 @@ def get_model():
 
 def change_scene(to_scene, **kwargs):
     kw = kwargs.get
-
+    
     if 'bool' in kwargs and not settings.g_bools[kw('bool')]:
-        print("Something is missing")
+        if 'voice' in kwargs:
+            voice_strings.talk(kw('voice'))
         return
 
     Sequence(Func(fade,'out',0.5), Wait(0.5), Func(change_position, to_scene, **kwargs),
@@ -69,13 +70,13 @@ def take_jerrycan():
 
 def take_fuel():
     if not settings.g_bools['has_jerrycan']:
-        print("You do not have anything to carry the fuel in")
+        voice_strings.talk('needcan')
         return
     if not settings.g_bools['has_fuel']:
         print("You filled the jerry can with fuel")
         take_object('has_fuel', hide=False)
     else:
-        print("I already have fuel in the jerrycan")
+        voice_strings.talk('havefuel')
 
 def split_firewood():
     if not settings.g_bools['firewood']:
@@ -86,13 +87,16 @@ def split_firewood():
 
 def refill_generator():
     if not settings.g_bools['has_fuel']:
-        print("I do not have any fuel to put in the generator")
+        if settings.g_bools['has_jerrycan']:
+            voice_strings.talk('emptyjerrycan')
+        else:
+            voice_strings.talk('generatorneedsfuel')
         return
     if not settings.g_bools['generator_refilled']:
         take_object('generator_refilled', hide=False)
-        print("You refilled the generator")
+        voice_strings.talk('refueled')
     else:
-        print("I alredy refilled the generator")
+        voice_strings.talk('haverefueled')
 
 def read_measurements():
     if not settings.g_bools['weather_measured']:
@@ -108,7 +112,6 @@ def use_radio():
             take_object('radio_used', hide=False)
             radio_cutscene('sit')
             settings.constraints = [90,0]
-            print("You used the radio")
         else:
             print("You already used the radio")
     else:
