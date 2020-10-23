@@ -159,12 +159,17 @@ class SuperLoader():
         return sound
 
     def change_textures(self):
+        print("Changing textures")
         #Replace textures in scene accoring to settings time
         times = [None, 'Day', 'Evening', 'Night']
         time = times[settings.time]
         old_time = ''
         geoms = base.scene.findAllMatches('**/+GeomNode')
-        geoms += [x.model for x in settings.scene.models]
+        model_geoms = [x.model.findAllMatches('**/+GeomNode') for x in settings.scene.models]
+        for m in model_geoms:
+            for g in m:
+                geoms.append(g)
+                
         for geom in geoms:
             texture = geom.findTexture('*')
             
@@ -179,8 +184,10 @@ class SuperLoader():
                 for i in times[1:]:
                     if i in path:
                         old_time = i
-     #       if old_time == time and not self.init:
-     #           return
+            if old_time == time and not self.init:
+                if settings.change_sun == settings.sun:
+                    print("No changes in textures.")
+                    return
 
             replace_index = path.find(old_time)
             replace_word = path[replace_index:replace_index+len(old_time)]
@@ -199,6 +206,8 @@ class SuperLoader():
                 print("No new texture for %s found." % geom)
         if len(geoms) == 1:
             print("Scene is probably flattenedStrong. Cannot change textures.")
+        if settings.sun != settings.change_sun:
+            settings.change_sun = settings.sun
 
     def overcast_path(self, path):
         #Find out whether or not path has overcast texture

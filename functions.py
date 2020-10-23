@@ -12,6 +12,10 @@ def get_model():
 
 def change_scene(to_scene, **kwargs):
     kw = kwargs.get
+
+##    if 'bool' in kwargs:
+##        if type(kw('bool')) == list:
+##            for i
     
     if 'bool' in kwargs and not settings.g_bools[kw('bool')]:
         if 'voice' in kwargs:
@@ -150,6 +154,29 @@ def sleep():
                  Func(base.superloader.change_textures), Wait(4), Func(fade,'in', 2), Wait(2), Func(d1_wake_up)).start()
     else:
         print("I am not tired yet")
+
+def open_shed_door():
+    door = [x for x in settings.scene.models if 'sheddoor' in x.name]
+    door = door[0]
+    bolt = get_model().model
+    start_pos = (59.2,-1.3,0.5)
+    end_pos = (60,1,0.5)
+    bolt_end_pos = (end_pos[0]-start_pos[0],
+                    end_pos[1]-start_pos[1],
+                    -1.8)
+
+    if not settings.g_bools['shed_door_open']:
+        Sequence(LerpPosInterval(door.model, 2, end_pos)).start()
+        Sequence(LerpPosInterval(get_model().model, 2, bolt_end_pos)).start()
+        settings.g_bools['shed_door_open'] = True
+    else:
+        Sequence(LerpPosInterval(door.model, 2, start_pos)).start()
+        Sequence(LerpPosInterval(get_model().model, 2, (0,0,-1.8))).start()
+        settings.g_bools['shed_door_open'] = False
+
+        #Bolt needs to be centered
+
+### Cutscenes ###
     
 def sleep_cutscene():
     base.cutscene([{'h':85, 'p':-5, 'y':-10.5, 'd':2},

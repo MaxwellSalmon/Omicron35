@@ -19,3 +19,11 @@ class Scene:
 
     def add_to_settings(self):
         settings.scenes[self.name] = self
+
+    def find_model(self, model_name):
+        model = [x for x in self.models if model_name in x.name]
+        if model:
+            if len(model) > 1:
+                print("More models called {}.".format(model_name))
+            model = model[0]
+        return model

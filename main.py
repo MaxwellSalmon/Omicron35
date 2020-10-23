@@ -4,6 +4,7 @@ from panda3d.core import *
 from direct.task import Task
 import math
 from direct.interval.IntervalGlobal import *
+from direct.filter.CommonFilters import CommonFilters #temp?
 
 import scene_setup, manager, weather, text, voice_strings
 from superloader import *
@@ -33,6 +34,9 @@ class MyApp(ShowBase):
 
         self.pos_seq = Sequence()
         self.hpr_seq = Sequence()
+
+##        filters = CommonFilters(base.win, base.cam)
+##        filters.setHighDynamicRange()
 
         #z = self.load_sound('piano.mp3', self.scene, 1)
         #z.play()

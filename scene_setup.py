@@ -58,6 +58,8 @@ def create_base_models(scene_name):
                   Model('exterior/culext', culling='both', ambience='buzz.wav'),
                   Model('exterior/generatortank', tag='interactive', function=functions.refill_generator, audio='generatortank.wav'),
                   Model('exterior/box', tag='interactive', culling='both', function=functions.read_measurements, audio='default.wav'),
+                  Model('exterior/sheddoor', solid=True, pos=(59.2,-1.3,0.5), hpr=(339,0,0)),
+                  Model('exterior/bolt', tag='interactive', function=functions.open_shed_door),
                   Model('skybox', scale=21, pos=(0,0,-200)),
                   ]
     elif scene_name[:4] == "hang":

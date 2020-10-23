@@ -20,16 +20,17 @@ g_bools = {
     'radio_reported': False,
     'can_sleep' : False,
     'has_taken_can': False,
-    'radio_conv_done':False,
+    'radio_conv_done' : False,
+    'shed_door_open' : False,
     }
 
 #Environmental variables
 environment = 'inte_d1_t1'
 day = 1
 time = 1
-sun = False
+sun = True
 #light, medium, heavy
-snow = "heavy"
+snow = ""
 
 #Player variables
 player_speed = 0.08 * 50
@@ -58,11 +59,12 @@ picked_obj = None
 #Developer variables
 show_fps = True
 show_col = False
-dev_control = False
+dev_control = True
 noclip = False
 
 #Functionality variables
 dt = 0
+change_sun = False
 
 #Scenes
 scenes = {}
