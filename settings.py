@@ -7,14 +7,14 @@ from panda3d.core import (
 object_functions = {}
 g_bools = {
     'clothes_on' : False,
-    'woken_up' : True,
+    'woken_up' : False,
     'has_clipboard' : False,
     'has_jerrycan' : False,
     'has_fuel' : False,
     'firewood' : False,
     'generator_refilled' : False,
     'weather_measured' : False,
-    'daily_tasks_done': False,
+    'daily_tasks_done': True,
     'has_eaten' : False,
     'radio_used' : False,
     'radio_reported': False,
@@ -25,7 +25,7 @@ g_bools = {
     }
 
 #Environmental variables
-environment = 'inte_d1_t1'
+environment = 'exte_d1_t1'
 day = 1
 time = 1
 sun = True
@@ -60,7 +60,7 @@ picked_obj = None
 show_fps = True
 show_col = False
 dev_control = True
-noclip = False
+noclip = True
 
 #Functionality variables
 dt = 0
