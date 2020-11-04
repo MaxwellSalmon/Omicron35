@@ -41,6 +41,21 @@ Model('door', name='ext_door', tag='interactive', pos=(14,1.35,0.4), scale=0.5, 
                         function=[functions.change_scene, {'to_scene':'inte_d1_t1'}])
 ```
 
+### Changing scene function:
+The function  ```functions.change_scene``` can be applied to a model - a door in most cases. This function will fade between scenes and load new textures or days. The function takes a dictionary of kwargs:
+
+```
+to_scene = 'scene_name'
+bools = ['bool1', 'bool2']
+voices = ['audio1', 'audio2']
+bool = 'bool'
+voice = 'audio'
+```
+
+```bools``` can be used, if multiple bools need to be true in order for the scene to change. The bools are the same strings found in ```settings.g_bools```. Add a '!' as the first char in the string if the bool should be False.
+```voices``` is a list of ```voice_string``` names, which should be played if a bool is not fulfilled. The indecies tie the voices to the bools. 
+If only one bool is required, you can do the same in ```bool``` and ```voice```, so you don't need the brackets.
+
 ### Creating scenes:
 A scene consists of base elements and scene-specific elements. The base elements are the scene model and its colliders. To create a scene, add the following to **scene_setup.py**:
 
@@ -63,6 +78,9 @@ b = blend mode - 'easeIn', 'easeOut', 'noBlend', default is 'easeInOut'
 ```
 Note, that the player's p value can only be between -90 and 90.<br>
 Cutscenes are normally created in **functions.py**, reffering to base.
+
+### Creating conversations and voices:
+This documentation will be added.
 
 ### Creating triggers:
 ```

@@ -14,7 +14,7 @@ g_bools = {
     'firewood' : False,
     'generator_refilled' : False,
     'weather_measured' : False,
-    'daily_tasks_done': True,
+    'daily_tasks_done': False,
     'has_eaten' : False,
     'radio_used' : False,
     'radio_reported': False,
@@ -25,7 +25,7 @@ g_bools = {
     }
 
 #Environmental variables
-environment = 'exte_d1_t1'
+environment = 'inte_d1_t1'
 day = 1
 time = 1
 sun = True
@@ -59,8 +59,8 @@ picked_obj = None
 #Developer variables
 show_fps = True
 show_col = False
-dev_control = True
-noclip = True
+dev_control = False
+noclip = False
 
 #Functionality variables
 dt = 0

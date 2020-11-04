@@ -12,14 +12,33 @@ def get_model():
 
 def change_scene(to_scene, **kwargs):
     kw = kwargs.get
+    voice_index= None
 
-##    if 'bool' in kwargs:
-##        if type(kw('bool')) == list:
-##            for i
-    
-    if 'bool' in kwargs and not settings.g_bools[kw('bool')]:
+    #Check if all bools are true
+    if 'bools' in kwargs:
+        for b in range(len(kw('bools'))):
+            if kw('bools')[b][0] == '!':
+                if settings.g_bools[kw('bools')[b][1:]] == True:
+                    voice_index = b
+                    break
+            else:
+                if settings.g_bools[kw('bools')[b]] == False:
+                    voice_index = b
+                    break
+
+    #Play sound associated with first false bool
+    if 'voices' in kwargs and voice_index != None:
+        voice_strings.talk(kw('voices')[voice_index])
+        return
+
+    #If only one bool and only one voice, play those.
+    elif 'bool' in kwargs and not settings.g_bools[kw('bool')]:
         if 'voice' in kwargs:
             voice_strings.talk(kw('voice'))
+        return
+
+    #Return even if no voice is associated with a false bool.
+    elif voice_index != None:
         return
 
     Sequence(Func(fade,'out',0.5), Wait(0.5), Func(change_position, to_scene, **kwargs),

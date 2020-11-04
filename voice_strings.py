@@ -28,6 +28,7 @@ conversations = {'radio_day1' : ['report', 'hq_greet', 'measurements',
                                  'hq_delay', 'whatagain', 'hq_noted', 'bastards'],
                  'no_clothes' : ['toocold'],
                  'not_done_with_tasks' : ['stuffouthere'],
+                 'shed_door_open' : ['refueled'], #Placeholder
                  }
 
 def load_voices():
