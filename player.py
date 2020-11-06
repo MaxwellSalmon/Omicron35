@@ -9,7 +9,7 @@ from panda3d.core import (
     )
 
 
-import settings
+import settings, clipboard_ui
 
 
 class Player(DirectObject.DirectObject):
@@ -28,7 +28,8 @@ class Player(DirectObject.DirectObject):
         self.speed = settings.player_speed
         self.load_collision()
 
-        self.clipboard_ui = None
+        self.clipboard = clipboard_ui.ClipboardUI()
+
         self.hand_ui = None
         self.ring_ui = None
         self.crosshair = ':-)'
@@ -49,6 +50,8 @@ class Player(DirectObject.DirectObject):
         if self.check_cutscene():
             return Task.cont
         if self.check_constraint():
+            return Task.cont
+        if settings.ui_open:
             return Task.cont
         
         old_pos = self.body.getPos()
@@ -94,7 +97,7 @@ class Player(DirectObject.DirectObject):
 
         self.fps_camera(mpos)
 
-        base.accept(settings.inventory_btn, self.open_ui)
+        base.accept(settings.inventory_btn, self.clipboard.open_ui)
         base.accept(settings.sprint_btn, self.speed_multiplier)
         
 
@@ -106,17 +109,6 @@ class Player(DirectObject.DirectObject):
                 self.speed = settings.player_speed * 3
             else:
                 self.speed = settings.player_speed
-
-    def open_ui(self):
-        if settings.g_bools['has_clipboard']:
-            #Add animation to the UI
-            if not settings.ui_open:
-                self.clipboard_ui = OnscreenImage(image='textures/ui/clipboardUI.png', pos=(0,0,0), scale=(0.7,1,0.9))
-                self.clipboard_ui.setTransparency(TransparencyAttrib.MAlpha)
-                settings.ui_open = True
-            else:
-                self.clipboard_ui.destroy()
-                settings.ui_open = False
 
     def show_crosshair(self):
         if settings.picked_obj:
@@ -199,6 +191,11 @@ class Player(DirectObject.DirectObject):
         self.camera.set_p(p)
 
     def click_mouse(self, obj):
+        if settings.ui_open:
+            return
+        if self.check_cutscene():
+            return
+        
         s = self.get_model_string(obj)
         if s not in settings.object_functions:
             print(f"player.py: '{s}' is not a keyword!")
