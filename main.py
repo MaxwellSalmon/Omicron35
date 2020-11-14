@@ -35,8 +35,8 @@ class MyApp(ShowBase):
         self.pos_seq = Sequence()
         self.hpr_seq = Sequence()
 
-##        filters = CommonFilters(base.win, base.cam)
-##        filters.setHighDynamicRange()
+        filters = CommonFilters(base.win, base.cam)
+        filters.setBloom()
 
         #z = self.load_sound('piano.mp3', self.scene, 1)
         #z.play()

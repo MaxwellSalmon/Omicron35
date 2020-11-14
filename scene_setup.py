@@ -32,7 +32,7 @@ def create_base_models(scene_name):
                   Model('interior/suit2', tag='interactive', audio='zipper.wav', function=[functions.put_on_clothes, {'test' : 'Here is suit2'}]),
                   Model('interior/suit3', tag='interactive', audio='zipper.wav', function=[functions.put_on_clothes, {'test' : 'Here is suit3'}]),
                   Model('interior/showercurtain', pos=(1.65,-8.6,-1.8), solid=True, culling='both'),
-                  Model('interior/clipboard', pos=(-4.1,-8.6,0.45), tag='interactive', audio='clipboard.wav', function=functions.take_clipboard),
+                  Model('interior/clipboard', pos=(-4.1,-8.6,0.45), tag='interactive', audio='clipboard.wav', function=functions.take_clipboard, vol=1, tight_emitter=True),
                   Model('interior/paper.egg', culling='both'),
                   Model('interior/towels.egg', culling='both'),
                   Model('interior/radio', tag='interactive', audio='default.wav', function=functions.use_radio),

@@ -121,9 +121,11 @@ class SuperLoader():
     def load_audio3d(self):
         base.audio3d = Audio3DManager.Audio3DManager(base.sfxManagerList[0], base.player.camera)
         base.audio3d.attachListener(base.player.camera)
+        base.sfxManagerList[0].setVolume(1)
 
         for a in self.audio3d_queue:
             sound = self.load_sound(a[0], a[1], a[2])
+            sound.set_volume(a[4])
             if 'ambience' in a:
                 a[3].ambience = sound
                 a[3].ambience.setLoop(True)

@@ -22,6 +22,8 @@ subtitles = {
         'haverefueled':"I have already refueled the generator.",
         'refueled':"There we go. Refueled.",
         'emptyjerrycan':"The jerrycan is empty. I need to refill it in the hangar.",
+        #Sound effects below.
+        'writing' : '',
         }
 
 conversations = {'radio_day1' : ['report', 'hq_greet', 'measurements',
@@ -29,6 +31,9 @@ conversations = {'radio_day1' : ['report', 'hq_greet', 'measurements',
                  'no_clothes' : ['toocold'],
                  'not_done_with_tasks' : ['stuffouthere'],
                  'shed_door_open' : ['refueled'], #Placeholder
+
+                 #Just sound effects emitted from player below here. Not actual voices.
+                 'writing' : ['writing'],
                  }
 
 def load_voices():

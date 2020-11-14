@@ -104,6 +104,7 @@ def take_fuel():
 def split_firewood():
     if not settings.g_bools['firewood']:
         take_object('firewood', hide=False)
+        voice_strings.talk('writing')
         print("You split the firewood")
     else:
         print("I already split enough firewood")
@@ -117,6 +118,7 @@ def refill_generator():
         return
     if not settings.g_bools['generator_refilled']:
         take_object('generator_refilled', hide=False)
+        voice_strings.talk('writing')
         voice_strings.talk('refueled')
     else:
         voice_strings.talk('haverefueled')
@@ -124,6 +126,7 @@ def refill_generator():
 def read_measurements():
     if not settings.g_bools['weather_measured']:
         take_object('weather_measured', hide=False)
+        voice_strings.talk('writing')
         print("You read the weather measurements")
     else:
         print("You already measured the weather")
