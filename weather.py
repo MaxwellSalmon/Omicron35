@@ -31,6 +31,10 @@ class Weather:
 
         self.shed_window_snow = False
 
+        self.steam = ParticleEffect()
+        self.steam.loadConfig('particles/steam.ptf')
+        self.stove_steam()
+
     #    self.wsnows[3].place()
 
     def move_player_snow(self):
@@ -125,6 +129,13 @@ class Weather:
             self.shed_window_snow = False
             self.start_snow()
             self.stop_window_snow()
+
+    def stove_steam(self):
+        if settings.environment[:4] == 'inte':
+            self.steam.start(parent=render, renderParent=render)
+            self.steam.set_pos(5.20,4.30,0.6)
+        else:
+            self.steam.disable()
             
         
 
