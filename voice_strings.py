@@ -22,6 +22,7 @@ subtitles = {
         'haverefueled':"I have already refueled the generator.",
         'refueled':"There we go. Refueled.",
         'emptyjerrycan':"The jerrycan is empty. I need to refill it in the hangar.",
+        
         #Sound effects below.
         'writing' : '',
         }
@@ -29,6 +30,7 @@ subtitles = {
 conversations = {'radio_day1' : ['report', 'hq_greet', 'measurements',
                                  'hq_delay', 'whatagain', 'hq_noted', 'bastards'],
                  'no_clothes' : ['toocold'],
+                 'no_clipboard' : ['refueled'], #Placeholder for not having clipboard
                  'not_done_with_tasks' : ['stuffouthere'],
                  'shed_door_open' : ['refueled'], #Placeholder
 

@@ -24,10 +24,12 @@ def create_scenes(day):
 
         setup("exte_d1_t1", os.path.join('models', 'exterior.egg'), colliders.exterior)
 
+        setup("inte_d2_t1", os.path.join('models', 'interior.egg'), colliders.house_interior)
+
 def create_base_models(scene_name):
     if scene_name[:4] == "inte":
         models = [Model('interior/door', tag='interactive', pos=(10,0.1,0.4), scale=0.5, solid=True, audio='door.wav',
-                        function=[functions.change_scene, {'to_scene':'exte_d1_t1', 'bool':'clothes_on', 'voice':'no_clothes'}]),
+                        function=[functions.change_scene, {'to_scene':'exte_d1_t1', 'bools':['clothes_on', 'has_clipboard'], 'voices':['no_clothes','no_clipboard']}]),
                   Model('interior/suit1', tag='interactive', audio='zipper.wav', function=[functions.put_on_clothes, {'test' : 'Here is suit1'}]),
                   Model('interior/suit2', tag='interactive', audio='zipper.wav', function=[functions.put_on_clothes, {'test' : 'Here is suit2'}]),
                   Model('interior/suit3', tag='interactive', audio='zipper.wav', function=[functions.put_on_clothes, {'test' : 'Here is suit3'}]),
@@ -78,7 +80,13 @@ def create_base_models(scene_name):
     return models
 
 def create_specific_models(scene_name):
-   return []
+    if scene_name == 'inte_d2_t1':
+        models = [Model('interior/mess_d1'),
+                  ]
+    else:
+        models = []
+        print(scene_name, " not recognized in models")
+    return models
 
 def create_triggers(scene_name):
     triggers = []
