@@ -1,4 +1,4 @@
-from panda3d.core import CollisionNode, CollisionBox
+from panda3d.core import CollisionNode, CollisionBox, TransparencyAttrib
 
 import settings
 
@@ -39,6 +39,9 @@ class Model():
             model.set_scale(kg('scale'))
         if kg('function'):
             settings.object_functions[str(name)] = kg('function')
+        if kg('alpha'):
+            model.setTransparency(TransparencyAttrib.MAlpha)
+            model.setAlphaScale(kg('alpha'))
         
         #Sound
         if kg('tight_emitter'):

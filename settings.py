@@ -60,7 +60,7 @@ picked_obj = None
 show_fps = True
 show_col = False
 dev_control = True
-noclip = False
+noclip = True
 
 #Functionality variables
 dt = 0

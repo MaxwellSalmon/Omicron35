@@ -29,14 +29,19 @@ subtitles = {
 
 conversations = {'radio_day1' : ['report', 'hq_greet', 'measurements',
                                  'hq_delay', 'whatagain', 'hq_noted', 'bastards'],
-                 'no_clothes' : ['toocold'],
-                 'no_clipboard' : ['refueled'], #Placeholder for not having clipboard
-                 'not_done_with_tasks' : ['stuffouthere'],
-                 'shed_door_open' : ['refueled'], #Placeholder
-
-                 #Just sound effects emitted from player below here. Not actual voices.
-                 'writing' : ['writing'],
+                 
                  }
+sounds = {'writing' : ['writing'],
+          }
+
+self_talk = {'shed_door_open' : ['refueled'], #Placeholder
+             'not_done_with_tasks' : ['stuffouthere'],
+             'no_clothes' : ['toocold'],
+             'no_clipboard' : ['refueled'], #Placeholder for not having clipboard
+             }
+
+conversations.update(sounds)
+conversations.update(self_talk)
 
 def load_voices():
     global player_voice, radio_voice

@@ -5,6 +5,8 @@ from panda3d.core import CollisionNode, CollisionSphere
 
 import settings
 
+#This script controls weather effects, but also general particle effects.
+
 class Weather:
 
     def __init__(self):
@@ -26,16 +28,17 @@ class Weather:
 
         self.fog = Fog("fog")
 
+        self.shed_window_snow = False
+
+        self.fire = ParticleEffect()
+        self.fire.loadConfig('particles/fire.ptf')
+        self.steam = ParticleEffect()
+        self.steam.loadConfig('particles/steam.ptf')
+
         self.control_fog()
         self.control_snow()
 
-        self.shed_window_snow = False
 
-        self.steam = ParticleEffect()
-        self.steam.loadConfig('particles/steam.ptf')
-        self.stove_steam()
-
-    #    self.wsnows[3].place()
 
     def move_player_snow(self):
         if self.player_snow.is_enabled():
@@ -53,6 +56,8 @@ class Weather:
         else:
             self.player_snow.disable()
             self.stop_window_snow()
+
+        self.stove_steam()
 
     def start_snow(self):
         self.player_snow.start(parent=render, renderParent=render)
@@ -131,11 +136,19 @@ class Weather:
             self.stop_window_snow()
 
     def stove_steam(self):
+        #Also controls furnace fire
         if settings.environment[:4] == 'inte':
             self.steam.start(parent=render, renderParent=render)
+            self.fire.start(parent=render, renderParent=render)
             self.steam.set_pos(5.20,4.30,0.6)
+            self.fire.set_pos(5,3.6,-0.9)
+        elif settings.environment[:4] == 'exte':
+            self.steam.start(parent=render, renderParent=render)
+            self.steam.set_pos(5.20,3.5,6.4)
+            self.fire.disable()
         else:
             self.steam.disable()
+            self.fire.disable()
             
         
 

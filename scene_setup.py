@@ -33,12 +33,12 @@ def create_base_models(scene_name):
                   Model('interior/suit1', tag='interactive', audio='zipper.wav', function=[functions.put_on_clothes, {'test' : 'Here is suit1'}]),
                   Model('interior/suit2', tag='interactive', audio='zipper.wav', function=[functions.put_on_clothes, {'test' : 'Here is suit2'}]),
                   Model('interior/suit3', tag='interactive', audio='zipper.wav', function=[functions.put_on_clothes, {'test' : 'Here is suit3'}]),
+                  Model('interior/bed', tag='interactive', audio='default.wav', function=functions.sleep),
                   Model('interior/showercurtain', pos=(1.65,-8.6,-1.8), solid=True, culling='both'),
                   Model('interior/clipboard', pos=(-4.1,-8.6,0.45), tag='interactive', audio='clipboard.wav', function=functions.take_clipboard, vol=1, tight_emitter=True),
                   Model('interior/paper.egg', culling='both'),
                   Model('interior/towels.egg', culling='both'),
                   Model('interior/radio', tag='interactive', audio='default.wav', function=functions.use_radio),
-                  Model('interior/bed', tag='interactive', audio='default.wav', function=functions.sleep),
                   Model('interior/pot', tag='interactive', audio='default.wav', function=functions.make_food),
                   Model('interior/can1', tag='interactive', audio='default.wav', function=functions.take_can),
                   Model('interior/can2', tag='interactive', audio='default.wav', function=functions.take_can),
@@ -80,8 +80,11 @@ def create_base_models(scene_name):
     return models
 
 def create_specific_models(scene_name):
+    if scene_name == 'inte_d1_t1':
+        models = []
     if scene_name == 'inte_d2_t1':
         models = [Model('interior/mess_d1'),
+                  Model('interior/mug', alpha=0.3, culling='both'),
                   ]
     else:
         models = []

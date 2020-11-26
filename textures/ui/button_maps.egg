@@ -1,0 +1,110 @@
+<Comment> {
+  "egg-texture-cards -o button_maps.egg -p 64,64 test.png click.png hover.png click.png"
+}
+<Texture> test {
+  test.png
+}
+<Texture> hover {
+  hover.png
+}
+<Texture> click {
+  click.png
+}
+<Group> {
+  <Switch> { 1 }
+  <Scalar> fps { 2 }
+  <VertexPool> vpool {
+    <Vertex> 0 {
+      -3.421875 0.4453125 0
+      <UV> { 0 1 }
+    }
+    <Vertex> 1 {
+      -3.421875 -0.4453125 0
+      <UV> { 0 0 }
+    }
+    <Vertex> 2 {
+      3.421875 -0.4453125 0
+      <UV> { 1 0 }
+    }
+    <Vertex> 3 {
+      3.421875 0.4453125 0
+      <UV> { 1 1 }
+    }
+    <Vertex> 4 {
+      -3.421875 0.4453125 0
+      <UV> { 0 1 }
+    }
+    <Vertex> 5 {
+      -3.421875 -0.4453125 0
+      <UV> { 0 0 }
+    }
+    <Vertex> 6 {
+      3.421875 -0.4453125 0
+      <UV> { 1 0 }
+    }
+    <Vertex> 7 {
+      3.421875 0.4453125 0
+      <UV> { 1 1 }
+    }
+    <Vertex> 8 {
+      -3.421875 0.4453125 0
+      <UV> { 0 1 }
+    }
+    <Vertex> 9 {
+      -3.421875 -0.4453125 0
+      <UV> { 0 0 }
+    }
+    <Vertex> 10 {
+      3.421875 -0.4453125 0
+      <UV> { 1 0 }
+    }
+    <Vertex> 11 {
+      3.421875 0.4453125 0
+      <UV> { 1 1 }
+    }
+    <Vertex> 12 {
+      -3.421875 0.4453125 0
+      <UV> { 0 1 }
+    }
+    <Vertex> 13 {
+      -3.421875 -0.4453125 0
+      <UV> { 0 0 }
+    }
+    <Vertex> 14 {
+      3.421875 -0.4453125 0
+      <UV> { 1 0 }
+    }
+    <Vertex> 15 {
+      3.421875 0.4453125 0
+      <UV> { 1 1 }
+    }
+  }
+  <Group> test {
+    <Polygon> {
+      <RGBA> { 1 1 1 1 }
+      <TRef> { test }
+      <VertexRef> { 0 1 2 3 <Ref> { vpool } }
+    }
+  }
+  <Group> click {
+    <Polygon> {
+      <RGBA> { 1 1 1 1 }
+      <TRef> { click }
+      <VertexRef> { 4 5 6 7 <Ref> { vpool } }
+    }
+  }
+  <Group> hover {
+    <Polygon> {
+      <RGBA> { 1 1 1 1 }
+      <TRef> { hover }
+      <VertexRef> { 8 9 10 11 <Ref> { vpool } }
+    }
+  }
+  <Group> click {
+    <Polygon> {
+      <RGBA> { 1 1 1 1 }
+      <TRef> { click }
+      <VertexRef> { 12 13 14 15 <Ref> { vpool } }
+    }
+  }
+}

@@ -6,10 +6,12 @@ import math
 from direct.interval.IntervalGlobal import *
 from direct.filter.CommonFilters import CommonFilters #temp?
 
-import scene_setup, manager, weather, text, voice_strings
+import scene_setup, manager, weather, text, voice_strings, conversation_gui
 from superloader import *
 from player import *
 import settings
+
+from direct.gui.DirectGui import * #Delete
 
 class MyApp(ShowBase):
 
@@ -34,6 +36,10 @@ class MyApp(ShowBase):
 
         self.pos_seq = Sequence()
         self.hpr_seq = Sequence()
+
+        gui = conversation_gui.ConversationGUI()
+   #     b = DirectButton(text=("OK", "click!", "rolling over", "disabled"),
+   #              scale=.05)
 
   #      filters = CommonFilters(base.win, base.cam)
  #      filters.setBloom()
