@@ -14,7 +14,7 @@ g_bools = {
     'firewood' : False,
     'generator_refilled' : False,
     'weather_measured' : False,
-    'daily_tasks_done': False,
+    'daily_tasks_done': True,
     'has_eaten' : False,
     'radio_used' : False,
     'radio_reported': False,

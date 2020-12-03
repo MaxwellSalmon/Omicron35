@@ -4,7 +4,7 @@ import settings
 
 player_voice = None
 radio_voice = None
-conv_sequence = Sequence()
+conv_sequence = Sequence() ##Create in conversation class
 
 subtitles = {
         'report' : "Station Omicron 35 South, ready to report.",
@@ -43,13 +43,17 @@ self_talk = {'shed_door_open' : ['refueled'], #Placeholder
 conversations.update(sounds)
 conversations.update(self_talk)
 
-def load_voices():
+print(conversations)
+
+
+def load_voices():  ##Move to conversation class
     global player_voice, radio_voice
 
     player_voice = Voice(base.player.camera)
     radio_voice = Voice(settings.scene.models[8].model) #Change, so it doesn't use 8
 
-def talk(conversation):
+def talk(conversation): ##Make a class for itself
+    print("Talking")
     global conv_sequence
 
     if conv_sequence.isPlaying():

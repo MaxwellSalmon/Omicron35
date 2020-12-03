@@ -11,8 +11,6 @@ from superloader import *
 from player import *
 import settings
 
-from direct.gui.DirectGui import * #Delete
-
 class MyApp(ShowBase):
 
     def __init__(self):
@@ -37,9 +35,9 @@ class MyApp(ShowBase):
         self.pos_seq = Sequence()
         self.hpr_seq = Sequence()
 
-        gui = conversation_gui.ConversationGUI()
-   #     b = DirectButton(text=("OK", "click!", "rolling over", "disabled"),
-   #              scale=.05)
+        self.gui = conversation_gui.ConversationGUI(3)
+  #      self.gui.update_text(('Report measurements', 'What is your name?', 'Mein Vater war ein sehr betümte Spurhhund'))
+  #      self.gui.toggle_visibility()
 
   #      filters = CommonFilters(base.win, base.cam)
  #      filters.setBloom()
