@@ -35,7 +35,7 @@ class MyApp(ShowBase):
         self.pos_seq = Sequence()
         self.hpr_seq = Sequence()
 
-        self.gui = conversation_gui.ConversationGUI(3)
+        self.conv_gui = conversation_gui.ConversationGUI(3)
   #      self.gui.update_text(('Report measurements', 'What is your name?', 'Mein Vater war ein sehr betümte Spurhhund'))
   #      self.gui.toggle_visibility()
 

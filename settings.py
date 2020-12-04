@@ -55,6 +55,8 @@ game_version = "free"
 
 #Interaction variables
 picked_obj = None
+conversation_p = 0
+conversation_progress = 0
 
 #Developer variables
 show_fps = True

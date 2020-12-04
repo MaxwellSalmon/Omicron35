@@ -17,7 +17,7 @@ from direct.showbase.Transitions import Transitions
 
 from model import *
 import functions, scene_setup
-import colliders, voice_strings
+import colliders, conversation
 import os
 
 class SuperLoader():
@@ -134,7 +134,7 @@ class SuperLoader():
             
         self.audio3d_queue = []
 
-        voice_strings.load_voices()
+        base.conversation = conversation.Conversation()
 
     def stop_ambience(self):
         for model in settings.scene.models:

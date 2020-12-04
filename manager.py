@@ -52,11 +52,14 @@ def report_radio():
     if settings.g_bools['radio_used'] and not base.pos_seq.isPlaying() and not settings.g_bools['radio_reported']:
         if settings.day == 1:
             settings.g_bools['radio_reported'] = True
-            voice_strings.talk('radio_day1')
+            base.conversation.talk('radio_day1')
 
 def radio_conv_done():
-    if settings.g_bools['radio_reported'] and not voice_strings.conv_sequence.isPlaying():
-        if not settings.g_bools['radio_conv_done']:
+    cp = settings.conversation_progress
+    if settings.g_bools['radio_reported'] and not base.conversation.conv_sequence.isPlaying():
+        if cp == 0 and not base.conv_gui.shown:
+            base.conv_gui.choice(("First choice", "Second choice"))
+        if not settings.g_bools['radio_conv_done'] and not base.conv_gui.shown:
             settings.g_bools['radio_conv_done'] = True
             functions.radio_cutscene("stand")
             
