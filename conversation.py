@@ -12,7 +12,8 @@ class Conversation:
 
     def load_voices(self):
         self.player_voice = voice.Voice(base.player.camera)
-        self.radio_voice = voice.Voice(settings.scene.models[8].model) #Change, so it doesn't use 8
+        if settings.environment[:4] == 'inte': #Should fix this
+            self.radio_voice = voice.Voice(settings.scene.models[8].model) #Change, so it doesn't use 8
 
     def ready_lines(self, conversation):
         if conversation not in voice_strings.conversations:

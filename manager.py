@@ -55,6 +55,7 @@ def report_radio():
             base.conversation.talk('radio_day1')
 
 def radio_conv_done():
+    #See if you can find a better way to do this
     cp = settings.conversation_progress
     if settings.g_bools['radio_reported'] and not base.conversation.conv_sequence.isPlaying():
         if cp == 0 and not base.conv_gui.shown:

@@ -28,13 +28,13 @@ def change_scene(to_scene, **kwargs):
 
     #Play sound associated with first false bool
     if 'voices' in kwargs and voice_index != None:
-        voice_strings.talk(kw('voices')[voice_index])
+        base.conversation.talk(kw('voices')[voice_index])
         return
 
     #If only one bool and only one voice, play those.
     elif 'bool' in kwargs and not settings.g_bools[kw('bool')]:
         if 'voice' in kwargs:
-            voice_strings.talk(kw('voice'))
+            base.conversation.talk(kw('voice'))
         return
 
     #Return even if no voice is associated with a false bool.
@@ -93,18 +93,18 @@ def take_jerrycan():
 
 def take_fuel():
     if not settings.g_bools['has_jerrycan']:
-        voice_strings.talk('needcan')
+        base.conversation.talk('needcan')
         return
     if not settings.g_bools['has_fuel']:
         print("You filled the jerry can with fuel")
         take_object('has_fuel', hide=False)
     else:
-        voice_strings.talk('havefuel')
+        base.conversation.talk('havefuel')
 
 def split_firewood():
     if not settings.g_bools['firewood']:
         take_object('firewood', hide=False)
-        voice_strings.talk('writing')
+        base.conversation.talk('writing')
         print("You split the firewood")
     else:
         print("I already split enough firewood")
@@ -112,21 +112,21 @@ def split_firewood():
 def refill_generator():
     if not settings.g_bools['has_fuel']:
         if settings.g_bools['has_jerrycan']:
-            voice_strings.talk('emptyjerrycan')
+            base.conversation.talk('emptyjerrycan')
         else:
-            voice_strings.talk('generatorneedsfuel')
+            base.conversation.talk('generatorneedsfuel')
         return
     if not settings.g_bools['generator_refilled']:
         take_object('generator_refilled', hide=False)
-        voice_strings.talk('writing')
-        voice_strings.talk('refueled')
+        base.conversation.talk('writing')
+        base.conversation.talk('refueled')
     else:
-        voice_strings.talk('haverefueled')
+        base.conversation.talk('haverefueled')
 
 def read_measurements():
     if not settings.g_bools['weather_measured']:
         take_object('weather_measured', hide=False)
-        voice_strings.talk('writing')
+        base.conversation.talk('writing')
         print("You read the weather measurements")
     else:
         print("You already measured the weather")

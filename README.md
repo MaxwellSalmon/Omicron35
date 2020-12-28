@@ -80,7 +80,11 @@ Note, that the player's p value can only be between -90 and 90.<br>
 Cutscenes are normally created in **functions.py**, reffering to base.
 
 ### Creating conversations and voices:
-This documentation will be added.
+The script **conversation.py** contains voice classes for the player and the radio - will likely not change. 
+When the player speaks through the radio, they can be provided with conversation options. The conversation is usually initialised in **manager.py** but can be done anywhere with the call ```base.conversation.talk(string)``` where the string is a name of a conversation from **voice_strings.py**.
+This will create a sequence, which plays. After it is done, one may create a choice for the player using ```base.conv_gui.coice((string, string))``` where the strings are the text seen on the buttons. In **voice_strings.py**, conversations are  created by having a list of subtitle keys in the dictionary ```conversations```.
+The keys for the subtitles should be file names. Does the name start with ```_hq```, the voice will belong to the radio. 
+I am aware, that this explanaition is poor, but if anyone is interested at all, I can provide a better one.
 
 ### Creating triggers:
 ```
