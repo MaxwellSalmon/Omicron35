@@ -1,4 +1,5 @@
 from direct.gui.DirectGui import *
+from panda3d.core import WindowProperties
 from direct.gui.OnscreenText import OnscreenText
 import settings
 import functions
@@ -45,6 +46,7 @@ class ConversationGUI:
                     btn.show()
 
         self.shown = not self.shown
+        base.free_mouse()
 
     def set_p(self, p):
         settings.conversation_p = p

@@ -15,7 +15,8 @@ class MyApp(ShowBase):
 
     def __init__(self):
         ShowBase.__init__(self)
-        
+        base.free_mouse()
+
         self.weather = weather.Weather()
         self.interactive_objects = render.attachNewNode("interactive_objects")
         self.triggers = render.attachNewNode("triggers")
@@ -36,6 +37,7 @@ class MyApp(ShowBase):
         self.hpr_seq = Sequence()
 
         self.conv_gui = conversation_gui.ConversationGUI(3)
+        
   #      self.gui.update_text(('Report measurements', 'What is your name?', 'Mein Vater war ein sehr betümte Spurhhund'))
   #      self.gui.toggle_visibility()
 
@@ -51,7 +53,13 @@ class MyApp(ShowBase):
 #        string = 'my text string and it gets longer and longer and you know it and we will see how long it can get here'
  #       textObject = OnscreenText(text=string, pos=(0, -0.8), scale=0.07, align=TextNode.ACenter,
  #                                 wordwrap=30, fg=(255,255,255,1), shadow=(0,0,0,0.8), mayChange=True)
-        
+    def free_mouse(self):
+        settings.free_mouse = not settings.free_mouse
+        props = WindowProperties()
+        props.setCursorHidden(not settings.free_mouse)
+        self.win.requestProperties(props)
+
+        #Move curser to center of screen when turning off
               
     def cutscene(self, points):
         if settings.constraints != [None, None]:
@@ -96,7 +104,7 @@ class MyApp(ShowBase):
 class FreeMouse(DirectObject.DirectObject):
 
     def __init__(self):
-        self.accept('escape', self.free_mouse)
+        self.accept('escape', app.free_mouse)
         self.accept('g', self.move_camera)
         
         if settings.dev_control:
@@ -107,11 +115,6 @@ class FreeMouse(DirectObject.DirectObject):
         settings.fov += added
         base.player.camLens.setFov(settings.fov)
 
-    def free_mouse(self):
-        settings.free_mouse = not settings.free_mouse
-        props = WindowProperties()
-        props.setCursorHidden(not settings.free_mouse)
-        app.win.requestProperties(props)
 
     def move_camera(self):
         app.camera.setHpr(0,0,0)

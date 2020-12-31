@@ -10,8 +10,9 @@ def manage(task):
         if not settings.g_bools['woken_up']:
             functions.d1_wake_up()
         if settings.g_bools['daily_tasks_done']:
-            report_radio()
-            radio_conv_done()
+            talk_in_radio()
+           # report_radio()
+           # radio_conv_done()
             check_can_sleep()
 
     if settings.environment[:4] == 'exte':
@@ -46,23 +47,60 @@ def move_snow():
 def check_triggers():
     for trigger in settings.scene.triggers:
         trigger.check()
-    
 
-def report_radio():
+#Which conversation should be started?
+def determine_conversation():
+    if settings.day == 1:
+        return 'radio_day1'
+
+#Radio control function - Finite state machine, I think.
+def talk_in_radio():
+    path = settings.conversation_path
+    prog = settings.conversation_progress
+    is_playing = base.conversation.conv_sequence.isPlaying()
+
+    #Start the conversation after havig moved to radio
     if settings.g_bools['radio_used'] and not base.pos_seq.isPlaying() and not settings.g_bools['radio_reported']:
-        if settings.day == 1:
-            settings.g_bools['radio_reported'] = True
-            base.conversation.talk('radio_day1')
+        settings.g_bools['radio_reported'] = True
+        sound = determine_conversation()
+        base.conversation.talk(sound)
 
-def radio_conv_done():
-    #See if you can find a better way to do this
-    cp = settings.conversation_progress
-    if settings.g_bools['radio_reported'] and not base.conversation.conv_sequence.isPlaying():
-        if cp == 0 and not base.conv_gui.shown:
-            base.conv_gui.choice(("First choice", "Second choice"))
+    elif settings.g_bools['radio_reported'] and not is_playing:
+        gui_choices(prog)
+
+        #Stand up when conversation is over.
         if not settings.g_bools['radio_conv_done'] and not base.conv_gui.shown:
             settings.g_bools['radio_conv_done'] = True
-            functions.radio_cutscene("stand")
+            functions.radio_cutscene('stand')
+
+#Which choices should appear on the GUI? Will get messy.
+def gui_choices(prog):
+    if settings.day == 1:
+        if prog == 0:
+            base.conv_gui.choice(("First choice", "Second choice"))
+        
+        
+        
+    
+    
+
+#DELETE THIS
+##def report_radio():
+##    #This functions starts radio conversation
+##    if settings.g_bools['radio_used'] and not base.pos_seq.isPlaying() and not settings.g_bools['radio_reported']:
+##        if settings.day == 1:
+##            settings.g_bools['radio_reported'] = True
+##            base.conversation.talk('radio_day1')
+##
+##def radio_conv_done():
+##    #See if you can find a better way to do this
+##    cp = settings.conversation_progress
+##    if settings.g_bools['radio_reported'] and not base.conversation.conv_sequence.isPlaying():
+##        if cp == 0 and not base.conv_gui.shown:
+##            base.conv_gui.choice(("First choice", "Second choice"))
+##        if not settings.g_bools['radio_conv_done'] and not base.conv_gui.shown:
+##            settings.g_bools['radio_conv_done'] = True
+##            functions.radio_cutscene("stand")
             
             
         
