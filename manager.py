@@ -3,6 +3,7 @@
 
 from direct.task import Task
 import settings, functions, voice_strings
+import conversation_manager
 
 def manage(task):
 
@@ -50,8 +51,7 @@ def check_triggers():
 
 #Which conversation should be started?
 def determine_conversation():
-    if settings.day == 1:
-        return 'radio_day1'
+    return 'radio_day' + str(settings.day)
 
 #Radio control function - Finite state machine, I think.
 def talk_in_radio():
@@ -66,18 +66,12 @@ def talk_in_radio():
         base.conversation.talk(sound)
 
     elif settings.g_bools['radio_reported'] and not is_playing:
-        gui_choices(prog)
+        conversation_manager.gui_choices(prog)
 
         #Stand up when conversation is over.
         if not settings.g_bools['radio_conv_done'] and not base.conv_gui.shown:
             settings.g_bools['radio_conv_done'] = True
             functions.radio_cutscene('stand')
-
-#Which choices should appear on the GUI? Will get messy.
-def gui_choices(prog):
-    if settings.day == 1:
-        if prog == 0:
-            base.conv_gui.choice(("First choice", "Second choice"))
         
         
         

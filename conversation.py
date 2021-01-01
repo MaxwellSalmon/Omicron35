@@ -22,6 +22,7 @@ class Conversation:
             lines = voice_strings.conversations[conversation]
 
         return lines
+        
 
     def talk(self, conversation): #Has to be redone, perhaps.
         if self.conv_sequence.isPlaying():

@@ -2,7 +2,8 @@ from direct.gui.DirectGui import *
 from panda3d.core import WindowProperties
 from direct.gui.OnscreenText import OnscreenText
 import settings
-import functions
+import conversation_manager
+import random
 
 class ConversationGUI:
     #5,30
@@ -24,18 +25,15 @@ class ConversationGUI:
                                   ))
         self.toggle_visibility()
 
-    def update_text(self, strings, p_vals=None):
+    def update_text(self, strings, prog):
         assert len(strings) == len(self.buttons)
         
         for index, i in enumerate(zip(self.buttons, strings)):
             i[0]['text'] = i[1]
             i[0]['command'] = self.set_p
 
-            #Choose button index as p value if not told otherwise.
-            if not p_vals:
-                i[0]['extraArgs'] = [index]
-            else:
-                i[0]['extraArgs'] = p_vals[index]
+            #Choose button index as p value
+            i[0]['extraArgs'] = [index, prog[index]]
 
     def toggle_visibility(self):
         for btn in self.buttons:
@@ -48,17 +46,19 @@ class ConversationGUI:
         self.shown = not self.shown
         base.free_mouse()
 
-    def set_p(self, p):
+    def set_p(self, p, prog):
         settings.conversation_p = p
-        settings.conversation_progress += 1
-        functions.talk_new_path()
+        settings.conversation_progress = prog
+        conversation_manager.talk_new_path()
         self.toggle_visibility()
         
-
-    def choice(self, strings):
+    #Args are ((string, int), (string, int))
+    def choice(self, args):
+        random.shuffle(args)
         if not self.shown:
-            self.create_buttons(len(strings))
-            self.update_text(strings)
+            self.create_buttons(len(args))
+            unzip_args = list(zip(*args))
+            self.update_text(unzip_args[0], unzip_args[1])
 
 
         

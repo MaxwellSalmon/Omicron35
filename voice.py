@@ -11,10 +11,17 @@ class Voice:
 
     def load_audio(self, file):
         if not self.disabled:
-            path = 'sounds/voices/'+file
-            clip = base.superloader.load_sound(path, self.emitter)
-            self.intervals.append(SoundInterval(clip))
-            self.subtitles.append(voice_strings.subtitles[file[:-4]])
+            try:
+                path = 'sounds/voices/'+file
+                clip = base.superloader.load_sound(path, self.emitter)
+                self.intervals.append(SoundInterval(clip))
+                self.subtitles.append(voice_strings.subtitles[file[:-4]])
+            except:
+                print("Sound {} not found.".format(file))
+                path = 'sounds/voices/default.wav'
+                clip = base.superloader.load_sound(path, self.emitter)
+                self.intervals.append(SoundInterval(clip))
+                self.subtitles.append(voice_strings.subtitles[file[:-4]])
 
     def play(self, index):
         self.disable()

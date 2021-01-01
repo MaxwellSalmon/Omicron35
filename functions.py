@@ -197,16 +197,6 @@ def open_shed_door():
         Sequence(LerpPosInterval(bolt, 2, bolt_start_pos), LerpHprInterval(bolt, 1, (338.5,0,0))).start()
         settings.g_bools['shed_door_open'] = False
 
-## Conversation mess ##
-
-def talk_new_path():
-    #This function will be long and messy, perhaps make into own file.
-    #Use settings.progress / .p / day
-    if settings.day == 1:
-        if settings.conversation_progress == 1:
-            base.conversation.talk('radio_day1_2')
-
-
 ### Cutscenes ###
     
 def sleep_cutscene():
