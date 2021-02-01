@@ -47,7 +47,7 @@ class MyApp(ShowBase):
         #z = self.load_sound('piano.mp3', self.scene, 1)
         #z.play()
 
-       # PStatClient.connect()
+        PStatClient.connect()
       #  font1 = loader.loadFont('models/font.egg')
      #   font1.setPixelsPerUnit(60)
 #        string = 'my text string and it gets longer and longer and you know it and we will see how long it can get here'

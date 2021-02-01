@@ -153,6 +153,7 @@ class SuperLoader():
         sound = base.audio3d.loadSfx(path)
         if str(sound)[:14] == 'NullAudioSound':
             print(f"Audio file {path} is not found")
+            sound = base.audio3d.loadSfx('sounds/voices/default.wav')
         base.audio3d.attachSoundToObject(sound, obj)
 
         if args:
@@ -186,6 +187,7 @@ class SuperLoader():
                 for i in times[1:]:
                     if i in path:
                         old_time = i
+                        
             if old_time == time and not self.init:
                 if settings.change_sun == settings.sun:
                     print("No changes in textures.")

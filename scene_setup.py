@@ -24,6 +24,7 @@ def create_scenes(day):
 
         setup("exte_d1_t1", os.path.join('models', 'exterior.egg'), colliders.exterior)
 
+    elif day == 2:
         setup("inte_d2_t1", os.path.join('models', 'interior.egg'), colliders.house_interior)
 
 def create_base_models(scene_name):
@@ -73,8 +74,6 @@ def create_base_models(scene_name):
                   Model('hangar/lamps', culling='both'),
                   Model('hangar/dispenser', tag='interactive', pos=(8.05,-3.37,-1.78), scale=0.5, function=functions.take_fuel, audio='filling_jerrycan.wav'),
                   Model('skybox', scale=21, pos=(0,0,-200)),
-                  Model('hangar/junk'),
-                  Model('hangar/postboxes', culling='both')
                   ]
     else:
         print(scene_name, " not recognized in models")

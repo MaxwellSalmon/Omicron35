@@ -62,7 +62,7 @@ conversation_progress = 0
 show_fps = True
 show_col = False
 dev_control = True
-noclip = True
+noclip = False
 
 #Functionality variables
 dt = 0

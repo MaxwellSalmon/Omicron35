@@ -216,7 +216,7 @@ class Player(DirectObject.DirectObject):
         if s:
             return s[0].name
 
-    def check_ray_collision(self, task):
+    def check_ray_collision(self, task): #Improve this function!
         self.show_crosshair()
         if settings.picked_obj:
             self.accept("mouse1", self.click_mouse, [settings.picked_obj])
@@ -230,6 +230,7 @@ class Player(DirectObject.DirectObject):
         base.cTrav.traverse(base.interactive_objects)
         #Get all objects that are collinding with the ray.
         if base.queue.getNumEntries() > 0:
+
             #Sort by distance.
             base.queue.sortEntries()
             pickedObj = base.queue.getEntry(0).getIntoNodePath()
