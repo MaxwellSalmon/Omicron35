@@ -169,15 +169,19 @@ class SuperLoader():
         old_time = ''
         geoms = base.scene.findAllMatches('**/+GeomNode')
         model_geoms = [x.model.findAllMatches('**/+GeomNode') for x in settings.scene.models]
+
+        #Add sub-geoms to models, which need new texutures.
         for m in model_geoms:
             for g in m:
                 geoms.append(g)
-                
+
+        #Change texture for all geoms
         for geom in geoms:
             texture = geom.findTexture('*')
             
             if not texture:
                 continue
+            
             #I think strings are easier to work with, okay?
             path = str(texture.filename)
             cut = path.find('textures')
@@ -196,6 +200,8 @@ class SuperLoader():
             replace_index = path.find(old_time)
             replace_word = path[replace_index:replace_index+len(old_time)]
             new_path = path.replace(replace_word, time)
+
+            print(new_path)
 
             if geom.name == 'skybox.egg':
                 new_path = self.skybox_path()
