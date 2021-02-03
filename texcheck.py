@@ -1,5 +1,8 @@
 import os, sys
+import colorama
+from colorama import Fore
 
+colorama.init()
 args = sys.argv[1:]
 
 #Be able to compare times for scene.
@@ -61,8 +64,12 @@ def compare_times(day, evening, night):
     i_e = [x for x in irregular_evening if x not in unique_evening]
     i_n = [x for x in irregular_night if x not in unique_night]
 
+    m_d = find_missing_tex(day, evening, night)
+    m_e = find_missing_tex(evening, day, night)
+    m_n = find_missing_tex(night, evening, day)
+
     print_results(unique_day, unique_evening, unique_night,
-                  i_d, i_e, i_n)
+                  i_d, i_e, i_n, m_d, m_e, m_n)
     
 
 def find_irregular_tex(query, comp1, comp2):
@@ -77,6 +84,23 @@ def find_irregular_tex(query, comp1, comp2):
         
     return irregularity
 
+def find_missing_tex(query, comp1, comp2):
+    #Find out which textures are missing from a time.
+    missing = []
+    long = comp1
+    short = comp2
+    
+    if len(comp1) < len(comp2):
+        long = comp2
+        short = comp1
+
+    for tex in long:
+        if tex in short and tex not in query:
+            missing.append(tex)
+
+    return missing
+    
+
 def find_unique_tex(query, comp1, comp2):
     #Find out which times lack a texture.
     unique = []
@@ -88,30 +112,40 @@ def find_unique_tex(query, comp1, comp2):
 
     return unique
 
-def output(l):
+def output(l, c):
     for i in l:
-        print('\t',i)
+        print('\t', c + i + Fore.RESET)
     if len(l) == 0:
         print('\tNone')
 
-def print_results(u_d, u_e, u_n, i_d, i_e, i_n):
+def print_results(u_d, u_e, u_n, i_d, i_e, i_n, m_d, m_e, m_n):
     print("Textures not found in other scenes:")
-    print('==================================')
+    print('==================================================')
     print("Unique day:")
-    output(u_d)
+    output(u_d, Fore.GREEN)
     print("Unique evening:")
-    output(u_e)
+    output(u_e, Fore.GREEN)
     print("Unique night:")
-    output(u_n)
+    output(u_n, Fore.GREEN)
     print()
-    print("Textures with mismatch:")
-    print('==================================')
+    print("Textures found in other times, but missing in one:")
+    print('==================================================')
+    print("Missing day:")
+    output(m_d, Fore.RED)
+    print("Missing evening:")
+    output(m_e, Fore.RED)
+    print("Missing night:")
+    output(m_n, Fore.RED)
+
+    print()
+    print("Textures with general irregularities between times:")
+    print("===================================================")
     print("Irregular day:")
-    output(i_d)
+    output(i_d, Fore.BLUE)
     print("Irregular evening:")
-    output(i_e)
+    output(i_e, Fore.BLUE)
     print("Irregular night:")
-    output(i_n)
+    output(i_n, Fore.BLUE)
         
         
 
