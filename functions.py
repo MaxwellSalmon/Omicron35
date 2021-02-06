@@ -64,7 +64,6 @@ def change_position(to_scene, **kwargs):
         settings.time = kw('time')
         
     base.superloader.change_textures()
-    base.scene.flattenStrong()
     
 
 def fade(direction, time):
@@ -172,11 +171,29 @@ def sleep():
     elif settings.g_bools['can_sleep'] and settings.time == 3:
         settings.time = 1
         settings.day += 1
+        reset_g_bools()
+        let_it_snow()
         Sequence(Func(sleep_cutscene), Wait(8), Func(fade,'out',3), Wait(3),
-                 Func(base.superloader.load, "inte_d{}_t1".format(settings.day), False), Wait(4), Func(fade,'in', 2), Wait(2), Func(d1_wake_up)).start()
+                 Func(base.superloader.load, "inte_d{}_t1".format(settings.day), True), Wait(4), Func(fade,'in', 2), Wait(2), Func(d1_wake_up)).start()
         
     else:
         print("I am not tired yet")
+
+#This function simply activates weather in settings
+def let_it_snow():
+    if settings.day == 2:
+        settings.sun = False
+        settings.snow = 'light'
+        settings.wind = () #temp
+
+#This function resets g_bools from settings.py each day
+def reset_g_bools():
+    no_reset = [] #Don't reset bools in this list
+    for i in settings.g_bools:
+        if i  in no_reset:
+            continue
+        settings.g_bools[i] = False
+    
 
 def open_shed_door():
     door = [x for x in settings.scene.models if 'sheddoor' in x.name]

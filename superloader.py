@@ -161,14 +161,28 @@ class SuperLoader():
         
         return sound
 
+    def determine_texture_time(self):
+        #Extract time from a texture path
+        path = str(base.scene.find('**/+GeomNode').findTexture('*').filename)
+        path = path.split('/')
+        ind = path.index('textures')
+        return path[ind+1]
+        
+
     def change_textures(self):
         print("Changing textures")
         #Replace textures in scene accoring to settings time
         times = [None, 'Day', 'Evening', 'Night']
         time = times[settings.time]
-        old_time = ''
+        old_time = self.determine_texture_time()
         geoms = base.scene.findAllMatches('**/+GeomNode')
         model_geoms = [x.model.findAllMatches('**/+GeomNode') for x in settings.scene.models]
+
+        #Don't run function if not necessary
+        if old_time == time and not self.init:
+            if settings.change_sun == settings.sun:
+                print("No changes in textures.")
+                return
 
         #Add sub-geoms to models, which need new texutures.
         for m in model_geoms:
@@ -182,28 +196,16 @@ class SuperLoader():
             if not texture:
                 continue
             
-            #I think strings are easier to work with, okay?
+            #Get file path as string
             path = str(texture.filename)
             cut = path.find('textures')
             path = path[cut:]
-            
-            if not old_time:
-                for i in times[1:]:
-                    if i in path:
-                        old_time = i
-                        
-            if old_time == time and not self.init:
-                if settings.change_sun == settings.sun:
-                    print("No changes in textures.")
-                    return
 
             replace_index = path.find(old_time)
             replace_word = path[replace_index:replace_index+len(old_time)]
             new_path = path.replace(replace_word, time)
 
-            print(new_path)
-
-            if geom.name == 'skybox.egg':
+            if geom.name == 'skydome':
                 new_path = self.skybox_path()
 
             if not settings.sun:
@@ -213,7 +215,8 @@ class SuperLoader():
                 t = loader.loadTexture(new_path)
                 geom.setTexture(t, 1)
             except:
-                print("No new texture for %s found." % geom)
+                print("No new texture for %s found." % geom.name)
+        
         if len(geoms) == 1:
             print("Scene is probably flattenedStrong. Cannot change textures.")
         if settings.sun != settings.change_sun:

@@ -76,7 +76,7 @@ def create_base_models(scene_name):
                   Model('skybox', scale=21, pos=(0,0,-200)),
                   ]
     else:
-        print(scene_name, " not recognized in models")
+        print(scene_name, "not recognized as a base scene")
         models = []
         
     return models
@@ -84,13 +84,12 @@ def create_base_models(scene_name):
 def create_specific_models(scene_name):
     if scene_name == 'inte_d1_t1':
         models = []
-    if scene_name == 'inte_d2_t1':
+    elif scene_name == 'inte_d2_t1':
         models = [Model('interior/mess_d1'),
                   Model('interior/mug', alpha=0.3, culling='both'),
                   ]
     else:
         models = []
-        print(scene_name, " not recognized in models")
     return models
 
 def create_triggers(scene_name):
