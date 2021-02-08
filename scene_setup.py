@@ -29,6 +29,7 @@ def create_scenes(day):
 
 def create_base_models(scene_name):
     if scene_name[:4] == "inte":
+        print("INTE", settings.day)
         models = [Model('interior/door', tag='interactive', pos=(10,0.1,0.4), scale=0.5, solid=True, audio='door.wav',
                         function=[functions.change_scene, {'to_scene':'exte_d1_t1', 'bools':['clothes_on', 'has_clipboard'], 'voices':['no_clothes','no_clipboard']}]),
                   Model('interior/suit1', tag='interactive', audio='zipper.wav', function=[functions.put_on_clothes, {'test' : 'Here is suit1'}]),

@@ -174,7 +174,7 @@ def sleep():
         reset_g_bools()
         let_it_snow()
         Sequence(Func(sleep_cutscene), Wait(8), Func(fade,'out',3), Wait(3),
-                 Func(base.superloader.load, "inte_d{}_t1".format(settings.day), True), Wait(4), Func(fade,'in', 2), Wait(2), Func(d1_wake_up)).start()
+                 Func(base.superloader.load, "inte_d{}_t1".format(settings.day), False, newday=True), Wait(4), Func(fade,'in', 2), Wait(2), Func(d1_wake_up)).start()
         
     else:
         print("I am not tired yet")

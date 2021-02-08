@@ -26,10 +26,14 @@ class SuperLoader():
         self.audio3d_queue = []
         base.transition = Transitions(loader)
 
-    def load(self, scene_name, init):
+    def load(self, scene_name, init, newday=False):
         self.init = init
         if init:
             render.attach_new_node("audioemitters")
+            scene_setup.create_scenes(settings.day)
+        elif newday:
+            self.destroy_models()
+            self.destroy_scene()
             scene_setup.create_scenes(settings.day)
 
         settings.environment = scene_name
@@ -56,11 +60,11 @@ class SuperLoader():
         scene_model.setScale(0.5)
         scene_model.setPos(0,0,-1.8)
         base.scene = scene_model
-        
 
-       # mat = Material()
-       # mat.setAmbient((1,1,1,1))
-       # main.scene.setMaterial(mat)
+    def destroy_scene(self):
+        #unloads scene when changing day
+        base.scene.remove_node()
+        del base.scene
 
     def load_mouse(self):
         base.disableMouse()
@@ -69,7 +73,6 @@ class SuperLoader():
         base.win.requestProperties(props)
 
     def load_light(self): #Must be redone
-        #Nødvendig for skygger og sådan.
         render.setShaderAuto()
         base.light = render.attachNewNode(DirectionalLight("dlight"))
         dlight = render.attachNewNode(DirectionalLight("dlight2"))
@@ -117,6 +120,11 @@ class SuperLoader():
 
             if model.ambience:
                 model.ambience.play() #Sounds are not stopping yet.
+
+    def destroy_models(self):
+        for model in settings.scene.models:
+            model.model.removeNode()
+            del model
 
     def load_audio3d(self):
         base.audio3d = Audio3DManager.Audio3DManager(base.sfxManagerList[0], base.player.camera)
