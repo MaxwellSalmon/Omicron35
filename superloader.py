@@ -137,6 +137,8 @@ class SuperLoader():
             if 'ambience' in a:
                 a[3].ambience = sound
                 a[3].ambience.setLoop(True)
+            if 'player' in a:
+                a[5].append(sound)
             else:
                 a[3].audio = sound
             
@@ -150,6 +152,7 @@ class SuperLoader():
                 model.ambience.stop()
 
     def load_sound_queue(self, arguments):
+        #Arguments: sound, emitter, dropoff, object, volume
         #Audio3D may not be initialised at this point. Add sounds to loading queue.
         self.audio3d_queue.append(arguments)
 

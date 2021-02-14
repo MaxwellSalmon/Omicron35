@@ -1,4 +1,5 @@
 from math import radians, sin, cos
+import random
 from direct.showbase import DirectObject
 from direct.gui.OnscreenImage import OnscreenImage
 from direct.task import Task
@@ -33,6 +34,11 @@ class Player(DirectObject.DirectObject):
         self.hand_ui = None
         self.ring_ui = None
         self.crosshair = ':-)'
+
+        self.setup_sound()
+        self.playing_sound = None
+        self.SOUND_COOLDOWN = 0.08
+        self.sound_timer = 0
         
     def load_collision(self):
         self.col = self.body.attachNewNode(CollisionNode('cnode'))
@@ -42,6 +48,21 @@ class Player(DirectObject.DirectObject):
         if not settings.noclip:
             base.cTrav.addCollider(self.col, base.pusher)
             base.pusher.addCollider(self.col, self.body)
+
+    def setup_sound(self):
+        walk_sfx = ['ground/snow1.wav', 'ground/snow2.wav', 'ground/snow3.wav',
+                    'ground/snow4.wav', 'ground/snow5.wav', 'ground/snow6.wav']
+        self.walk_sounds = self.load_sounds(walk_sfx)
+        cloth_sfx = ['sfx/walkloop.wav']
+        self.cloth_sound = self.load_sounds(cloth_sfx)
+
+    def load_sounds(self, sounds):
+        sound_objects = []
+
+        for sound in sounds:
+            base.superloader.load_sound_queue((sound, self.camera, 1, self, 0.2, sound_objects, 'player'))
+            
+        return sound_objects
 
     def control_task(self, task):
         settings.dt = globalClock.getDt()
@@ -85,6 +106,9 @@ class Player(DirectObject.DirectObject):
             move_pos[1] += i[1]
             move_pos[2] += i[2]
 
+        if sum(move_pos) != 0:
+            self.play_walk_sound()
+
 
         new_pos[0] = old_pos[0] + move_pos[0]
         new_pos[1] = old_pos[1] + move_pos[1]
@@ -102,6 +126,22 @@ class Player(DirectObject.DirectObject):
         
 
         return Task.cont
+
+    def play_walk_sound(self):      
+        sound_pool = self.walk_sounds
+        if not self.playing_sound:
+            self.playing_sound = sound_pool[0]
+
+        if self.sound_timer >= self.SOUND_COOLDOWN:
+            self.sound_timer = 0
+            s = random.choice(sound_pool)
+            self.playing_sound = s
+            s.play()
+
+        elif not self.playing_sound.status() == self.playing_sound.PLAYING:
+            self.sound_timer += settings.dt
+            
+            
 
     def speed_multiplier(self):
         if settings.dev_control:
@@ -170,22 +210,7 @@ class Player(DirectObject.DirectObject):
             if r > 360:
                 r -= 360
             elif r < 0:
-                r += 360
-
-        
-
-
-            #How the fuck do I do this?
-##            if not 0<h<50 and not 310<h<360:
-##                if h > 180:
-##                    if h < 310:
-##                        h = 310
-##                else:
-##                    if h > 50:
-##                        h = 50
-##
-##            h += con_h
-            
+                r += 360            
         
         self.camera.set_h(h)
         self.camera.set_p(p)
@@ -264,3 +289,4 @@ class Player(DirectObject.DirectObject):
         elif not self.col.parent:
             self.col.reparentTo(self.body)
         return False
+
