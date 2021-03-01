@@ -41,7 +41,7 @@ def change_scene(to_scene, **kwargs):
     elif voice_index != None:
         return
 
-    base.player.setup_sound()
+    base.player.setup_sound(env=to_scene)
     Sequence(Func(fade,'out',0.5), Wait(0.5), Func(change_position, to_scene, **kwargs),
              Wait(0.5), Func(fade,'in', 0.5)).start()
 

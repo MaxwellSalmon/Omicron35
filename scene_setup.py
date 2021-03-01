@@ -27,6 +27,8 @@ def create_scenes(day):
     elif day == 2:
         setup("inte_d2_t1", os.path.join('models', 'interior.egg'), colliders.house_interior)
 
+        setup("exte_d2_t1", os.path.join('models', 'exterior.egg'), colliders.exterior)
+
 def create_base_models(scene_name):
     if scene_name[:4] == "inte":
         models = [Model('interior/door', tag='interactive', pos=(10,0.1,0.4), scale=0.5, solid=True, audio='door.wav',

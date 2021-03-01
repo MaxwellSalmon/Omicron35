@@ -127,6 +127,19 @@ def exterior():
     box = base.scene.attachNewNode(CollisionNode('weatherbox'))
     box.node().addSolid(CollisionSphere(155.8,40,1,2))
 
+    pallets = base.scene.attachNewNode(CollisionNode('palletsjunk'))
+    pallets.node().addSolid(CollisionCapsule(162,68,1, 182,79,1, 3.8))
+    barrels = base.scene.attachNewNode(CollisionNode('barrels'))
+    barrels.node().addSolid(CollisionCapsule(185,80,1, 195,83.5,1, 2))
+    tires = base.scene.attachNewNode(CollisionNode('tires'))
+    tires.node().addSolid(CollisionCapsule(135,120,0.5, 136,118,0.5, 1.5))
+    canisters = base.scene.attachNewNode(CollisionNode('canisters'))
+    canisters.node().addSolid(CollisionCapsule(144,130,0.5, 150,133,0.5, 1))
+    housejunk = base.scene.attachNewNode(CollisionNode('housejunk'))
+    housejunk.node().addSolid(CollisionCapsule(-9,19,0.4, 11,19,0.4, 1.5))
+    housejunk2 = base.scene.attachNewNode(CollisionNode('housejunk2'))
+    housejunk2.node().addSolid(CollisionCapsule(3,21,0.4, 4,21,0.4, 2.5))
+
     if settings.show_col:
         houseback.show()
         kitchenwall.show()
@@ -152,6 +165,12 @@ def exterior():
         hangarwall3.show()
         hangarwall4.show()
         box.show()
+        pallets.show()
+        barrels.show()
+        tires.show()
+        canisters.show()
+        housejunk.show()
+        housejunk2.show()
     
 def hangar():
     sidewall = base.scene.attachNewNode(CollisionNode('sidewall1'))

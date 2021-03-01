@@ -38,10 +38,12 @@ class Player(DirectObject.DirectObject):
         self.moving = False
         self.playing_sound = None
         self.SOUND_COOLDOWN = 0.65
-        self.CLOTH_VOL = 0.5
+        self.CLOTH_VOL = 0.3
         self.cloth_vol = self.CLOTH_VOL
         self.sound_timer = 0
+        self.walk_sounds = []
 
+        self.load_sound()
         self.setup_sound()
         
     def load_collision(self):
@@ -53,17 +55,25 @@ class Player(DirectObject.DirectObject):
             base.cTrav.addCollider(self.col, base.pusher)
             base.pusher.addCollider(self.col, self.body)
 
-    def setup_sound(self):
-        if settings.environment[:4] == 'exte':
-            walk_sfx = ['ground/snow1.wav', 'ground/snow2.wav', 'ground/snow3.wav',
-                        'ground/snow4.wav', 'ground/snow5.wav', 'ground/snow6.wav']
-        elif settings.environment[:4] == 'inte':
-            walk_sfx = ['ground/floor1.wav', 'ground/floor2.wav', 'ground/floor3.wav',
-                        'ground/floor4.wav', 'ground/floor5.wav', 'ground/floor6.wav']
+    def load_sound(self):
+        walk_snow_sfx = ['ground/snow1.wav', 'ground/snow2.wav', 'ground/snow3.wav',
+                         'ground/snow4.wav', 'ground/snow5.wav', 'ground/snow6.wav']
+        walk_floor_sfx = ['ground/floor1.wav', 'ground/floor2.wav', 'ground/floor3.wav',
+                          'ground/floor4.wav', 'ground/floor5.wav', 'ground/floor6.wav']
             
-        self.walk_sounds = self.load_sounds(walk_sfx, 0.1)
+        self.walk_floor_sounds = self.load_sounds(walk_floor_sfx, 0.1)
+        self.walk_snow_sounds = self.load_sounds(walk_snow_sfx, 0.1)
+        
         cloth_sfx = ['sfx/walkloop.wav']
         self.cloth_sound = self.load_sounds(cloth_sfx, self.CLOTH_VOL)
+
+    def setup_sound(self, env=settings.environment):
+        if env[:4] == 'inte':
+            self.walk_sounds = self.walk_floor_sounds
+        elif env[:4] == 'exte':
+            self.walk_sounds = self.walk_snow_sounds
+        else:
+            self.walk_sounds = self.walk_floor_sounds
 
     def load_sounds(self, sounds, vol):
         sound_objects = []
@@ -139,7 +149,7 @@ class Player(DirectObject.DirectObject):
 
         return Task.cont
 
-    def play_walk_sound(self): 
+    def play_walk_sound(self):
         sound_pool = self.walk_sounds
         if not self.playing_sound:
             self.playing_sound = sound_pool[0]
@@ -156,7 +166,11 @@ class Player(DirectObject.DirectObject):
         #Sound is formatted as a list - only with one item.        
         if not settings.g_bools['clothes_on']:
             return
-        cs = self.cloth_sound[0]
+
+        if self.cloth_sound:
+            cs = self.cloth_sound[0]
+        else:
+            return
 
         if self.moving:
             if not cs.status() == cs.PLAYING:
