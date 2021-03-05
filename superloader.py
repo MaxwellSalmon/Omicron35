@@ -35,6 +35,7 @@ class SuperLoader():
             self.destroy_models()
             self.destroy_scene()
             scene_setup.create_scenes(settings.day)
+            self.load_audio3d()
 
         settings.environment = scene_name
         settings.scene = settings.scenes[scene_name]

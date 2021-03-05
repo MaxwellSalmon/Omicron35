@@ -167,15 +167,24 @@ def take_can():
 def sleep():
     if settings.g_bools['can_sleep'] and settings.time != 3:
         settings.time = 3
-        Sequence(Func(sleep_cutscene), Wait(8), Func(fade,'out',3), Wait(3),
-                 Func(base.superloader.change_textures), Wait(4), Func(fade,'in', 2), Wait(2), Func(night_wake_up)).start()
+        if not settings.dev_control:
+            Sequence(Func(sleep_cutscene), Wait(8), Func(fade,'out',3), Wait(3),
+                     Func(base.superloader.change_textures), Wait(4), Func(fade,'in', 2),
+                     Wait(2), Func(night_wake_up)).start()
+        else:
+            base.superloader.change_textures()
+            
     elif settings.g_bools['can_sleep'] and settings.time == 3:
         settings.time = 1
         settings.day += 1
         reset_g_bools()
         let_it_snow()
-        Sequence(Func(sleep_cutscene), Wait(8), Func(fade,'out',3), Wait(3),
-                 Func(base.superloader.load, "inte_d{}_t1".format(settings.day), False, newday=True), Wait(4), Func(fade,'in', 2), Wait(2), Func(d1_wake_up)).start()
+        if not settings.dev_control:
+            Sequence(Func(sleep_cutscene), Wait(8), Func(fade,'out',3), Wait(3),
+                     Func(base.superloader.load, "inte_d{}_t1".format(settings.day), False, newday=True),
+                     Wait(4), Func(fade,'in', 2), Wait(2), Func(d1_wake_up)).start()
+        else:
+            base.superloader.load("inte_d{}_t1".format(settings.day), False, newday=True)
         
     else:
         print("I am not tired yet")

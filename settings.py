@@ -18,7 +18,7 @@ g_bools = {
     'has_eaten' : False,
     'radio_used' : False,
     'radio_reported': False,
-    'can_sleep' : False,
+    'can_sleep' : True,
     'has_taken_can': False,
     'radio_conv_done' : False,
     'shed_door_open' : False,
@@ -27,8 +27,8 @@ g_bools = {
 #Environmental variables
 environment = 'exte_d1_t1'
 day = 1
-time = 1
-sun = False
+time = 3
+sun = True
 #light, medium, heavy
 snow = ""
 

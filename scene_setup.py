@@ -29,11 +29,11 @@ def create_scenes(day):
 
         setup("exte_d2_t1", os.path.join('models', 'exterior.egg'), colliders.exterior)
 
+        setup("hang_d2_t1", os.path.join('models', 'hangar.egg'), colliders.hangar)
+
 def create_base_models(scene_name):
     if scene_name[:4] == "inte":
-        models = [Model('interior/door', tag='interactive', pos=(10,0.1,0.4), scale=0.5, solid=True, audio='door.wav',
-                        function=[functions.change_scene, {'to_scene':'exte_d1_t1', 'bools':['clothes_on', 'has_clipboard'], 'voices':['no_clothes','no_clipboard']}]),
-                  Model('interior/suit1', tag='interactive', audio='zipper.wav', function=[functions.put_on_clothes, {'test' : 'Here is suit1'}]),
+        models = [Model('interior/suit1', tag='interactive', audio='zipper.wav', function=[functions.put_on_clothes, {'test' : 'Here is suit1'}]),
                   Model('interior/suit2', tag='interactive', audio='zipper.wav', function=[functions.put_on_clothes, {'test' : 'Here is suit2'}]),
                   Model('interior/suit3', tag='interactive', audio='zipper.wav', function=[functions.put_on_clothes, {'test' : 'Here is suit3'}]),
                   Model('interior/bed', tag='interactive', audio='default.wav', function=functions.sleep),
@@ -55,11 +55,7 @@ def create_base_models(scene_name):
                   Model('skybox', scale=21, pos=(0,0,-200)),
                   ]
     elif scene_name[:4] == "exte":
-        models = [Model('interior/door', name='ext2int_door', tag='interactive', pos=(10.3,0.1,0.4), scale=0.5, solid=True,
-                        function=[functions.change_scene, {'to_scene':'inte_d1_t1', 'bools' : ['daily_tasks_done', '!shed_door_open'], 'time': 2, 'voices':['not_done_with_tasks', 'shed_door_open']}], audio='door.wav',),
-                  Model('interior/door', name='ext2hang_door', tag='interactive', pos=(77.4,40.25,0.65), hpr=(202.3,0,0), scale=0.5, solid=True,
-                        function=[functions.change_scene, {'to_scene':'hang_d1_t1'}], audio='door.wav'),
-                  Model('exterior/jerrycan', tag='interactive', pos=(63.8,-3,-1.65), scale=0.6, function=functions.take_jerrycan, audio='jerrycan.wav'),
+        models = [Model('exterior/jerrycan', tag='interactive', pos=(63.8,-3,-1.65), scale=0.6, function=functions.take_jerrycan, audio='jerrycan.wav'),
                   Model('exterior/culext', culling='both', ambience='buzz.wav'),
                   Model('exterior/generatortank', tag='interactive', function=functions.refill_generator, audio='generatortank.wav', ambience='generator_motor.wav'),
                   Model('exterior/box', tag='interactive', culling='both', function=functions.read_measurements, audio='default.wav'),
@@ -69,9 +65,7 @@ def create_base_models(scene_name):
                   Model('skybox', scale=21, pos=(0,0,-200)),
                   ]
     elif scene_name[:4] == "hang":
-        models = [Model('interior/door', name='hang2ext_door', tag='interactive', pos=(-16.4,-9.4,0.4), hpr=(180,0,0), scale=0.5, solid=True,
-                        function=[functions.change_scene, {'to_scene':'exte_d1_t1', 'player_pos':(76,37,-0.2)}], audio='door.wav'),
-                  Model('hangar/shelves', culling='both'),
+        models = [Model('hangar/shelves', culling='both'),
                   Model('hangar/axe', tag='interactive', pos=(-4.17,-9.62,-1.81), scale=0.5, function=functions.split_firewood, audio='default.wav'),
                   Model('hangar/lamps', culling='both'),
                   Model('hangar/dispenser', tag='interactive', pos=(8.05,-3.37,-1.78), scale=0.5, function=functions.take_fuel, audio='filling_jerrycan.wav'),
@@ -84,12 +78,42 @@ def create_base_models(scene_name):
     return models
 
 def create_specific_models(scene_name):
-    if scene_name == 'inte_d1_t1':
-        models = []
-    elif scene_name == 'inte_d2_t1':
-        models = [Model('interior/mess_d1'),
+    #Interior
+    if scene_name[:-3] == 'inte_d1':
+        models = [Model('interior/door', tag='interactive', pos=(10,0.1,0.4), scale=0.5, solid=True, audio='door.wav',
+                        function=[functions.change_scene, {'to_scene':'exte_d1_t1', 'bools':['clothes_on', 'has_clipboard'], 'voices':['no_clothes','no_clipboard']}]),
+                  ]
+    elif scene_name[:-3] == 'inte_d2':
+        models = [Model('interior/door', tag='interactive', pos=(10,0.1,0.4), scale=0.5, solid=True, audio='door.wav',
+                        function=[functions.change_scene, {'to_scene':'exte_d2_t1', 'bools':['clothes_on', 'has_clipboard'], 'voices':['no_clothes','no_clipboard']}]),
+                  Model('interior/mess_d1'),
                   Model('interior/mug', alpha=0.3, culling='both'),
                   ]
+
+    #Exterior
+    elif scene_name[:-3] == 'exte_d1':
+        models = [Model('interior/door', name='ext2int_door', tag='interactive', pos=(10.3,0.1,0.4), scale=0.5, solid=True,
+                        function=[functions.change_scene, {'to_scene':'inte_d1_t1', 'bools' : ['daily_tasks_done', '!shed_door_open'], 'time': 2, 'voices':['not_done_with_tasks', 'shed_door_open']}], audio='door.wav',),
+                  Model('interior/door', name='ext2hang_door', tag='interactive', pos=(77.4,40.25,0.65), hpr=(202.3,0,0), scale=0.5, solid=True,
+                        function=[functions.change_scene, {'to_scene':'hang_d1_t1'}], audio='door.wav'),
+                  ]
+    elif scene_name[:-3] == 'exte_d2':
+        models = [Model('interior/door', name='ext2int_door', tag='interactive', pos=(10.3,0.1,0.4), scale=0.5, solid=True,
+                        function=[functions.change_scene, {'to_scene':'inte_d2_t1', 'bools' : ['daily_tasks_done', '!shed_door_open'], 'time': 2, 'voices':['not_done_with_tasks', 'shed_door_open']}], audio='door.wav',),
+                  Model('interior/door', name='ext2hang_door', tag='interactive', pos=(77.4,40.25,0.65), hpr=(202.3,0,0), scale=0.5, solid=True,
+                        function=[functions.change_scene, {'to_scene':'hang_d2_t1'}], audio='door.wav'),
+                  ]
+
+    #Hangar    
+    elif scene_name[:-3] == 'hang_d1':
+        models = [Model('interior/door', name='hang2ext_door', tag='interactive', pos=(-16.4,-9.4,0.4), hpr=(180,0,0), scale=0.5, solid=True,
+                        function=[functions.change_scene, {'to_scene':'exte_d1_t1', 'player_pos':(76,37,-0.2)}], audio='door.wav'),
+                  ]
+    elif scene_name[:-3] == 'hang_d2':
+        models = [Model('interior/door', name='hang2ext_door', tag='interactive', pos=(-16.4,-9.4,0.4), hpr=(180,0,0), scale=0.5, solid=True,
+                        function=[functions.change_scene, {'to_scene':'exte_d2_t1', 'player_pos':(76,37,-0.2)}], audio='door.wav'),
+                  ]
+        
     else:
         models = []
     return models

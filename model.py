@@ -95,5 +95,6 @@ class Model():
         return avg 
 
     def play_audio(self):
+        print(self.audio)
         if self.audio:
             self.audio.play()
