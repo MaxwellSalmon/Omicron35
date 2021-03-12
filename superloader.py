@@ -192,7 +192,7 @@ class SuperLoader():
 
         #Don't run function if not necessary
         if old_time == time and not self.init:
-            if settings.change_sun == settings.sun:
+            if settings.sun: #Hmm
                 print("No changes in textures.")
                 return
 
