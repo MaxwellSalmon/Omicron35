@@ -31,6 +31,13 @@ def create_scenes(day):
 
         setup("hang_d2_t1", os.path.join('models', 'hangar.egg'), colliders.hangar)
 
+    elif day == 3:
+        setup("inte_d3_t1", os.path.join('models', 'interior.egg'), colliders.house_interior)
+
+        setup("exte_d3_t1", os.path.join('models', 'exterior.egg'), colliders.exterior)
+
+        setup("hang_d3_t1", os.path.join('models', 'hangar.egg'), colliders.hangar)
+
 def create_base_models(scene_name):
     if scene_name[:4] == "inte":
         models = [Model('interior/suit1', tag='interactive', audio='zipper.wav', function=[functions.put_on_clothes, {'test' : 'Here is suit1'}]),

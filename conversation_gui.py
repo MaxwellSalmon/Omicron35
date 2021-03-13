@@ -46,8 +46,8 @@ class ConversationGUI:
         self.shown = not self.shown
         base.free_mouse()
 
-    def set_p(self, p, prog):
-        settings.conversation_p = p
+    def set_p(self, p, prog): #p is not used.
+        settings.conversation_path += 1
         settings.conversation_progress = prog
         conversation_manager.talk_new_path()
         self.toggle_visibility()

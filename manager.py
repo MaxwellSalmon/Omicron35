@@ -59,14 +59,14 @@ def talk_in_radio():
     prog = settings.conversation_progress
     is_playing = base.conversation.conv_sequence.isPlaying()
 
-    #Start the conversation after havig moved to radio
+    #Start the conversation after having moved to radio
     if settings.g_bools['radio_used'] and not base.pos_seq.isPlaying() and not settings.g_bools['radio_reported']:
         settings.g_bools['radio_reported'] = True
         sound = determine_conversation()
         base.conversation.talk(sound)
 
     elif settings.g_bools['radio_reported'] and not is_playing:
-        conversation_manager.gui_choices(prog)
+        conversation_manager.gui_choices(path)
 
         #Stand up when conversation is over.
         if not settings.g_bools['radio_conv_done'] and not base.conv_gui.shown:
