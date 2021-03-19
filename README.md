@@ -67,7 +67,7 @@ depending on which scene calls it.
 
 ### Creating cutscenes:
 ```
-self.cutscene([self, [{point},{point},{point}]])
+base.cutscene([{point},{point}, ..., {point}])
 ```
 Points are dictionaries with following keys:
 ```
@@ -82,9 +82,8 @@ Cutscenes are normally created in **functions.py**, reffering to base.
 ### Creating conversations and voices:
 The script **conversation.py** contains voice classes for the player and the radio - will likely not change. 
 When the player speaks through the radio, they can be provided with conversation options. The conversation is usually initialised in **manager.py** but can be done anywhere with the call ```base.conversation.talk(string)``` where the string is a name of a conversation from **voice_strings.py**.
-This will create a sequence, which plays. After it is done, one may create a choice for the player using ```base.conv_gui.coice((string, string))``` where the strings are the text seen on the buttons. In **voice_strings.py**, conversations are  created by having a list of subtitle keys in the dictionary ```conversations```.
-The keys for the subtitles should be file names. Does the name start with ```_hq```, the voice will belong to the radio. 
-I am aware, that this explanaition is poor, but if anyone is interested at all, I can provide a better one.
+This will create a sequence, which plays. After it is done, one may create a choice for the player using ```base.conv_gui.choice((string, string))``` where the strings are the text seen on the buttons. In **voice_strings.py**, conversations are  created by having a list of subtitle keys in the dictionary ```conversations```.
+The keys for the subtitles should be file names. Does the name start with ```hq_```, the voice will belong to the radio.
 
 ### Creating triggers:
 ```
@@ -109,6 +108,14 @@ exr2png.py exr_folder png_folder 2 -o
 ```
 Arguments are: input folder, output folder, exposure and overwrite files with the same names. If the input folder argument is omitted, the current directory will be used as input.<br>
 **Note that this script required Numpy and OpenCV**
+
+### Checking inconsistencies in textures
+I also made a simple CLI for getting an overview in textures. From the command prompt, call the following:
+```
+texcheck.py <interior/exterior/hangar>
+```
+This will show the different times for a scene with unique textures, missing textures and general texture irregularities. The argument for the scene has some shortcuts, like `i`, `e` and `h`. 
+
 
 ### License
 This project is under GNU GPLv3 licence.
