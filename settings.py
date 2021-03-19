@@ -14,14 +14,15 @@ g_bools = {
     'firewood' : False,
     'generator_refilled' : False,
     'weather_measured' : False,
-    'daily_tasks_done': False,
+    'daily_tasks_done': True,
     'has_eaten' : False,
     'radio_used' : False,
     'radio_reported': False,
-    'can_sleep' : False,
+    'can_sleep' : True,
     'has_taken_can': False,
     'radio_conv_done' : False,
     'shed_door_open' : False,
+    'power_off' : False, 
     }
 
 #Environmental variables
@@ -61,7 +62,7 @@ conversation_progress = 0
 #Developer variables
 show_fps = True
 show_col = False
-dev_control = False
+dev_control = True
 noclip = False
 
 #Functionality variables

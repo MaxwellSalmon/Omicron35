@@ -10,10 +10,18 @@ class Conversation:
         self.conv_sequence = Sequence()
         self.load_voices()
 
+    def delete_voices(self):
+        del self.player_voice
+        del self.radio_voice
+
     def load_voices(self):
         self.player_voice = voice.Voice(base.player.camera)
         if settings.environment[:4] == 'inte': #Should fix this
-            self.radio_voice = voice.Voice(settings.scene.models[8].model) #Change, so it doesn't use 8
+            radio = [x for x in settings.scene.models if "radio" in x.name]
+            if radio:
+                self.radio_voice = voice.Voice(radio[0].model)
+            else:
+                print("Conversation.py: Oops! Radio model could not be fetched.")
 
     def ready_lines(self, conversation):
         if conversation not in voice_strings.conversations:

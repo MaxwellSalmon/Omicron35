@@ -42,6 +42,8 @@ subtitles = {
         'haverefueled':"I have already refueled the generator.",
         'refueled':"There we go. Refueled.",
         'emptyjerrycan':"The jerrycan is empty. I need to refill it in the hangar.",
+        'noclipboard' : "Oh! I need my clipboard.",
+        'generatorgate' : "I need to close the door to the generator."
         
         #Sound effects below.
         'writing' : '',
@@ -74,10 +76,10 @@ conversations = {'radio_day1' : ['report', 'hq_greet', 'measurements', 'hq_delay
 sounds = {'writing' : ['writing'],
           }
 
-self_talk = {'shed_door_open' : ['refueled'], #Placeholder
+self_talk = {'shed_door_open' : ['generatorgate'],
              'not_done_with_tasks' : ['stuffouthere'],
              'no_clothes' : ['toocold'],
-             'no_clipboard' : ['refueled'], #Placeholder for not having clipboard
+             'no_clipboard' : ['nocplipboard'],
              }
 
 conversations.update(sounds)

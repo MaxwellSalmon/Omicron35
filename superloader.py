@@ -34,6 +34,7 @@ class SuperLoader():
         elif newday:
             self.destroy_models()
             self.destroy_scene()
+            base.conversation.delete_voices()
             scene_setup.create_scenes(settings.day)
             self.load_audio3d()
 

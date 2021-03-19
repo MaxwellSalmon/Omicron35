@@ -12,9 +12,11 @@ def manage(task):
             functions.d1_wake_up()
         if settings.g_bools['daily_tasks_done']:
             talk_in_radio()
-           # report_radio()
-           # radio_conv_done()
             check_can_sleep()
+
+        if settings.day == 2:
+            if settings.time == 2:
+                cut_power()
 
     if settings.environment[:4] == 'exte':
         check_work_done()
@@ -49,6 +51,12 @@ def check_triggers():
     for trigger in settings.scene.triggers:
         trigger.check()
 
+def cut_power():
+    if settings.g_bools['radio_conv_done']:
+        settings.g_bools['power_off'] = True
+        #Make dramatic power-off sound
+        
+
 #Which conversation should be started?
 def determine_conversation():
     return 'radio_day' + str(settings.day)
@@ -71,30 +79,5 @@ def talk_in_radio():
         #Stand up when conversation is over.
         if not settings.g_bools['radio_conv_done'] and not base.conv_gui.shown:
             settings.g_bools['radio_conv_done'] = True
-            functions.radio_cutscene('stand')
-        
-        
-        
-    
-    
-
-#DELETE THIS
-##def report_radio():
-##    #This functions starts radio conversation
-##    if settings.g_bools['radio_used'] and not base.pos_seq.isPlaying() and not settings.g_bools['radio_reported']:
-##        if settings.day == 1:
-##            settings.g_bools['radio_reported'] = True
-##            base.conversation.talk('radio_day1')
-##
-##def radio_conv_done():
-##    #See if you can find a better way to do this
-##    cp = settings.conversation_progress
-##    if settings.g_bools['radio_reported'] and not base.conversation.conv_sequence.isPlaying():
-##        if cp == 0 and not base.conv_gui.shown:
-##            base.conv_gui.choice(("First choice", "Second choice"))
-##        if not settings.g_bools['radio_conv_done'] and not base.conv_gui.shown:
-##            settings.g_bools['radio_conv_done'] = True
-##            functions.radio_cutscene("stand")
-            
-            
+            functions.radio_cutscene('stand')            
         
