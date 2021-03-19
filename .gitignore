@@ -2,6 +2,7 @@ __pycache__/
 other_files/
 .mayaSwatches/
 audacity/
+RenderTextures/
 
 *.tx
 *.exr
