@@ -43,7 +43,7 @@ subtitles = {
         'refueled':"There we go. Refueled.",
         'emptyjerrycan':"The jerrycan is empty. I need to refill it in the hangar.",
         'noclipboard' : "Oh! I need my clipboard.",
-        'generatorgate' : "I need to close the door to the generator."
+        'generatorgate' : "I need to close the door to the generator.",
         
         #Sound effects below.
         'writing' : '',

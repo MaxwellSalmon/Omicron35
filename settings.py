@@ -18,7 +18,7 @@ g_bools = {
     'has_eaten' : False,
     'radio_used' : False,
     'radio_reported': False,
-    'can_sleep' : True,
+    'can_sleep' : False,
     'has_taken_can': False,
     'radio_conv_done' : False,
     'shed_door_open' : False,
@@ -62,7 +62,7 @@ conversation_progress = 0
 #Developer variables
 show_fps = True
 show_col = False
-dev_control = True
+dev_control = False
 noclip = False
 
 #Functionality variables
