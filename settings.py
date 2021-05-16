@@ -26,7 +26,7 @@ g_bools = {
     }
 
 #Environmental variables
-environment = 'inte_d1_t1'
+environment = 'exte_d1_t1'
 day = 1
 time = 1
 sun = True
@@ -62,8 +62,8 @@ conversation_progress = 0
 #Developer variables
 show_fps = True
 show_col = False
-dev_control = False
-noclip = False
+dev_control = True
+noclip = True
 
 #Functionality variables
 dt = 0

@@ -79,7 +79,7 @@ sounds = {'writing' : ['writing'],
 self_talk = {'shed_door_open' : ['generatorgate'],
              'not_done_with_tasks' : ['stuffouthere'],
              'no_clothes' : ['toocold'],
-             'no_clipboard' : ['nocplipboard'],
+             'no_clipboard' : ['noclipboard'],
              }
 
 conversations.update(sounds)

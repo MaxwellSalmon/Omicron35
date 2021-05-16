@@ -31,6 +31,7 @@ class SuperLoader():
         if init:
             render.attach_new_node("audioemitters")
             scene_setup.create_scenes(settings.day)
+            
         elif newday:
             self.destroy_models()
             self.destroy_scene()
@@ -38,11 +39,13 @@ class SuperLoader():
             scene_setup.create_scenes(settings.day)
             self.load_audio3d()
 
+        self.stop_ambience()
         settings.environment = scene_name
         settings.scene = settings.scenes[scene_name]
         self.load_scene()
         self.load_collision(init)
         self.load_models()
+        self.start_ambience()
         base.weather.control_snow()
         base.weather.control_fog()
         if init:
@@ -54,8 +57,7 @@ class SuperLoader():
     def load_scene(self):
         #Sets current base.scene
         scene = settings.scenes[settings.environment]
-
-        self.stop_ambience()        
+      
         scene_model = loader.loadModel(scene.scene)
         scene_model.setDepthOffset(0)
         scene_model.reparentTo(render)
@@ -120,9 +122,6 @@ class SuperLoader():
             else:
                 model.model.reparent_to(render)
 
-            if model.ambience:
-                model.ambience.play() #Sounds are not stopping yet.
-
     def destroy_models(self):
         for model in settings.scene.models:
             model.model.removeNode()
@@ -139,6 +138,7 @@ class SuperLoader():
             if 'ambience' in a:
                 a[3].ambience = sound
                 a[3].ambience.setLoop(True)
+                print(a[3].name, "amb")
             if 'player' in a:
                 a[5].append(sound)
             else:
@@ -149,9 +149,20 @@ class SuperLoader():
         base.conversation = conversation.Conversation()
 
     def stop_ambience(self):
+        if not settings.scene:
+            return
+        print("stopping amb", settings.scene.name)
         for model in settings.scene.models:
             if model.ambience:
+                print("stop", settings.scene.name, model.name)
                 model.ambience.stop()
+
+    def start_ambience(self):
+        print("starting amb")
+        for model in settings.scene.models:
+            if model.ambience:
+                print("start", settings.scene.name, model.name)
+                model.ambience.play()
 
     def load_sound_queue(self, arguments):
         #Arguments: sound, emitter, dropoff, object, volume

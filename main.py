@@ -24,6 +24,7 @@ class MyApp(ShowBase):
         self.superloader.load(settings.environment, True)
         self.player = Player()
         self.superloader.load_audio3d()
+        self.superloader.start_ambience()
         #base.scene.flattenStrong()
         self.text = text.Text()
         
