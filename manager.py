@@ -52,10 +52,13 @@ def check_triggers():
         trigger.check()
 
 def cut_power():
-    if settings.g_bools['radio_conv_done']:
-        settings.g_bools['power_off'] = True
-        #Make dramatic power-off sound
-        
+    if settings.g_bools['radio_conv_done'] and settings.g_bools['has_eaten'] and settings.g_bools['has_taken_can']:
+        if not settings.g_bools['power_off']:
+            settings.g_bools['power_off'] = True
+            print("POWER HAS BEEN CUT")
+            base.conversation.talk('power_cut')
+            #Make dramatic power-off sound
+            
 
 #Which conversation should be started?
 def determine_conversation():

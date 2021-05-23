@@ -94,7 +94,7 @@ Similar to models, this is loaded in **scene_setup.py** and should be in a list 
 mode = string
 name = string
 ```
-`mode` can be either `enter` or `enterleave` right now, controlling when the function should be called. `name` is just to easier refer to the trigger in case of an error.
+`mode` can be either `enter`, `enter_once` or `enterleave` right now, controlling when the function should be called. `name` is just to easier refer to the trigger in case of an error.
 All triggers are spheres and will be visible if `show_cols` in **settings.py** is enabled.
 
 ### Converting .exr to .png:

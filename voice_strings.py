@@ -44,6 +44,10 @@ subtitles = {
         'emptyjerrycan':"The jerrycan is empty. I need to refill it in the hangar.",
         'noclipboard' : "Oh! I need my clipboard.",
         'generatorgate' : "I need to close the door to the generator.",
+
+        'power_cut': "The power went off! Did I really forget to close the gate to the shed?",
+        'see_from_bathroom': "I don't have to go outside right away. I can see it from the bathroom window.",
+        'see_gate_damn': "It is open! Damn it! I must check on it.",
         
         #Sound effects below.
         'writing' : '',
@@ -72,7 +76,6 @@ conversations = {'radio_day1' : ['report', 'hq_greet', 'measurements', 'hq_delay
                  }
 
 
-
 sounds = {'writing' : ['writing'],
           }
 
@@ -80,6 +83,8 @@ self_talk = {'shed_door_open' : ['generatorgate'],
              'not_done_with_tasks' : ['stuffouthere'],
              'no_clothes' : ['toocold'],
              'no_clipboard' : ['noclipboard'],
+             'power_cut' : ['power_cut', 'see_from_bathroom'],
+             'bathroom_window': ['see_gate_damn'],
              }
 
 conversations.update(sounds)

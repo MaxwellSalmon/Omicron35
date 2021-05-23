@@ -22,13 +22,13 @@ g_bools = {
     'has_taken_can': False,
     'radio_conv_done' : False,
     'shed_door_open' : False,
-    'power_off' : False, 
+    'power_off' : True, 
     }
 
 #Environmental variables
-environment = 'exte_d1_t1'
-day = 1
-time = 1
+environment = 'inte_d2_t1'
+day = 2
+time = 2
 sun = True
 #light, medium, heavy
 snow = ""
@@ -61,9 +61,9 @@ conversation_progress = 0
 
 #Developer variables
 show_fps = True
-show_col = False
+show_col = True
 dev_control = True
-noclip = True
+noclip = False
 
 #Functionality variables
 dt = 0

@@ -45,6 +45,12 @@ class Trigger:
             if self.active:
                 self.function()
             self.active = False
+
+    def enter_once(self, dist):
+        if dist < self.radius:
+            if not self.active:
+                self.function()
+            self.active = True
             
 
     def check(self):
@@ -53,6 +59,8 @@ class Trigger:
             self.enter(dist)
         elif self.mode == 'enterleave':
             self.enter_leave(dist)
+        elif self.mode == 'enter_once':
+            self.enter_once(dist)
         else:
             print("Trigger {} has unknown mode.".format(self.name))
             

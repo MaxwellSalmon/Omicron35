@@ -129,5 +129,7 @@ def create_triggers(scene_name):
     triggers = []
     if scene_name[:4] == 'exte':
         triggers = [Trigger(65,-7,-1.65,10,functions.shed_snow, mode='enterleave')]
+    if scene_name[:7]=='inte_d2':
+        triggers = [Trigger(5,-9.5,0.1,1,functions.bathroom_window_trigger, mode='enter_once', name="BathroomWindowTrigger")]
 
     return triggers

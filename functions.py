@@ -268,3 +268,12 @@ def food_cutscene(direction):
 def shed_snow():
     if settings.snow:
         base.weather.shed_snow()
+
+def bathroom_window_trigger():
+    if settings.g_bools['power_off']:
+        base.conversation.talk('bathroom_window')
+
+
+
+
+
