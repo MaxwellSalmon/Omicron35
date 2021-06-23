@@ -138,7 +138,6 @@ class SuperLoader():
             if 'ambience' in a:
                 a[3].ambience = sound
                 a[3].ambience.setLoop(True)
-                print(a[3].name, "amb")
             if 'player' in a:
                 a[5].append(sound)
             else:
@@ -151,17 +150,13 @@ class SuperLoader():
     def stop_ambience(self):
         if not settings.scene:
             return
-        print("stopping amb", settings.scene.name)
         for model in settings.scene.models:
             if model.ambience:
-                print("stop", settings.scene.name, model.name)
                 model.ambience.stop()
 
     def start_ambience(self):
-        print("starting amb")
         for model in settings.scene.models:
             if model.ambience:
-                print("start", settings.scene.name, model.name)
                 model.ambience.play()
 
     def load_sound_queue(self, arguments):

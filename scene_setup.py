@@ -58,6 +58,7 @@ def create_base_models(scene_name):
                   Model('interior/can6', tag='interactive', audio='default.wav', function=functions.take_can),
                   Model('interior/can7', tag='interactive', audio='default.wav', function=functions.take_can),
                   Model('interior/can8', tag='interactive', audio='default.wav', function=functions.take_can),
+                  Model('interior/lod_gate'),
                   Model('interior/plates'),
                   Model('skybox', scale=21, pos=(0,0,-200)),
                   ]
@@ -93,8 +94,7 @@ def create_specific_models(scene_name):
     elif scene_name[:-3] == 'inte_d2':
         models = [Model('interior/door', tag='interactive', pos=(10,0.1,0.4), scale=0.5, solid=True, audio='door.wav',
                         function=[functions.change_scene, {'to_scene':'exte_d2_t1', 'bools':['clothes_on', 'has_clipboard'], 'voices':['no_clothes','no_clipboard']}]),
-                  Model('interior/mess_d1'),
-                  Model('interior/mug', alpha=0.3, culling='both'),
+                  Model('interior/mess_d2'),
                   ]
 
     #Exterior

@@ -17,6 +17,7 @@ def manage(task):
         if settings.day == 2:
             if settings.time == 2:
                 cut_power()
+                open_lod_shed_door()
 
     if settings.environment[:4] == 'exte':
         check_work_done()
@@ -55,10 +56,22 @@ def cut_power():
     if settings.g_bools['radio_conv_done'] and settings.g_bools['has_eaten'] and settings.g_bools['has_taken_can']:
         if not settings.g_bools['power_off']:
             settings.g_bools['power_off'] = True
+            settings.g_bools['shed_door_open'] = True
             print("POWER HAS BEEN CUT")
             base.conversation.talk('power_cut')
             #Make dramatic power-off sound
-            
+            functions.open_lod_shed_door()
+
+def open_lod_shed_door():
+    if settings.g_bools['shed_door_open']:
+        door = [x for x in settings.scene.models if 'lod_gate' in x.name]
+        door = door[0]
+        door.model.set_y(3)
+    else:
+        door = [x for x in settings.scene.models if 'lod_gate' in x.name]
+        door = door[0]
+        door.model.set_y(0)
+        
 
 #Which conversation should be started?
 def determine_conversation():
