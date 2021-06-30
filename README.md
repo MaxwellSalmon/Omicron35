@@ -31,9 +31,11 @@ function = object_function
 culling = string
 solid = boolean
 audio = string
+ambience = string
+stop_ambience_on = ['bools']
 ```
 The keyword, ```name``` is only necessary, for interactive models, if there are multiple objects sharing the same 3D-model.<br>
-This is done in the script **scene_setup.py**
+Models are created in the script **scene_setup.py**
 
 An example for loading an interactive model, which changes the scene can be seen here:
 ```

@@ -23,6 +23,9 @@ def manage(task):
         check_work_done()
         move_snow()
 
+        if settings.day == 2:
+            force_shed_ext_door_open()
+
     check_triggers()
     
     return Task.again
@@ -60,7 +63,7 @@ def cut_power():
             print("POWER HAS BEEN CUT")
             base.conversation.talk('power_cut')
             #Make dramatic power-off sound
-            functions.open_lod_shed_door()
+            open_lod_shed_door()
 
 def open_lod_shed_door():
     if settings.g_bools['shed_door_open']:
@@ -71,8 +74,20 @@ def open_lod_shed_door():
         door = [x for x in settings.scene.models if 'lod_gate' in x.name]
         door = door[0]
         door.model.set_y(0)
-        
 
+def force_shed_ext_door_open():
+    if settings.g_bools['shed_door_open']:
+        if not settings.g_bools['shed_door_forced']: #only force open once
+            settings.g_bools['shed_door_forced'] = True
+
+            door = [x for x in settings.scene.models if 'sheddoor' in x.name]
+            bolt = [x for x in settings.scene.models if 'bolt' in x.name]
+            door = door[0]
+            bolt = bolt[0]
+            door.model.set_pos(60,1,0.5)
+            bolt.model.set_pos(59.78,0.74,0.92)
+            bolt.model.set_hpr(338.5,0,90)
+            
 #Which conversation should be started?
 def determine_conversation():
     return 'radio_day' + str(settings.day)

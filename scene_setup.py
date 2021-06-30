@@ -64,8 +64,8 @@ def create_base_models(scene_name):
                   ]
     elif scene_name[:4] == "exte":
         models = [Model('exterior/jerrycan', tag='interactive', pos=(63.8,-3,-1.65), scale=0.6, function=functions.take_jerrycan, audio='jerrycan.wav'),
-                  Model('exterior/culext', culling='both', ambience='buzz.wav'),
-                  Model('exterior/generatortank', tag='interactive', function=functions.refill_generator, audio='generatortank.wav', ambience='generator_motor.wav'),
+                  Model('exterior/culext', culling='both', ambience='buzz.wav', stop_ambience_on=['power_off']),
+                  Model('exterior/generatortank', tag='interactive', function=functions.refill_generator, audio='generatortank.wav', ambience='generator_motor.wav', stop_ambience_on=['power_off']),
                   Model('exterior/box', tag='interactive', culling='both', function=functions.read_measurements, audio='default.wav'),
                   Model('exterior/sheddoor', solid=True, pos=(59.2,-1.3,0.5), hpr=(339,0,0)),
                   Model('exterior/bolt', tag='interactive', pos=(59.04,-1.44,0.92), hpr=(338.5,0,0), function=functions.open_shed_door),

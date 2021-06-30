@@ -157,6 +157,9 @@ class SuperLoader():
     def start_ambience(self):
         for model in settings.scene.models:
             if model.ambience:
+                if model.stop_ambience_condition():
+                    continue
+                    
                 model.ambience.play()
 
     def load_sound_queue(self, arguments):

@@ -22,13 +22,14 @@ g_bools = {
     'has_taken_can': False,
     'radio_conv_done' : False,
     'shed_door_open' : False,
+    'shed_door_forced' : False,
     'power_off' : False, 
     }
 
 #Environmental variables
 environment = 'inte_d2_t1'
 day = 2
-time = 1
+time = 2
 sun = True
 #light, medium, heavy
 snow = ""

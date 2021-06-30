@@ -19,6 +19,7 @@ class Model():
         self.audio = None
         self.audio_emitter = None
         self.ambience = None
+        self.stop_ambience_on = []
         self.audio_volume = 0.5
         self.tight_emitter = False
         
@@ -60,6 +61,9 @@ class Model():
             else:
                 self.ambience = base.superloader.load_sound_queue((kg('ambience'), model, 1, self, self.audio_volume, 'ambience'))
 
+        #Prevents ambience from playing at load - doesn't stop. 
+        if kg('stop_ambience_on'):
+            self.stop_ambience_on = kg('stop_ambience_on')
                 
         if kg('culling'):
             if kg('culling') == 'both':
@@ -75,6 +79,12 @@ class Model():
 
         self.model = model
         self.name = name
+
+    def stop_ambience_condition(self):
+        bools = [settings.g_bools[x] for x in self.stop_ambience_on]
+        if True in bools:
+            return True
+        return False
 
     def create_audio_emitter(self, model):
         if not self.audio_emitter:
