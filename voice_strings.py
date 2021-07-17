@@ -44,6 +44,8 @@ subtitles = {
         'emptyjerrycan':"The jerrycan is empty. I need to refill it in the hangar.",
         'noclipboard' : "Oh! I need my clipboard.",
         'generatorgate' : "I need to close the door to the generator.",
+        'need_screwdriver' : "I need a screwdriver to get these screws off.",
+        'wrong_screwdriver' : "This screwdriver doesn't fit the screws... Perhaps I can find one in the hangar.",
 
         'power_cut': "The power went off! Did I really forget to close the gate to the shed?",
         'see_from_bathroom': "I don't have to go outside right away. I can see it from the bathroom window.",

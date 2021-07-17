@@ -103,12 +103,23 @@ def create_specific_models(scene_name):
                         function=[functions.change_scene, {'to_scene':'inte_d1_t1', 'bools' : ['daily_tasks_done', '!shed_door_open'], 'time': 2, 'voices':['not_done_with_tasks', 'shed_door_open']}], audio='door.wav',),
                   Model('interior/door', name='ext2hang_door', tag='interactive', pos=(77.4,40.25,0.65), hpr=(202.3,0,0), scale=0.5, solid=True,
                         function=[functions.change_scene, {'to_scene':'hang_d1_t1'}], audio='door.wav'),
+                  Model('exterior/screw1', name='screw1', tag='not_interactive'),
+                  Model('exterior/screw2', name='screw2', tag='not_interactive'),
+                  Model('exterior/screw3', name='screw3', tag='not_interactive'),
+                  Model('exterior/screw4', name='screw4', tag='not_interactive'),
+                  Model('exterior/plate', name='plate', tag='not_interactive',),
                   ]
     elif scene_name[:-3] == 'exte_d2':
         models = [Model('interior/door', name='ext2int_door', tag='interactive', pos=(10.3,0.1,0.4), scale=0.5, solid=True,
                         function=[functions.change_scene, {'to_scene':'inte_d2_t1', 'bools' : ['daily_tasks_done', '!shed_door_open'], 'time': 2, 'voices':['not_done_with_tasks', 'shed_door_open']}], audio='door.wav',),
                   Model('interior/door', name='ext2hang_door', tag='interactive', pos=(77.4,40.25,0.65), hpr=(202.3,0,0), scale=0.5, solid=True,
                         function=[functions.change_scene, {'to_scene':'hang_d2_t1'}], audio='door.wav'),
+                  Model('exterior/screw1', name='screw1', tag='interactive', function=[functions.take_screw, {'screw_type':'shed'}]),
+                  Model('exterior/screw2', name='screw2', tag='interactive', function=[functions.take_screw, {'screw_type':'shed'}]),
+                  Model('exterior/screw3', name='screw3', tag='interactive', function=[functions.take_screw, {'screw_type':'shed'}]),
+                  Model('exterior/screw4', name='screw4', tag='interactive', function=[functions.take_screw, {'screw_type':'shed'}]),
+                  Model('exterior/plate', name='plate', tag='interactive', function=functions.click_plate),
+                  Model('exterior/fuse', name='fuse', tag='interactive', function=[functions.take_object, {'g_bool': 'generator_fuse_removed'}]),
                   ]
 
     #Hangar    

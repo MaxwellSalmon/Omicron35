@@ -79,7 +79,8 @@ def take_object(g_bool, **kwargs):
     if ('hide' in kwargs and kw('hide')) or 'hide' not in kwargs:
         settings.picked_obj.set_pos(0,0,-10)
     get_model().play_audio()
-    settings.g_bools[g_bool] = True
+    if g_bool:
+        settings.g_bools[g_bool] = True
 
 def put_on_clothes(test):
     if not settings.g_bools['clothes_on']:
@@ -90,6 +91,37 @@ def take_clipboard():
 
 def take_jerrycan():
     take_object('has_jerrycan')
+
+def take_screw(screw_type):
+    #Execute plate function if not already there.
+    if settings.constraints != [None, None]:
+        click_plate()
+
+    if settings.g_bools['has_stardriver']:
+        take_object(None)
+        if settings.shed_screws != 3:
+            plate_cutscene('screw{}'.format(settings.shed_screws+1))
+            settings.constraints = [336,-10]
+        else:
+            plate_cutscene('up')
+    else:
+        plate_cutscene('up')
+        if settings.g_bools['has_screwdriver']:
+            base.conversation.talk('wrong_screwdriver')
+        else:
+            base.conversation.talk('need_screwdriver')
+        
+    if screw_type == 'shed':
+        settings.shed_screws += 1
+    else:
+        settings.hang_screws += 1
+
+def click_plate():
+    if settings.constraints == [None, None] and settings.shed_screws != 4:
+        plate_cutscene('down')
+        settings.constraints = [336,-9]
+    elif settings.shed_screws == 4:
+        take_object(None)
 
 def take_fuel():
     if not settings.g_bools['has_jerrycan']:
@@ -262,6 +294,31 @@ def food_cutscene(direction):
                        {'d':1}])
     elif direction == 'to_pot':
         base.cutscene([{'x':0.2, 'y':3.8, 'z':0, 'h':0.8, 'p':-60, 'd':2}])
+
+def plate_cutscene(direction):
+    print(direction)
+    if direction == 'down':
+        base.cutscene([{'x':64.07, 'y':-7.73, 'z':-1.7, 'h':336, 'p':-9},
+                       {'d':0.6}])
+    elif direction == 'up':
+        base.cutscene([{'y':-8, 'z':-0.2, 'd':0.6}])
+
+    elif direction == 'screw1':
+        base.cutscene([{'x':65.2, 'y':-8.1, 'z':-1.7},
+                       {'d':0.6}])
+
+    elif direction == 'screw2':
+        base.cutscene([{'x':65.2, 'y':-8.2, 'z':-2.2},
+                       {'d':0.6}])
+
+    elif direction == 'screw3':
+        base.cutscene([{'x':64.07, 'y':-7.8, 'z':-2.2},
+                       {'d':0.6}])
+
+    elif direction == 'to_fuse':
+        #Move to fuse
+
+        #LPoint3f(65.2069, -8.01679, -1.73481)
 
 ### Trigger functions ###
 

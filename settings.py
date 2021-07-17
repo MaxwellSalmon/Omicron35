@@ -23,13 +23,16 @@ g_bools = {
     'radio_conv_done' : False,
     'shed_door_open' : False,
     'shed_door_forced' : False,
-    'power_off' : False, 
+    'power_off' : False,
+    'generator_plate_removed' : False,
+    'has_stardriver' : True,
+    'has_screwdriver' : False,
     }
 
 #Environmental variables
-environment = 'inte_d2_t1'
+environment = 'exte_d2_t1'
 day = 2
-time = 2
+time = 1
 sun = True
 #light, medium, heavy
 snow = ""
@@ -59,11 +62,13 @@ game_version = "free"
 picked_obj = None
 conversation_path = 0
 conversation_progress = 0
+shed_screws = 0
+hang_screws = 0
 
 #Developer variables
 show_fps = True
 show_col = False
-dev_control = True
+dev_control = False
 noclip = True
 
 #Functionality variables
