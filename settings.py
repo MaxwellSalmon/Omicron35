@@ -25,7 +25,7 @@ g_bools = {
     'shed_door_forced' : False,
     'power_off' : False,
     'generator_plate_removed' : False,
-    'has_stardriver' : True,
+    'has_stardriver' : False,
     'has_screwdriver' : False,
     }
 
@@ -68,7 +68,7 @@ hang_screws = 0
 #Developer variables
 show_fps = True
 show_col = False
-dev_control = False
+dev_control = True
 noclip = True
 
 #Functionality variables

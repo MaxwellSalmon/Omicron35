@@ -108,6 +108,7 @@ def create_specific_models(scene_name):
                   Model('exterior/screw3', name='screw3', tag='not_interactive'),
                   Model('exterior/screw4', name='screw4', tag='not_interactive'),
                   Model('exterior/plate', name='plate', tag='not_interactive',),
+                  Model('exterior/screwdriver', name="screwdriver3", tag='not_interactive'),
                   ]
     elif scene_name[:-3] == 'exte_d2':
         models = [Model('interior/door', name='ext2int_door', tag='interactive', pos=(10.3,0.1,0.4), scale=0.5, solid=True,
@@ -119,17 +120,22 @@ def create_specific_models(scene_name):
                   Model('exterior/screw3', name='screw3', tag='interactive', function=[functions.take_screw, {'screw_type':'shed'}]),
                   Model('exterior/screw4', name='screw4', tag='interactive', function=[functions.take_screw, {'screw_type':'shed'}]),
                   Model('exterior/plate', name='plate', tag='interactive', function=functions.click_plate),
-                  Model('exterior/fuse', name='fuse', tag='interactive', function=[functions.take_object, {'g_bool': 'generator_fuse_removed'}]),
+                  Model('exterior/fuse', name='fuse', tag='interactive', function=functions.take_fuse),
+                  Model('exterior/screwdriver', name="screwdriver3", tag='interactive', function=[functions.take_screwdriver, {'g_bool':'has_screwdriver'}]),
                   ]
 
     #Hangar    
     elif scene_name[:-3] == 'hang_d1':
         models = [Model('interior/door', name='hang2ext_door', tag='interactive', pos=(-16.4,-9.4,0.4), hpr=(180,0,0), scale=0.5, solid=True,
                         function=[functions.change_scene, {'to_scene':'exte_d1_t1', 'player_pos':(76,37,-0.2)}], audio='door.wav'),
+                  Model('hangar/screwdriver1', name="stardriver", tag='not_interactive'),
+                  Model('hangar/screwdriver2', name="screwdriver2", tag='not_interactive'),
                   ]
     elif scene_name[:-3] == 'hang_d2':
         models = [Model('interior/door', name='hang2ext_door', tag='interactive', pos=(-16.4,-9.4,0.4), hpr=(180,0,0), scale=0.5, solid=True,
                         function=[functions.change_scene, {'to_scene':'exte_d2_t1', 'player_pos':(76,37,-0.2)}], audio='door.wav'),
+                  Model('hangar/screwdriver1', name="stardriver", tag='interactive', function=[functions.take_screwdriver, {'g_bool':'has_stardriver'}]),
+                  Model('hangar/screwdriver2', name="screwdriver2", tag='interactive', function=[functions.take_screwdriver, {'g_bool':'has_screwdriver'}]),
                   ]
         
     else:

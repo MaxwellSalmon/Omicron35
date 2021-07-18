@@ -122,6 +122,16 @@ def click_plate():
         settings.constraints = [336,-9]
     elif settings.shed_screws == 4:
         take_object(None)
+        plate_cutscene('to_fuse')
+        settings.constraints = [339, -19.5]
+
+def take_fuse():
+    take_object(None)
+    plate_cutscene('up')
+
+def take_screwdriver(g_bool):
+    take_object(g_bool)
+    #Take in hand to do
 
 def take_fuel():
     if not settings.g_bools['has_jerrycan']:
@@ -296,7 +306,6 @@ def food_cutscene(direction):
         base.cutscene([{'x':0.2, 'y':3.8, 'z':0, 'h':0.8, 'p':-60, 'd':2}])
 
 def plate_cutscene(direction):
-    print(direction)
     if direction == 'down':
         base.cutscene([{'x':64.07, 'y':-7.73, 'z':-1.7, 'h':336, 'p':-9},
                        {'d':0.6}])
@@ -316,6 +325,8 @@ def plate_cutscene(direction):
                        {'d':0.6}])
 
     elif direction == 'to_fuse':
+        base.cutscene([{'x':64.6, 'y':-8, 'z':-1.8, 'h':339, 'p':-19.5},
+                       {'d':0.6}])
         #Move to fuse
 
         #LPoint3f(65.2069, -8.01679, -1.73481)
