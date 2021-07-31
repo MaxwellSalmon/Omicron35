@@ -75,6 +75,8 @@ def fade(direction, time):
         base.transition.fadeIn(time)
 
 def take_object(g_bool, **kwargs):
+    if not settings.picked_obj:
+        print("Oops! Could not pick object! Try again.")    
     kw = kwargs.get
     if ('hide' in kwargs and kw('hide')) or 'hide' not in kwargs:
         settings.picked_obj.set_pos(0,0,-10)
@@ -93,17 +95,32 @@ def take_jerrycan():
     take_object('has_jerrycan')
 
 def take_screw(screw_type):
+    print("scre2")
     #Execute plate function if not already there.
     if settings.constraints != [None, None]:
         click_plate()
 
     if settings.g_bools['has_stardriver']:
         take_object(None)
-        if settings.shed_screws != 3:
-            plate_cutscene('screw{}'.format(settings.shed_screws+1))
-            settings.constraints = [336,-10]
+        if screw_type == "shed": #Do stuff for shed screws
+            if settings.shed_screws != 3:
+                plate_cutscene('screw{}'.format(settings.shed_screws+1))
+                settings.constraints = [336,-9] #These constraints make the camera jump
+            else:
+                plate_cutscene('up')
+        else: #Do other stuff for hangar screws
+            if settings.hang_screws != 3:
+                plate_cutscene('screw{}'.format(settings.hang_screws+1))
+                settings.constraints = [92,0]
+            else:
+                plate_cutscene('up')
+
+        #Add screw count
+        if screw_type == 'shed':
+            settings.shed_screws += 1
         else:
-            plate_cutscene('up')
+            settings.hang_screws += 1
+            
     else:
         plate_cutscene('up')
         if settings.g_bools['has_screwdriver']:
@@ -111,10 +128,7 @@ def take_screw(screw_type):
         else:
             base.conversation.talk('need_screwdriver')
         
-    if screw_type == 'shed':
-        settings.shed_screws += 1
-    else:
-        settings.hang_screws += 1
+    
 
 def click_plate():
     if settings.constraints == [None, None] and settings.shed_screws != 4:
@@ -124,6 +138,16 @@ def click_plate():
         take_object(None)
         plate_cutscene('to_fuse')
         settings.constraints = [339, -19.5]
+
+def click_snowcat_plate():
+    print("yee")
+    if settings.constraints == [None, None] and settings.hang_screws != 4:
+        snowcat_plate_cutscene('down')
+        settings.constraints = [92,0]
+    elif settings.hang_screws == 4:
+        take_object(None)
+        snowcat_plate_cutscene('to_fuse')
+        settings.constraints = [92, 0]
 
 def take_fuse():
     take_object(None)
@@ -306,6 +330,10 @@ def food_cutscene(direction):
         base.cutscene([{'x':0.2, 'y':3.8, 'z':0, 'h':0.8, 'p':-60, 'd':2}])
 
 def plate_cutscene(direction):
+    #Redirect to hangar cutscenes if necessary. 
+    if settings.environment[:4] == 'hang':
+        snowcat_plate_cutscene(direction)
+        return
     if direction == 'down':
         base.cutscene([{'x':64.07, 'y':-7.73, 'z':-1.7, 'h':336, 'p':-9},
                        {'d':0.6}])
@@ -327,9 +355,29 @@ def plate_cutscene(direction):
     elif direction == 'to_fuse':
         base.cutscene([{'x':64.6, 'y':-8, 'z':-1.8, 'h':339, 'p':-19.5},
                        {'d':0.6}])
-        #Move to fuse
 
-        #LPoint3f(65.2069, -8.01679, -1.73481)
+def snowcat_plate_cutscene(direction):
+    print(settings.hang_screws)
+    if direction == 'down':
+        base.cutscene([{'x':2.28, 'y':-3.75, 'z':0.26, 'h':92, 'p':-1},
+                       {'d':0.6}])
+    elif direction == 'up':
+        base.cutscene([{'y':-2.87, 'z':0, 'd':0.6}])
+    elif direction == 'screw1':
+        base.cutscene([{'x':2.28, 'y':-2.11, 'z':0.26},
+                       {'d':0.6}])
+        
+    elif direction == 'screw2':
+        base.cutscene([{'x':2.28, 'y':-2.11, 'z':-0.55},
+                       {'d':0.6}])
+        
+    elif direction == 'screw3':
+        base.cutscene([{'x':2.28, 'y':-3.75, 'z':-0.5},
+                       {'d':0.6}])
+
+    elif direction == 'to_fuse':
+        base.cutscene([{'x':1.8, 'y':-2.8, 'z':0},
+                       {'d':0.6}])
 
 ### Trigger functions ###
 
