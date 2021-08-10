@@ -27,10 +27,13 @@ g_bools = {
     'generator_plate_removed' : False,
     'has_stardriver' : True,
     'has_screwdriver' : False,
+    'has_bad_fuse' : False,
+    'has_fuse' : True,
+    'generator_fixed': False,
     }
 
 #Environmental variables
-environment = 'hang_d2_t1'
+environment = 'exte_d2_t1'
 day = 2
 time = 1
 sun = True
@@ -68,8 +71,8 @@ hang_screws = 0
 #Developer variables
 show_fps = True
 show_col = False
-dev_control = False
-noclip = True
+dev_control = True
+noclip = False
 
 #Functionality variables
 dt = 0

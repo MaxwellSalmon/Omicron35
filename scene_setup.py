@@ -121,6 +121,7 @@ def create_specific_models(scene_name):
                   Model('exterior/screw4', name='screw4', tag='interactive', function=[functions.take_screw, {'screw_type':'shed'}]),
                   Model('exterior/plate', name='plate', tag='interactive', function=functions.click_plate),
                   Model('exterior/fuse', name='fuse', tag='interactive', function=functions.take_fuse),
+                  Model('exterior/fusebox', name='fusebox', tag='interactive', function=functions.click_fusebox),
                   Model('exterior/screwdriver', name="screwdriver3", tag='interactive', function=[functions.take_screwdriver, {'g_bool':'has_screwdriver'}]),
                   ]
 
@@ -141,11 +142,11 @@ def create_specific_models(scene_name):
                         function=[functions.change_scene, {'to_scene':'exte_d2_t1', 'player_pos':(76,37,-0.2)}], audio='door.wav'),
                   Model('hangar/screwdriver1', name="stardriver", tag='interactive', function=[functions.take_screwdriver, {'g_bool':'has_stardriver'}]),
                   Model('hangar/screwdriver2', name="screwdriver2", tag='interactive', function=[functions.take_screwdriver, {'g_bool':'has_screwdriver'}]),
-                  Model('hangar/plate', name="plate", tag='interactive', function=functions.click_snowcat_plate),
-                  Model('hangar/screw1', name="screw1", tag='interactive', function=[functions.take_screw, {'screw_type':'hang'}]),
-                  Model('hangar/screw2', name="screw2", tag='interactive', function=[functions.take_screw, {'screw_type':'hang'}]),
-                  Model('hangar/screw3', name="screw3", tag='interactive', function=[functions.take_screw, {'screw_type':'hang'}]),
-                  Model('hangar/screw4', name="screw4", tag='interactive', function=[functions.take_screw, {'screw_type':'hang'}]),
+                  Model('hangar/snowcat_plate', name="snowcat_plate", tag='interactive', function=functions.click_snowcat_plate),
+                  Model('hangar/hscrew1', name="hscrew1", tag='interactive', function=[functions.take_screw, {'screw_type':'hang'}]),
+                  Model('hangar/hscrew2', name="hscrew2", tag='interactive', function=[functions.take_screw, {'screw_type':'hang'}]),
+                  Model('hangar/hscrew3', name="hscrew3", tag='interactive', function=[functions.take_screw, {'screw_type':'hang'}]),
+                  Model('hangar/hscrew4', name="hscrew4", tag='interactive', function=[functions.take_screw, {'screw_type':'hang'}]),
                   Model('hangar/fuse', name='fuse', tag='interactive', function=functions.take_fuse),
                   ]
         

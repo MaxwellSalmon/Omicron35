@@ -22,6 +22,7 @@ class Model():
         self.stop_ambience_on = []
         self.audio_volume = 0.5
         self.tight_emitter = False
+        self.tag = 'default'
         
         if kg('name'):
             #If interactive objects share the model, differentiate between them with custom name
@@ -85,6 +86,15 @@ class Model():
         if True in bools:
             return True
         return False
+
+    def set_tag(self, tag):
+        if self.name=="fuse":
+            print("old tag:", self.tag)
+            print("new tag:", tag)
+        self.model.clear_tag(self.tag)
+        self.model.set_tag(tag, '1')
+        self.tag = tag
+
 
     def create_audio_emitter(self, model):
         if not self.audio_emitter:

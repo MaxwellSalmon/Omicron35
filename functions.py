@@ -5,10 +5,21 @@ from direct.interval.IntervalGlobal import *
 #This script contains functions which execute when interacting with an object or entering a scene.
 
 def get_model():
+    '''Get the model object currently interacted with'''
     model = [x for x in settings.scene.models if x.model == settings.picked_obj]
     if model:
         return model[0]
     print("Could not fetch model ", settings.picked_obj)
+
+def find_model(name):
+    '''Fetch another model object from the current scene by name'''
+    model = [x for x in settings.scene.models if x.name == name]
+    if len(model) == 1:
+        return model[0]
+    elif len(model) > 1:
+        print("Oops! There seems to be multiple models with name", name)
+    elif not model:
+        print("Could not fetch model", name)
 
 def change_scene(to_scene, **kwargs):
     kw = kwargs.get
@@ -95,7 +106,6 @@ def take_jerrycan():
     take_object('has_jerrycan')
 
 def take_screw(screw_type):
-    print("scre2")
     #Execute plate function if not already there.
     if settings.constraints != [None, None]:
         click_plate()
@@ -128,8 +138,6 @@ def take_screw(screw_type):
         else:
             base.conversation.talk('need_screwdriver')
         
-    
-
 def click_plate():
     if settings.constraints == [None, None] and settings.shed_screws != 4:
         plate_cutscene('down')
@@ -140,7 +148,6 @@ def click_plate():
         settings.constraints = [339, -19.5]
 
 def click_snowcat_plate():
-    print("yee")
     if settings.constraints == [None, None] and settings.hang_screws != 4:
         snowcat_plate_cutscene('down')
         settings.constraints = [92,0]
@@ -149,9 +156,27 @@ def click_snowcat_plate():
         snowcat_plate_cutscene('to_fuse')
         settings.constraints = [92, 0]
 
+def click_fusebox():
+    if settings.g_bools['generator_fixed']:
+        pass
+    elif settings.g_bools['has_fuse']:
+        #Placing fuse
+        fuse = find_model('fuse')
+        fuse.model.set_pos(0,0,-1.8)
+        fuse.set_tag('not_interactive')
+        settings.g_bools['generator_fixed'] = True
+        get_model().set_tag('not_interactive')
+        
+    elif not settings.g_bools['has_bad_fuse']:
+        plate_cutscene('to_fuse')
+        settings.constraints = [339, -19.5]
+
 def take_fuse():
-    take_object(None)
     plate_cutscene('up')
+    if 'ext' in settings.environment:
+        take_object('has_bad_fuse')
+    else:
+        take_object('has_fuse')
 
 def take_screwdriver(g_bool):
     take_object(g_bool)
@@ -334,22 +359,27 @@ def plate_cutscene(direction):
     if settings.environment[:4] == 'hang':
         snowcat_plate_cutscene(direction)
         return
+
+    fusebox = find_model('fusebox')
+    fusebox.set_tag('not_interactive')
+    
     if direction == 'down':
         base.cutscene([{'x':64.07, 'y':-7.73, 'z':-1.7, 'h':336, 'p':-9},
                        {'d':0.6}])
     elif direction == 'up':
-        base.cutscene([{'y':-8, 'z':-0.2, 'd':0.6}])
+        fusebox.set_tag('interactive')
+        base.cutscene([{'y':-8, 'z':-0.2, 'd':0.6, 'h':336, 'p':-9}])
 
     elif direction == 'screw1':
-        base.cutscene([{'x':65.2, 'y':-8.1, 'z':-1.7},
+        base.cutscene([{'x':65.2, 'y':-8.1, 'z':-1.7, 'h':336, 'p':-9},
                        {'d':0.6}])
 
     elif direction == 'screw2':
-        base.cutscene([{'x':65.2, 'y':-8.2, 'z':-2.2},
+        base.cutscene([{'x':65.2, 'y':-8.2, 'z':-2.2, 'h':336, 'p':-9},
                        {'d':0.6}])
 
     elif direction == 'screw3':
-        base.cutscene([{'x':64.07, 'y':-7.8, 'z':-2.2},
+        base.cutscene([{'x':64.07, 'y':-7.8, 'z':-2.2, 'h':336, 'p':-9},
                        {'d':0.6}])
 
     elif direction == 'to_fuse':
@@ -357,26 +387,25 @@ def plate_cutscene(direction):
                        {'d':0.6}])
 
 def snowcat_plate_cutscene(direction):
-    print(settings.hang_screws)
     if direction == 'down':
         base.cutscene([{'x':2.28, 'y':-3.75, 'z':0.26, 'h':92, 'p':-1},
                        {'d':0.6}])
     elif direction == 'up':
-        base.cutscene([{'y':-2.87, 'z':0, 'd':0.6}])
+        base.cutscene([{'y':-2.87, 'z':0, 'd':0.6, 'h':92, 'p':-1}])
     elif direction == 'screw1':
-        base.cutscene([{'x':2.28, 'y':-2.11, 'z':0.26},
+        base.cutscene([{'x':2.28, 'y':-2.11, 'z':0.26, 'h':92, 'p':-1},
                        {'d':0.6}])
         
     elif direction == 'screw2':
-        base.cutscene([{'x':2.28, 'y':-2.11, 'z':-0.55},
+        base.cutscene([{'x':2.28, 'y':-2.11, 'z':-0.55, 'h':92, 'p':-1},
                        {'d':0.6}])
         
     elif direction == 'screw3':
-        base.cutscene([{'x':2.28, 'y':-3.75, 'z':-0.5},
+        base.cutscene([{'x':2.28, 'y':-3.75, 'z':-0.5, 'h':92, 'p':-1},
                        {'d':0.6}])
 
     elif direction == 'to_fuse':
-        base.cutscene([{'x':1.8, 'y':-2.8, 'z':0},
+        base.cutscene([{'x':1.8, 'y':-2.8, 'z':0, 'h':92, 'p':-1},
                        {'d':0.6}])
 
 ### Trigger functions ###
