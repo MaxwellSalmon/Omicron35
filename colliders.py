@@ -194,7 +194,7 @@ def hangar():
     fuel = base.scene.attachNewNode(CollisionNode('fuel'))
     fuel.node().addSolid(CollisionCapsule(16.5,-4.5,1, 16.5,2.5,1,3))
     vehicle = base.scene.attachNewNode(CollisionNode('vehicle'))
-    vehicle.node().addSolid(CollisionCapsule(-9,-0.2,0.5, -2,-0.2,0.5,7))
+    vehicle.node().addSolid(CollisionCapsule(-13,-0.2,0.5, -2.2,-0.2,0.5,7.5))
     box = base.scene.attachNewNode(CollisionNode('box'))
     box.node().addSolid(CollisionCapsule(-32,-25,0.5, -25,-25,0.5,1))
     axe = base.scene.attachNewNode(CollisionNode('axe'))

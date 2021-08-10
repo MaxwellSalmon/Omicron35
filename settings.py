@@ -25,17 +25,17 @@ g_bools = {
     'shed_door_forced' : False,
     'power_off' : False,
     'generator_plate_removed' : False,
-    'has_stardriver' : True,
+    'has_stardriver' : False,
     'has_screwdriver' : False,
     'has_bad_fuse' : False,
-    'has_fuse' : True,
+    'has_fuse' : False,
     'generator_fixed': False,
     }
 
 #Environmental variables
-environment = 'exte_d2_t1'
+environment = 'inte_d2_t1'
 day = 2
-time = 1
+time = 2
 sun = True
 #light, medium, heavy
 snow = ""
@@ -71,7 +71,7 @@ hang_screws = 0
 #Developer variables
 show_fps = True
 show_col = False
-dev_control = True
+dev_control = False
 noclip = False
 
 #Functionality variables
