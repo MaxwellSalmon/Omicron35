@@ -18,6 +18,7 @@ from direct.showbase.Transitions import Transitions
 from model import *
 import functions, scene_setup
 import colliders, conversation
+import text
 import os
 
 class SuperLoader():
@@ -25,6 +26,7 @@ class SuperLoader():
     def __init__(self):
         self.audio3d_queue = []
         base.transition = Transitions(loader)
+        self.txt = text.Text()
 
     def load(self, scene_name, init, newday=False):
         self.init = init
@@ -52,6 +54,9 @@ class SuperLoader():
             self.load_mouse()
             self.load_light()
             self.change_textures()
+            
+
+        self.show_env()
         
 
     def load_scene(self):
@@ -126,6 +131,13 @@ class SuperLoader():
         for model in settings.scene.models:
             model.model.removeNode()
             del model
+
+    def show_env(self):
+        if settings.show_env:
+            self.txt.new_text(settings.environment)
+            self.txt.new_pos(-1.2,1.43)
+            self.txt.new_size(0.6)
+            
 
     def load_audio3d(self):
         base.audio3d = Audio3DManager.Audio3DManager(base.sfxManagerList[0], base.player.camera)

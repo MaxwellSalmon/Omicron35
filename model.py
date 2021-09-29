@@ -37,6 +37,7 @@ class Model():
             model.set_tag(kg('tag'), '1')
             if kg('tag') == 'place':
                 model.place()
+            self.tag = kg('tag')
         if kg('scale'):
             model.set_scale(kg('scale'))
         if kg('function'):

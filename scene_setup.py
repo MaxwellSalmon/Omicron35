@@ -40,12 +40,12 @@ def create_scenes(day):
 
 def create_base_models(scene_name):
     if scene_name[:4] == "inte":
-        models = [Model('interior/suit1', tag='interactive', audio='zipper.wav', function=[functions.put_on_clothes, {'test' : 'Here is suit1'}]),
-                  Model('interior/suit2', tag='interactive', audio='zipper.wav', function=[functions.put_on_clothes, {'test' : 'Here is suit2'}]),
-                  Model('interior/suit3', tag='interactive', audio='zipper.wav', function=[functions.put_on_clothes, {'test' : 'Here is suit3'}]),
+        models = [Model('interior/suit1', tag='interactive', audio='sfx/zipper.wav', function=[functions.put_on_clothes, {'test' : 'Here is suit1'}]),
+                  Model('interior/suit2', tag='interactive', audio='sfx/zipper.wav', function=[functions.put_on_clothes, {'test' : 'Here is suit2'}]),
+                  Model('interior/suit3', tag='interactive', audio='sfx/zipper.wav', function=[functions.put_on_clothes, {'test' : 'Here is suit3'}]),
                   Model('interior/bed', tag='interactive', audio='default.wav', function=functions.sleep),
                   Model('interior/showercurtain', pos=(1.65,-8.6,-1.8), solid=True, culling='both'),
-                  Model('interior/clipboard', pos=(-4.1,-8.6,0.45), tag='interactive', audio='clipboard.wav', function=functions.take_clipboard, vol=1, tight_emitter=True),
+                  Model('interior/clipboard', pos=(-4.1,-8.6,0.45), tag='interactive', audio='sfx/clipboard.wav', function=functions.take_clipboard, vol=1, tight_emitter=True),
                   Model('interior/paper.egg', culling='both'),
                   Model('interior/towels.egg', culling='both'),
                   Model('interior/radio', tag='interactive', audio='default.wav', function=functions.use_radio),
@@ -63,9 +63,9 @@ def create_base_models(scene_name):
                   Model('skybox', scale=21, pos=(0,0,-200)),
                   ]
     elif scene_name[:4] == "exte":
-        models = [Model('exterior/jerrycan', tag='interactive', pos=(63.8,-3,-1.65), scale=0.6, function=functions.take_jerrycan, audio='jerrycan.wav'),
-                  Model('exterior/culext', culling='both', ambience='buzz.wav', stop_ambience_on=['power_off']),
-                  Model('exterior/generatortank', tag='interactive', function=functions.refill_generator, audio='generatortank.wav', ambience='generator_motor.wav', stop_ambience_on=['power_off']),
+        models = [Model('exterior/jerrycan', tag='interactive', pos=(63.8,-3,-1.65), scale=0.6, function=functions.take_jerrycan, audio='sfx/jerrycan.wav'),
+                  Model('exterior/culext', culling='both', ambience='amb/buzz.wav', stop_ambience_on=['power_off']),
+                  Model('exterior/generatortank', tag='interactive', function=functions.refill_generator, audio='sfx/generatortank.wav', ambience='amb/generator_motor.wav', stop_ambience_on=['power_off']),
                   Model('exterior/box', tag='interactive', culling='both', function=functions.read_measurements, audio='default.wav'),
                   Model('exterior/sheddoor', solid=True, pos=(59.2,-1.3,0.5), hpr=(339,0,0)),
                   Model('exterior/bolt', tag='interactive', pos=(59.04,-1.44,0.92), hpr=(338.5,0,0), function=functions.open_shed_door),
@@ -76,7 +76,7 @@ def create_base_models(scene_name):
         models = [Model('hangar/shelves', culling='both'),
                   Model('hangar/axe', tag='interactive', pos=(-4.17,-9.62,-1.81), scale=0.5, function=functions.split_firewood, audio='default.wav'),
                   Model('hangar/lamps', culling='both'),
-                  Model('hangar/dispenser', tag='interactive', pos=(8.05,-3.37,-1.78), scale=0.5, function=functions.take_fuel, audio='filling_jerrycan.wav'),
+                  Model('hangar/dispenser', tag='interactive', pos=(8.05,-3.37,-1.78), scale=0.5, function=functions.take_fuel, audio='sfx/filling_jerrycan.wav'),
                   Model('skybox', scale=21, pos=(0,0,-200)),
                   ]
     else:
@@ -88,11 +88,11 @@ def create_base_models(scene_name):
 def create_specific_models(scene_name):
     #Interior
     if scene_name[:-3] == 'inte_d1':
-        models = [Model('interior/door', tag='interactive', pos=(10,0.1,0.4), scale=0.5, solid=True, audio='door.wav',
+        models = [Model('interior/door', tag='interactive', pos=(10,0.1,0.4), scale=0.5, solid=True, audio='sfx/door.wav',
                         function=[functions.change_scene, {'to_scene':'exte_d1_t1', 'bools':['clothes_on', 'has_clipboard'], 'voices':['no_clothes','no_clipboard']}]),
                   ]
     elif scene_name[:-3] == 'inte_d2':
-        models = [Model('interior/door', tag='interactive', pos=(10,0.1,0.4), scale=0.5, solid=True, audio='door.wav',
+        models = [Model('interior/door', tag='interactive', pos=(10,0.1,0.4), scale=0.5, solid=True, audio='sfx/door.wav',
                         function=[functions.change_scene, {'to_scene':'exte_d2_t1', 'bools':['clothes_on', 'has_clipboard'], 'voices':['no_clothes','no_clipboard']}]),
                   Model('interior/mess_d2'),
                   ]
@@ -100,9 +100,9 @@ def create_specific_models(scene_name):
     #Exterior
     elif scene_name[:-3] == 'exte_d1':
         models = [Model('interior/door', name='ext2int_door', tag='interactive', pos=(10.3,0.1,0.4), scale=0.5, solid=True,
-                        function=[functions.change_scene, {'to_scene':'inte_d1_t1', 'bools' : ['daily_tasks_done', '!shed_door_open'], 'time': 2, 'voices':['not_done_with_tasks', 'shed_door_open']}], audio='door.wav',),
+                        function=[functions.change_scene, {'to_scene':'inte_d1_t1', 'bools' : ['daily_tasks_done', '!shed_door_open'], 'time': 2, 'voices':['not_done_with_tasks', 'shed_door_open']}], audio='sfx/door.wav',),
                   Model('interior/door', name='ext2hang_door', tag='interactive', pos=(77.4,40.25,0.65), hpr=(202.3,0,0), scale=0.5, solid=True,
-                        function=[functions.change_scene, {'to_scene':'hang_d1_t1'}], audio='door.wav'),
+                        function=[functions.change_scene, {'to_scene':'hang_d1_t1'}], audio='sfx/door.wav'),
                   Model('exterior/screw1', name='screw1', tag='not_interactive'),
                   Model('exterior/screw2', name='screw2', tag='not_interactive'),
                   Model('exterior/screw3', name='screw3', tag='not_interactive'),
@@ -112,9 +112,9 @@ def create_specific_models(scene_name):
                   ]
     elif scene_name[:-3] == 'exte_d2':
         models = [Model('interior/door', name='ext2int_door', tag='interactive', pos=(10.3,0.1,0.4), scale=0.5, solid=True,
-                        function=[functions.change_scene, {'to_scene':'inte_d2_t1', 'bools' : ['daily_tasks_done', '!shed_door_open'], 'time': 2, 'voices':['not_done_with_tasks', 'shed_door_open']}], audio='door.wav',),
+                        function=[functions.change_scene, {'to_scene':'inte_d2_t1', 'bools' : ['daily_tasks_done', '!shed_door_open'], 'time': 2, 'voices':['not_done_with_tasks', 'shed_door_open']}], audio='sfx/door.wav',),
                   Model('interior/door', name='ext2hang_door', tag='interactive', pos=(77.4,40.25,0.65), hpr=(202.3,0,0), scale=0.5, solid=True,
-                        function=[functions.change_scene, {'to_scene':'hang_d2_t1'}], audio='door.wav'),
+                        function=[functions.change_scene, {'to_scene':'hang_d2_t1'}], audio='sfx/door.wav'),
                   Model('exterior/screw1', name='screw1', tag='interactive', function=[functions.take_screw, {'screw_type':'shed'}]),
                   Model('exterior/screw2', name='screw2', tag='interactive', function=[functions.take_screw, {'screw_type':'shed'}]),
                   Model('exterior/screw3', name='screw3', tag='interactive', function=[functions.take_screw, {'screw_type':'shed'}]),
@@ -122,13 +122,13 @@ def create_specific_models(scene_name):
                   Model('exterior/plate', name='plate', tag='interactive', function=functions.click_plate),
                   Model('exterior/fuse', name='fuse', tag='interactive', function=functions.take_fuse),
                   Model('exterior/fusebox', name='fusebox', tag='interactive', function=functions.click_fusebox),
-                  Model('exterior/screwdriver', name="screwdriver3", tag='interactive', function=[functions.take_screwdriver, {'g_bool':'has_screwdriver'}]),
+                  Model('exterior/screwdriver', name="screwdriver3", tag='interactive', function=[functions.take_screwdriver, {'g_bool':'has_screwdriver'}], audio='sfx/screwdriver.wav'),
                   ]
 
     #Hangar    
     elif scene_name[:-3] == 'hang_d1':
         models = [Model('interior/door', name='hang2ext_door', tag='interactive', pos=(-16.4,-9.4,0.4), hpr=(180,0,0), scale=0.5, solid=True,
-                        function=[functions.change_scene, {'to_scene':'exte_d1_t1', 'player_pos':(76,37,-0.2)}], audio='door.wav'),
+                        function=[functions.change_scene, {'to_scene':'exte_d1_t1', 'player_pos':(76,37,-0.2)}], audio='sfx/door.wav'),
                   Model('hangar/screwdriver1', name="stardriver", tag='not_interactive'),
                   Model('hangar/screwdriver2', name="screwdriver2", tag='not_interactive'),
                   Model('hangar/plate', name="plate", tag='not_interactive'),
@@ -139,9 +139,9 @@ def create_specific_models(scene_name):
                   ]
     elif scene_name[:-3] == 'hang_d2':
         models = [Model('interior/door', name='hang2ext_door', tag='interactive', pos=(-16.4,-9.4,0.4), hpr=(180,0,0), scale=0.5, solid=True,
-                        function=[functions.change_scene, {'to_scene':'exte_d2_t1', 'player_pos':(76,37,-0.2)}], audio='door.wav'),
-                  Model('hangar/screwdriver1', name="stardriver", tag='interactive', function=[functions.take_screwdriver, {'g_bool':'has_stardriver'}]),
-                  Model('hangar/screwdriver2', name="screwdriver2", tag='interactive', function=[functions.take_screwdriver, {'g_bool':'has_screwdriver'}]),
+                        function=[functions.change_scene, {'to_scene':'exte_d2_t1', 'player_pos':(76,37,-0.2)}], audio='sfx/door.wav'),
+                  Model('hangar/screwdriver1', name="stardriver", tag='interactive', function=[functions.take_screwdriver, {'g_bool':'has_stardriver'}], audio='sfx/screwdriver.wav'),
+                  Model('hangar/screwdriver2', name="screwdriver2", tag='interactive', function=[functions.take_screwdriver, {'g_bool':'has_screwdriver'}], audio='sfx/screwdriver.wav'),
                   Model('hangar/snowcat_plate', name="snowcat_plate", tag='interactive', function=functions.click_snowcat_plate),
                   Model('hangar/hscrew1', name="hscrew1", tag='interactive', function=[functions.take_screw, {'screw_type':'hang'}]),
                   Model('hangar/hscrew2', name="hscrew2", tag='interactive', function=[functions.take_screw, {'screw_type':'hang'}]),

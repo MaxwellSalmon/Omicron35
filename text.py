@@ -14,5 +14,12 @@ class Text:
 
     def new_colour(self, rgba):
         self.text.fg = rgba
+
+    def new_pos(self, x,y):
+        #lol weird coordinates.
+        self.text.set_pos(x,0,y)
+
+    def new_size(self, size):
+        self.text.set_scale(size)
         
         

@@ -161,6 +161,7 @@ def click_fusebox():
         pass
     elif settings.g_bools['has_fuse']:
         #Placing fuse
+        base.conversation.talk('fuse_fits')
         fuse = find_model('fuse')
         fuse.model.set_pos(0,0,-1.8)
         fuse.set_tag('not_interactive')
@@ -175,8 +176,10 @@ def take_fuse():
     plate_cutscene('up')
     if 'ext' in settings.environment:
         take_object('has_bad_fuse')
+        base.conversation.talk('busted_fuse')
     else:
         take_object('has_fuse')
+        base.conversation.talk('fuse_will_fit')
 
 def take_screwdriver(g_bool):
     take_object(g_bool)
@@ -201,6 +204,10 @@ def split_firewood():
         print("I already split enough firewood")
 
 def refill_generator():
+    if settings.g_bools['generator_fixed'] and settings.g_bools['power_off']:
+        base.conversation.talk('power_back')
+        settings.g_bools['power_off'] = False
+        return
     if not settings.g_bools['has_fuel']:
         if settings.g_bools['has_jerrycan']:
             base.conversation.talk('emptyjerrycan')

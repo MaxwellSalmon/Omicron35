@@ -44,12 +44,19 @@ subtitles = {
         'emptyjerrycan':"The jerrycan is empty. I need to refill it in the hangar.",
         'noclipboard' : "Oh! I need my clipboard.",
         'generatorgate' : "I need to close the door to the generator.",
-        'need_screwdriver' : "I need a screwdriver to get these screws off.",
-        'wrong_screwdriver' : "This screwdriver doesn't fit the screws... Perhaps I can find one in the hangar.",
+        
 
         'power_cut': "The power went off! Did I really forget to close the gate to the shed?",
         'see_from_bathroom': "I don't have to go outside right away. I can see it from the bathroom window.",
         'see_gate_damn': "It is open! Damn it! I must check on it.",
+        'need_screwdriver' : "I need a screwdriver to get these screws off.",
+        'wrong_screwdriver' : "This screwdriver doesn't fit the screws... Perhaps I can find one in the hangar.",
+        'busted_fuse' : "The fuse is buted. Do I have a new somewhere?",
+        'fuse_will_fit' : "It seems this fuse will fit the generator!",
+        'fuse_fits' : "It fits! Let's hope it works. Now let's restart the generaotr.",
+        'power_back' : "Yes! It worked! The power is back on.",
+        'find_padlock' : "Hmm... Perhaps I should lock the door to make sure it doesn't open again. There should be a padlock somewhere in there.",
+        'door_locked' : "Now the door won't open by itself. Back to bed!",
         
         #Sound effects below.
         'writing' : '',
