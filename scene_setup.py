@@ -108,11 +108,12 @@ def create_specific_models(scene_name):
                   Model('exterior/screw3', name='screw3', tag='not_interactive'),
                   Model('exterior/screw4', name='screw4', tag='not_interactive'),
                   Model('exterior/plate', name='plate', tag='not_interactive',),
+                  Model('exterior/padlock', name='padlock', pos=(62.83,-8.26,1.05), hpr=(250,0,90), tag='not_interactive'),
                   Model('exterior/screwdriver', name="screwdriver3", tag='not_interactive'),
                   ]
     elif scene_name[:-3] == 'exte_d2':
         models = [Model('interior/door', name='ext2int_door', tag='interactive', pos=(10.3,0.1,0.4), scale=0.5, solid=True,
-                        function=[functions.change_scene, {'to_scene':'inte_d2_t1', 'bools' : ['daily_tasks_done', '!shed_door_open'], 'time': 2, 'voices':['not_done_with_tasks', 'shed_door_open']}], audio='sfx/door.wav',),
+                        function=[functions.change_scene, {'to_scene':'inte_d2_t1', 'bools' : ['daily_tasks_done', '!shed_door_open', 'has_padlock'], 'time': 2, 'voices':['not_done_with_tasks', 'shed_door_open', 'lock_gate']}], audio='sfx/door.wav',),
                   Model('interior/door', name='ext2hang_door', tag='interactive', pos=(77.4,40.25,0.65), hpr=(202.3,0,0), scale=0.5, solid=True,
                         function=[functions.change_scene, {'to_scene':'hang_d2_t1'}], audio='sfx/door.wav'),
                   Model('exterior/screw1', name='screw1', tag='interactive', function=[functions.take_screw, {'screw_type':'shed'}]),
@@ -122,6 +123,7 @@ def create_specific_models(scene_name):
                   Model('exterior/plate', name='plate', tag='interactive', function=functions.click_plate),
                   Model('exterior/fuse', name='fuse', tag='interactive', function=functions.take_fuse),
                   Model('exterior/fusebox', name='fusebox', tag='interactive', function=functions.click_fusebox),
+                  Model('exterior/padlock', name='padlock', pos=(62.83,-8.26,1.05), hpr=(250,0,90), tag='interactive', function=functions.take_padlock),
                   Model('exterior/screwdriver', name="screwdriver3", tag='interactive', function=[functions.take_screwdriver, {'g_bool':'has_screwdriver'}], audio='sfx/screwdriver.wav'),
                   ]
 
@@ -131,11 +133,11 @@ def create_specific_models(scene_name):
                         function=[functions.change_scene, {'to_scene':'exte_d1_t1', 'player_pos':(76,37,-0.2)}], audio='sfx/door.wav'),
                   Model('hangar/screwdriver1', name="stardriver", tag='not_interactive'),
                   Model('hangar/screwdriver2', name="screwdriver2", tag='not_interactive'),
-                  Model('hangar/plate', name="plate", tag='not_interactive'),
-                  Model('hangar/screw1', name="screw1", tag='not_interactive'),
-                  Model('hangar/screw2', name="screw2", tag='not_interactive'),
-                  Model('hangar/screw3', name="screw3", tag='not_interactive'),
-                  Model('hangar/screw4', name="screw4", tag='not_interactive'),
+                  Model('hangar/snowcat_plate', name="plate", tag='not_interactive'),
+                  Model('hangar/hscrew1', name="screw1", tag='not_interactive'),
+                  Model('hangar/hscrew2', name="screw2", tag='not_interactive'),
+                  Model('hangar/hscrew3', name="screw3", tag='not_interactive'),
+                  Model('hangar/hscrew4', name="screw4", tag='not_interactive'),
                   ]
     elif scene_name[:-3] == 'hang_d2':
         models = [Model('interior/door', name='hang2ext_door', tag='interactive', pos=(-16.4,-9.4,0.4), hpr=(180,0,0), scale=0.5, solid=True,

@@ -45,7 +45,7 @@ subtitles = {
         'noclipboard' : "Oh! I need my clipboard.",
         'generatorgate' : "I need to close the door to the generator.",
         
-
+        #Power cut segment
         'power_cut': "The power went off! Did I really forget to close the gate to the shed?",
         'see_from_bathroom': "I don't have to go outside right away. I can see it from the bathroom window.",
         'see_gate_damn': "It is open! Damn it! I must check on it.",
@@ -57,6 +57,7 @@ subtitles = {
         'power_back' : "Yes! It worked! The power is back on.",
         'find_padlock' : "Hmm... Perhaps I should lock the door to make sure it doesn't open again. There should be a padlock somewhere in there.",
         'door_locked' : "Now the door won't open by itself. Back to bed!",
+        'lock_gate' : "I better lock the shed gate before going inside.",
         
         #Sound effects below.
         'writing' : '',

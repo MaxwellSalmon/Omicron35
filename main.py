@@ -47,7 +47,6 @@ class MyApp(ShowBase):
 
         #z = self.load_sound('piano.mp3', self.scene, 1)
         #z.play()
-
         PStatClient.connect()
       #  font1 = loader.loadFont('models/font.egg')
      #   font1.setPixelsPerUnit(60)

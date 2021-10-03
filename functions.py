@@ -95,12 +95,10 @@ def take_object(g_bool, **kwargs):
     if g_bool:
         settings.g_bools[g_bool] = True
 
-def put_on_clothes(test):
-    if not settings.g_bools['clothes_on']:
-        take_object('clothes_on')
-
-def take_clipboard():
-    take_object('has_clipboard')
+''' ################
+    ### EXTERIOR ###
+    ################
+'''
 
 def take_jerrycan():
     take_object('has_jerrycan')
@@ -147,15 +145,6 @@ def click_plate():
         plate_cutscene('to_fuse')
         settings.constraints = [339, -19.5]
 
-def click_snowcat_plate():
-    if settings.constraints == [None, None] and settings.hang_screws != 4:
-        snowcat_plate_cutscene('down')
-        settings.constraints = [92,0]
-    elif settings.hang_screws == 4:
-        take_object(None)
-        snowcat_plate_cutscene('to_fuse')
-        settings.constraints = [92, 0]
-
 def click_fusebox():
     if settings.g_bools['generator_fixed']:
         pass
@@ -185,23 +174,8 @@ def take_screwdriver(g_bool):
     take_object(g_bool)
     #Take in hand to do
 
-def take_fuel():
-    if not settings.g_bools['has_jerrycan']:
-        base.conversation.talk('needcan')
-        return
-    if not settings.g_bools['has_fuel']:
-        print("You filled the jerry can with fuel")
-        take_object('has_fuel', hide=False)
-    else:
-        base.conversation.talk('havefuel')
-
-def split_firewood():
-    if not settings.g_bools['firewood']:
-        take_object('firewood', hide=False)
-        base.conversation.talk('writing')
-        print("You split the firewood")
-    else:
-        print("I already split enough firewood")
+def take_padlock():
+    take_object('has_padlock')
 
 def refill_generator():
     if settings.g_bools['generator_fixed'] and settings.g_bools['power_off']:
@@ -228,6 +202,81 @@ def read_measurements():
         print("You read the weather measurements")
     else:
         print("You already measured the weather")
+
+def handle_padlock(place):
+    #place can be pocket/bolt
+    if settings.day == 1 or not settings.g_bools['has_padlock']:
+        return
+    padlock = find_model('padlock')
+    if place == 'pocket':
+        padlock.model.set_pos(0,0,-10)
+    elif place == 'bolt':
+        padlock.model.set_pos_hpr(58.21,-3.41,0.68,342,0,5)
+
+def open_shed_door():
+    door = [x for x in settings.scene.models if 'sheddoor' in x.name]
+    door = door[0]
+    bolt = get_model().model
+    start_pos = (59.2,-1.3,0.5)
+    end_pos = (60,1,0.5)
+    bolt_start_pos = (59.04,-1.44,0.92)
+    bolt_end_pos = (59.78,0.74,0.92)
+    bolt = get_model().model
+
+    if not settings.g_bools['shed_door_open']:
+        Sequence(Wait(1.1), LerpPosInterval(door.model, 2, end_pos)).start()
+        Sequence(Func(handle_padlock, 'pocket'), Wait(0.1), LerpHprInterval(bolt, 1, (338.5,0,90)), LerpPosInterval(bolt, 2, bolt_end_pos)).start()
+        settings.g_bools['shed_door_open'] = True
+    elif base.player.body.get_x() < 58:
+        Sequence(LerpPosInterval(door.model, 2, start_pos)).start()
+        Sequence(LerpPosInterval(bolt, 2, bolt_start_pos), LerpHprInterval(bolt, 1, (338.5,0,0)), Wait(0.2), Func(handle_padlock, 'bolt')).start()
+        settings.g_bools['shed_door_open'] = False
+
+''' #################
+    ###   HANGAR  ###
+    #################
+'''
+
+def click_snowcat_plate():
+    if settings.constraints == [None, None] and settings.hang_screws != 4:
+        snowcat_plate_cutscene('down')
+        settings.constraints = [92,0]
+    elif settings.hang_screws == 4:
+        take_object(None)
+        snowcat_plate_cutscene('to_fuse')
+        settings.constraints = [92, 0]
+
+def take_fuel():
+    if not settings.g_bools['has_jerrycan']:
+        base.conversation.talk('needcan')
+        return
+    if not settings.g_bools['has_fuel']:
+        print("You filled the jerry can with fuel")
+        take_object('has_fuel', hide=False)
+    else:
+        base.conversation.talk('havefuel')
+
+def split_firewood():
+    if not settings.g_bools['firewood']:
+        take_object('firewood', hide=False)
+        base.conversation.talk('writing')
+        print("You split the firewood")
+    else:
+        print("I already split enough firewood")
+
+
+''' ################
+    ### INTERIOR ###
+    ################
+'''
+
+
+def put_on_clothes(test):
+    if not settings.g_bools['clothes_on']:
+        take_object('clothes_on')
+
+def take_clipboard():
+    take_object('has_clipboard')
 
 def use_radio():
     if settings.g_bools['daily_tasks_done']:
@@ -303,26 +352,10 @@ def reset_g_bools():
         settings.g_bools[i] = False
     
 
-def open_shed_door():
-    door = [x for x in settings.scene.models if 'sheddoor' in x.name]
-    door = door[0]
-    bolt = get_model().model
-    start_pos = (59.2,-1.3,0.5)
-    end_pos = (60,1,0.5)
-    bolt_start_pos = (59.04,-1.44,0.92)
-    bolt_end_pos = (59.78,0.74,0.92)
-    bolt = get_model().model
-
-    if not settings.g_bools['shed_door_open']:
-        Sequence(Wait(1), LerpPosInterval(door.model, 2, end_pos)).start()
-        Sequence(LerpHprInterval(bolt, 1, (338.5,0,90)), LerpPosInterval(bolt, 2, bolt_end_pos)).start()
-        settings.g_bools['shed_door_open'] = True
-    elif base.player.body.get_x() < 58:
-        Sequence(LerpPosInterval(door.model, 2, start_pos)).start()
-        Sequence(LerpPosInterval(bolt, 2, bolt_start_pos), LerpHprInterval(bolt, 1, (338.5,0,0))).start()
-        settings.g_bools['shed_door_open'] = False
-
-### Cutscenes ###
+''' #################
+    ### CUTSCENES ###
+    #################
+'''
     
 def sleep_cutscene():
     base.cutscene([{'h':85, 'p':-5, 'y':-10.5, 'd':2},

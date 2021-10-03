@@ -30,6 +30,7 @@ g_bools = {
     'has_bad_fuse' : False,
     'has_fuse' : True,
     'generator_fixed': False,
+    'has_padlock' : False
     }
 
 #Environmental variables
@@ -73,7 +74,7 @@ show_env = True
 show_fps = True
 show_col = False
 dev_control = True
-noclip = False
+noclip = True
 
 #Functionality variables
 dt = 0
