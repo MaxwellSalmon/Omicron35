@@ -14,7 +14,7 @@ g_bools = {
     'firewood' : False,
     'generator_refilled' : False,
     'weather_measured' : False,
-    'daily_tasks_done': True,
+    'daily_tasks_done': False,
     'has_eaten' : False,
     'radio_used' : False,
     'radio_reported': False,
@@ -23,20 +23,20 @@ g_bools = {
     'radio_conv_done' : False,
     'shed_door_open' : False,
     'shed_door_forced' : False,
-    'power_off' : True,
+    'power_off' : False,
     'generator_plate_removed' : False,
-    'has_stardriver' : True,
+    'has_stardriver' : False,
     'has_screwdriver' : False,
     'has_bad_fuse' : False,
-    'has_fuse' : True,
+    'has_fuse' : False,
     'generator_fixed': False,
     'has_padlock' : False
     }
 
 #Environmental variables
-environment = 'exte_d2_t1'
-day = 2
-time = 2
+environment = 'inte_d1_t1'
+day = 1
+time = 1
 sun = True
 #light, medium, heavy
 snow = ""
@@ -73,8 +73,8 @@ hang_screws = 0
 show_env = True
 show_fps = True
 show_col = False
-dev_control = True
-noclip = True
+dev_control = False
+noclip = False
 
 #Functionality variables
 dt = 0

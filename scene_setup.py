@@ -67,7 +67,7 @@ def create_base_models(scene_name):
                   Model('exterior/culext', culling='both', ambience='amb/buzz.wav', stop_ambience_on=['power_off']),
                   Model('exterior/generatortank', tag='interactive', function=functions.refill_generator, audio='sfx/generatortank.wav', ambience='amb/generator_motor.wav', stop_ambience_on=['power_off']),
                   Model('exterior/box', tag='interactive', culling='both', function=functions.read_measurements, audio='default.wav'),
-                  Model('exterior/sheddoor', solid=True, pos=(59.2,-1.3,0.5), hpr=(339,0,0)),
+                  Model('exterior/sheddoor', solid=True, pos=(59.2,-1.3,0.5), hpr=(339,0,0), audio=['sfx/gate_open.wav', 'sfx/gate_close.wav']),
                   Model('exterior/bolt', tag='interactive', pos=(59.04,-1.44,0.92), hpr=(338.5,0,0), function=functions.open_shed_door),
                   Model('exterior/junk'),
                   Model('skybox', scale=21, pos=(0,0,-200)),

@@ -53,9 +53,9 @@ class Model():
             #Attach audio source to model. Use audio emitter is model is not centered.
             self.create_audio_emitter(model)
             if self.audio_emitter:
-                self.audio = base.superloader.load_sound_queue((kg('audio'), self.audio_emitter, 1, self, self.audio_volume))
+                self.audio = self.create_audio(kg('audio'), self.audio_emitter)
             else:
-                self.audio = base.superloader.load_sound_queue((kg('audio'), model, 1, self, self.audio_volume))
+                self.audio = self.create_audio(kg('audio'), model)
         if kg('ambience'):
             self.create_audio_emitter(model)
             if self.audio_emitter:
@@ -107,6 +107,14 @@ class Model():
                 emitter.set_pos(epos[0], epos[1], epos[2])
                 self.audio_emitter = emitter
 
+    def create_audio(self, files, emitter):
+        if not isinstance(files, list):
+            files = [files]
+        if len(files) == 1:
+            return base.superloader.load_sound_queue((files[0], emitter, 1, self, self.audio_volume))
+        elif len(files) > 1:
+            return [base.superloader.load_sound_queue((x, emitter, 1, self, self.audio_volume)) for x in files]
+
     def get_tight_pos(self, model):
         bmin, bmax = model.get_tight_bounds()
         avg = []
@@ -115,6 +123,11 @@ class Model():
             avg.append((bmin[i] + bmax[i]) / 2)
         return avg 
 
-    def play_audio(self):
+    def play_audio(self, ind=None):
         if self.audio:
-            self.audio.play()
+            if isinstance(self.audio, list):
+                print("No index, but multiple audio files on", self.name)
+                assert ind
+                self.audio[ind].play()
+            else:
+                self.audio.play()

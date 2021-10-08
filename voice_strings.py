@@ -56,7 +56,7 @@ subtitles = {
         'fuse_fits' : "It fits! Let's hope it works. Now let's restart the generaotr.",
         'power_back' : "Yes! It worked! The power is back on.",
         'find_padlock' : "Hmm... Perhaps I should lock the door to make sure it doesn't open again. There should be a padlock somewhere in there.",
-        'door_locked' : "Now the door won't open by itself. Back to bed!",
+        'gate_locked' : "Now the gate won't open by itself. Back to bed!",
         'lock_gate' : "I better lock the shed gate before going inside.",
         
         #Sound effects below.

@@ -212,6 +212,7 @@ def handle_padlock(place):
         padlock.model.set_pos(0,0,-10)
     elif place == 'bolt':
         padlock.model.set_pos_hpr(58.21,-3.41,0.68,342,0,5)
+        base.conversation.talk('gate_locked') ## Perhaps make it only say this once.
 
 def open_shed_door():
     door = [x for x in settings.scene.models if 'sheddoor' in x.name]
@@ -224,11 +225,11 @@ def open_shed_door():
     bolt = get_model().model
 
     if not settings.g_bools['shed_door_open']:
-        Sequence(Wait(1.1), LerpPosInterval(door.model, 2, end_pos)).start()
+        Sequence(Wait(1.1), Func(door.play_audio, '0'), LerpPosInterval(door.model, 2, end_pos)).start()
         Sequence(Func(handle_padlock, 'pocket'), Wait(0.1), LerpHprInterval(bolt, 1, (338.5,0,90)), LerpPosInterval(bolt, 2, bolt_end_pos)).start()
         settings.g_bools['shed_door_open'] = True
     elif base.player.body.get_x() < 58:
-        Sequence(LerpPosInterval(door.model, 2, start_pos)).start()
+        Sequence(Func(door.play_audio, '1'), LerpPosInterval(door.model, 2, start_pos)).start()
         Sequence(LerpPosInterval(bolt, 2, bolt_start_pos), LerpHprInterval(bolt, 1, (338.5,0,0)), Wait(0.2), Func(handle_padlock, 'bolt')).start()
         settings.g_bools['shed_door_open'] = False
 
