@@ -314,6 +314,7 @@ def take_can():
 
 def sleep():
     if settings.g_bools['can_sleep'] and settings.time != 3:
+        print("Sleeping Evening")
         settings.time = 3
         if not settings.dev_control:
             Sequence(Func(sleep_cutscene), Wait(8), Func(fade,'out',3), Wait(3),
@@ -323,6 +324,7 @@ def sleep():
             base.superloader.change_textures()
             
     elif settings.g_bools['can_sleep'] and settings.time == 3:
+        print("Sleeping Night")
         settings.time = 1
         settings.day += 1
         reset_g_bools()
@@ -346,7 +348,8 @@ def let_it_snow():
 
 #This function resets g_bools from settings.py each day
 def reset_g_bools():
-    no_reset = [] #Don't reset bools in this list
+    no_reset = ['woken_up',
+                ] #Don't reset bools in this list
     for i in settings.g_bools:
         if i  in no_reset:
             continue
@@ -359,12 +362,14 @@ def reset_g_bools():
 '''
     
 def sleep_cutscene():
+    print("Sleep cutscene")
     base.cutscene([{'h':85, 'p':-5, 'y':-10.5, 'd':2},
                        {'p':0, 'y':-11,'z':-1, 'd':2},
                        {'h':0,'p':90,'r':0, 'x':-0.36, 'y':-12.36, 'z':-1.5, 'd':2}])
     settings.constraints = [0,40]
         
 def d1_wake_up():
+    print("d1 wakeup cutscene")
     sequence = [{'h':0,'p':90,'r':0, 'x':-0.36, 'y':-12.36, 'z':-1.5, 'd':1},
                 {'p':0, 'y':-11,'z':-1, 'd':2},
                 {'h':85, 'p':-5, 'y':-10.5, 'd':2},
@@ -377,6 +382,7 @@ def d1_wake_up():
     settings.g_bools['woken_up'] = True
 
 def night_wake_up():
+    print("night wakeup cutscene")
     base.cutscene([{'p':0, 'y':-12,'z':-1, 'd':2},
                    {'h':85, 'p':-5, 'y':-10.5, 'd':2},
                    {'x':-2.3, 'p':-8, 'z':0, 'd':2},])

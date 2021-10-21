@@ -98,7 +98,7 @@ def create_specific_models(scene_name):
                   ]
 
     #Exterior
-    elif scene_name[:-3] == 'exte_d1':
+    elif scene_name[:-3] == 'exte_d1' or scene_name=='exte_d2_t1':
         models = [Model('interior/door', name='ext2int_door', tag='interactive', pos=(10.3,0.1,0.4), scale=0.5, solid=True,
                         function=[functions.change_scene, {'to_scene':'inte_d1_t1', 'bools' : ['daily_tasks_done', '!shed_door_open'], 'time': 2, 'voices':['not_done_with_tasks', 'shed_door_open']}], audio='sfx/door.wav',),
                   Model('interior/door', name='ext2hang_door', tag='interactive', pos=(77.4,40.25,0.65), hpr=(202.3,0,0), scale=0.5, solid=True,
@@ -111,7 +111,7 @@ def create_specific_models(scene_name):
                   Model('exterior/padlock', name='padlock', pos=(62.83,-8.26,1.05), hpr=(250,0,90), tag='not_interactive'),
                   Model('exterior/screwdriver', name="screwdriver3", tag='not_interactive'),
                   ]
-    elif scene_name[:-3] == 'exte_d2':
+    elif scene_name == 'exte_d2_t1' or scene_name=='exte_d2_t3':
         models = [Model('interior/door', name='ext2int_door', tag='interactive', pos=(10.3,0.1,0.4), scale=0.5, solid=True,
                         function=[functions.change_scene, {'to_scene':'inte_d2_t1', 'bools' : ['daily_tasks_done', '!shed_door_open', 'has_padlock'], 'time': 2, 'voices':['not_done_with_tasks', 'shed_door_open', 'lock_gate']}], audio='sfx/door.wav',),
                   Model('interior/door', name='ext2hang_door', tag='interactive', pos=(77.4,40.25,0.65), hpr=(202.3,0,0), scale=0.5, solid=True,
