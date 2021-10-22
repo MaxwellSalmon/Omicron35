@@ -70,7 +70,7 @@ class Weather:
         for snow in self.wsnows:
             snow.start(parent=render, renderParent=render)
         if settings.environment[:4] == 'inte':
-            self.wsnows[0].set_pos(-3,12,4)
+            self.wsnows[0].set_pos(-3,17,4) #kitchen?
             self.wsnows[1].set_pos_hpr(-9,0,5,90,0,0)
             self.wsnows[2].set_pos(-3,-16.2,4)
             self.wsnows[3].set_pos(9.5,-8,4)
@@ -109,7 +109,7 @@ class Weather:
     def set_fog_color(self):
         if settings.time == 1:
             self.fog.setColor(0.9,0.9,0.9)
-        elif setting.time == 3:
+        elif settings.time == 3:
             self.fog.setColor(0.1,0.1,0.2)
 
     def shed_snow(self):

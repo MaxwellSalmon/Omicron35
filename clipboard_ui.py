@@ -27,6 +27,10 @@ class ClipboardUI:
     def determine_values(self):
         if settings.day == 1:
             return 'd1_values.png'
+        if settings.day == 2:
+            return 'd2_values.png'
+        if settings.day == 3:
+            return 'd3_values.png'
         
 
     def destroy_appendix(self):

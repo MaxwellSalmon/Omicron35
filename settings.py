@@ -73,8 +73,8 @@ hang_screws = 0
 show_env = True
 show_fps = True
 show_col = False
-dev_control = False
-noclip = False
+dev_control = True
+noclip = True
 
 #Functionality variables
 dt = 0
