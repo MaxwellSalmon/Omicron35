@@ -14,6 +14,7 @@ def setup(name, base_scene, base_colliders):
     temp_scene.triggers = create_triggers(name)
     
     settings.scenes[name] = temp_scene
+    print("creating", name)
 
 def create_scenes(day):    
     if day == 1:
@@ -28,6 +29,8 @@ def create_scenes(day):
         setup("inte_d2_t1", os.path.join('models', 'interior.egg'), colliders.house_interior)
 
         setup("exte_d2_t1", os.path.join('models', 'exterior.egg'), colliders.exterior)
+
+        setup("exte_d2_t2", os.path.join('models', 'exterior.egg'), colliders.exterior)
 
         setup("hang_d2_t1", os.path.join('models', 'hangar.egg'), colliders.hangar)
 
@@ -112,8 +115,8 @@ def create_specific_models(scene_name):
                   Model('exterior/screwdriver', name="screwdriver3", tag='not_interactive'),
                   ]
         
-    elif scene_name == 'exte_d2_t1': #This is almost the same as exte_d1 - perhaps make a new file
-        models = [Model('interior/door', name='ext2int_door', tag='interactive', pos=(10.3,0.1,0.4), scale=0.5, solid=True,
+    elif scene_name == 'exte_d2_t1':
+        models = [Model('interior/door', name='ext2int_door_nopadlock', tag='interactive', pos=(10.3,0.1,0.4), scale=0.5, solid=True,
                         function=[functions.change_scene, {'to_scene':'inte_d2_t1', 'bools' : ['daily_tasks_done', '!shed_door_open'], 'time': 2, 'voices':['not_done_with_tasks', 'shed_door_open']}], audio='sfx/door.wav',),
                   Model('interior/door', name='ext2hang_door', tag='interactive', pos=(77.4,40.25,0.65), hpr=(202.3,0,0), scale=0.5, solid=True,
                         function=[functions.change_scene, {'to_scene':'hang_d2_t1'}], audio='sfx/door.wav'),
@@ -126,7 +129,7 @@ def create_specific_models(scene_name):
                   Model('exterior/screwdriver', name="screwdriver3", tag='not_interactive'),
                   ]
         
-    elif scene_name == 'exte_d2_t2' or scene_name=='exte_d2_t3': #Never occuring...
+    elif scene_name[:-3] == 'exte_d2':
         models = [Model('interior/door', name='ext2int_door', tag='interactive', pos=(10.3,0.1,0.4), scale=0.5, solid=True,
                         function=[functions.change_scene, {'to_scene':'inte_d2_t1', 'bools' : ['daily_tasks_done', '!shed_door_open', 'has_padlock'], 'time': 2, 'voices':['not_done_with_tasks', 'shed_door_open', 'lock_gate']}], audio='sfx/door.wav',),
                   Model('interior/door', name='ext2hang_door', tag='interactive', pos=(77.4,40.25,0.65), hpr=(202.3,0,0), scale=0.5, solid=True,

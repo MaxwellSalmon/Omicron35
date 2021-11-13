@@ -188,6 +188,8 @@ class SuperLoader():
         if str(sound)[:14] == 'NullAudioSound':
             print(f"Audio file {path} is not found")
             sound = base.audio3d.loadSfx('sounds/voices/default.wav')
+        elif obj == '**removed**':
+            print("Oof! The object has beed removed!")
         base.audio3d.attachSoundToObject(sound, obj)
 
         if args:

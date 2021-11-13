@@ -14,16 +14,31 @@ def get_model():
 def find_model(name):
     '''Fetch another model object from the current scene by name'''
     model = [x for x in settings.scene.models if x.name == name]
+    fuzz = [x for x in settings.scene.models if name in x.name]
     if len(model) == 1:
         return model[0]
     elif len(model) > 1:
         print("Oops! There seems to be multiple models with name", name)
+    elif len(fuzz) == 1:
+        print("Found fuzzy match", fuzz[0].name)
+        return fuzz[0]
     elif not model:
         print("Could not fetch model", name)
+
+def find_subscene(scene_name):
+    #Change to time specific scene
+    target_scene = scene_name[:-1]+str(settings.time)
+    if target_scene in settings.scenes:
+        return target_scene
+    return scene_name
+    
 
 def change_scene(to_scene, **kwargs):
     kw = kwargs.get
     voice_index= None
+
+    #Check if to_scene has a specific sub-scene
+    to_scene = find_subscene(to_scene)
 
     #Check if all bools are true
     if 'bools' in kwargs:
