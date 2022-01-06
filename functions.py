@@ -1,15 +1,18 @@
 import settings, voice_strings
 from direct.showbase.Transitions import Transitions
 from direct.interval.IntervalGlobal import *
+import model
 
 #This script contains functions which execute when interacting with an object or entering a scene.
-
 def get_model():
     '''Get the model object currently interacted with'''
     model = [x for x in settings.scene.models if x.model == settings.picked_obj]
     if model:
         return model[0]
+    
     print("Could not fetch model ", settings.picked_obj)
+    return base.default_model
+    
 
 def find_model(name):
     '''Fetch another model object from the current scene by name'''
@@ -480,6 +483,19 @@ def bathroom_window_trigger():
     if settings.g_bools['power_off']:
         base.conversation.talk('bathroom_window')
 
+
+### Developer Function ###
+
+def perform_tasks():
+    if not settings.dev_control:
+        return
+    
+    bools = ['daily_tasks_done', 'can_sleep']
+
+    for i in bools:
+        settings.g_bools[i] = True
+
+    print("Tasks done, sleep tight.")
 
 
 

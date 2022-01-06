@@ -39,7 +39,7 @@ class SuperLoader():
             self.destroy_scene()
             base.conversation.delete_voices()
             scene_setup.create_scenes(settings.day)
-            self.load_audio3d()
+            
 
         self.stop_ambience()
         settings.environment = scene_name
@@ -54,6 +54,8 @@ class SuperLoader():
             self.load_mouse()
             self.load_light()
             self.change_textures()
+        if newday:
+            self.load_audio3d()
             
 
         self.show_env()
@@ -128,6 +130,7 @@ class SuperLoader():
                 model.model.reparent_to(render)
 
     def destroy_models(self):
+        print("Destroying models!")
         for model in settings.scene.models:
             model.model.removeNode()
             del model
@@ -188,8 +191,10 @@ class SuperLoader():
         if str(sound)[:14] == 'NullAudioSound':
             print(f"Audio file {path} is not found")
             sound = base.audio3d.loadSfx('sounds/voices/default.wav')
-        elif obj == '**removed**':
+            
+        elif str(obj) == '**removed**':
             print("Oof! The object has beed removed!")
+        
         base.audio3d.attachSoundToObject(sound, obj)
 
         if args:

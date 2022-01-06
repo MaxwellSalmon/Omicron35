@@ -33,6 +33,8 @@ class Conversation:
         
 
     def talk(self, conversation): #Has to be redone, perhaps.
+        if settings.skip_convs:
+            return
         if self.conv_sequence.isPlaying():
             return
         self.conv_sequence = Sequence()

@@ -1,5 +1,5 @@
 from math import radians, sin, cos
-import random
+import random, functions
 from direct.showbase import DirectObject
 from direct.gui.OnscreenImage import OnscreenImage
 from direct.task import Task
@@ -145,7 +145,7 @@ class Player(DirectObject.DirectObject):
 
         base.accept(settings.inventory_btn, self.clipboard.open_ui)
         base.accept(settings.sprint_btn, self.speed_multiplier)
-        
+        base.accept(settings.tasks_done_btn, functions.perform_tasks)        
 
         return Task.cont
 

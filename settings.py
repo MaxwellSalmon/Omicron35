@@ -14,11 +14,11 @@ g_bools = {
     'firewood' : False,
     'generator_refilled' : False,
     'weather_measured' : False,
-    'daily_tasks_done': True,
+    'daily_tasks_done': False,
     'has_eaten' : False,
     'radio_used' : False,
     'radio_reported': False,
-    'can_sleep' : True,
+    'can_sleep' : False,
     'has_taken_can': False,
     'radio_conv_done' : False,
     'shed_door_open' : False,
@@ -48,6 +48,7 @@ strafe_left_btn = KeyboardButton.ascii_key('a')
 backward_btn = KeyboardButton.ascii_key('s')
 strafe_right_btn = KeyboardButton.ascii_key('d')
 sprint_btn = 'lshift'
+tasks_done_btn = 'p'
 fov_up_dwn = ('arrow_up', 'arrow_down')
 fly_up_dwn = ('space', 'c')
 inventory_btn = 'tab'
@@ -74,6 +75,7 @@ show_env = True
 show_fps = True
 show_col = False
 dev_control = True
+skip_convs = False
 noclip = True
 
 #Functionality variables
