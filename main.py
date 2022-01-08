@@ -7,7 +7,7 @@ from direct.interval.IntervalGlobal import *
 from direct.filter.CommonFilters import CommonFilters #temp?
 
 import scene_setup, manager, weather, text, voice_strings, conversation_gui
-import model
+import model, console
 from superloader import *
 from player import *
 import settings
@@ -17,6 +17,7 @@ class MyApp(ShowBase):
     def __init__(self):
         ShowBase.__init__(self)
         base.free_mouse()
+        self.console = console.Console()
 
         self.weather = weather.Weather()
         self.interactive_objects = render.attachNewNode("interactive_objects")
@@ -107,7 +108,7 @@ class FreeMouse(DirectObject.DirectObject):
 
     def __init__(self):
         self.accept('escape', app.free_mouse)
-        self.accept('g', self.move_camera)
+        self.accept(settings.console_btn, base.console.open_console)
         
         if settings.dev_control:
             self.accept(settings.fov_up_dwn[0], self.add_fov, [-10])

@@ -144,8 +144,7 @@ class Player(DirectObject.DirectObject):
         self.fps_camera(mpos)
 
         base.accept(settings.inventory_btn, self.clipboard.open_ui)
-        base.accept(settings.sprint_btn, self.speed_multiplier)
-        base.accept(settings.tasks_done_btn, functions.perform_tasks)        
+        base.accept(settings.sprint_btn, self.speed_multiplier)      
 
         return Task.cont
 

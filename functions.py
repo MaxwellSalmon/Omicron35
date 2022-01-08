@@ -484,19 +484,5 @@ def bathroom_window_trigger():
         base.conversation.talk('bathroom_window')
 
 
-### Developer Function ###
-
-def perform_tasks():
-    if not settings.dev_control:
-        return
-    
-    bools = ['daily_tasks_done', 'can_sleep']
-
-    for i in bools:
-        settings.g_bools[i] = True
-
-    print("Tasks done, sleep tight.")
-
-
 
 

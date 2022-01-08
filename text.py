@@ -4,10 +4,16 @@ from panda3d.core import *
 
 class Text:
 
-    def __init__(self):
+    def __init__(self, align='center', wordwrap=30):
+        if align == 'center':
+            align = TextNode.ACenter
+        elif align == 'left':
+            align = TextNode.ALeft
+
+        
         string = ''
-        self.text = OnscreenText(text=string, pos=(0, -0.8), scale=0.07, align=TextNode.ACenter,
-                                  wordwrap=30, fg=(255,255,255,1), shadow=(0,0,0,0.8), mayChange=True)
+        self.text = OnscreenText(text=string, pos=(0, -0.8), scale=0.07, align=align,
+                                  wordwrap=wordwrap, fg=(255,255,255,1), shadow=(0,0,0,0.8), mayChange=True)
 
     def new_text(self, string):
         self.text.text = string

@@ -48,7 +48,7 @@ strafe_left_btn = KeyboardButton.ascii_key('a')
 backward_btn = KeyboardButton.ascii_key('s')
 strafe_right_btn = KeyboardButton.ascii_key('d')
 sprint_btn = 'lshift'
-tasks_done_btn = 'p'
+console_btn = 'f1'
 fov_up_dwn = ('arrow_up', 'arrow_down')
 fly_up_dwn = ('space', 'c')
 inventory_btn = 'tab'
@@ -58,6 +58,7 @@ fov = 120
 constraints = [None,None]
 free_mouse = False
 ui_open = False
+console_open = False
 
 #Game variables
 #free/paid/pirated/source
@@ -76,7 +77,7 @@ show_fps = True
 show_col = False
 dev_control = True
 skip_convs = False
-noclip = True
+noclip = False
 
 #Functionality variables
 dt = 0
