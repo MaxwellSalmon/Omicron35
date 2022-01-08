@@ -81,7 +81,7 @@ b = blend mode - 'easeIn', 'easeOut', 'noBlend', default is 'easeInOut'
 Note, that the player's p value can only be between -90 and 90.<br>
 Cutscenes are normally created in **functions.py**, reffering to base.
 
-### Creating conversations and voices:
+### Creating conversations and voices: (Revise)
 The script **conversation.py** contains voice classes for the player and the radio - will likely not change. 
 When the player speaks through the radio, they can be provided with conversation options. The conversation is usually initialised in **manager.py** but can be done anywhere with the call ```base.conversation.talk(string)``` where the string is a name of a conversation from **voice_strings.py**.
 This will create a sequence, which plays. After it is done, one may create a choice for the player using ```base.conv_gui.choice((string, string))``` where the strings are the text seen on the buttons. In **voice_strings.py**, conversations are  created by having a list of subtitle keys in the dictionary ```conversations```.
@@ -117,6 +117,10 @@ I also made a simple CLI for getting an overview in textures. From the command p
 texcheck.py <interior/exterior/hangar>
 ```
 This will show the different times for a scene with unique textures, missing textures and general texture irregularities. The argument for the scene has some shortcuts, like `i`, `e` and `h`. 
+
+### The developer console
+Press 'f1' to open the developer console. While in here, type '?' and enter to see a list of commands. To see the usage of a command, type '? command'.
+To add a new command, go to `commands.py` and write your function, which needs to return a string. In The two dictionaries, you write which keyword should trigger each warning and the help string for the command.
 
 
 ### License

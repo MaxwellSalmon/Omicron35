@@ -41,6 +41,21 @@ def center_hpr():
     base.camera.setHpr(0,0,0)
     return "Camera HPR set to (0,0,0)"
 
+def show_cols():
+    settings.show_col = not settings.show_col
+    base.superloader.load_collision_scene()
+    return f"Toggling show collisions to {settings.show_col}"
+
+def get_pos():
+    pos = base.player.body.get_pos()
+    hpr = base.player.camera.get_hpr()
+    return f"Player position: ({pos[0]:.2f}, {pos[1]:.2f}, {pos[2]:.2f})\n\tPlayer HPR:({hpr[0]:.2f}, {hpr[1]:.2f}, {hpr[2]:.2f})"
+
+def get_prog():
+    path = settings.conversation_path
+    prog = settings.conversation_progress
+    return f"Path: {path}, progress: {prog}"
+
 commands_dict = {
     'help' : help_func,
     '?' : help_func,
@@ -50,6 +65,9 @@ commands_dict = {
     'noclip' : toggle_noclip,
     'devc' : toggle_dev,
     'center' : center_hpr,
+    'showcol' : show_cols,
+    'pos' : get_pos,
+    'prog' : get_prog,
     }
 
 help_strings = {
@@ -61,4 +79,7 @@ help_strings = {
     'noclip' : "Toggles noclip. Space to fly up, 'c' to fly down.",
     'devc' : "Toggles dev control. (Skips cutscenes, allow sprint with lshift)",
     'center' : "Sets camera hpr to (0,0,0)",
+    'showcol' : "Turn on visible collider primitives",
+    'pos' : "Prints player position and camera HPR",
+    'prog' : "Prints conversation path and progress used for radio conversations.",
     }
