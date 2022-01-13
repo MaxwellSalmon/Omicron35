@@ -41,9 +41,9 @@ class ConversationState():
             if type(self.transitions) == list:
                 assert len(self.transitions)==1, f"ConversationState {self.name}: End state needs exactly one transition!"
                 self.transition = self.transition[0]
-        if None in self.transitions:
+        if type(self.transitions)==list and None in self.transitions:
             print(f"ConversationState {self.name}: Warning! 'None' found in transitions.")
-        if None in self.button_strings:
+        if type(self.button_strings)==list and None in self.button_strings:
             print(f"ConversationState {self.name}: Warning! 'None' found in button strings.")
         
         
