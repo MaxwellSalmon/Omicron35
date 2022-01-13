@@ -7,7 +7,7 @@ from direct.interval.IntervalGlobal import *
 from direct.filter.CommonFilters import CommonFilters #temp?
 
 import scene_setup, manager, weather, text, voice_strings, conversation_gui
-import model, console
+import model, console, conversation_flow
 from superloader import *
 from player import *
 import settings
@@ -29,6 +29,7 @@ class MyApp(ShowBase):
         self.superloader.load_audio3d()
         self.superloader.start_ambience()
         self.default_model = Model('dev/sphere.egg', name='default')
+        conversation_flow.initialise_states()
         #base.scene.flattenStrong()
         
         self.taskMgr.add(self.player.control_task, "ControlTask")

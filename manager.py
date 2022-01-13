@@ -3,7 +3,6 @@
 
 from direct.task import Task
 import settings, functions, voice_strings
-import conversation_manager
 
 def manage(task):
 
@@ -87,28 +86,25 @@ def force_shed_ext_door_open():
             door.model.set_pos(60,1,0.5)
             bolt.model.set_pos(59.78,0.74,0.92)
             bolt.model.set_hpr(338.5,0,90)
-            
-#Which conversation should be started?
-def determine_conversation():
-    return 'radio_day' + str(settings.day)
+    
 
 #Radio control function - Finite state machine, I think.
 def talk_in_radio():
-    path = settings.conversation_path
-    prog = settings.conversation_progress
     is_playing = base.conversation.conv_sequence.isPlaying()
 
-    #Start the conversation after having moved to radio
+    #Check if radio is clicked, you moved to seat AND you have not reported yet.
     if settings.g_bools['radio_used'] and not base.pos_seq.isPlaying() and not settings.g_bools['radio_reported']:
         settings.g_bools['radio_reported'] = True
-        sound = determine_conversation()
-        base.conversation.talk(sound)
+        if not settings.conversation_ongoing:
+            settings.conversation_ongoing = True
+            settings.conversation_state.manage()
 
-    elif settings.g_bools['radio_reported'] and not is_playing:
-        conversation_manager.gui_choices(path)
+    #Radio was clicked, no conversation is playing, conversation has not ended.
+    elif settings.g_bools['radio_reported'] and not is_playing and settings.conversation_ongoing:
+        settings.conversation_state.manage()
 
-        #Stand up when conversation is over.
-        if not settings.g_bools['radio_conv_done'] and not base.conv_gui.shown:
-            settings.g_bools['radio_conv_done'] = True
-            functions.radio_cutscene('stand')            
+    #Radio conversation is not done, radio has been used and conversation is not ongoing.
+    elif not settings.g_bools['radio_conv_done'] and settings.g_bools['radio_reported'] and not settings.conversation_ongoing:
+        settings.g_bools['radio_conv_done'] = True
+        functions.radio_cutscene('stand')            
         

@@ -55,8 +55,7 @@ class SuperLoader():
             self.load_light()
             self.change_textures()
         if newday:
-            self.load_audio3d()
-            
+            self.load_audio3d()            
 
         self.show_env()
         

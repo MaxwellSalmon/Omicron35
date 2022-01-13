@@ -81,11 +81,26 @@ b = blend mode - 'easeIn', 'easeOut', 'noBlend', default is 'easeInOut'
 Note, that the player's p value can only be between -90 and 90.<br>
 Cutscenes are normally created in **functions.py**, reffering to base.
 
-### Creating conversations and voices: (Revise)
-The script **conversation.py** contains voice classes for the player and the radio - will likely not change. 
-When the player speaks through the radio, they can be provided with conversation options. The conversation is usually initialised in **manager.py** but can be done anywhere with the call ```base.conversation.talk(string)``` where the string is a name of a conversation from **voice_strings.py**.
-This will create a sequence, which plays. After it is done, one may create a choice for the player using ```base.conv_gui.choice((string, string))``` where the strings are the text seen on the buttons. In **voice_strings.py**, conversations are  created by having a list of subtitle keys in the dictionary ```conversations```.
-The keys for the subtitles should be file names. Does the name start with ```hq_```, the voice will belong to the radio.
+### Creating conversations and voices:
+In **voice_strings.py** you can create voice clips. You need to provide subtitles using the file name as key. In the dictionaru `conversations`, you will find sequences of speech, making up conversations between the player and HQ. Does the name start with ```hq_```, the voice will belong to the radio.
+To create a conversation with buttons for speech selection, edit **conversation_flow.py**. Here, you create conversation states.
+A conversation state consists of speech followed by buttons. Each button has a transition to another state.
+The arguments taken by a conversation state is the following:
+```
+name = string
+audio_sequence = string (key from voice_strings.py)
+button_strings = [strings shown on buttons]
+transitions = [strings with state names]
+end_state = bool
+```
+If `end_state` is true (false by default), no buttons will be shown and the player will stop the conversation. However, it still needs one transition, which will be the state when the player talks the next day.
+Below is an example of the state `day1` transitioning to two other states. 
+
+```
+CS('day1', 'radio_day1', ['What! Again?', 'bruh.'], ['day1_what_again', 'bruh']),
+CS('day1_what_again', 'radio_day1_2', None, 'day2', end_state=True),
+CS('bruh', 'radio_day1_3', None, 'day2', end_state=True),
+```
 
 ### Creating triggers:
 ```

@@ -2,7 +2,6 @@ from direct.gui.DirectGui import *
 from panda3d.core import WindowProperties
 from direct.gui.OnscreenText import OnscreenText
 import settings
-import conversation_manager
 import random
 
 class ConversationGUI:
@@ -25,15 +24,17 @@ class ConversationGUI:
                                   ))
         self.toggle_visibility()
 
-    def update_text(self, strings, prog):
+    def update_text(self, strings, transition_states):
         assert len(strings) == len(self.buttons)
         
         for index, i in enumerate(zip(self.buttons, strings)):
             i[0]['text'] = i[1]
-            i[0]['command'] = self.set_p
+            #i[0]['command'] = self.set_p
+            i[0]['command'] = self.transition
 
             #Choose button index as p value
-            i[0]['extraArgs'] = [index, prog[index]]
+            #i[0]['extraArgs'] = [index, prog[index]]
+            i[0]['extraArgs'] = [transition_states[index]]
 
     def toggle_visibility(self):
         for btn in self.buttons:
@@ -46,19 +47,29 @@ class ConversationGUI:
         self.shown = not self.shown
         base.free_mouse()
 
-    def set_p(self, p, prog): #p is not used.
-        settings.conversation_path += 1
-        settings.conversation_progress = prog
-        conversation_manager.talk_new_path()
+    def shuffle_buttons(self, strings, transitions):
+        temp = list(zip(strings, transitions))
+        random.shuffle(temp)
+        strings, transitions = zip(*temp)
+        return strings, transitions
+
+    def transition(self, state):
+        settings.conversation_state = settings.conversation_states[state]
         self.toggle_visibility()
         
-    #Args are ((string, int), (string, int))
-    def choice(self, args):
-        random.shuffle(args)
+
+##    def set_p(self, p, prog): #p is not used.
+##        settings.conversation_path += 1
+##        settings.conversation_progress = prog
+##        conversation_manager.talk_new_path()
+##        self.toggle_visibility()
+        
+    #Strings are shown on button, transition states show which state they go to.
+    def choices(self, strings, transition_states):
+        strings, transition_states = self.shuffle_buttons(strings, transition_states)
         if not self.shown:
-            self.create_buttons(len(args))
-            unzip_args = list(zip(*args))
-            self.update_text(unzip_args[0], unzip_args[1])
+            self.create_buttons(len(strings))
+            self.update_text(strings, transition_states)
 
 
         

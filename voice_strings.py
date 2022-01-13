@@ -10,6 +10,7 @@ subtitles = {
         'whatagain' : "What!? Again? You already delayed it once...",
         'hq_noted' : "Noted, Omicron 35, over and out.",
         'bastards' : "Those god damned... bastards.",
+        'bruh' : 'bruh.',
         
         #Conversation day 2
         'hq_letyouknow' : "Uh, we'll let you know. Over and out.",
@@ -69,6 +70,7 @@ boilerplate_conv = {
 
 conversations = {'radio_day1' : ['report', 'hq_greet', 'measurements', 'hq_delay'],
                  'radio_day1_2' : ['whatagain', 'hq_noted', 'bastards'],
+                 'radio_day1_3' : ['bruh'],
 
                  'radio_day2' : ['report', 'hq_greet', 'measurements', 'hq_noted', 'wait', 'hq_noise'],
                  'radio_day2_2' : ['yourday', 'hq_what'],

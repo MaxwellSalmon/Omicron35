@@ -59,6 +59,7 @@ constraints = [None,None]
 free_mouse = False
 ui_open = False
 console_open = False
+conversation_ongoing = False
 
 #Game variables
 #free/paid/pirated/source
@@ -66,8 +67,7 @@ game_version = "free"
 
 #Interaction variables
 picked_obj = None
-conversation_path = 0
-conversation_progress = 0
+conversation_state = None #State object
 shed_screws = 0
 hang_screws = 0
 
@@ -75,7 +75,7 @@ hang_screws = 0
 show_env = True
 show_fps = True
 show_col = False
-dev_control = True
+dev_control = False
 skip_convs = False
 noclip = False
 
@@ -86,3 +86,6 @@ change_sun = False
 #Scenes
 scenes = {}
 scene = None
+
+#Conversation states
+conversation_states = {}
