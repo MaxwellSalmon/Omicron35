@@ -59,6 +59,7 @@ subtitles = {
         'find_padlock' : "Hmm... Perhaps I should lock the door to make sure it doesn't open again. There should be a padlock somewhere in there.",
         'gate_locked' : "Now the gate won't open by itself. Back to bed!",
         'lock_gate' : "I better lock the shed gate before going inside.",
+        'generator_needs_fix' : "I need to get the power on first...",
         
         #Sound effects below.
         'writing' : '',

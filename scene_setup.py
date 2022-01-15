@@ -131,7 +131,7 @@ def create_specific_models(scene_name):
         
     elif scene_name[:-3] == 'exte_d2':
         models = [Model('interior/door', name='ext2int_door', tag='interactive', pos=(10.3,0.1,0.4), scale=0.5, solid=True,
-                        function=[functions.change_scene, {'to_scene':'inte_d2_t1', 'bools' : ['daily_tasks_done', '!shed_door_open', 'has_padlock'], 'time': 2, 'voices':['not_done_with_tasks', 'shed_door_open', 'lock_gate']}], audio='sfx/door.wav',),
+                        function=[functions.change_scene, {'to_scene':'inte_d2_t1', 'bools' : ['daily_tasks_done', '!shed_door_open', 'has_padlock', 'generator_fixed'], 'time': 2, 'voices':['not_done_with_tasks', 'shed_door_open', 'lock_gate', 'generator_needs_fix']}], audio='sfx/door.wav',),
                   Model('interior/door', name='ext2hang_door', tag='interactive', pos=(77.4,40.25,0.65), hpr=(202.3,0,0), scale=0.5, solid=True,
                         function=[functions.change_scene, {'to_scene':'hang_d2_t1'}], audio='sfx/door.wav'),
                   Model('exterior/screw1', name='screw1', tag='interactive', function=[functions.take_screw, {'screw_type':'shed'}]),

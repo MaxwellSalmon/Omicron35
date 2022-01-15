@@ -51,10 +51,13 @@ def get_pos():
     hpr = base.player.camera.get_hpr()
     return f"Player position: ({pos[0]:.2f}, {pos[1]:.2f}, {pos[2]:.2f})\n\tPlayer HPR:({hpr[0]:.2f}, {hpr[1]:.2f}, {hpr[2]:.2f})"
 
-def get_prog():
-    path = settings.conversation_path
-    prog = settings.conversation_progress
-    return f"Path: {path}, progress: {prog}"
+def get_state():
+    state_name = settings.conversation_state.name
+    return f"State: {state_name}"
+
+def skip_conv():
+    settings.skip_convs = not settings.skip_convs
+    return f"Skip conversations set to {settings.skip_convs}"
 
 commands_dict = {
     'help' : help_func,
@@ -67,7 +70,8 @@ commands_dict = {
     'center' : center_hpr,
     'showcol' : show_cols,
     'pos' : get_pos,
-    'prog' : get_prog,
+    'cstate' : get_state,
+    'skipconv' : skip_conv,
     }
 
 help_strings = {
@@ -81,5 +85,6 @@ help_strings = {
     'center' : "Sets camera hpr to (0,0,0)",
     'showcol' : "Turn on visible collider primitives",
     'pos' : "Prints player position and camera HPR",
-    'prog' : "Prints conversation path and progress used for radio conversations.",
+    'cstate' : "Prints the name of the current conversation state.",
+    'skipconv' : "Toggles option to skip conversations."
     }

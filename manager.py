@@ -55,6 +55,9 @@ def check_triggers():
         trigger.check()
 
 def cut_power():
+    if settings.g_bools['generator_fixed']:
+        #Don't run this function, if you already fixed it.
+        return
     if settings.g_bools['radio_conv_done'] and settings.g_bools['has_eaten'] and settings.g_bools['has_taken_can']:
         if not settings.g_bools['power_off']:
             settings.g_bools['power_off'] = True
@@ -75,7 +78,7 @@ def open_lod_shed_door():
         door.model.set_y(0)
 
 def force_shed_ext_door_open():
-    if settings.g_bools['shed_door_open']:
+    if settings.g_bools['shed_door_open'] and settings.g_bools['power_off']:
         if not settings.g_bools['shed_door_forced']: #only force open once
             settings.g_bools['shed_door_forced'] = True
 
