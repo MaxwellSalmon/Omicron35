@@ -4,7 +4,7 @@
   "maya2egg2018 showercurtain.mb showercurtain.egg"
 }
 <Texture> lambert16SG {
-  "../../../../../Python37/Portfolio/Panda3D/Omicron 35/textures/Day/HouseInterior/bathroomFurnish_curtaingood_outputCloth1.png"
+  "../../textures/Day/HouseInterior/bathroomFurnish_curtaingood_outputCloth1.png"
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
   <Scalar> minfilter { linear_mipmap_linear }

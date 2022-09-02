@@ -4,14 +4,14 @@
   "maya2egg2018 can5.mb can5.egg"
 }
 <Texture> lambert63SG {
-  "../../../Python37/Portfolio/Panda3D/Omicron 35/textures/Day/HouseInterior/soup2.png"
+  "textures/Day/HouseInterior/soup2.png"
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
   <Scalar> minfilter { linear_mipmap_linear }
   <Scalar> magfilter { linear }
 }
 <Texture> lambert62SG {
-  "../../../Python37/Portfolio/Panda3D/Omicron 35/textures/Day/HouseInterior/soup5.png"
+  "textures/Day/HouseInterior/soup5.png"
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
   <Scalar> minfilter { linear_mipmap_linear }

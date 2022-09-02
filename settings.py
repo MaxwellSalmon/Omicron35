@@ -34,7 +34,7 @@ g_bools = {
     }
 
 #Environmental variables
-environment = 'inte_d1_t1'
+environment = 'exte_d1_t1'
 day = 1
 time = 1
 sun = True
@@ -75,7 +75,7 @@ hang_screws = 0
 show_env = True
 show_fps = True
 show_col = False
-dev_control = False
+dev_control = True
 skip_convs = False
 noclip = False
 

@@ -270,10 +270,10 @@ class SuperLoader():
 
     def skybox_path(self):
         #Perhaps return different files, depending on day.
-        file = 'overcast.png'
+        path = 'overcast.png'
         if settings.time == 1:
             if settings.sun:
-                path = 'clearsun.png'
+                path = 'd1t1.png'
             else:
                 path = 'overcast.png'
         elif settings.time == 2:
@@ -282,9 +282,5 @@ class SuperLoader():
             else:
                 pass
         else:
-            if settings.sun:
-                pass
-            else:
-                path = 'overcastnight.png'
-
-        return 'textures/skymaps/'+file
+            path = 'overcastnight.png'
+        return 'textures/skymaps/'+path

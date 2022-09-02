@@ -21,8 +21,10 @@ def initialise_states():
         CS('day3_thermal', 'radio_day3_2', ["Any news about my replacement?", "What is your name?"], ['day3_replace', 'day3_name']),
         CS('day3_storm', 'radio_day3_3', ["Any news about my replacement?", "What is your name?"], ['day3_replace', 'day3_name']),
         
-        CS('day3_replace', 'radio_day3_4', None, None, end_state=True),
-        CS('day3_name', 'radio_day3_5', None, None, end_state=True),
+        CS('day3_replace', 'radio_day3_4', None, 'temp_state', end_state=True),
+        CS('day3_name', 'radio_day3_5', None, 'temp_state', end_state=True),
+
+        CS('temp_state', 'radio_day1', None, None, end_state=True), #Delete this state.
 
     ]
 

@@ -4,28 +4,28 @@
   "maya2egg2019 shelves.mb shelves.egg"
 }
 <Texture> "stuff1:lambert2SG" {
-  "../../../Python37/Portfolio/Panda3D/Omicron 35/textures/Day/HangarInterior/postboxes.png"
+  "textures/Day/HangarInterior/postboxes.png"
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
   <Scalar> minfilter { linear_mipmap_linear }
   <Scalar> magfilter { linear }
 }
 <Texture> lambert9SG {
-  "../../../Python37/Portfolio/Panda3D/Omicron 35/textures/Day/HangarInterior/shelves3Shape.png"
+  "textures/Day/HangarInterior/shelves3Shape.png"
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
   <Scalar> minfilter { linear_mipmap_linear }
   <Scalar> magfilter { linear }
 }
 <Texture> lambert6SG {
-  "../../../Python37/Portfolio/Panda3D/Omicron 35/textures/Day/HangarInterior/shelves2Shape.png"
+  "textures/Day/HangarInterior/shelves2Shape.png"
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
   <Scalar> minfilter { linear_mipmap_linear }
   <Scalar> magfilter { linear }
 }
 <Texture> lambert16SG {
-  "../../../Python37/Portfolio/Panda3D/Omicron 35/textures/Day/HangarInterior/shelves1Shape.png"
+  "textures/Day/HangarInterior/shelves1Shape.png"
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
   <Scalar> minfilter { linear_mipmap_linear }

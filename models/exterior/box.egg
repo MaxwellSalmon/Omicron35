@@ -4,7 +4,7 @@
   "maya2egg2019 weatherbox.mb box.egg"
 }
 <Texture> lambert23SG {
-  "../../../Python37/Portfolio/Panda3D/Omicron 35/textures/Day/Exterior/weatherbox.png"
+  "textures/Day/Exterior/weatherbox.png"
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
   <Scalar> minfilter { linear_mipmap_linear }

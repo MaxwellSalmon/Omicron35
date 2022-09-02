@@ -21,7 +21,7 @@ class Console(DirectObject.DirectObject):
 
         self.log = ''
         self.log_y = 1
-        self.log_text = text.Text(align='left', wordwrap=35)
+        self.log_text = text.Text(align='left', wordwrap=30)
         self.log_text.text.reparent_to(self.frame)
         self.log_text.new_pos(-1.2,self.log_y)
         self.log_text.new_colour((0.8,0.8,0.8,1))

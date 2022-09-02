@@ -4,7 +4,7 @@
   "maya2egg2019 toweltest.mb towels.egg"
 }
 <Texture> lambert49SG {
-  "../../../Python37/Portfolio/Panda3D/Omicron 35/textures/Day/HouseInterior/towels.png"
+  "textures/Day/HouseInterior/towels.png"
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
   <Scalar> minfilter { linear_mipmap_linear }

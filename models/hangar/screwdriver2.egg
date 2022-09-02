@@ -4,7 +4,7 @@
   "maya2egg2019 screwdriver2.mb screwdriver2.egg"
 }
 <Texture> "stuff2:lambert5SG" {
-  "../../../Python37/Portfolio/Panda3D/Omicron 35/textures/Day/HangarInterior/screwdriver2.png"
+  "textures/Day/HangarInterior/screwdriver2.png"
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
   <Scalar> minfilter { linear_mipmap_linear }

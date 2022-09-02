@@ -63,6 +63,8 @@ def cut_power():
             settings.g_bools['power_off'] = True
             settings.g_bools['shed_door_open'] = True
             print("POWER HAS BEEN CUT")
+
+            base.conversation.talk('power_bust')
             base.conversation.talk('power_cut')
             #Make dramatic power-off sound
             open_lod_shed_door()
@@ -88,8 +90,7 @@ def force_shed_ext_door_open():
             bolt = bolt[0]
             door.model.set_pos(60,1,0.5)
             bolt.model.set_pos(59.78,0.74,0.92)
-            bolt.model.set_hpr(338.5,0,90)
-    
+            bolt.model.set_hpr(338.5,0,90)    
 
 #Radio control function - Finite state machine, I think.
 def talk_in_radio():

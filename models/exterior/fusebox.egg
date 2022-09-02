@@ -4,7 +4,7 @@
   "maya2egg2019 fusebox.mb fusebox.egg"
 }
 <Texture> "g:lambert4SG" {
-  "../../../Python37/Portfolio/Panda3D/Omicron 35/textures/Day/Exterior/generator_insideShape.png"
+  "textures/Day/Exterior/generator_insideShape.png"
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
   <Scalar> minfilter { linear_mipmap_linear }

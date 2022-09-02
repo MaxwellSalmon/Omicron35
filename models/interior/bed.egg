@@ -4,7 +4,7 @@
   "maya2egg2018 bed.mb bed.egg"
 }
 <Texture> lambert40SG {
-  "../../../Python37/Portfolio/Panda3D/Omicron 35/textures/Day/HouseInterior/blanket2Shape.png"
+  "textures/Day/HouseInterior/blanket2Shape.png"
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
   <Scalar> minfilter { linear_mipmap_linear }

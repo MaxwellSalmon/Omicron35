@@ -1,4 +1,5 @@
 import settings
+import functions
 
 def help_func(*args):
 
@@ -59,6 +60,15 @@ def skip_conv():
     settings.skip_convs = not settings.skip_convs
     return f"Skip conversations set to {settings.skip_convs}"
 
+def next_day():
+    settings.time = 1
+    settings.day += 1
+
+    functions.reset_g_bools()
+    functions.let_it_snow()
+    base.superloader.load("inte_d{}_t1".format(settings.day), False, newday=True)
+    base.superloader.change_textures()
+
 commands_dict = {
     'help' : help_func,
     '?' : help_func,
@@ -72,6 +82,7 @@ commands_dict = {
     'pos' : get_pos,
     'cstate' : get_state,
     'skipconv' : skip_conv,
+    'nextday' : next_day,
     }
 
 help_strings = {
@@ -86,5 +97,6 @@ help_strings = {
     'showcol' : "Turn on visible collider primitives",
     'pos' : "Prints player position and camera HPR",
     'cstate' : "Prints the name of the current conversation state.",
-    'skipconv' : "Toggles option to skip conversations."
+    'skipconv' : "Toggles option to skip conversations.",
+    'nextday' : "Changes the time to the morning, next day",
     }

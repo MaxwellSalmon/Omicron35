@@ -4,7 +4,7 @@
   "maya2egg2018 can.mb jerrycan.egg"
 }
 <Texture> initialShadingGroup {
-  "../../../Python37/Portfolio/Panda3D/Omicron 35/textures/Day/Exterior/jerrycan.png"
+  "textures/Day/Exterior/jerrycan.png"
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
   <Scalar> minfilter { linear_mipmap_linear }

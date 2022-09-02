@@ -4,7 +4,7 @@
   "maya2egg2018 suit2.mb suit2.egg"
 }
 <Texture> lambert36SG {
-  "../../../../../Python37/Portfolio/Panda3D/Omicron 35/textures/Day/HouseInterior/suit2.png"
+  "../../textures/Day/HouseInterior/suit2.png"
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
   <Scalar> minfilter { linear_mipmap_linear }

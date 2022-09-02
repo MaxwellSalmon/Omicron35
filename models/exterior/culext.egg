@@ -4,21 +4,21 @@
   "maya2egg2019 lamp.mb culext.egg"
 }
 <Texture> "shelf2:lambert19SG" {
-  "../../../Python37/Portfolio/Panda3D/Omicron 35/textures/Day/Exterior/shed_shelf2Shape.png"
+  "textures/Day/Exterior/shed_shelf2Shape.png"
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
   <Scalar> minfilter { linear_mipmap_linear }
   <Scalar> magfilter { linear }
 }
 <Texture> "shelf1:lambert18SG" {
-  "../../../Python37/Portfolio/Panda3D/Omicron 35/textures/Day/Exterior/shed_shelf1Shape.png"
+  "textures/Day/Exterior/shed_shelf1Shape.png"
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
   <Scalar> minfilter { linear_mipmap_linear }
   <Scalar> magfilter { linear }
 }
 <Texture> lambert11SG {
-  "../../../Python37/Portfolio/Panda3D/Omicron 35/textures/Day/Exterior/shed_lampShape.png"
+  "textures/Day/Exterior/shed_lampShape.png"
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
   <Scalar> minfilter { linear_mipmap_linear }

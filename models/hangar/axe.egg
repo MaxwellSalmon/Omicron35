@@ -4,7 +4,7 @@
   "maya2egg2018 axe.mb axe.egg"
 }
 <Texture> lambert24SG {
-  "../../../Python37/Portfolio/Panda3D/Omicron 35/textures/Day/HangarInterior/axe.png"
+  "textures/Day/HangarInterior/axe.png"
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
   <Scalar> minfilter { linear_mipmap_linear }

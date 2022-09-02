@@ -4,7 +4,7 @@
   "maya2egg2018 dome.mb d1t1.egg"
 }
 <Texture> lambert31SG {
-  "../../../Python37/Portfolio/Panda3D/Omicron 35/textures/skymaps/d1t1.png"
+  "textures/skymaps/d1t1.png"
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
   <Scalar> minfilter { linear_mipmap_linear }

@@ -4,14 +4,14 @@
   "maya2egg2019 lod_gate.mb lod_gate.egg"
 }
 <Texture> "lod_gate:lambert9SG" {
-  "../../../Python37/Portfolio/Panda3D/Omicron 35/textures/Day/Exterior/shed_lockShape.png"
+  "textures/Day/Exterior/shed_lockShape.png"
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
   <Scalar> minfilter { linear_mipmap_linear }
   <Scalar> magfilter { linear }
 }
 <Texture> "lod_gate:lambert8SG" {
-  "../../../Python37/Portfolio/Panda3D/Omicron 35/textures/Day/Exterior/shed_doorShape.png"
+  "textures/Day/Exterior/shed_doorShape.png"
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
   <Scalar> minfilter { linear_mipmap_linear }

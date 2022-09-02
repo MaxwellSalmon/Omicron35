@@ -4,56 +4,56 @@
   "maya2egg2019 junk.mb junk.egg"
 }
 <Texture> "tire:lambert2SG" {
-  "../../../Python37/Portfolio/Panda3D/Omicron 35/textures/Day/Exterior/tires.png"
+  "textures/Day/Exterior/tires.png"
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
   <Scalar> minfilter { linear_mipmap_linear }
   <Scalar> magfilter { linear }
 }
 <Texture> "stuff1:lambert5SG" {
-  "../../../Python37/Portfolio/Panda3D/Omicron 35/textures/Day/Exterior/barrels.png"
+  "textures/Day/Exterior/barrels.png"
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
   <Scalar> minfilter { linear_mipmap_linear }
   <Scalar> magfilter { linear }
 }
 <Texture> "stuff1:lambert4SG" {
-  "../../../Python37/Portfolio/Panda3D/Omicron 35/textures/Day/Exterior/canistersShape.png"
+  "textures/Day/Exterior/canistersShape.png"
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
   <Scalar> minfilter { linear_mipmap_linear }
   <Scalar> magfilter { linear }
 }
 <Texture> "stuff1:lambert2SG" {
-  "../../../Python37/Portfolio/Panda3D/Omicron 35/textures/Day/Exterior/GasCanisterShape.png"
+  "textures/Day/Exterior/GasCanisterShape.png"
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
   <Scalar> minfilter { linear_mipmap_linear }
   <Scalar> magfilter { linear }
 }
 <Texture> lambert33SG {
-  "../../../Python37/Portfolio/Panda3D/Omicron 35/textures/Day/Exterior/crates_pPlane2Shape.png"
+  "textures/Day/Exterior/crates_pPlane2Shape.png"
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
   <Scalar> minfilter { linear_mipmap_linear }
   <Scalar> magfilter { linear }
 }
 <Texture> lambert32SG {
-  "../../../Python37/Portfolio/Panda3D/Omicron 35/textures/Day/Exterior/PalletsShape.png"
+  "textures/Day/Exterior/PalletsShape.png"
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
   <Scalar> minfilter { linear_mipmap_linear }
   <Scalar> magfilter { linear }
 }
 <Texture> lambert31SG {
-  "../../../Python37/Portfolio/Panda3D/Omicron 35/textures/Day/Exterior/PibesShape.png"
+  "textures/Day/Exterior/PibesShape.png"
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
   <Scalar> minfilter { linear_mipmap_linear }
   <Scalar> magfilter { linear }
 }
 <Texture> lambert30SG {
-  "../../../Python37/Portfolio/Panda3D/Omicron 35/textures/Day/Exterior/PalletShape.png"
+  "textures/Day/Exterior/PalletShape.png"
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
   <Scalar> minfilter { linear_mipmap_linear }

@@ -3,6 +3,7 @@ other_files/
 .mayaSwatches/
 audacity/
 RenderTextures/
+Noter/
 
 *.tx
 *.exr
@@ -11,4 +12,5 @@ RenderTextures/
 *.tif
 *.swatch
 *.pyc
-*.pdn
+*.pdn7
+*.drawio

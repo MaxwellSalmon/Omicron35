@@ -63,6 +63,7 @@ subtitles = {
         
         #Sound effects below.
         'writing' : '',
+        'Electricity_Spark' : '',
         }
 
 boilerplate_conv = {
@@ -90,6 +91,7 @@ conversations = {'radio_day1' : ['report', 'hq_greet', 'measurements', 'hq_delay
 
 
 sounds = {'writing' : ['writing'],
+          'power_bust' : ['Electricity_Spark'],
           }
 
 self_talk = {'shed_door_open' : ['generatorgate'],

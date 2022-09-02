@@ -4,7 +4,7 @@
   "maya2egg2019 plate.mb plate.egg"
 }
 <Texture> "g:lambert2SG" {
-  "../../../Python37/Portfolio/Panda3D/Omicron 35/textures/Day/Exterior/generator_plateShape.png"
+  "textures/Day/Exterior/generator_plateShape.png"
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
   <Scalar> minfilter { linear_mipmap_linear }
