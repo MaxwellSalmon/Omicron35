@@ -27,7 +27,7 @@ class MyApp(ShowBase):
         self.superloader.load(settings.environment, True)
         self.player = Player()
         self.superloader.load_audio3d()
-        self.superloader.start_ambience()
+        #self.superloader.start_ambience()
         self.default_model = Model('dev/sphere.egg', name='default')
         conversation_flow.initialise_states()
         #base.scene.flattenStrong()

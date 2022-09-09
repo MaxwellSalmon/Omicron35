@@ -362,7 +362,11 @@ def let_it_snow():
     if settings.day == 2:
         settings.sun = False
         settings.snow = 'light'
-        settings.wind = () #temp
+        #settings.wind = () #temp
+    if settings.day == 3:
+        settings.sun = False
+        settings.snow = 'heavy'
+        
 
 #This function resets g_bools from settings.py each day
 def reset_g_bools():

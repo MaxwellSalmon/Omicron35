@@ -39,7 +39,6 @@ class Weather:
         self.control_snow()
 
 
-
     def move_player_snow(self):
         if self.player_snow.is_enabled():
             self.player_snow.set_pos(base.player.body.get_pos())
@@ -70,10 +69,10 @@ class Weather:
         for snow in self.wsnows:
             snow.start(parent=render, renderParent=render)
         if settings.environment[:4] == 'inte':
-            self.wsnows[0].set_pos(-3,17,4) #kitchen?
+            self.wsnows[0].set_pos(-3,11.4,4) #kitchen
             self.wsnows[1].set_pos_hpr(-9,0,5,90,0,0)
-            self.wsnows[2].set_pos(-3,-16.2,4)
-            self.wsnows[3].set_pos(9.5,-8,4)
+            self.wsnows[2].set_pos(-3,-16.2,4) #bedroom
+            self.wsnows[3].set_pos(10,-8.2,4) #bathroom
             self.wsnows[1].get_force_group_list()[1].disable()
 
         elif settings.environment[:4] == 'hang':

@@ -68,6 +68,7 @@ def next_day():
     functions.let_it_snow()
     base.superloader.load("inte_d{}_t1".format(settings.day), False, newday=True)
     base.superloader.change_textures()
+    return f"Set day to {settings.day}"
 
 commands_dict = {
     'help' : help_func,

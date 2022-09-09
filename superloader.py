@@ -47,9 +47,10 @@ class SuperLoader():
         self.load_scene()
         self.load_collision(init)
         self.load_models()
-        self.start_ambience()
-        base.weather.control_snow()
-        base.weather.control_fog()
+        functions.let_it_snow()
+        base.weather.stop_window_snow()
+        base.weather.player_snow.disable()
+        base.weather.__init__()
         if init:
             self.load_mouse()
             self.load_light()
@@ -57,6 +58,7 @@ class SuperLoader():
         if newday:
             self.load_audio3d()            
 
+        self.start_ambience()
         self.show_env()
         
 
@@ -241,16 +243,19 @@ class SuperLoader():
             cut = path.find('textures')
             path = path[cut:]
 
-            replace_index = path.find(old_time)
-            replace_word = path[replace_index:replace_index+len(old_time)]
-            new_path = path.replace(replace_word, time)
+            list_path = path.split('/')
+            list_path[1] = time
+            new_path = '/'.join(list_path)
 
             if geom.name == 'skydome':
                 new_path = self.skybox_path()
-
-            if not settings.sun:
+            
+            if not settings.sun and settings.time == 1:
                 new_path = self.overcast_path(new_path)
-
+            elif settings.time != 1:
+                #Remove overcast - only used for day textures
+                new_path = self.remove_overcast(new_path)
+            
             try:
                 t = loader.loadTexture(new_path)
                 geom.setTexture(t, 1)
@@ -268,6 +273,12 @@ class SuperLoader():
             return path[:-4]+'Overcast.png'
         return path
 
+    def remove_overcast(self, path):
+        #Remove "Overcast" from texture
+        if 'Overcast' in path:
+            return path[:-12]+'.png'
+        return path
+
     def skybox_path(self):
         #Perhaps return different files, depending on day.
         path = 'overcast.png'
@@ -277,10 +288,7 @@ class SuperLoader():
             else:
                 path = 'overcast.png'
         elif settings.time == 2:
-            if settings.sun:
-                pass
-            else:
-                pass
+            path = 'overcast.png'
         else:
             path = 'overcastnight.png'
         return 'textures/skymaps/'+path

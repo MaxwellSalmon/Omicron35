@@ -63,7 +63,7 @@ f0.addForce(force1)
 self.addForceGroup(f0)
 f1 = ForceGroup.ForceGroup('Wind')
 # Force parameters
-force0 = LinearVectorForce(Vec3(0.5000, 0.0000, 0.0000), 1.0000, 0)
+force0 = LinearVectorForce(Vec3(0.8000, 0.0000, 0.0000), 1.0000, 0)
 force0.setVectorMasks(1, 1, 1)
 force0.setActive(1)
 f1.addForce(force0)
