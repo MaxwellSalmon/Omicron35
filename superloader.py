@@ -209,7 +209,13 @@ class SuperLoader():
         path = path.split('/')
         ind = path.index('textures')
         return path[ind+1]
-        
+
+    def change_texture_colour(self, model, r,g,b):
+        #Model is model object - alpha is always 1
+        if model:
+            model.model.setColorScale(r,g,b,1)
+        else:
+            print("Could not change colour on", model)
 
     def change_textures(self):
         print("Changing textures")
@@ -282,13 +288,12 @@ class SuperLoader():
     def skybox_path(self):
         #Perhaps return different files, depending on day.
         path = 'overcast.png'
-        if settings.time == 1:
-            if settings.sun:
-                path = 'd1t1.png'
-            else:
-                path = 'overcast.png'
+        if settings.time == 1 and settings.sun:
+            path = 'd1t1.png'
         elif settings.time == 2:
-            path = 'overcast.png'
-        else:
-            path = 'overcastnight.png'
+            self.change_texture_colour(functions.find_model('skybox'), 0.4, 0.4, 0.4)
+            self.change_texture_colour(functions.find_model('windows'), 0.5, 0.5, 0.5)
+        elif settings.time == 3:
+            self.change_texture_colour(functions.find_model('skybox'), 0.05, 0.05, 0.1)
+            self.change_texture_colour(functions.find_model('windows'), 0.2, 0.2, 0.2)
         return 'textures/skymaps/'+path

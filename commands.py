@@ -15,6 +15,9 @@ def help_func(*args):
 def complete_tasks():
     settings.g_bools['daily_tasks_done'] = True
     settings.g_bools['can_sleep'] = True
+    settings.g_bools['has_clipboard'] = True
+    settings.g_bools['clothes_on'] = True
+    
     return "Tasks done, sleep tight."
 
 def g_bool(g_bool):

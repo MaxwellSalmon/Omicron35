@@ -64,6 +64,7 @@ def create_base_models(scene_name):
                   Model('interior/lod_gate'),
                   Model('interior/bulbs'),
                   Model('interior/plates'),
+                  Model('interior/windows'),
                   Model('skybox', scale=21, pos=(0,0,-200)),
                   ]
     elif scene_name[:4] == "exte":
@@ -76,6 +77,7 @@ def create_base_models(scene_name):
                   Model('exterior/sheddoor', solid=True, pos=(59.2,-1.3,0.5), hpr=(339,0,0), audio=['sfx/Door_Open_Only.wav', 'sfx/Door_Open_Only.wav']),
                   Model('exterior/bolt', tag='interactive', pos=(59.04,-1.44,0.92), hpr=(338.5,0,0), function=functions.open_shed_door),
                   Model('exterior/junk'),
+                  Model('exterior/jars', alpha=0.5),
                   Model('skybox', scale=21, pos=(0,0,-200)),
                   ]
     elif scene_name[:4] == "hang":

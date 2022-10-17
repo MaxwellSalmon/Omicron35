@@ -1,0 +1,144 @@
+<CoordinateSystem> { Y-Up }
+
+<Comment> {
+  "maya2egg2019 windows.mb windows.egg"
+}
+<Texture> lambert66SG {
+  "../../../Portfolio/Panda3D/Omicron 35/textures/Day/HouseInterior/frost.png"
+  <Scalar> wrapu { repeat }
+  <Scalar> wrapv { repeat }
+  <Scalar> minfilter { linear_mipmap_linear }
+  <Scalar> magfilter { linear }
+}
+<Group> pPlane1 {
+  <VertexPool> pPlaneShape1.verts {
+    <Vertex> 0 {
+      -6.31335544362659 5.05651207041449 -17.7963715426946
+      <UV> { 0 0 }
+      <Normal> { 0 0 1 }
+      <RGBA> { 1 1 1 1 }
+    }
+    <Vertex> 1 {
+      -2.82686173898742 5.05651207041449 -17.7963715426946
+      <UV> { 1 0 }
+      <Normal> { 0 0 1 }
+      <RGBA> { 1 1 1 1 }
+    }
+    <Vertex> 2 {
+      -2.82686173898742 8.54015849097977 -17.7963715426946
+      <UV> { 1 1 }
+      <Normal> { 0 0 1 }
+      <RGBA> { 1 1 1 1 }
+    }
+    <Vertex> 3 {
+      -6.31335544362659 8.54015849097977 -17.7963715426946
+      <UV> { 0 1 }
+      <Normal> { 0 0 1 }
+      <RGBA> { 1 1 1 1 }
+    }
+  }
+  <Polygon> {
+    <Normal> { 0 0 1 }
+    <TRef> { lambert66SG }
+    <VertexRef> { 0 1 2 3 <Ref> { pPlaneShape1.verts } }
+  }
+}
+<Group> pPlane2 {
+  <VertexPool> pPlaneShape2.verts {
+    <Vertex> 0 {
+      -11.9555677370199 5.05651207041449 1.84280260182509
+      <UV> { 0 0 }
+      <Normal> { 1 0 0 }
+      <RGBA> { 1 1 1 1 }
+    }
+    <Vertex> 1 {
+      -11.9555677370199 5.05651207041449 -1.64369110281408
+      <UV> { 1 0 }
+      <Normal> { 1 0 0 }
+      <RGBA> { 1 1 1 1 }
+    }
+    <Vertex> 2 {
+      -11.9555677370199 8.54015849097977 -1.64369110281408
+      <UV> { 1 1 }
+      <Normal> { 1 0 0 }
+      <RGBA> { 1 1 1 1 }
+    }
+    <Vertex> 3 {
+      -11.9555677370199 8.54015849097977 1.84280260182509
+      <UV> { 0 1 }
+      <Normal> { 1 0 0 }
+      <RGBA> { 1 1 1 1 }
+    }
+  }
+  <Polygon> {
+    <Normal> { 1 0 0 }
+    <TRef> { lambert66SG }
+    <VertexRef> { 0 1 2 3 <Ref> { pPlaneShape2.verts } }
+  }
+}
+<Group> pPlane3 {
+  <VertexPool> pPlaneShape3.verts {
+    <Vertex> 0 {
+      -3.29064056712716 5.05651207041449 22.6157947778125
+      <UV> { 0 0 }
+      <Normal> { 0 0 -1 }
+      <RGBA> { 1 1 1 1 }
+    }
+    <Vertex> 1 {
+      -6.77713427176632 5.05651207041449 22.6157947778125
+      <UV> { 1 0 }
+      <Normal> { 0 0 -1 }
+      <RGBA> { 1 1 1 1 }
+    }
+    <Vertex> 2 {
+      -6.77713427176632 8.54015849097977 22.6157947778125
+      <UV> { 1 1 }
+      <Normal> { 0 0 -1 }
+      <RGBA> { 1 1 1 1 }
+    }
+    <Vertex> 3 {
+      -3.29064056712716 8.54015849097977 22.6157947778125
+      <UV> { 0 1 }
+      <Normal> { 0 0 -1 }
+      <RGBA> { 1 1 1 1 }
+    }
+  }
+  <Polygon> {
+    <Normal> { 0 0 -1 }
+    <TRef> { lambert66SG }
+    <VertexRef> { 0 1 2 3 <Ref> { pPlaneShape3.verts } }
+  }
+}
+<Group> pPlane4 {
+  <VertexPool> pPlaneShape4.verts {
+    <Vertex> 0 {
+      12.1221027183421 6.69514242711303 10.8463066804578
+      <UV> { 0 0 }
+      <Normal> { -1 0 0 }
+      <RGBA> { 1 1 1 1 }
+    }
+    <Vertex> 1 {
+      12.1221027183421 6.69514242711303 14.332800385097
+      <UV> { 1 0 }
+      <Normal> { -1 0 0 }
+      <RGBA> { 1 1 1 1 }
+    }
+    <Vertex> 2 {
+      12.1221027183421 8.75500302293596 14.332800385097
+      <UV> { 1 1 }
+      <Normal> { -1 0 0 }
+      <RGBA> { 1 1 1 1 }
+    }
+    <Vertex> 3 {
+      12.1221027183421 8.75500302293596 10.8463066804578
+      <UV> { 0 1 }
+      <Normal> { -1 0 0 }
+      <RGBA> { 1 1 1 1 }
+    }
+  }
+  <Polygon> {
+    <Normal> { -1 0 0 }
+    <TRef> { lambert66SG }
+    <VertexRef> { 0 1 2 3 <Ref> { pPlaneShape4.verts } }
+  }
+}
