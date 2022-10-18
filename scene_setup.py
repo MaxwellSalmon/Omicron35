@@ -107,7 +107,7 @@ def create_specific_models(scene_name):
     elif scene_name[:-3] == 'inte_d3':
         models = [Model('interior/door', tag='interactive', pos=(10,0.1,0.4), scale=0.5, solid=True, audio='sfx/door.wav',
                         function=[functions.change_scene, {'to_scene':'exte_d3_t1', 'bools':['clothes_on', 'has_clipboard'], 'voices':['no_clothes','no_clipboard']}]),
-                  Model('interior/mess_d2'),
+                  Model('interior/mess_d3'),
                   Model('dev/sphere', name='wind_sound_sphere', pos=(0,0,-4), ambience='sfx/Wind_Interior_w_Howling.wav'),
                   ]
 

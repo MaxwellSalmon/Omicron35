@@ -188,11 +188,11 @@ class Player(DirectObject.DirectObject):
         cs.set_volume(self.cloth_vol)
 
     def speed_multiplier(self):
-        if settings.dev_control:
-            if self.speed == settings.player_speed:
-                self.speed = settings.player_speed * 3
-            else:
-                self.speed = settings.player_speed
+        #if settings.dev_control: #Always having sprint now
+        if self.speed == settings.player_speed:
+            self.speed = settings.player_speed * 3
+        else:
+            self.speed = settings.player_speed
 
     def show_crosshair(self):
         if settings.picked_obj:
