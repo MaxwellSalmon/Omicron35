@@ -4,7 +4,7 @@
   "maya2egg2019 poster.mb jars.egg"
 }
 <Texture> lambert2SG {
-  "../../../Portfolio/Panda3D/Omicron 35/textures/Day/Exterior/jar_bodies.png"
+  "../textures/Day/Exterior/jar_bodies.png"
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
   <Scalar> minfilter { linear_mipmap_linear }

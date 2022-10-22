@@ -4,147 +4,147 @@
   "maya2egg2019 mess_d3.mb mess_d3.egg"
 }
 <Texture> "mess3:lambert2SG" {
-  "../../../../../Portfolio/Panda3D/Omicron 35/textures/Day/HouseInterior/ToiletPaperShape.png"
+  "../../../textures/Day/HouseInterior/ToiletPaperShape.png"
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
   <Scalar> minfilter { linear_mipmap_linear }
   <Scalar> magfilter { linear }
 }
 <Texture> "mess2:lambert6SG" {
-  "../../../../../Portfolio/Panda3D/Omicron 35/textures/Day/HouseInterior/ShoeRack.png"
+  "../../../textures/Day/HouseInterior/ShoeRack.png"
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
   <Scalar> minfilter { linear_mipmap_linear }
   <Scalar> magfilter { linear }
 }
 <Texture> "mess2:lambert5SG" {
-  "../../../../../Portfolio/Panda3D/Omicron 35/textures/Day/HouseInterior/OpenBook1.png"
+  "../../../textures/Day/HouseInterior/OpenBook1.png"
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
   <Scalar> minfilter { linear_mipmap_linear }
   <Scalar> magfilter { linear }
 }
 <Texture> "mess2:lambert4SG" {
-  "../../../../../Portfolio/Panda3D/Omicron 35/textures/Day/HouseInterior/OpenBook3.png"
+  "../../../textures/Day/HouseInterior/OpenBook3.png"
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
   <Scalar> minfilter { linear_mipmap_linear }
   <Scalar> magfilter { linear }
 }
 <Texture> "mess2:lambert3SG" {
-  "../../../../../Portfolio/Panda3D/Omicron 35/textures/Day/HouseInterior/Openbook2.png"
+  "../../../textures/Day/HouseInterior/Openbook2.png"
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
   <Scalar> minfilter { linear_mipmap_linear }
   <Scalar> magfilter { linear }
 }
 <Texture> "mess2:lambert2SG" {
-  "../../../../../Portfolio/Panda3D/Omicron 35/textures/Day/HouseInterior/BookWoodShape.png"
+  "../../../textures/Day/HouseInterior/BookWoodShape.png"
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
   <Scalar> minfilter { linear_mipmap_linear }
   <Scalar> magfilter { linear }
 }
 <Texture> lambert5SG {
-  "../../../../../Portfolio/Panda3D/Omicron 35/textures/Day/HouseInterior/cutlery.png"
+  "../../../textures/Day/HouseInterior/cutlery.png"
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
   <Scalar> minfilter { linear_mipmap_linear }
   <Scalar> magfilter { linear }
 }
 <Texture> lambert2SG {
-  "../../../../../Portfolio/Panda3D/Omicron 35/textures/Day/HouseInterior/wastebasket.png"
+  "../../../textures/Day/HouseInterior/wastebasket.png"
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
   <Scalar> minfilter { linear_mipmap_linear }
   <Scalar> magfilter { linear }
 }
 <Texture> "f:lambert2SG" {
-  "../../../../../Portfolio/Panda3D/Omicron 35/textures/Day/HouseInterior/boxesShape.png"
+  "../../../textures/Day/HouseInterior/boxesShape.png"
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
   <Scalar> minfilter { linear_mipmap_linear }
   <Scalar> magfilter { linear }
 }
 <Texture> "f4:notes:lambert4SG" {
-  "../../../../../Portfolio/Panda3D/Omicron 35/textures/Day/HouseInterior/notesShape1.png"
+  "../../../textures/Day/HouseInterior/notesShape1.png"
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
   <Scalar> minfilter { linear_mipmap_linear }
   <Scalar> magfilter { linear }
 }
 <Texture> "f4:notes:lambert2SG" {
-  "../../../../../Portfolio/Panda3D/Omicron 35/textures/Day/HouseInterior/notesShape3.png"
+  "../../../textures/Day/HouseInterior/notesShape3.png"
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
   <Scalar> minfilter { linear_mipmap_linear }
   <Scalar> magfilter { linear }
 }
 <Texture> "f3:col:lambert2SG" {
-  "../../../../../Portfolio/Panda3D/Omicron 35/textures/Day/HouseInterior/blouses.png"
+  "../../../textures/Day/HouseInterior/blouses.png"
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
   <Scalar> minfilter { linear_mipmap_linear }
   <Scalar> magfilter { linear }
 }
 <Texture> "f2:lambert4SG" {
-  "../../../../../Portfolio/Panda3D/Omicron 35/textures/Day/HouseInterior/cutleryShape.png"
+  "../../../textures/Day/HouseInterior/cutleryShape.png"
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
   <Scalar> minfilter { linear_mipmap_linear }
   <Scalar> magfilter { linear }
 }
 <Texture> "f1:lambert3SG" {
-  "../../../../../Portfolio/Panda3D/Omicron 35/textures/Day/HouseInterior/Dishes4Shape.png"
+  "../../../textures/Day/HouseInterior/Dishes4Shape.png"
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
   <Scalar> minfilter { linear_mipmap_linear }
   <Scalar> magfilter { linear }
 }
 <Texture> "dirt:lambert24SG" {
-  "../../../../../Portfolio/Panda3D/Omicron 35/textures/RenderTextures/dirt.png"
+  "../../../textures/RenderTextures/dirt.png"
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
   <Scalar> minfilter { linear_mipmap_linear }
   <Scalar> magfilter { linear }
 }
 <Texture> "aju:lambert3SG" {
-  "../../../../../Portfolio/Panda3D/Omicron 35/textures/Day/HouseInterior/JunkCan2.png"
+  "../../../textures/Day/HouseInterior/JunkCan2.png"
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
   <Scalar> minfilter { linear_mipmap_linear }
   <Scalar> magfilter { linear }
 }
 <Texture> "aju:lambert2SG" {
-  "../../../../../Portfolio/Panda3D/Omicron 35/textures/Day/HouseInterior/MugBottles.png"
+  "../../../textures/Day/HouseInterior/MugBottles.png"
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
   <Scalar> minfilter { linear_mipmap_linear }
   <Scalar> magfilter { linear }
 }
 <Texture> "aju1:col1:lambert2SG" {
-  "../../../../../Portfolio/Panda3D/Omicron 35/textures/Day/HouseInterior/PencilBoxes.png"
+  "../../../textures/Day/HouseInterior/PencilBoxes.png"
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
   <Scalar> minfilter { linear_mipmap_linear }
   <Scalar> magfilter { linear }
 }
 <Texture> "afgs:exportundies_notex:lambert2SG" {
-  "../../../../../Portfolio/Panda3D/Omicron 35/textures/Day/HouseInterior/underwear.png"
+  "../../../textures/Day/HouseInterior/underwear.png"
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
   <Scalar> minfilter { linear_mipmap_linear }
   <Scalar> magfilter { linear }
 }
 <Texture> "afgs1:lambert3SG" {
-  "../../../../../Portfolio/Panda3D/Omicron 35/textures/Day/HouseInterior/bottles.png"
+  "../../../textures/Day/HouseInterior/bottles.png"
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
   <Scalar> minfilter { linear_mipmap_linear }
   <Scalar> magfilter { linear }
 }
 <Texture> "afgs1:lambert2SG" {
-  "../../../../../Portfolio/Panda3D/Omicron 35/textures/Day/HouseInterior/mugs.png"
+  "../../../textures/Day/HouseInterior/mugs.png"
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
   <Scalar> minfilter { linear_mipmap_linear }

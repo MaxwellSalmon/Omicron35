@@ -4,7 +4,7 @@
   "maya2egg2019 bulbs.mb bulbs.egg"
 }
 <Texture> lambert2SG {
-  "../../../Portfolio/Panda3D/Omicron 35/textures/Day/HouseInterior/evening_light_ceilinglamp_obj7Shape.png"
+  "../textures/Day/HouseInterior/evening_light_ceilinglamp_obj7Shape.png"
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
   <Scalar> minfilter { linear_mipmap_linear }

@@ -4,7 +4,7 @@
   "maya2egg2019 windows.mb windows.egg"
 }
 <Texture> lambert66SG {
-  "../../../Portfolio/Panda3D/Omicron 35/textures/Day/HouseInterior/frost.png"
+  "../textures/Day/HouseInterior/frost.png"
   <Scalar> wrapu { repeat }
   <Scalar> wrapv { repeat }
   <Scalar> minfilter { linear_mipmap_linear }
