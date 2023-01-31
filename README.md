@@ -114,6 +114,8 @@ name = string
 `mode` can be either `enter`, `enter_once` or `enterleave` right now, controlling when the function should be called. `name` is just to easier refer to the trigger in case of an error.
 All triggers are spheres and will be visible if `show_cols` in **settings.py** is enabled.
 
+# Developer tools
+
 ### Converting .exr to .png:
 I made a simple script which can convert .exr images to .png images. This is used when baking textures in Maya. The script is executed in the terminal. Use the following arguments for a description on how to use it:
 ```
@@ -131,7 +133,10 @@ I also made a simple CLI for getting an overview in textures. From the command p
 ```
 texcheck.py <interior/exterior/hangar>
 ```
-This will show the different times for a scene with unique textures, missing textures and general texture irregularities. The argument for the scene has some shortcuts, like `i`, `e` and `h`. 
+This will show the different times for a scene with unique textures, missing textures and general texture irregularities. The argument for the scene has some shortcuts, like `i`, `e` and `h`.
+
+### Editing texture file paths'
+When I push changes, the file paths for model textures are most likely not relative, causing issues for other users. If this occurs, refer to the script ```fixmodels``` in the scripts folder. Here, you can change file paths in all models at once. In the command prompt, type ```fixmodels.py``` for more information.
 
 ### The developer console
 Press 'f1' to open the developer console. While in here, type '?' and enter to see a list of commands. To see the usage of a command, type '? command'.

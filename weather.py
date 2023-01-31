@@ -108,6 +108,8 @@ class Weather:
     def set_fog_color(self):
         if settings.time == 1:
             self.fog.setColor(0.9,0.9,0.9)
+        elif settings.time == 2:
+            self.fog.setColor(0.2,0.2,0.25)
         elif settings.time == 3:
             self.fog.setColor(0.1,0.1,0.2)
 

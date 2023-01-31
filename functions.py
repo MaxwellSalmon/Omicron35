@@ -92,7 +92,8 @@ def change_position(to_scene, **kwargs):
 
     if 'time' in kwargs and settings.time != kw('time'):
         settings.time = kw('time')
-        
+
+    base.weather.set_fog_color()
     base.superloader.change_textures()
     
 
