@@ -1,6 +1,6 @@
 # Omicron35
 A work in progress Panda3D game by MaxwellSalmon.
-[![What it looks like so far](https://i.imgur.com/QqMewsN.png)](https://www.youtube.com/watch?v=EtAMTK0i6H8)
+[![What it looks like so far](https://i.imgur.com/KR57VyA.png)](https://www.youtube.com/watch?v=5HnweyMsE24)
 
 # Documentation
 Note, that this may not be accurate, as the system is still in development and might have changed. Let me know if you spot an error. Also, I am not
