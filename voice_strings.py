@@ -50,6 +50,7 @@ subtitles = {
         'power_cut': "The power went off! Did I really forget to close the gate to the shed?",
         'see_from_bathroom': "I don't have to go outside right away. I can see it from the bathroom window.",
         'see_gate_damn': "It is open! Damn it! I must check on it.",
+        'generator_off_think': "The generator has turned off. I hope it will just start again.",
         'need_screwdriver' : "I need a screwdriver to get these screws off.",
         'wrong_screwdriver' : "This screwdriver doesn't fit the screws... Perhaps I can find one in the hangar.",
         'busted_fuse' : "The fuse is buted. Do I have a new somewhere?",

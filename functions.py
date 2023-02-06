@@ -91,7 +91,9 @@ def change_position(to_scene, **kwargs):
     base.superloader.load(to_scene, None)
 
     if 'time' in kwargs and settings.time != kw('time'):
-        settings.time = kw('time')
+        if not settings.time > kw('time'):
+            #Never go back in time. 
+            settings.time = kw('time')
 
     base.weather.set_fog_color()
     base.superloader.change_textures()
@@ -487,6 +489,10 @@ def shed_snow():
 def bathroom_window_trigger():
     if settings.g_bools['power_off']:
         base.conversation.talk('bathroom_window')
+
+def shed_generator_off_talk_trigger():
+    if settings.g_bools['power_off']:
+        base.conversation.talk('generator_off_think')
 
 
 

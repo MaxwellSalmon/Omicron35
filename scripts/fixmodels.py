@@ -74,8 +74,9 @@ def run(path='../models', replace=None, walk=True, output=True):
 
     for egg in models:
         file = open(egg, 'r')
+        rel_replace = relative_replace_string(replace)
         string = file.read()
-        string = string.replace(replace[0], replace[1])
+        string = string.replace(rel_replace[0], rel_replace[1])
         file.close()
 
         file = open(egg, 'w')

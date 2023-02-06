@@ -3,6 +3,7 @@
 
 from direct.task import Task
 import settings, functions, voice_strings
+from direct.interval.IntervalGlobal import *
 
 def manage(task):
 
@@ -64,8 +65,8 @@ def cut_power():
             settings.g_bools['shed_door_open'] = True
             print("POWER HAS BEEN CUT")
 
-            base.conversation.talk('power_bust')
-            base.conversation.talk('power_cut')
+            Sequence(Wait(5), Func(base.conversation.talk, 'power_bust'), Wait(3), Func(base.conversation.talk, 'power_cut')).start()
+
             #Make dramatic power-off sound
             open_lod_shed_door()
 

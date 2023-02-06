@@ -84,7 +84,7 @@ def create_base_models(scene_name):
         models = [Model('hangar/shelves', culling='both'),
                   Model('hangar/axe', tag='interactive', pos=(-4.17,-9.62,-1.81), scale=0.5, function=functions.split_firewood, audio='sfx/Wood_Chop.wav'),
                   Model('hangar/lamps', culling='both'),
-                  Model('hangar/dispenser', tag='interactive', pos=(8.05,-3.37,-1.78), scale=0.5, function=functions.take_fuel, audio='sfx/filling_jerrycan.wav'),
+                  Model('hangar/dispenser', tag='interactive', scale=0.5, function=functions.take_fuel, audio='sfx/filling_jerrycan.wav'),
                   Model('skybox', scale=21, pos=(0,0,-200)),
                   ]
     else:
@@ -171,7 +171,7 @@ def create_specific_models(scene_name):
 
     #Hangar    
     elif scene_name[:-3] == 'hang_d1':
-        models = [Model('interior/door', name='hang2ext_door', tag='interactive', pos=(-16.4,-9.4,0.4), hpr=(180,0,0), scale=0.5, solid=True,
+        models = [Model('interior/door', name='hang2ext_door', tag='interactive', pos=(-16.4,-9.4,0.4), hpr=(180,0,0), scale=0.6, solid=True,
                         function=[functions.change_scene, {'to_scene':'exte_d1_t1', 'player_pos':(76,37,-0.2)}], audio='sfx/door.wav'),
                   Model('hangar/screwdriver1', name="stardriver", tag='not_interactive'),
                   Model('hangar/screwdriver2', name="screwdriver2", tag='not_interactive'),
@@ -182,7 +182,7 @@ def create_specific_models(scene_name):
                   Model('hangar/hscrew4', name="screw4", tag='not_interactive'),
                   ]
     elif scene_name[:-3] == 'hang_d2':
-        models = [Model('interior/door', name='hang2ext_door', tag='interactive', pos=(-16.4,-9.4,0.4), hpr=(180,0,0), scale=0.5, solid=True,
+        models = [Model('interior/door', name='hang2ext_door', tag='interactive', pos=(-16.3,-9.41,0.4), hpr=(180,0,0), scale=0.51, solid=True,
                         function=[functions.change_scene, {'to_scene':'exte_d2_t1', 'player_pos':(76,37,-0.2)}], audio='sfx/door.wav'),
                   Model('hangar/screwdriver1', name="stardriver", tag='interactive', function=[functions.take_screwdriver, {'g_bool':'has_stardriver'}], audio='sfx/screwdriver.wav'),
                   Model('hangar/screwdriver2', name="screwdriver2", tag='interactive', function=[functions.take_screwdriver, {'g_bool':'has_screwdriver'}], audio='sfx/screwdriver.wav'),
@@ -194,7 +194,7 @@ def create_specific_models(scene_name):
                   Model('hangar/fuse', name='fuse', tag='interactive', function=functions.take_fuse),
                   ]
     elif scene_name[:-3] == 'hang_d3':
-        models = [Model('interior/door', name='hang2ext_door', tag='interactive', pos=(-16.4,-9.4,0.4), hpr=(180,0,0), scale=0.5, solid=True,
+        models = [Model('interior/door', name='hang2ext_door', tag='interactive', pos=(-16.4,-9.4,0.4), hpr=(180,0,0), scale=0.6, solid=True,
                         function=[functions.change_scene, {'to_scene':'exte_d3_t1', 'player_pos':(76,37,-0.2)}], audio='sfx/door.wav'),
                   Model('hangar/screwdriver1', name="stardriver", tag='not_interactive'),
                   Model('hangar/screwdriver2', name="screwdriver2", tag='not_interactive'),
@@ -212,8 +212,10 @@ def create_specific_models(scene_name):
 def create_triggers(scene_name):
     triggers = []
     if scene_name[:4] == 'exte':
-        triggers = [Trigger(65,-7,-1.65,10,functions.shed_snow, mode='enterleave')]
+        triggers = [Trigger(65,-7,-1.65,10,functions.shed_snow, mode='enterleave', name="ShedSnowTrigger")]
     if scene_name[:7]=='inte_d2':
         triggers = [Trigger(5,-9.5,0.1,1,functions.bathroom_window_trigger, mode='enter_once', name="BathroomWindowTrigger")]
+    if scene_name[:7] == 'exte_d2':
+        triggers += [Trigger(65,-7,-1.65,10,functions.shed_generator_off_talk_trigger, mode='enter_once', name="GeneratorOffTalk")]
 
     return triggers

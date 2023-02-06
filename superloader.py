@@ -50,7 +50,7 @@ class SuperLoader():
         functions.let_it_snow()
         base.weather.stop_window_snow()
         base.weather.player_snow.disable()
-        base.weather.__init__()
+        base.weather.control_all()
         if init:
             self.load_mouse()
             self.load_light()

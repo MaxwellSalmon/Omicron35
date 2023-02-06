@@ -11,6 +11,22 @@ class Weather:
 
     def __init__(self):
         base.enableParticles()
+
+        self.fog = Fog("fog")
+
+        self.shed_window_snow = False
+
+        self.fire = ParticleEffect()
+        self.fire.loadConfig('particles/fire.ptf')
+        self.steam = ParticleEffect()
+        self.steam.loadConfig('particles/steam.ptf')
+
+        self.control_all()
+        
+
+    def control_all(self):
+
+        #Before, I called __init__ every time. Causes issues.
         path = 'light'
         if settings.snow:
             path = settings.snow
@@ -25,16 +41,7 @@ class Weather:
         for snow in self.wsnows:
             snow.loadConfig(wsnowpath)
         self.start_window_snow()
-
-        self.fog = Fog("fog")
-
-        self.shed_window_snow = False
-
-        self.fire = ParticleEffect()
-        self.fire.loadConfig('particles/fire.ptf')
-        self.steam = ParticleEffect()
-        self.steam.loadConfig('particles/steam.ptf')
-
+        
         self.control_fog()
         self.control_snow()
 
@@ -76,11 +83,11 @@ class Weather:
             self.wsnows[1].get_force_group_list()[1].disable()
 
         elif settings.environment[:4] == 'hang':
-            self.wsnows[0].set_pos_hpr(-20,-1.5,5, 90,0,0)
+            self.wsnows[0].set_pos_hpr(-19,-1.5,6, 90,-45,0)
             self.wsnows[0].get_force_group_list()[1].disable()
-            self.wsnows[1].set_pos_hpr(-20,4.5,5, 90,0,0)
+            self.wsnows[1].set_pos_hpr(-19,4.5,6, 90,-45,0)
             self.wsnows[1].get_force_group_list()[1].disable()
-            self.wsnows[2].set_pos_hpr(-20,-7.5,5, 90,0,0)
+            self.wsnows[2].set_pos_hpr(-19,-7.5,6, 90,-45,0)
             self.wsnows[2].get_force_group_list()[1].disable()
             self.wsnows[3].disable()
 
