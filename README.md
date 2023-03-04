@@ -146,3 +146,6 @@ To add a new command, go to `commands.py` and write your function, which needs t
 ### License
 This project is under GNU GPLv3 licence.
 If you disagree with this choice, feel free to contact me.
+
+## Temporary message
+Hello rdb, I have in fact lost my account details and wrote the thread from MaxwellSalmon2 :-)
