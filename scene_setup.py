@@ -65,6 +65,7 @@ def create_base_models(scene_name):
                   Model('interior/bulbs'),
                   Model('interior/plates'),
                   Model('interior/windows'),
+                  Model('dev/sphere', name="fire_sound", scale=0.1, volume=0.5, dropoff=2, pos=(5,3.9,-1.2), ambience='amb/fire.wav'),
                   Model('skybox', scale=21, pos=(0,0,-200)),
                   ]
     elif scene_name[:4] == "exte":

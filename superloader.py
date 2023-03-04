@@ -14,7 +14,7 @@ from panda3d.core import (
 
 from direct.showbase import Audio3DManager
 from direct.showbase.Transitions import Transitions
-
+from direct.interval.IntervalGlobal import *
 from model import *
 import functions, scene_setup
 import colliders, conversation
@@ -27,6 +27,7 @@ class SuperLoader():
         self.audio3d_queue = []
         base.transition = Transitions(loader)
         self.txt = text.Text()
+        self.loading = False
 
     def load(self, scene_name, init, newday=False):
         self.init = init
@@ -57,9 +58,11 @@ class SuperLoader():
             self.change_textures()
         if newday:
             self.load_audio3d()            
-
+        
         self.start_ambience()
         self.show_env()
+
+        self.loading = False
         
 
     def load_scene(self):
@@ -195,11 +198,11 @@ class SuperLoader():
             
         elif str(obj) == '**removed**':
             print("Oof! The object has beed removed!")
-        
-        base.audio3d.attachSoundToObject(sound, obj)
 
         if args:
             base.audio3d.setDropOffFactor(args[0])
+        
+        base.audio3d.attachSoundToObject(sound, obj)
         
         return sound
 
@@ -217,25 +220,29 @@ class SuperLoader():
         else:
             print("Could not change colour on", model)
 
+    def get_geoms(self):
+        geoms = base.scene.findAllMatches('**/+GeomNode')
+        model_geoms = [x.model.findAllMatches('**/+GeomNode') for x in settings.scene.models]
+
+        for m in model_geoms:
+            for g in m:
+                geoms.append(g)
+        return geoms
+
     def change_textures(self):
         print("Changing textures")
         #Replace textures in scene accoring to settings time
         times = [None, 'Day', 'Evening', 'Night']
         time = times[settings.time]
         old_time = self.determine_texture_time()
-        geoms = base.scene.findAllMatches('**/+GeomNode')
-        model_geoms = [x.model.findAllMatches('**/+GeomNode') for x in settings.scene.models]
 
+        geoms = self.get_geoms()
+        
         #Don't run function if not necessary
         if old_time == time and not self.init:
             if settings.sun: #Hmm
                 print("No changes in textures.")
                 return
-
-        #Add sub-geoms to models, which need new texutures.
-        for m in model_geoms:
-            for g in m:
-                geoms.append(g)
 
         #Change texture for all geoms
         for geom in geoms:
@@ -272,6 +279,12 @@ class SuperLoader():
             print("Scene is probably flattenedStrong. Cannot change textures.")
         if settings.sun != settings.change_sun:
             settings.change_sun = settings.sun
+
+    def lights_out(self):
+        #Change textures on all geoms affected by electrical light
+        geoms = self.get_geoms()
+        
+        
 
     def overcast_path(self, path):
         #Find out whether or not path has overcast texture

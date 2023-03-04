@@ -2,6 +2,7 @@ import settings, voice_strings
 from direct.showbase.Transitions import Transitions
 from direct.interval.IntervalGlobal import *
 import model
+import threading
 
 #This script contains functions which execute when interacting with an object or entering a scene.
 def get_model():
@@ -88,7 +89,8 @@ def change_position(to_scene, **kwargs):
     for model in settings.scenes[settings.environment].models:
         model.model.detachNode()
     base.scene.detachNode()
-    base.superloader.load(to_scene, None)
+    threading.Thread(target=base.superloader.load, args=(to_scene, None)).start()
+    #base.superloader.load(to_scene, None)
 
     if 'time' in kwargs and settings.time != kw('time'):
         if not settings.time > kw('time'):
@@ -96,7 +98,8 @@ def change_position(to_scene, **kwargs):
             settings.time = kw('time')
 
     base.weather.set_fog_color()
-    base.superloader.change_textures()
+    threading.Thread(target=base.superloader.change_textures)
+    #base.superloader.change_textures()
     
 
 def fade(direction, time):
@@ -293,6 +296,7 @@ def split_firewood():
 '''
 
 
+
 def put_on_clothes(test):
     if not settings.g_bools['clothes_on']:
         take_object('clothes_on')
@@ -342,7 +346,7 @@ def sleep():
                      Func(base.superloader.change_textures), Wait(4), Func(fade,'in', 2),
                      Wait(2), Func(night_wake_up)).start()
         else:
-            base.superloader.change_textures()
+            threading.Thread(target=base.superloader.change_textures).start()
             
     elif settings.g_bools['can_sleep'] and settings.time == 3:
         print("Sleeping Night")
@@ -355,7 +359,8 @@ def sleep():
                      Func(base.superloader.load, "inte_d{}_t1".format(settings.day), False, newday=True),
                      Wait(4), Func(fade,'in', 2), Wait(2), Func(d1_wake_up)).start()
         else:
-            base.superloader.load("inte_d{}_t1".format(settings.day), False, newday=True)
+            threading.Thread(target=base.superloader.load, args=("inte_d{}_t1".format(settings.day), False, True)).start()
+            #base.superloader.load("inte_d{}_t1".format(settings.day), False, newday=True)
         
     else:
         print("I am not tired yet")

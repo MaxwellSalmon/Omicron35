@@ -20,6 +20,7 @@ class Model():
         self.audio_emitter = None
         self.ambience = None
         self.stop_ambience_on = []
+        self.audio_dropoff = 1
         self.audio_volume = 0.5
         self.tight_emitter = False
         self.tag = 'default'
@@ -47,6 +48,10 @@ class Model():
             model.setAlphaScale(kg('alpha'))
         
         #Sound
+        if kg('dropoff'):
+            self.audio_dropoff = kg('dropoff')
+        if kg('volume'):
+            self.audio_volume = kg('volume')
         if kg('tight_emitter'):
             self.tight_emitter = True
         if kg('audio'):
@@ -59,9 +64,9 @@ class Model():
         if kg('ambience'):
             self.create_audio_emitter(model)
             if self.audio_emitter:
-                self.ambience = base.superloader.load_sound_queue((kg('ambience'), self.audio_emitter, 1, self, self.audio_volume, 'ambience'))
+                self.ambience = base.superloader.load_sound_queue((kg('ambience'), self.audio_emitter, self.audio_dropoff, self, self.audio_volume, 'ambience'))
             else:
-                self.ambience = base.superloader.load_sound_queue((kg('ambience'), model, 1, self, self.audio_volume, 'ambience'))
+                self.ambience = base.superloader.load_sound_queue((kg('ambience'), model, self.audio_dropoff, self, self.audio_volume, 'ambience'))
 
         #Prevents ambience from playing at load - doesn't stop. 
         if kg('stop_ambience_on'):
@@ -108,12 +113,13 @@ class Model():
                 self.audio_emitter = emitter
 
     def create_audio(self, files, emitter):
+        #args: sound, emitter, dropoff, object, volume
         if not isinstance(files, list):
             files = [files]
         if len(files) == 1:
-            return base.superloader.load_sound_queue((files[0], emitter, 1, self, self.audio_volume))
+            return base.superloader.load_sound_queue((files[0], emitter, self.audio_dropoff, self, self.audio_volume))
         elif len(files) > 1:
-            return [base.superloader.load_sound_queue((x, emitter, 1, self, self.audio_volume)) for x in files]
+            return [base.superloader.load_sound_queue((x, emitter, self.audio_dropoff, self, self.audio_volume)) for x in files]
 
     def get_tight_pos(self, model):
         bmin, bmax = model.get_tight_bounds()
