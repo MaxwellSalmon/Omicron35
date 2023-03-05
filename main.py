@@ -2,7 +2,7 @@ from direct.showbase.ShowBase import ShowBase
 from direct.showbase import DirectObject, Audio3DManager
 from panda3d.core import *
 from direct.task import Task
-import math
+import math, threading
 from direct.interval.IntervalGlobal import *
 from direct.filter.CommonFilters import CommonFilters #temp?
 

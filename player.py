@@ -1,5 +1,6 @@
 from math import radians, sin, cos
 import random, functions
+import threading
 from direct.showbase import DirectObject
 from direct.gui.OnscreenImage import OnscreenImage
 from direct.task import Task

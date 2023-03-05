@@ -27,9 +27,9 @@ class SuperLoader():
         self.audio3d_queue = []
         base.transition = Transitions(loader)
         self.txt = text.Text()
-        self.loading = False
 
     def load(self, scene_name, init, newday=False):
+        settings.envloading = True
         self.init = init
         if init:
             render.attach_new_node("audioemitters")
@@ -62,7 +62,7 @@ class SuperLoader():
         self.start_ambience()
         self.show_env()
 
-        self.loading = False
+        settings.envloading = False
         
 
     def load_scene(self):
@@ -230,6 +230,7 @@ class SuperLoader():
         return geoms
 
     def change_textures(self):
+        settings.texloading = True
         print("Changing textures")
         #Replace textures in scene accoring to settings time
         times = [None, 'Day', 'Evening', 'Night']
@@ -242,6 +243,7 @@ class SuperLoader():
         if old_time == time and not self.init:
             if settings.sun: #Hmm
                 print("No changes in textures.")
+                settings.texloading = False
                 return
 
         #Change texture for all geoms
@@ -279,6 +281,7 @@ class SuperLoader():
             print("Scene is probably flattenedStrong. Cannot change textures.")
         if settings.sun != settings.change_sun:
             settings.change_sun = settings.sun
+        settings.texloading = False
 
     def lights_out(self):
         #Change textures on all geoms affected by electrical light

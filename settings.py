@@ -82,6 +82,9 @@ noclip = False
 #Functionality variables
 dt = 0
 change_sun = False
+loading = False
+envloading = False
+texloading = False
 
 #Scenes
 scenes = {}

@@ -26,9 +26,21 @@ def manage(task):
         if settings.day == 2:
             force_shed_ext_door_open()
 
+    check_loading()
     check_triggers()
     
     return Task.again
+
+def check_loading():
+    #Check if game has loaded and fade in if it has. If overall loading is false, do nothing.
+    if sum([settings.envloading, settings.texloading]) > 0:
+        #If either env/tex are loading, set overall loading to True
+        settings.loading = True
+    if sum([settings.envloading, settings.texloading]) == 0 and settings.loading == True:
+        #Overall loading is True, but env/tex are done
+        Sequence(Wait(0.5), Func(functions.fade,'in', 0.5)).start()
+        settings.loading = False #No more overall loading
+        
 
 def check_work_done():
     daily_tasks = [

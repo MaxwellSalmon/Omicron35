@@ -72,8 +72,7 @@ def change_scene(to_scene, **kwargs):
         return
 
     base.player.setup_sound(env=to_scene)
-    Sequence(Func(fade,'out',0.5), Wait(0.5), Func(change_position, to_scene, **kwargs),
-             Wait(0.5), Func(fade,'in', 0.5)).start()
+    Sequence(Func(fade,'out',0.5), Wait(0.5), Func(change_position, to_scene, **kwargs)).start()
 
 def change_position(to_scene, **kwargs):
     kw = kwargs.get
@@ -90,16 +89,15 @@ def change_position(to_scene, **kwargs):
         model.model.detachNode()
     base.scene.detachNode()
     threading.Thread(target=base.superloader.load, args=(to_scene, None)).start()
-    #base.superloader.load(to_scene, None)
+
 
     if 'time' in kwargs and settings.time != kw('time'):
         if not settings.time > kw('time'):
             #Never go back in time. 
             settings.time = kw('time')
-
+    threading.Thread(target=base.superloader.change_textures).start()
     base.weather.set_fog_color()
-    threading.Thread(target=base.superloader.change_textures)
-    #base.superloader.change_textures()
+    
     
 
 def fade(direction, time):
