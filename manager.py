@@ -4,6 +4,7 @@
 from direct.task import Task
 import settings, functions, voice_strings
 from direct.interval.IntervalGlobal import *
+import threading
 
 def manage(task):
 
@@ -77,7 +78,11 @@ def cut_power():
             settings.g_bools['shed_door_open'] = True
             print("POWER HAS BEEN CUT")
 
-            Sequence(Wait(5), Func(base.conversation.talk, 'power_bust'), Wait(3), Func(base.conversation.talk, 'power_cut')).start()
+            tex_thread = threading.Thread(target=base.superloader.change_textures, args={'lightsout':True})
+
+            talk_sequence = Sequence(Wait(5), Func(base.conversation.talk, 'power_bust'), Wait(3), Func(base.conversation.talk, 'power_cut'))
+            power_sequence = Sequence(Wait(5), Func(tex_thread.start))
+            Parallel(talk_sequence, power_sequence).start()
 
             #Make dramatic power-off sound
             open_lod_shed_door()

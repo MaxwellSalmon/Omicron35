@@ -229,7 +229,7 @@ class SuperLoader():
                 geoms.append(g)
         return geoms
 
-    def change_textures(self):
+    def change_textures(self, lightsout=False):
         settings.texloading = True
         print("Changing textures")
         #Replace textures in scene accoring to settings time
@@ -264,8 +264,11 @@ class SuperLoader():
 
             if geom.name == 'skydome':
                 new_path = self.skybox_path()
+
+            if lightsout:
+                new_path = self.lights_out_path(new_path)
             
-            if not settings.sun and settings.time == 1:
+            elif not settings.sun and settings.time == 1:
                 new_path = self.overcast_path(new_path)
             elif settings.time != 1:
                 #Remove overcast - only used for day textures
@@ -283,11 +286,11 @@ class SuperLoader():
             settings.change_sun = settings.sun
         settings.texloading = False
 
-    def lights_out(self):
-        #Change textures on all geoms affected by electrical light
-        geoms = self.get_geoms()
-        
-        
+    def lights_out_path(self, path):
+        #Find out whether or not path has overcast texture
+        if os.path.isfile(path[:-4]+'LightsOut.png'):
+            return path[:-4]+'LightsOut.png'
+        return path        
 
     def overcast_path(self, path):
         #Find out whether or not path has overcast texture
