@@ -41,7 +41,7 @@ class Conversation:
         is_conv = False #Is it a conversation or are you talking to yourself?
 
         for string in lines:
-            if string[:3] == 'hq_':
+            if string.split('/')[-1][:3] == 'hq_':
                 self.radio_voice.load_audio(string+'.wav')
                 self.conv_sequence.append(Func(base.text.new_colour, (0.2,0.8,0.1,1)))
                 self.conv_sequence.append(Func(base.text.new_text, self.radio_voice.subtitles[-1]))
