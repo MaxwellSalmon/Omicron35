@@ -26,9 +26,19 @@ subtitles = {
         'day2/cant_believe' : "I can't believe these fucking assholes!",
         'day2/did_they_hear_that' : "Shit, they weren't supposed to hear that!",
         'day2/im_lonely' : "I'm lonely...",
+
+        #Conversation day 3 aggr
+        'day3_agg/send_fucking_replacement' : "I'm going crazy here, send that fucking replacement!",
+        'day3_agg/sarcastic' : "No, no, Omicron. You can sit out there all by yourself. We will send you a batch of buiscuits in a year. Fuck those guys...",
+        'day3_agg/please_send_replacement' : "I beg you, can you please send a replacement soon?",
+        'day3_agg/hq_measure_omicron' : "The measurements, Omicron...",
+        'day3_agg/hq_about_your_tone' : "Thank you, Omicron. About your tone the last few days...",
+        'day3_agg/fuck_you' : "Fuck you! I am sitting out here all by myself!",
+        'day3_agg/hq_let_you_stay' : "Omicron, we can let you stay out there one more month, if you'd like that!",
+        'day3_agg/hq_not_happen_again' : "Do not let it happen again!",
         
         #Conversation day 3
-        'missingsuit' : "One of my thermal suits has gone missing.",
+        'day3/missingsuit' : "One of my thermal suits has gone missing.",
         'hq_suit' : "Don't you have more than one? Report your measurements please.",
         'windy' : "It was quite windy today. I think a storm is coming up.",
         'hq_storm' : "Mhmm... Sure... Report your measurements, please.",
@@ -88,14 +98,17 @@ conversations = {'radio_day1' : ['day1/report', 'day1/hq_greet', 'day1/measureme
                  'radio_day2_4' : ['day2/cant_believe', 'day2/hq_turn_off', 'day2/did_they_hear_that'],
                  'radio_day2_5' : ['day2/im_lonely', 'day2/hq_turn_off'],
 
-                 'radio_day3' : ['day1/report', 'day1/hq_greet'],
-                 'radio_day3_1' : boilerplate_conv['d3_meas'],
-                 'radio_day3_2' : ['missingsuit', 'hq_suit']+boilerplate_conv['d3_meas'],
-                 'radio_day3_3' : ['windy', 'hq_storm']+boilerplate_conv['d3_meas'],
-
-                 'radio_day3_4' : ['replacement', 'hq_noise'],
-                 'radio_day3_5' : ['yourname', 'hq_basename', 'realname', 'hq_name',
-                                   'hq_stranger', 'hq_smith', 'someoneelse', 'hq_noise'],
+                 'radio_d3_agg_1' : ['day1/report', 'day1/hq_greet'],
+                 'radio_d3_agg_2' : ['day3_agg/send_fucking_replacement', 'day2/hq_turn_off'],
+                 'radio_d3_agg_3' : ['day1/goddamnit'],
+                 'radio_d3_agg_4' : ['day3_agg/sarcastic'],
+                 'radio_d3_agg_5' : ['day3_agg/please_send_replacement', 'day3_agg/hq_measure_omicron'],
+                 'radio_d3_agg_6' : ['day1/measurements', 'day3_agg/hq_about_your_tone'],
+                 'radio_d3_agg_7' : ['day3_agg/fuck_you', 'day3_agg/hq_let_you_stay'],
+                 'radio_d3_agg_8' : ['day3_agg/false_sorry', 'd2/hq_turn_off'],
+                 'radio_d3_agg_9' : ['day3_agg/i_have_a_contract', 'd2/hq_turn_off'],
+                 'radio_d3_agg_10' : ['day3_agg/true_sorry', 'day3_agg/hq_not_happen_again'],
+                 
                  
                  }
 
