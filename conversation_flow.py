@@ -11,39 +11,64 @@ def initialise_states():
 
         #Day 2
         CS('day2', 'radio_day2', ["How was your day?", "Any news about my replacement?"], ['day2_how_was_day', 'day2_replace']),
-        CS('day2_how_was_day', 'radio_day2_2', None, 'day3_lone', end_state=True),  #Go to lonely day3
+        CS('day2_how_was_day', 'radio_day2_2', None, 'day3_lone', end_state=True),
         CS('day2_replace', 'radio_day2_3', ["I can't believe these assholes!", "I'm so lonely..."], ['day2_assholes', 'day2_lonely']),
         CS('day2_assholes', 'radio_day2_4', None, 'day3_aggr', end_state=True),
         CS('day2_lonely', 'radio_day2_5', None, 'day3_lone', end_state=True),
 
-
-    
         # Day 3 - aggressive
         CS('day3_aggr', 'radio_d3_agg_1', ["Report measurements", "Send that fucking replacement", "Please send the replacement"], ['day3_agg_meas', 'day3_agg_fuck_repl', 'day3_agg_pls_repl']),
         CS('day3_agg_fuck_repl', 'radio_d3_agg_2', ['God damnit', 'Mock Tau 1'], ['day3_agg_damn', 'day3_agg_mock']),
-        CS('day3_agg_damn', 'radio_d3_agg_3', None, 'temp_state', end_state=True), #go to day4_aggr
-        CS('day3_agg_mock', 'radio_d3_agg_4', None, 'temp_state', end_state=True), #go to day4_aggr
+        CS('day3_agg_damn', 'radio_d3_agg_3', None, 'day4_agg', end_state=True), 
+        CS('day3_agg_mock', 'radio_d3_agg_4', None, 'day4_agg', end_state=True), 
         CS('day3_agg_pls_repl', 'radio_d3_agg_5', ["Give measurements", "Send that fucking replacement!"], ['day3_agg_meas', 'day3_agg_fuck_repl']),
         CS('day3_agg_meas', 'radio_d3_agg_6', ["Fuck you!", "I am sorry"], ['day3_agg_fuck_u', 'day3_agg_so_sorry']),
         CS('day3_agg_fuck_u', 'radio_d3_agg_7', ['I am sorry about that', 'I have a contract!'], ['day3_agg_fake_sorry', 'day3_agg_contract']),
-        CS('day3_agg_fake_sorry', 'radio_d3_agg_8', None, 'temp_state', end_state=True), #Go to day4_lone
-        CS('day3_agg_contract', 'radio_d3_agg_9', None, 'temp_state', end_state=True), #Go to day4_aggr
-        CS('day3_agg_so_sorry', 'radio_d3_agg_10', None, 'temp_state', end_state=True), #Go to day4_lone
+        CS('day3_agg_fake_sorry', 'radio_d3_agg_8', None, 'day4_lone', end_state=True), 
+        CS('day3_agg_contract', 'radio_d3_agg_9', None, 'day4_agg', end_state=True), 
+        CS('day3_agg_so_sorry', 'radio_d3_agg_10', None, 'day4_lone', end_state=True),  #Maybe need a path to d4_para?
 
+        #Day 3 - lonely
+        CS('day3_lone', 'radio_d3_lone_1', ["One of my thermal suits is missing", "A storm might be coming up"], ['day3_lone_thermal', 'day3_lone_storm']),
+        CS('day3_lone_thermal', 'radio_d3_lone_2', ["The shed gate keeps opening", "Report measurements"], ['day3_lone_gate', 'day3_lone_meas']),
+        CS('day3_lone_gate', 'radio_d3_lone_3', ['Any news about the replacement?', "Are you sure I'm alone here?"], ['day3_lone_replace', 'day3_lone_alone']), #Jumps to same state as "give measurements"
+        CS('day3_lone_meas', 'radio_d3_lone_4', ['Any news about the replacement?', "Are you sure I'm alone here?"], ['day3_lone_replace', 'day3_lone_alone']),
+        CS('day3_lone_alone', 'radio_d3_lone_5', None, 'temp_state', end_state=True), #day 4 para
+        CS('day3_lone_replace', 'radio_d3_lone_6', None, 'day4_lone', end_state=True),
+        CS('day3_lone_storm', 'radio_d3_lone_7', ['Report measurements'], ['day3_lone_meas2']),
+        CS('day3_lone_meas2', 'radio_d3_lone_4', ['Any news about the replacement?', "What is your name?"], ['day3_lone_replace', 'day3_lone_name']),
+        CS('day3_lone_name', 'radio_d3_lone_8', ['Is someone there with you?', 'Nice to meet you John!'], ['day3_lone_stranger', 'day3_lone_john']),
+        CS('day3_lone_stranger', 'radio_d3_lone_9', None, 'temp_state', end_state=True), # day 4 para
+        CS('day3_lone_john', 'radio_d3_lone_10', None, 'day4_lone', end_state=True),
         
-        
-        
+        #Day 4 - aggressive
+        CS('day4_agg', 'radio_d4_agg_1', ['I am sorry about my tone', 'Refuse to report'], ['day4_agg_sorry', 'day4_agg_refuse']),
+        CS('day4_agg_sorry', 'radio_d4_agg_2', ['Give measurements', 'Ask for an apology', "It's because of the loneliness"], ['day4_agg_meas','day4_agg_apology', 'day4_agg_lone']),
+        CS('day4_agg_meas', 'radio_d4_agg_3', None, 'temp_state', end_state=True), #night
+        CS('day4_agg_apology', 'radio_d4_agg_4', None, 'temp_state', end_state=True), #night
+        CS('day4_agg_lone', 'radio_d4_agg_5', ['Report measurements', 'I can get a bit emotional'], ['day4_agg_meas', 'day4_agg_emo']),
+        CS('day4_agg_emo', 'radio_d4_agg_6', None, 'temp_state', end_state=True), #night
+        CS('day4_agg_refuse', 'radio_d4_agg_7', None, 'temp_state', end_state=True), #night
 
-        #Day 3 - lonely - not done.
-        CS('day3_lone', 'radio_day3', ["Report measurements", "One of my thermal suits is missing",
-                                  "It was rather windy today. A storm might be coming up"], ['day3_meas', 'day3_thermal', 'day3_storm']),
-        CS('day3_meas', 'radio_day3_1', ["Any news about my replacement?", "What is your name?"], ['day3_replace', 'day3_name']),
-        CS('day3_thermal', 'radio_day3_2', ["Any news about my replacement?", "What is your name?"], ['day3_replace', 'day3_name']),
-        CS('day3_storm', 'radio_day3_3', ["Any news about my replacement?", "What is your name?"], ['day3_replace', 'day3_name']),
+        #Day 4 - lonely
+        CS('day4_lone', 'radio_d4_lone_1', ["Do you have a family?", "Is it also cold where you are?", "I really need to clean the house"], ['day4_lone_family', 'day4_lone_cold', 'day4_lone_clean']),
+        CS('day4_lone_family', 'radio_d4_lone_2', ["Say nothing", "What do you mean?"], ['day4_lone_family3', 'day4_lone_family2']),
+        CS('day4_lone_family2', 'radio_d4_lone_3', ["I see", "I feel the same", "Why not?"], ['day4_lone_isee', 'day4_lone_same', 'day4_lone_why']),
+        CS('day4_lone_family3', 'radio_d4_lone_4', ["I see", "I feel the same", "Why not?"], ['day4_lone_isee', 'day4_lone_same', 'day4_lone_why']), #Same, just not asking
+        CS('day4_lone_isee', 'radio_d4_lone_5', ["Why were you sent here?", "Must be tough"], ['day4_lone_sent', 'day4_lone_tough']),
+        CS('day4_lone_sent', 'radio_d4_lone_6', None, 'temp_state', end_state=True), #night
+        CS('day4_lone_tough', 'radio_d4_lone_7', ['What do you mean?', 'Who is that?'], ['day4_lone_mean', 'day4_lone_who']),
+        CS('day4_lone_mean', 'radio_d4_lone_8', None, 'temp_state', end_state=True), #night
+        CS('day4_lone_who', 'radio_d4_lone_9', None, 'temp_state', end_state=True), #night
+        CS('day4_lone_same', 'radio_d4_lone_10', None, 'temp_state', end_state=True), #night
+        CS('day4_lone_why', 'radio_d4_lone_11', None, 'temp_state', end_state=True), #night
+        CS('day4_lone_cold', 'radio_d4_lone_12', None, 'temp_state', end_state=True), #May want some choices to not report here?
+        CS('day4_lone_clean', 'radio_d4_lone_13', None, 'temp_state', end_state=True), #As well as here
         
-        CS('day3_replace', 'radio_day3_4', None, 'temp_state', end_state=True),
-        CS('day3_name', 'radio_day3_5', None, 'temp_state', end_state=True),
-
+        
+        
+        
+        
         
 
         
