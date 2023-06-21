@@ -207,16 +207,16 @@ conversations = {'radio_day1' : ['day1/report', 'day1/hq_greet', 'day1/measureme
                  }
 
 
-sounds = {'writing' : ['writing'],
-          'power_bust' : ['Electricity_Spark'],
+sounds = {'writing' : ['self/writing'],
+          'power_bust' : ['self/Electricity_Spark'],
           }
 
-self_talk = {'shed_door_open' : ['generatorgate'],
-             'not_done_with_tasks' : ['stuffouthere'],
-             'no_clothes' : ['toocold'],
-             'no_clipboard' : ['noclipboard'],
-             'power_cut' : ['power_cut', 'see_from_bathroom'],
-             'bathroom_window': ['see_gate_damn'],
+self_talk = {'shed_door_open' : ['self/generatorgate'],
+             'not_done_with_tasks' : ['self/stuffouthere'],
+             'no_clothes' : ['self/toocold'],
+             'no_clipboard' : ['self/noclipboard'],
+             'power_cut' : ['self/power_cut', 'self/see_from_bathroom'],
+             'bathroom_window': ['self/see_gate_damn'],
              }
 
 conversations.update(sounds)

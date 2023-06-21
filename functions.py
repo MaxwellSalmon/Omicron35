@@ -43,6 +43,7 @@ def change_scene(to_scene, **kwargs):
 
     #Check if to_scene has a specific sub-scene
     to_scene = find_subscene(to_scene)
+    settings.envloading = True
 
     #Check if all bools are true
     if 'bools' in kwargs:
@@ -112,7 +113,11 @@ def take_object(g_bool, **kwargs):
         print("Oops! Could not pick object! Try again.")    
     kw = kwargs.get
     if ('hide' in kwargs and kw('hide')) or 'hide' not in kwargs:
-        settings.picked_obj.set_pos(0,0,-10)
+        try:
+            settings.picked_obj.set_pos(0,0,-10)
+        except:
+            print("Wow, object disappeared between checks... Try again.")
+            return
     get_model().play_audio()
     if g_bool:
         settings.g_bools[g_bool] = True
@@ -491,7 +496,7 @@ def shed_snow():
 
 def bathroom_window_trigger():
     if settings.g_bools['power_off']:
-        base.conversation.talk('self/bathroom_window')
+        base.conversation.talk('bathroom_window')
 
 def shed_generator_off_talk_trigger():
     if settings.g_bools['power_off']:
