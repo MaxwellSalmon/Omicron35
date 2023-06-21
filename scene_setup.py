@@ -41,6 +41,13 @@ def create_scenes(day):
 
         setup("hang_d3_t1", os.path.join('models', 'hangar.egg'), colliders.hangar)
 
+    elif day == 4:
+        setup("inte_d4_t1", os.path.join('models', 'interior.egg'), colliders.house_interior)
+
+        setup("exte_d4_t1", os.path.join('models', 'exterior.egg'), colliders.exterior)
+
+        setup("hang_d4_t1", os.path.join('models', 'hangar.egg'), colliders.hangar)
+
 def create_base_models(scene_name):
     if scene_name[:4] == "inte":
         models = [Model('interior/suit1', tag='interactive', audio='sfx/zipper.wav', function=[functions.put_on_clothes, {'test' : 'Here is suit1'}]),
@@ -108,6 +115,12 @@ def create_specific_models(scene_name):
     elif scene_name[:-3] == 'inte_d3':
         models = [Model('interior/door', tag='interactive', pos=(10,0.1,0.4), scale=0.5, solid=True, audio='sfx/door.wav',
                         function=[functions.change_scene, {'to_scene':'exte_d3_t1', 'bools':['clothes_on', 'has_clipboard'], 'voices':['no_clothes','no_clipboard']}]),
+                  Model('interior/mess_d3'),
+                  Model('dev/sphere', name='wind_sound_sphere', pos=(0,0,-4), ambience='sfx/Wind_Interior_w_Howling.wav'),
+                  ]
+    elif scene_name[:-3] == 'inte_d4':
+        models = [Model('interior/door', tag='interactive', pos=(10,0.1,0.4), scale=0.5, solid=True, audio='sfx/door.wav',
+                        function=[functions.change_scene, {'to_scene':'exte_d4_t1', 'bools':['clothes_on', 'has_clipboard'], 'voices':['no_clothes','no_clipboard']}]),
                   Model('interior/mess_d3'),
                   Model('dev/sphere', name='wind_sound_sphere', pos=(0,0,-4), ambience='sfx/Wind_Interior_w_Howling.wav'),
                   ]

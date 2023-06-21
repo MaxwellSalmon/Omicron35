@@ -33,12 +33,12 @@ def initialise_states():
         CS('day3_lone_thermal', 'radio_d3_lone_2', ["The shed gate keeps opening", "Report measurements"], ['day3_lone_gate', 'day3_lone_meas']),
         CS('day3_lone_gate', 'radio_d3_lone_3', ['Any news about the replacement?', "Are you sure I'm alone here?"], ['day3_lone_replace', 'day3_lone_alone']), #Jumps to same state as "give measurements"
         CS('day3_lone_meas', 'radio_d3_lone_4', ['Any news about the replacement?', "Are you sure I'm alone here?"], ['day3_lone_replace', 'day3_lone_alone']),
-        CS('day3_lone_alone', 'radio_d3_lone_5', None, 'temp_state', end_state=True), #day 4 para
+        CS('day3_lone_alone', 'radio_d3_lone_5', None, 'day4_para', end_state=True),
         CS('day3_lone_replace', 'radio_d3_lone_6', None, 'day4_lone', end_state=True),
         CS('day3_lone_storm', 'radio_d3_lone_7', ['Report measurements'], ['day3_lone_meas2']),
         CS('day3_lone_meas2', 'radio_d3_lone_4', ['Any news about the replacement?', "What is your name?"], ['day3_lone_replace', 'day3_lone_name']),
         CS('day3_lone_name', 'radio_d3_lone_8', ['Is someone there with you?', 'Nice to meet you John!'], ['day3_lone_stranger', 'day3_lone_john']),
-        CS('day3_lone_stranger', 'radio_d3_lone_9', None, 'temp_state', end_state=True), # day 4 para
+        CS('day3_lone_stranger', 'radio_d3_lone_9', None, 'day4_para', end_state=True),
         CS('day3_lone_john', 'radio_d3_lone_10', None, 'day4_lone', end_state=True),
         
         #Day 4 - aggressive
@@ -64,7 +64,16 @@ def initialise_states():
         CS('day4_lone_why', 'radio_d4_lone_11', None, 'temp_state', end_state=True), #night
         CS('day4_lone_cold', 'radio_d4_lone_12', None, 'temp_state', end_state=True), #May want some choices to not report here?
         CS('day4_lone_clean', 'radio_d4_lone_13', None, 'temp_state', end_state=True), #As well as here
-        
+
+        #Day 4 - paranoia
+        CS('day4_para', 'radio_d4_para_1', ['I swear I am not alone', 'Are there any polar bears here?'], ['day4_para_nalone', 'day4_para_bears']),
+        CS('day4_para_nalone', 'radio_d4_para_2', ['Give measurements', 'I am hearing things at night', 'Am I just paranoid?'], ['day4_para_meas', 'day4_para_hearing', 'day4_para_para']),
+        CS('day4_para_bears', 'radio_d4_para_3', ['Give measurements', 'I am hearing things at night', 'Am I just paranoid?'], ['day4_para_meas', 'day4_para_hearing', 'day4_para_para']),
+        CS('day4_para_meas', 'radio_d4_lone_4', None, 'temp_state', end_state=True), #night
+        CS('day4_para_hearing', 'radio_d4_para_5', ['How did that happen?', "Why didn't you tell me?"], ['day4_para_how', 'day4_para_tell']),
+        CS('day4_para_para', 'radio_d4_para_6', ['How did that happen?', "Why didn't you tell me?"], ['day4_para_how', 'day4_para_tell']),
+        CS('day4_para_how', 'radio_d4_para_7', None, 'temp_state', end_state=True), #night
+        CS('day4_para_tell', 'radio_d4_para_8', None, 'temp_state', end_state=True), #night
         
         
         

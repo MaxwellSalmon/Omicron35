@@ -64,7 +64,7 @@ subtitles = {
         'day4_agg/cant_hear' : "What? I can't hear you!",
         'day4_agg/emotional' : "I think most people would get really emotional from such isolation.",
         'day4_agg/hq_angry' : "I swear to fucking God! We can let you stay out there untill you freeze to death! We've done it before and we sure as hell can do it again. Not a single soul would miss your pathetic criminal asshole! I'm getting paid enough to talk to this piece of... shit!",
-        'day4_agg/because_lonely' : "I mean, it's probably because I'm so lonely out here."
+        'day4_agg/because_lonely' : "I mean, it's probably because I'm so lonely out here.",
         'day4_agg/refuse' : "I refuse to give any measurements!",
         'day4_agg/appropriate' : "It would be appropriate if you also gave me an apology.",
 
@@ -77,7 +77,7 @@ subtitles = {
         'day4_lone/hq_4_years' : "I was sent here four years ago. I am not sure my daughter would recognize me.",
         'day4_lone/why_sent' : "Why were you sent out there in the first place?",
         'day4_lone/hq_critical' : "Well... I was critical of the war and how civil lives were wasted. Certain powerful people could not...",
-        'day4_lone/hq_stranger_talk1' : "Hvad snakker du om? Giv ham beskeden!"
+        'day4_lone/hq_stranger_talk1' : "Hvad snakker du om? Giv ham beskeden!",
         'day4_lone/tough' : "Must be tough.",
         'day4_lone/hq_stuck' : "Yeah, now I'm stuck at Tau 1 with this guy who keeps trying to get into my head.",
         'day4_lone/hq_stranger_talk' : "Har du givet ham beskeden? Hallo? Giv ham beskeden!",
@@ -89,7 +89,23 @@ subtitles = {
         'day4_lone/cold' : "It's freezing out here. Is it also cold where you are?",
         'day4_lone/hq_sure_meas_pls' : "Sure. Measurements, please.",
         'day4_lone/clean' : "This place is getting messy! I really need to clean up the house.",
-        'day4_lone/hq_dont_care', "Frankly, Omicron. I do not care. Give me the measurements.",
+        'day4_lone/hq_dont_care' : "Frankly, Omicron. I do not care. Give me the measurements.",
+        
+        #Conversation day 4 paranoid
+        'day4_para/swear_alone' : "I swear I'm not alone out here!",
+        'day4_para/hq_nearest_settle' : "I can assure you there are nobody. You would die if you tried to walk to the nearest settlement.",
+        'day4_para/polar_bears' : "Are there any polar bears out here?",
+        'day4_para/hq_polar_bear' : "You are at the Antarctic... There are no polar bears.",
+        'day4_para/hq_storm' : "Hm. Seems like a pretty bad storm.",
+        'day4_para/hearing_things' : "I am hearing things at night.",
+        'day4_para/hq_nuts' : "You wouldn't be the first. A prior observer went nuts. Don't do that as well.",
+        'day4_para/paranoid' : "Am I just paranoid?",
+        'day4_para/how_happen' : "How did that happen?",
+        'day4_para/hq_maybe_it_could_be' : "I don't know. Cabin fever? Or maybe it could be *NOISE*. Measurements please.",
+        'day4_para/last_part' : "What was that? W- what was that last part?",
+        'day4_para/what_didnt_tell' : "What?! Why didn't you tell me?",
+        'day4_para/hq_cursed' : "Why would I? It's not like Omicron is cursed or anything.",
+        'day4_para/cursed' : "Uh... What? Is- is it cursed?",
         
 
         #Self talk
@@ -121,13 +137,10 @@ subtitles = {
         'self/generator_needs_fix' : "I need to get the power on first...",
         
         #Sound effects below.
-        'writing' : '',
-        'Electricity_Spark' : '',
+        'self/writing' : '',
+        'self/Electricity_Spark' : '',
         }
 
-boilerplate_conv = {
-    'd3_meas' : ['day1/measurements', 'day1/hq_noted', 'wait', 'hq_whatnow'],
-    }
 
 conversations = {'radio_day1' : ['day1/report', 'day1/hq_greet', 'day1/measurements', 'day1/hq_delay'],
                  'radio_day1_2' : ['day1/whatagain', 'day1/hq_noted', 'day1/bastards'],
@@ -182,6 +195,15 @@ conversations = {'radio_day1' : ['day1/report', 'day1/hq_greet', 'day1/measureme
                  'radio_d4_lone_11' : ['day4_lone/why_not', 'day4_lone/hq_why_you_think', 'day4_agg/hq_message'],
                  'radio_d4_lone_12' : ['day4_lone/cold', 'day4_lone/hq_sure_meas_pls', 'day1/measurements', 'day4_agg/hq_message'],
                  'radio_d4_lone_13' : ['day4_lone/clean', 'day4_lone/hq_dont_care', 'day1/measurements', 'day4_agg/hq_message'],
+
+                 'radio_d4_para_1' : ['day1/report', 'day1/hq_greet'],
+                 'radio_d4_para_2' : ['day4_para/swear_alone', 'day4_para/hq_nearest_settle', 'day3_agg/hq_measure_omicron'],
+                 'radio_d4_para_3' : ['day4_para/polar_bears', 'day4_para/hq_polar_bear', 'day3_agg/hq_measure_omicron'],
+                 'radio_d4_para_4' : ['day1/measurements', 'day2/hq_noted', 'day4_para/hq_storm', 'day4_agg/hq_message'],
+                 'radio_d4_para_5' : ['day4_para/hearing_things', 'day4_para/hq_nuts'],
+                 'radio_d4_para_6' : ['day4_para/paranoid', 'day4_para/hq_nuts'],
+                 'radio_d4_para_7' : ['day4_para/how_happen', 'day4_para/hq_maybe_it_could_be', 'day4_para/last_part', 'day3_agg/hq_measure_omicron'],
+                 'radio_d4_para_8' : ['day4_para/what_didnt_tell', 'day4_para/hq_cursed', 'day4_para/cursed', 'day3_agg/hq_measure_omicron'],
                  }
 
 

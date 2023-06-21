@@ -75,7 +75,7 @@ hang_screws = 0
 show_env = True
 show_fps = True
 show_col = False
-dev_control = True
+dev_control = False
 skip_convs = False
 noclip = False
 

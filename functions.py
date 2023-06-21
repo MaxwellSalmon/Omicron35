@@ -154,9 +154,9 @@ def take_screw(screw_type):
     else:
         plate_cutscene('up')
         if settings.g_bools['has_screwdriver']:
-            base.conversation.talk('wrong_screwdriver')
+            base.conversation.talk('self/wrong_screwdriver')
         else:
-            base.conversation.talk('need_screwdriver')
+            base.conversation.talk('self/need_screwdriver')
         
 def click_plate():
     if settings.constraints == [None, None] and settings.shed_screws != 4:
@@ -172,7 +172,7 @@ def click_fusebox():
         pass
     elif settings.g_bools['has_fuse']:
         #Placing fuse
-        base.conversation.talk('fuse_fits')
+        base.conversation.talk('self/fuse_fits')
         fuse = find_model('fuse')
         fuse.model.set_pos(0,0,-1.8)
         fuse.set_tag('not_interactive')
@@ -187,10 +187,10 @@ def take_fuse():
     plate_cutscene('up')
     if 'ext' in settings.environment:
         take_object('has_bad_fuse')
-        base.conversation.talk('busted_fuse')
+        base.conversation.talk('self/busted_fuse')
     else:
         take_object('has_fuse')
-        base.conversation.talk('fuse_will_fit')
+        base.conversation.talk('self/fuse_will_fit')
 
 def take_screwdriver(g_bool):
     take_object(g_bool)
@@ -201,26 +201,26 @@ def take_padlock():
 
 def refill_generator():
     if settings.g_bools['generator_fixed'] and settings.g_bools['power_off']:
-        base.conversation.talk('power_back')
+        base.conversation.talk('self/power_back')
         settings.g_bools['power_off'] = False
         return
     if not settings.g_bools['has_fuel']:
         if settings.g_bools['has_jerrycan']:
-            base.conversation.talk('emptyjerrycan')
+            base.conversation.talk('self/emptyjerrycan')
         else:
-            base.conversation.talk('generatorneedsfuel')
+            base.conversation.talk('self/generatorneedsfuel')
         return
     if not settings.g_bools['generator_refilled']:
         take_object('generator_refilled', hide=False)
-        base.conversation.talk('writing')
-        base.conversation.talk('refueled')
+        base.conversation.talk('self/writing')
+        base.conversation.talk('self/refueled')
     else:
-        base.conversation.talk('haverefueled')
+        base.conversation.talk('self/haverefueled')
 
 def read_measurements():
     if not settings.g_bools['weather_measured']:
         take_object('weather_measured', hide=False)
-        base.conversation.talk('writing')
+        base.conversation.talk('self/writing')
         print("You read the weather measurements")
     else:
         print("You already measured the weather")
@@ -234,7 +234,7 @@ def handle_padlock(place):
         padlock.model.set_pos(0,0,-10)
     elif place == 'bolt':
         padlock.model.set_pos_hpr(58.21,-3.41,0.68,342,0,5)
-        base.conversation.talk('gate_locked') ## Perhaps make it only say this once.
+        base.conversation.talk('self/gate_locked') ## Perhaps make it only say this once.
 
 def open_shed_door():
     door = [x for x in settings.scene.models if 'sheddoor' in x.name]
@@ -271,18 +271,18 @@ def click_snowcat_plate():
 
 def take_fuel():
     if not settings.g_bools['has_jerrycan']:
-        base.conversation.talk('needcan')
+        base.conversation.talk('self/needcan')
         return
     if not settings.g_bools['has_fuel']:
         print("You filled the jerry can with fuel")
         take_object('has_fuel', hide=False)
     else:
-        base.conversation.talk('havefuel')
+        base.conversation.talk('self/havefuel')
 
 def split_firewood():
     if not settings.g_bools['firewood']:
         take_object('firewood', hide=False)
-        base.conversation.talk('writing')
+        base.conversation.talk('self/writing')
         print("You split the firewood")
     else:
         print("I already split enough firewood")
@@ -491,11 +491,11 @@ def shed_snow():
 
 def bathroom_window_trigger():
     if settings.g_bools['power_off']:
-        base.conversation.talk('bathroom_window')
+        base.conversation.talk('self/bathroom_window')
 
 def shed_generator_off_talk_trigger():
     if settings.g_bools['power_off']:
-        base.conversation.talk('generator_off_think')
+        base.conversation.talk('self/generator_off_think')
 
 
 
