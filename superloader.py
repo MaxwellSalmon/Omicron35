@@ -19,7 +19,7 @@ from model import *
 import functions, scene_setup
 import colliders, conversation
 import text
-import os
+import os, time
 
 class SuperLoader():
 
@@ -41,7 +41,6 @@ class SuperLoader():
             base.conversation.delete_voices()
             scene_setup.create_scenes(settings.day)
             
-
         self.stop_ambience()
         settings.environment = scene_name
         settings.scene = settings.scenes[scene_name]
@@ -221,6 +220,7 @@ class SuperLoader():
             print("Could not change colour on", model)
 
     def get_geoms(self):
+        time.sleep(1) #Not ideal, but needs to wait for base scene to change.
         geoms = base.scene.findAllMatches('**/+GeomNode')
         model_geoms = [x.model.findAllMatches('**/+GeomNode') for x in settings.scene.models]
 
@@ -229,8 +229,10 @@ class SuperLoader():
                 geoms.append(g)
         return geoms
 
-    def change_textures(self, lightsout=False):
+    def change_textures(self, lightsout=False):        
         settings.texloading = True
+        if settings.g_bools['power_off']:
+            lightsout = True
         print("Changing textures")
         #Replace textures in scene accoring to settings time
         times = [None, 'Day', 'Evening', 'Night']
@@ -260,7 +262,7 @@ class SuperLoader():
 
             list_path = path.split('/')
             list_path[1] = time
-            new_path = '/'.join(list_path)
+            new_path = '/'.join(list_path)            
 
             if geom.name == 'skydome':
                 new_path = self.skybox_path()
