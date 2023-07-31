@@ -4,6 +4,7 @@ from panda3d.physics import LinearVectorForce
 from panda3d.core import CollisionNode, CollisionSphere
 
 import settings
+import functions
 
 #This script controls weather effects, but also general particle effects.
 

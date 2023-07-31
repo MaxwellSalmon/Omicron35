@@ -72,6 +72,9 @@ def create_base_models(scene_name):
                   Model('interior/bulbs'),
                   Model('interior/plates'),
                   Model('interior/windows'),
+                  Model('interior/hour', pos=(-5.65,6.175,2.1)),
+                  Model('interior/minute', pos=(-5.65,6.175,2.1)),
+                  Model('interior/pendulum', pos=(-5.8, 6.175, 2.05), hpr=(0,-14,0)),
                   Model('dev/sphere', name="fire_sound", scale=0.1, volume=0.5, dropoff=2, pos=(5,3.9,-1.2), ambience='amb/fire.wav'),
                   Model('skybox', scale=21, pos=(0,0,-200)),
                   ]

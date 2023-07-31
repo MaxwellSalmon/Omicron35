@@ -23,7 +23,7 @@ g_bools = {
     'radio_conv_done' : False,
     'shed_door_open' : False,
     'shed_door_forced' : False,
-    'power_off' : True,
+    'power_off' : False,
     'generator_plate_removed' : False,
     'has_stardriver' : False,
     'has_screwdriver' : False,
@@ -34,9 +34,9 @@ g_bools = {
     }
 
 #Environmental variables
-environment = 'exte_d2_t2'
-day = 2
-time = 2
+environment = 'inte_d1_t1'
+day = 1
+time = 1
 sun = True
 #light, medium, heavy
 snow = ""

@@ -1,4 +1,5 @@
 import settings
+from direct.interval.IntervalGlobal import *
 import functions
 
 def help_func(*args):
@@ -63,6 +64,14 @@ def skip_conv():
     settings.skip_convs = not settings.skip_convs
     return f"Skip conversations set to {settings.skip_convs}"
 
+def movobj(model, pos=()):
+    m = functions.find_model(model).model
+    if not pos:
+        return m.get_pos()
+    interval = m.posInterval(2.0, eval(pos))
+    interval.start()
+    return f"Moved to {pos}"
+
 def next_day():
     settings.time = 1
     settings.day += 1
@@ -87,6 +96,7 @@ commands_dict = {
     'cstate' : get_state,
     'skipconv' : skip_conv,
     'nextday' : next_day,
+    'movobj' : movobj,
     }
 
 help_strings = {
@@ -103,4 +113,5 @@ help_strings = {
     'cstate' : "Prints the name of the current conversation state.",
     'skipconv' : "Toggles option to skip conversations.",
     'nextday' : "Changes the time to the morning, next day",
+    'movobj' : "Move object to position. movobj <model> <(x,y,z)>"
     }

@@ -233,6 +233,7 @@ class SuperLoader():
         settings.texloading = True
         if settings.g_bools['power_off']:
             lightsout = True
+            print("Lights out!")
         print("Changing textures")
         #Replace textures in scene accoring to settings time
         times = [None, 'Day', 'Evening', 'Night']
