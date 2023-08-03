@@ -43,6 +43,8 @@ class Model():
             model.set_scale(kg('scale'))
         if kg('function'):
             settings.object_functions[str(name)] = kg('function')
+        if kg('startfunc'):
+            settings.start_functions.append(kg('startfunc'))
         if kg('alpha'):
             model.setTransparency(TransparencyAttrib.MAlpha)
             model.setAlphaScale(kg('alpha'))

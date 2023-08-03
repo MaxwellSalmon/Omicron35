@@ -93,6 +93,7 @@ class Weather:
             self.wsnows[3].disable()
 
     def control_fog(self):
+        render.clearFog()
         if not settings.snow:
             return
         
@@ -111,14 +112,18 @@ class Weather:
                 self.fog.setExpDensity(0.005)
                 render.setFog(self.fog)
             else:
+                print("Clear fog")
                 render.clearFog()
 
     def set_fog_color(self):
         if settings.time == 1:
+            print("color 1")
             self.fog.setColor(0.9,0.9,0.9)
         elif settings.time == 2:
+            print("color 2")
             self.fog.setColor(0.2,0.2,0.25)
         elif settings.time == 3:
+            print("color 3")
             self.fog.setColor(0.1,0.1,0.2)
 
     def shed_snow(self):

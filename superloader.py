@@ -61,6 +61,7 @@ class SuperLoader():
         self.start_ambience()
         self.show_env()
 
+        self.init_functions()
         settings.envloading = False
         
 
@@ -137,6 +138,9 @@ class SuperLoader():
         for model in settings.scene.models:
             model.model.removeNode()
             del model
+
+    def init_functions(self):
+        [x() for x in settings.start_functions]
 
     def show_env(self):
         if settings.show_env:

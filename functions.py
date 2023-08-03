@@ -299,7 +299,7 @@ def split_firewood():
 '''
 
 def control_clock():
-    pendulum = find_model('pendulum').model
+    pendulum = find_model('interior/pendulum').model
     seq = Sequence(pendulum.hprInterval(1.0, (0, 14, 0), blendType='easeInOut'),
                    pendulum.hprInterval(1.0, (0, -14, 0), blendType='easeInOut'))
     seq.loop()
@@ -310,6 +310,7 @@ def put_on_clothes(test):
 
 def take_clipboard():
     take_object('has_clipboard')
+    control_clock()
     
 
 def use_radio():

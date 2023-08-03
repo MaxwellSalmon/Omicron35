@@ -5,6 +5,7 @@ from panda3d.core import (
 #This script contains settings as well as variables exchanged between scripts.
 
 object_functions = {}
+start_functions = []
 g_bools = {
     'clothes_on' : False,
     'woken_up' : False,
@@ -34,8 +35,8 @@ g_bools = {
     }
 
 #Environmental variables
-environment = 'inte_d1_t1'
-day = 1
+environment = 'inte_d3_t1'
+day = 3
 time = 1
 sun = True
 #light, medium, heavy
