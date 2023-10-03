@@ -199,7 +199,7 @@ conversations = {'radio_day1' : ['day1/report', 'day1/hq_greet', 'day1/measureme
                  'radio_d4_para_1' : ['day1/report', 'day1/hq_greet'],
                  'radio_d4_para_2' : ['day4_para/swear_alone', 'day4_para/hq_nearest_settle', 'day3_agg/hq_measure_omicron'],
                  'radio_d4_para_3' : ['day4_para/polar_bears', 'day4_para/hq_polar_bear', 'day3_agg/hq_measure_omicron'],
-                 'radio_d4_para_4' : ['day1/measurements', 'day2/hq_noted', 'day4_para/hq_storm', 'day4_agg/hq_message'],
+                 'radio_d4_para_4' : ['day1/measurements', 'day4_para/hq_storm', 'day4_agg/hq_message'],
                  'radio_d4_para_5' : ['day4_para/hearing_things', 'day4_para/hq_nuts'],
                  'radio_d4_para_6' : ['day4_para/paranoid', 'day4_para/hq_nuts'],
                  'radio_d4_para_7' : ['day4_para/how_happen', 'day4_para/hq_maybe_it_could_be', 'day4_para/last_part', 'day3_agg/hq_measure_omicron'],

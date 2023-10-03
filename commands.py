@@ -80,7 +80,11 @@ def next_day():
     functions.let_it_snow()
     base.superloader.load("inte_d{}_t1".format(settings.day), False, newday=True)
     base.superloader.change_textures()
-    return f"Set day to {settings.day}"
+    return f"Set day to {settings.day}, remember radio."
+
+def set_conv(name):
+    settings.conversation_state = settings.conversation_states[name]
+    return f"Set conversation state to {name}."
 
 commands_dict = {
     'help' : help_func,
@@ -97,6 +101,7 @@ commands_dict = {
     'skipconv' : skip_conv,
     'nextday' : next_day,
     'movobj' : movobj,
+    'setconv' : set_conv,
     }
 
 help_strings = {
@@ -113,5 +118,6 @@ help_strings = {
     'cstate' : "Prints the name of the current conversation state.",
     'skipconv' : "Toggles option to skip conversations.",
     'nextday' : "Changes the time to the morning, next day",
-    'movobj' : "Move object to position. movobj <model> <(x,y,z)>"
+    'movobj' : "Move object to position. movobj <model> <(x,y,z)>",
+    'setconv' : "Sets conversation state. setconv <state name>",
     }

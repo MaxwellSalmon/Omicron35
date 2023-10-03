@@ -5,19 +5,19 @@ def initialise_states():
     states = [
         #Day 1
         #  Name     voice sequence      button strings      transitions
-        CS('day1', 'radio_day1', ['What! Again?', 'Please hurry!'], ['day1_what_again', 'hurry']),
+        CS('day1', 'radio_day1', ['What! Again?', 'Please hurry!'], ['day1_what_again', 'hurry']), #state 0
         CS('day1_what_again', 'radio_day1_2', None, 'day2', end_state=True),
         CS('hurry', 'radio_day1_3', None, 'day2', end_state=True), # End state still needs a transition.
 
         #Day 2
-        CS('day2', 'radio_day2', ["How was your day?", "Any news about my replacement?"], ['day2_how_was_day', 'day2_replace']),
+        CS('day2', 'radio_day2', ["How was your day?", "Any news about my replacement?"], ['day2_how_was_day', 'day2_replace']), #state 4
         CS('day2_how_was_day', 'radio_day2_2', None, 'day3_lone', end_state=True),
         CS('day2_replace', 'radio_day2_3', ["I can't believe these assholes!", "I'm so lonely..."], ['day2_assholes', 'day2_lonely']),
         CS('day2_assholes', 'radio_day2_4', None, 'day3_aggr', end_state=True),
         CS('day2_lonely', 'radio_day2_5', None, 'day3_lone', end_state=True),
 
         # Day 3 - aggressive
-        CS('day3_aggr', 'radio_d3_agg_1', ["Report measurements", "Send that fucking replacement", "Please send the replacement"], ['day3_agg_meas', 'day3_agg_fuck_repl', 'day3_agg_pls_repl']),
+        CS('day3_aggr', 'radio_d3_agg_1', ["Report measurements", "Send that fucking replacement", "Please send the replacement"], ['day3_agg_meas', 'day3_agg_fuck_repl', 'day3_agg_pls_repl']), #state 9
         CS('day3_agg_fuck_repl', 'radio_d3_agg_2', ['God damnit', 'Mock Tau 1'], ['day3_agg_damn', 'day3_agg_mock']),
         CS('day3_agg_damn', 'radio_d3_agg_3', None, 'day4_agg', end_state=True), 
         CS('day3_agg_mock', 'radio_d3_agg_4', None, 'day4_agg', end_state=True), 
@@ -69,11 +69,11 @@ def initialise_states():
         CS('day4_para', 'radio_d4_para_1', ['I swear I am not alone', 'Are there any polar bears here?'], ['day4_para_nalone', 'day4_para_bears']),
         CS('day4_para_nalone', 'radio_d4_para_2', ['Give measurements', 'I am hearing things at night', 'Am I just paranoid?'], ['day4_para_meas', 'day4_para_hearing', 'day4_para_para']),
         CS('day4_para_bears', 'radio_d4_para_3', ['Give measurements', 'I am hearing things at night', 'Am I just paranoid?'], ['day4_para_meas', 'day4_para_hearing', 'day4_para_para']),
-        CS('day4_para_meas', 'radio_d4_lone_4', None, 'temp_state', end_state=True), #night
+        CS('day4_para_meas', 'radio_d4_para_4', None, 'temp_state', end_state=True), #night
         CS('day4_para_hearing', 'radio_d4_para_5', ['How did that happen?', "Why didn't you tell me?"], ['day4_para_how', 'day4_para_tell']),
         CS('day4_para_para', 'radio_d4_para_6', ['How did that happen?', "Why didn't you tell me?"], ['day4_para_how', 'day4_para_tell']),
-        CS('day4_para_how', 'radio_d4_para_7', None, 'temp_state', end_state=True), #night
-        CS('day4_para_tell', 'radio_d4_para_8', None, 'temp_state', end_state=True), #night
+        CS('day4_para_how', 'radio_d4_para_7', ['Give measurements'], ['day4_para_meas']), #night
+        CS('day4_para_tell', 'radio_d4_para_8', ['Give measurements'], ['day4_para_meas']), #night
         
         
         
