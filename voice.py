@@ -14,7 +14,10 @@ class Voice:
             path = 'sounds/voices/'+file
             clip = base.superloader.load_sound(path, self.emitter)
             self.intervals.append(SoundInterval(clip))
-            self.subtitles.append(voice_strings.subtitles[file[:-4]])
+            try:
+                self.subtitles.append(voice_strings.subtitles[file[:-4]])
+            except:
+                self.subtitles.append(f"MISSING SUBTITLES FOR {file[:-4]}")
                 
 
     def play(self, index):

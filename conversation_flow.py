@@ -5,28 +5,43 @@ def initialise_states():
     states = [
         #Day 1
         #  Name     voice sequence      button strings      transitions
-        CS('day1', 'radio_day1', ['What! Again?', 'Please hurry!'], ['day1_what_again', 'hurry']), #state 0
+        CS('day1', 'radio_day1', ['What! Again?', 'Please hurry!'], ['day1_what_again', 'hurry']),
         CS('day1_what_again', 'radio_day1_2', None, 'day2', end_state=True),
         CS('hurry', 'radio_day1_3', None, 'day2', end_state=True), # End state still needs a transition.
 
         #Day 2
-        CS('day2', 'radio_day2', ["How was your day?", "Any news about my replacement?"], ['day2_how_was_day', 'day2_replace']), #state 4
+        CS('day2', 'radio_day2', ["How was your day?", "Any news about my replacement?"], ['day2_how_was_day', 'day2_replace']),
         CS('day2_how_was_day', 'radio_day2_2', None, 'day3_lone', end_state=True),
         CS('day2_replace', 'radio_day2_3', ["I can't believe these assholes!", "I'm so lonely..."], ['day2_assholes', 'day2_lonely']),
-        CS('day2_assholes', 'radio_day2_4', None, 'day3_aggr', end_state=True),
+        CS('day2_assholes', 'radio_day2_4', None, 'day3_agg', end_state=True),
         CS('day2_lonely', 'radio_day2_5', None, 'day3_lone', end_state=True),
 
         # Day 3 - aggressive
-        CS('day3_aggr', 'radio_d3_agg_1', ["Report measurements", "Send that fucking replacement", "Please send the replacement"], ['day3_agg_meas', 'day3_agg_fuck_repl', 'day3_agg_pls_repl']), #state 9
+        CS('day3_agg', 'radio_d3_agg_1', ["Send that fucking replacement", "Please send the replacement"], ['day3_agg_tryagain', 'day3_agg_pls_repl']),
+        CS('day3_agg_tryagain', 'radio_d3_agg_11', ["Fuck you!", "Give measurements"], ['day3_agg_fuck_repl', 'day3_agg_meas2']),
+        CS('day3_agg_tryagain2', 'radio_d3_agg_12', ["Fuck you!", "Give measurements"], ['day3_agg_fuck_repl', 'day3_agg_meas2']), #Slightly different player dialogue
         CS('day3_agg_fuck_repl', 'radio_d3_agg_2', ['God damnit', 'Mock Tau 1'], ['day3_agg_damn', 'day3_agg_mock']),
         CS('day3_agg_damn', 'radio_d3_agg_3', None, 'day4_agg', end_state=True), 
-        CS('day3_agg_mock', 'radio_d3_agg_4', None, 'day4_agg', end_state=True), 
-        CS('day3_agg_pls_repl', 'radio_d3_agg_5', ["Give measurements", "Send that fucking replacement!"], ['day3_agg_meas', 'day3_agg_fuck_repl']),
-        CS('day3_agg_meas', 'radio_d3_agg_6', ["Fuck you!", "I am sorry"], ['day3_agg_fuck_u', 'day3_agg_so_sorry']),
-        CS('day3_agg_fuck_u', 'radio_d3_agg_7', ['I am sorry about that', 'I have a contract!'], ['day3_agg_fake_sorry', 'day3_agg_contract']),
-        CS('day3_agg_fake_sorry', 'radio_d3_agg_8', None, 'day4_lone', end_state=True), 
-        CS('day3_agg_contract', 'radio_d3_agg_9', None, 'day4_agg', end_state=True), 
-        CS('day3_agg_so_sorry', 'radio_d3_agg_10', None, 'day4_lone', end_state=True),  #Maybe need a path to d4_para?
+        CS('day3_agg_mock', 'radio_d3_agg_4', None, 'day4_agg', end_state=True),
+        CS('day3_agg_pls_repl', 'radio_d3_agg_5', ["Give measurements", "Fuck you! I'm all alone!"], ['day3_agg_meas1', 'day3_agg_tryagain2']),
+
+        CS('day3_agg_meas1', 'radio_d3_agg_6', ["Fuck you! I'm all alone!", "I am sorry"], ['day3_agg_fuck_alone', 'day3_agg_so_sorry']),
+        CS('day3_agg_meas2', 'radio_d3_agg_13', ["Fuck you!", "No, wait!"], ['day3_agg_fuck_repl', 'day3_agg_nowait']),
+        CS('day3_agg_so_sorry', 'radio_d3_agg_10', ["Goodbye", "Wait!"], ['day3_agg_bye', 'day3_agg_nowait']),
+
+
+        CS('day3_agg_fuck_alone', 'radio_d3_agg_7', ["Wait, I'm sorry!", 'Fuck off!'], ['day3_agg_sorrywait', 'day3_agg_fuckoff']),
+        CS('day3_agg_nowait', 'radio_d3_agg_14', ["Are you emotionless?", "I am just lonely", "My head is fucked"], ['day3_agg_brick', 'day3_agg_lonely', 'day3_agg_head']), #make them
+        CS('day3_agg_sorrywait', 'radio_d3_agg_8',["Are you emotionless?", "I am just lonely", "My head is fucked"], ['day3_agg_brick', 'day3_agg_lonely', 'day3_agg_head']),
+        
+        CS('day3_agg_brick', 'radio_d3_agg_16', None, 'day4_agg', end_state=True),
+        CS('day3_agg_lonely', 'radio_d3_agg_17', None, 'day4_lone', end_state=True),
+        CS('day3_agg_head', 'radio_d3_agg_18', None, 'day4_para', end_state=True),
+
+         
+        CS('day3_agg_fuckoff', 'radio_d3_agg_9', None, 'day4_agg', end_state=True),
+        CS('day3_agg_bye', 'radio_d3_agg_15', None, 'day4_lone', end_state=True),
+        
 
         #Day 3 - lonely
         CS('day3_lone', 'radio_d3_lone_1', ["One of my thermal suits is missing", "A storm might be coming up"], ['day3_lone_thermal', 'day3_lone_storm']),

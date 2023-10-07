@@ -84,6 +84,10 @@ def next_day():
 
 def set_conv(name):
     settings.conversation_state = settings.conversation_states[name]
+    settings.g_bools['radio_used'] = False
+    settings.g_bools['radio_reported'] = False
+    settings.g_bools['radio_conv_done'] = False
+    
     return f"Set conversation state to {name}."
 
 commands_dict = {

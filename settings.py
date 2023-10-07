@@ -35,8 +35,8 @@ g_bools = {
     }
 
 #Environmental variables
-environment = 'inte_d3_t1'
-day = 3
+environment = 'inte_d2_t1'
+day = 2
 time = 1
 sun = True
 #light, medium, heavy
