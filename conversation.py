@@ -47,6 +47,12 @@ class Conversation:
                 self.conv_sequence.append(Func(base.text.new_text, self.radio_voice.subtitles[-1]))
                 self.conv_sequence.append(self.radio_voice.intervals[-1])
                 is_conv = True
+            elif string.split('/')[-1][:4] == 'unk_':
+                self.radio_voice.load_audio(string+'.wav')
+                self.conv_sequence.append(Func(base.text.new_colour, (0.8,0.4,0.1,1)))
+                self.conv_sequence.append(Func(base.text.new_text, self.radio_voice.subtitles[-1]))
+                self.conv_sequence.append(self.radio_voice.intervals[-1])
+                is_conv = True
             else:
                 self.player_voice.load_audio(string+'.wav')
                 self.conv_sequence.append(Func(base.text.new_colour, (1,1,1,1)))

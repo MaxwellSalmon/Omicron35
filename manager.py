@@ -20,6 +20,11 @@ def manage(task):
                 cut_power()
                 open_lod_shed_door()
 
+        if settings.day == 4:
+            if settings.time == 3:
+                print("Night radio time")
+                control_night_radio()
+
     if settings.environment[:4] == 'exte':
         check_work_done()
         move_snow()
@@ -67,6 +72,21 @@ def move_snow():
 def check_triggers():
     for trigger in settings.scene.triggers:
         trigger.check()
+
+def control_night_radio():
+    if settings.g_bools['night_radio_started']:
+        return
+    settings.g_bools['night_radio_started'] = True
+    settings.g_bools['radio_used'] = False
+    settings.g_bools['radio_conv_done'] = False
+    base.taskMgr.doMethodLater(4.7, speak_night_radio_loop, "NightRadioTask")
+    
+def speak_night_radio_loop(task):
+    #Loop night radio voice until player interacts with radio
+    base.conversation.talk('night_talk/unk_omicron') #Maybe some random lines?
+    if not settings.g_bools['radio_used']:
+        return Task.again
+    
 
 def cut_power():
     if settings.g_bools['generator_fixed']:

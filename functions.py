@@ -314,7 +314,7 @@ def take_clipboard():
     
 
 def use_radio():
-    if settings.g_bools['daily_tasks_done']:
+    if settings.g_bools['daily_tasks_done'] or settings.g_bools['night_radio_started']:
         if not settings.g_bools['radio_used']:
             #Special function
             take_object('radio_used', hide=False)
@@ -324,6 +324,7 @@ def use_radio():
             print("You already used the radio")
     else:
         print("It is not time to report yet.")
+        
 
 def make_food():
     if settings.g_bools['daily_tasks_done']:

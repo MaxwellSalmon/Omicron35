@@ -31,12 +31,13 @@ g_bools = {
     'has_bad_fuse' : False,
     'has_fuse' : False,
     'generator_fixed': False,
-    'has_padlock' : False
+    'has_padlock' : False,
+    'night_radio_started' : False,
     }
 
 #Environmental variables
-environment = 'inte_d2_t1'
-day = 2
+environment = 'inte_d4_t1'
+day = 4
 time = 1
 sun = True
 #light, medium, heavy

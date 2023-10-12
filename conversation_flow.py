@@ -90,7 +90,8 @@ def initialise_states():
         CS('day4_para_how', 'radio_d4_para_7', ['Give measurements'], ['day4_para_meas']), #night
         CS('day4_para_tell', 'radio_d4_para_8', ['Give measurements'], ['day4_para_meas']), #night
         
-        
+        #Day 4 night state
+        CS('day4_night', 'radio_d4_night_1', ['Who is this?', "What's going on?"], ['day4_night_2', 'day4_night_2']),
         
         
         
