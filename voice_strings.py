@@ -52,7 +52,6 @@ subtitles = {
         'day3_agg/wait_sorry' : "I'm so sorry! Uh... Please wait.",
         'day3_agg/true_sorry' : "I'm so sorry about that. It's just, I'm sitting out here all by myself, I'm getting... I'm getting agitated.",
         'day3_agg/hq_what' : "What is it?",
-        
 
         #Conversation day 3 lonely
         'day3_lone/suit_missing' : "One of my suits has gone missing. And I mean, it's a bit weird, because they are really big, so...",
@@ -124,7 +123,17 @@ subtitles = {
         'day4_para/what_didnt_tell' : "What?! Why didn't you tell me?",
         'day4_para/hq_cursed' : "Why would I? It's not like Omicron is cursed or anything.",
         'day4_para/cursed' : "Uh... What? Is- is it cursed?",
-        
+
+        #Nightcall B-|
+        'night_talk/unk_omicron' : "Omicron. Omicron. Omicron.",
+        'night_talk/unk_door1' : "Do not answer the door. Stay indoors. Ignore the door.",
+        'night_talk/unk_door2' : "I repeat. Do not answer the door. Stay indoors. Stay away from the door.",
+        'night_talk/hello' : "Hello? Hello?! They're gone...",
+        'night_talk/somebodycoming' : "Is somebody coming?!",
+        'night_talk/whatsgoing' : "What's going on?",
+        'night_talk/whofuck' : "Who the fuck is this?",
+        'night_talk/whothis' : "Uh... Who is this?",
+        'night_talk/radionowork' : "The radio shouldn't be working... What's going on?",
 
         #Self talk
         'self/toocold' : "It's way too cold outside. I need something to put on first.",
@@ -230,6 +239,12 @@ conversations = {'radio_day1' : ['day1/report', 'day1/hq_greet', 'day1/measureme
                  'radio_d4_para_6' : ['day4_para/paranoid', 'day4_para/hq_nuts'],
                  'radio_d4_para_7' : ['day4_para/how_happen', 'day4_para/hq_maybe_it_could_be', 'day4_para/last_part', 'day3_agg/hq_measure_omicron'],
                  'radio_d4_para_8' : ['day4_para/what_didnt_tell', 'day4_para/hq_cursed', 'day4_para/cursed', 'day3_agg/hq_measure_omicron'],
+
+                 'radio_d4_night_1' : ['night_talk/radionowork', 'night_talk/unk_omicron'],
+                 'radio_d4_night_2' : ['night_talk/whothis', 'night_talk/unk_door1'],
+                 'radio_d4_night_3' : ['night_talk/whatsgoing', 'night_talk/unk_door1'],
+                 'radio_d4_night_4' : ['night_talk/whofuck', 'night_talk/unk_door2', 'night_talk/hello'],
+                 'radio_d4_night_5' : ['night_talk/somebodycoming', 'night_talk/unk_door2', 'night_talk/hello'],
                  }
 
 

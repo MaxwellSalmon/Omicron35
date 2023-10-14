@@ -22,7 +22,6 @@ def manage(task):
 
         if settings.day == 4:
             if settings.time == 3:
-                print("Night radio time")
                 control_night_radio()
 
     if settings.environment[:4] == 'exte':
