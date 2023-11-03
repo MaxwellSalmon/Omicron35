@@ -23,6 +23,7 @@ class Model():
         self.audio_dropoff = 1
         self.audio_volume = 0.5
         self.tight_emitter = False
+        self.show_emitter = False
         self.tag = 'default'
         
         if kg('name'):
@@ -56,13 +57,17 @@ class Model():
             self.audio_volume = kg('volume')
         if kg('tight_emitter'):
             self.tight_emitter = True
+        if kg('show_emitter'):
+            self.show_emitter = True
         if kg('audio'):
-            #Attach audio source to model. Use audio emitter is model is not centered.
+            #Attach audio source to model. Use audio emitter if model is not centered.
             self.create_audio_emitter(model)
+            
             if self.audio_emitter:
                 self.audio = self.create_audio(kg('audio'), self.audio_emitter)
             else:
                 self.audio = self.create_audio(kg('audio'), model)
+            
         if kg('ambience'):
             self.create_audio_emitter(model)
             if self.audio_emitter:
@@ -113,6 +118,11 @@ class Model():
                 epos = self.get_tight_pos(model)
                 emitter.set_pos(epos[0], epos[1], epos[2])
                 self.audio_emitter = emitter
+
+                if self.show_emitter:
+                    show = base.loader.load_model('models/dev/sphere.egg')
+                    show.reparent_to(emitter)
+                    show.set_pos(0,3,0)
 
     def create_audio(self, files, emitter):
         #args: sound, emitter, dropoff, object, volume

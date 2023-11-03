@@ -58,7 +58,7 @@ def create_base_models(scene_name):
                   Model('interior/clipboard', pos=(-4.1,-8.6,0.45), tag='interactive', audio='sfx/clipboard.wav', function=functions.take_clipboard, vol=1, tight_emitter=True),
                   Model('interior/paper.egg', culling='both'),
                   Model('interior/towels.egg', culling='both'),
-                  Model('interior/radio', tag='interactive', audio='default.wav', function=functions.use_radio),
+                  Model('interior/radio', tag='interactive', pos=(-4.9,3.25,0.73), audio='default.wav', function=functions.use_radio, show_emitter=True),
                   Model('interior/pot', tag='interactive', audio='default.wav', function=functions.make_food),
                   Model('interior/can1', tag='interactive', audio='sfx/Can_Open_And_Boil.wav', function=functions.take_can),
                   Model('interior/can2', tag='interactive', audio='sfx/Can_Open_And_Boil.wav', function=functions.take_can),
@@ -120,12 +120,14 @@ def create_specific_models(scene_name):
                         function=[functions.change_scene, {'to_scene':'exte_d3_t1', 'bools':['clothes_on', 'has_clipboard'], 'voices':['no_clothes','no_clipboard']}]),
                   Model('interior/mess_d3'),
                   Model('dev/sphere', name='wind_sound_sphere', pos=(0,0,-4), ambience='sfx/Wind_Interior_w_Howling.wav'),
+                  Model('interior/snowpiles', name='snowpiles'),
                   ]
     elif scene_name[:-3] == 'inte_d4':
         models = [Model('interior/door', tag='interactive', pos=(10,0.1,0.4), scale=0.5, solid=True, audio='sfx/door.wav',
                         function=[functions.change_scene, {'to_scene':'exte_d4_t1', 'bools':['clothes_on', 'has_clipboard'], 'voices':['no_clothes','no_clipboard']}]),
                   Model('interior/mess_d3'),
                   Model('dev/sphere', name='wind_sound_sphere', pos=(0,0,-4), ambience='sfx/Wind_Interior_w_Howling.wav'),
+                  Model('interior/snowpiles', name='snowpiles'),
                   ]
 
     #Exterior
@@ -182,6 +184,7 @@ def create_specific_models(scene_name):
                   Model('exterior/screw3', name='screw3', tag='not_interactive'),
                   Model('exterior/screw4', name='screw4', tag='not_interactive'),
                   Model('exterior/plate', name='plate', tag='not_interactive',),
+                  Model('exterior/snowpiles', name='snowpiles'),
                   Model('exterior/padlock', name='padlock', pos=(62.83,-8.26,1.05), hpr=(250,0,90), tag='not_interactive'), #Needs to hang on door
                   Model('exterior/screwdriver', name="screwdriver3", tag='not_interactive'),
                   ]
@@ -196,6 +199,7 @@ def create_specific_models(scene_name):
                   Model('exterior/screw3', name='screw3', tag='not_interactive'),
                   Model('exterior/screw4', name='screw4', tag='not_interactive'),
                   Model('exterior/plate', name='plate', tag='not_interactive',),
+                  Model('exterior/snowpiles', name='snowpiles'),
                   Model('exterior/padlock', name='padlock', pos=(62.83,-8.26,1.05), hpr=(250,0,90), tag='not_interactive'), #Needs to hang on door
                   Model('exterior/screwdriver', name="screwdriver3", tag='not_interactive'),
                   ]
