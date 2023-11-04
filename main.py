@@ -110,12 +110,14 @@ class FreeMouse(DirectObject.DirectObject):
     def __init__(self):
         self.accept('escape', app.free_mouse)
         self.accept(settings.console_btn, base.console.open_console)
-        
+
         if settings.dev_control:
             self.accept(settings.fov_up_dwn[0], self.add_fov, [-10])
             self.accept(settings.fov_up_dwn[1], self.add_fov, [10])
 
     def add_fov(self, added):
+        if settings.console_open:
+            return
         settings.fov += added
         base.player.camLens.setFov(settings.fov)
 

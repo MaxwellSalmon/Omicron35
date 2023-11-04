@@ -33,11 +33,12 @@ g_bools = {
     'generator_fixed': False,
     'has_padlock' : False,
     'night_radio_started' : False,
+    'door_knocked' : False,
     }
 
 #Environmental variables
-environment = 'inte_d4_t1'
-day = 4
+environment = 'inte_d3_t1'
+day = 3
 time = 1
 sun = True
 #light, medium, heavy

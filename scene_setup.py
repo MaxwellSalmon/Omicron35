@@ -76,6 +76,9 @@ def create_base_models(scene_name):
                   Model('interior/minute', pos=(-5.65,6.175,2.1)),
                   Model('interior/pendulum', pos=(-5.8, 6.175, 2.05), hpr=(0,-14,0), startfunc=functions.control_clock),
                   Model('dev/sphere', name="fire_sound", scale=0.1, volume=0.5, dropoff=2, pos=(5,3.9,-1.2), ambience='amb/fire.wav'),
+                  Model('dev/sphere', name="tick_sound", scale=0.1, volume=1, pos=(-6,6.2,2), audio='sfx/tick.wav'),
+                  Model('dev/sphere', name="tock_sound", scale=0.1, volume=1, pos=(-6,6.2,2), audio='sfx/tock.wav'),
+                  Model('dev/sphere', name="bell_sound", scale=0.1, volume=1, pos=(-6,6.2,2), audio='sfx/bell.wav'),
                   Model('skybox', scale=21, pos=(0,0,-200)),
                   ]
     elif scene_name[:4] == "exte":
@@ -128,6 +131,7 @@ def create_specific_models(scene_name):
                   Model('interior/mess_d3'),
                   Model('dev/sphere', name='wind_sound_sphere', pos=(0,0,-4), ambience='sfx/Wind_Interior_w_Howling.wav'),
                   Model('interior/snowpiles', name='snowpiles'),
+                  Model('dev/sphere', name='knock_sound_sphere', pos=(11,0,0), audio='sfx/knock.wav'),
                   ]
 
     #Exterior

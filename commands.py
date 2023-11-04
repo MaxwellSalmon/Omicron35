@@ -65,12 +65,19 @@ def skip_conv():
     return f"Skip conversations set to {settings.skip_convs}"
 
 def movobj(model, pos=()):
-    m = functions.find_model(model).model
+      
+    m = functions.find_model(model)
+    if not m:
+        return f"Could not find model {model}"
+    m = m.model
     if not pos:
-        return m.get_pos()
+        return f"{m.name} position: {m.get_pos()}"
     interval = m.posInterval(2.0, eval(pos))
     interval.start()
     return f"Moved to {pos}"
+
+def models():
+    return f"Available models: {[x.name for x in settings.scene.models]}"
 
 def next_day():
     settings.time = 1
@@ -106,6 +113,7 @@ commands_dict = {
     'nextday' : next_day,
     'movobj' : movobj,
     'setconv' : set_conv,
+    'models' : models,
     }
 
 help_strings = {
@@ -121,7 +129,8 @@ help_strings = {
     'pos' : "Prints player position and camera HPR",
     'cstate' : "Prints the name of the current conversation state.",
     'skipconv' : "Toggles option to skip conversations.",
-    'nextday' : "Changes the time to the morning, next day",
+    'nextday' : "Changes the time to the morning, next day.",
     'movobj' : "Move object to position. movobj <model> <(x,y,z)>",
     'setconv' : "Sets conversation state. setconv <state name>",
+    'models' : "Show list of models in current scene."
     }

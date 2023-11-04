@@ -25,11 +25,13 @@ class Console(DirectObject.DirectObject):
         self.log_text.text.reparent_to(self.frame)
         self.log_text.new_pos(-1.2,self.log_y)
         self.log_text.new_colour((0.8,0.8,0.8,1))
+        self.prev_string = ''
 
     def special_strokes(self):
         self.accept('enter', self.run_func)
         self.accept('backspace', self.remove_last)
         self.accept('escape', self.open_console)
+        self.accept('arrow_up', self.prev_command)
 
     def open_console(self):
         if settings.console_open:
@@ -44,6 +46,10 @@ class Console(DirectObject.DirectObject):
         settings.console_open = not settings.console_open
         settings.ui_open = settings.console_open
         self.show_console()
+
+    def prev_command(self):
+        if len(self.prev_string) > 1:
+            self.input_string = self.prev_string
 
     def type(self, keyname):
         if len(keyname.encode().decode())>1:
@@ -84,6 +90,7 @@ class Console(DirectObject.DirectObject):
         return command, args
 
     def run_func(self):
+        self.prev_string = self.input_string
         self.input_string = self.input_string[:-1]
 
         try:

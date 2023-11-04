@@ -23,6 +23,7 @@ def manage(task):
         if settings.day == 4:
             if settings.time == 3:
                 control_night_radio()
+                control_door_knock()
 
     if settings.environment[:4] == 'exte':
         check_work_done()
@@ -85,7 +86,16 @@ def speak_night_radio_loop(task):
     base.conversation.talk('night_talk/unk_omicron') #Maybe some random lines?
     if not settings.g_bools['radio_used']:
         return Task.again
-    
+
+def control_door_knock():
+    if settings.g_bools['door_knocked']:
+        return
+    if settings.g_bools['radio_conv_done']:
+        knock_sphere = functions.find_model('knock_sound_sphere')
+        talk_sequence = Sequence(Wait(4), Func(knock_sphere.play_audio))
+        talk_sequence.start()
+        open_lod_shed_door()
+        settings.g_bools['door_knocked'] = True
 
 def cut_power():
     if settings.g_bools['generator_fixed']:

@@ -301,8 +301,10 @@ def split_firewood():
 def control_clock():
     if settings.environment[:4] == 'inte':
         pendulum = find_model('interior/pendulum').model
-        seq = Sequence(pendulum.hprInterval(1.0, (0, 14, 0), blendType='easeInOut'),
-                       pendulum.hprInterval(1.0, (0, -14, 0), blendType='easeInOut'))
+        tick_sphere = find_model('tick_sound')
+        tock_sphere = find_model('tock_sound')
+        seq = Sequence(pendulum.hprInterval(1.0, (0, 14, 0), blendType='easeInOut'), Func(tick_sphere.play_audio),
+                       pendulum.hprInterval(1.0, (0, -14, 0), blendType='easeInOut'), Func(tock_sphere.play_audio))
         seq.loop()
 
 def put_on_clothes(test):
@@ -382,7 +384,7 @@ def let_it_snow():
         settings.sun = False
         settings.snow = 'light'
         #settings.wind = () #temp
-    if settings.day == 3:
+    if settings.day >= 3:
         settings.sun = False
         settings.snow = 'heavy'
         
