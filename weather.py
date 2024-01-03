@@ -93,38 +93,38 @@ class Weather:
             self.wsnows[3].disable()
 
     def control_fog(self):
-        render.clearFog()
+        self.fog.setExpDensity(0.0)
         if not settings.snow:
             return
+
+        #Weird behaviour. Manually setting fog color works, but this doesn't
+        #Is the fog color changed somewhere else?
+        #Threading is a bitch
         
-        self.set_fog_color()
+        vec = self.set_fog_color()
+        self.fog.setColor(vec)
             
         if settings.snow == 'heavy':
-            self.fog.setExpDensity(0.05)
+            if settings.environment[:4] == 'exte':
+                self.fog.setExpDensity(0.02)
+            else:
+                self.fog.setExpDensity(0.005)
 
         elif settings.snow == 'light':
             self.fog.setExpDensity(0.0001)
 
-        if settings.environment[:4] == 'exte':
-            render.setFog(self.fog)
         else:
-            if settings.snow == "heavy":
-                self.fog.setExpDensity(0.005)
-                render.setFog(self.fog)
-            else:
-                print("Clear fog")
-                render.clearFog()
+            self.fog.setExpDensity(0.0)
+            
+        settings.fog = self.fog
 
     def set_fog_color(self):
         if settings.time == 1:
-            print("color 1")
-            self.fog.setColor(0.9,0.9,0.9)
+            return LVecBase4f(0.9,0.9,0.9,1)
         elif settings.time == 2:
-            print("color 2")
-            self.fog.setColor(0.2,0.2,0.25)
+            return LVecBase4f(0.2,0.2,0.25,1)
         elif settings.time == 3:
-            print("color 3")
-            self.fog.setColor(0.1,0.1,0.2)
+            return LVecBase4f(0.1,0.1,0.2,1)
 
     def shed_snow(self):
         if not self.shed_window_snow:

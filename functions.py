@@ -97,7 +97,7 @@ def change_position(to_scene, **kwargs):
             #Never go back in time. 
             settings.time = kw('time')
     threading.Thread(target=base.superloader.change_textures).start()
-    base.weather.set_fog_color()
+    
     
     
 
@@ -306,6 +306,12 @@ def control_clock():
         seq = Sequence(pendulum.hprInterval(1.0, (0, 14, 0), blendType='easeInOut'), Func(tick_sphere.play_audio),
                        pendulum.hprInterval(1.0, (0, -14, 0), blendType='easeInOut'), Func(tock_sphere.play_audio))
         seq.loop()
+        settings.clock_seq = seq
+    else:
+        if settings.clock_seq: #Is the seq initialised?
+            settings.clock_seq.finish()
+        
+        
 
 def put_on_clothes(test):
     if not settings.g_bools['clothes_on']:

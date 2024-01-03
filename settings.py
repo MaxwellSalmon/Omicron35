@@ -43,6 +43,8 @@ time = 1
 sun = True
 #light, medium, heavy
 snow = ""
+fog = None
+clock_seq = None
 
 #Player variables
 player_speed = 0.08 * 50
@@ -77,6 +79,7 @@ hang_screws = 0
 #Developer variables
 show_env = True
 show_fps = True
+report_load = False
 show_col = False
 dev_control = True
 skip_convs = False
@@ -85,9 +88,9 @@ noclip = False
 #Functionality variables
 dt = 0
 change_sun = False
-loading = False
-envloading = False
-texloading = False
+loading = True
+envloading = True
+texloading = True
 
 #Scenes
 scenes = {}

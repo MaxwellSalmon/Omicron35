@@ -196,7 +196,8 @@ class SuperLoader():
         
         sound = base.audio3d.loadSfx(path)
         if str(sound)[:14] == 'NullAudioSound':
-            print(f"Audio file {path} is not found")
+            if settings.report_load:
+                print(f"Audio file {path} is not found")
             sound = base.audio3d.loadSfx('sounds/voices/default.wav')
             
         elif str(obj) == '**removed**':
@@ -221,7 +222,8 @@ class SuperLoader():
         if model:
             model.model.setColorScale(r,g,b,1)
         else:
-            print("Could not change colour on", model)
+            if settings.report_load:
+                print("Could not change colour on", model)
 
     def get_geoms(self):
         time.sleep(1) #Not ideal, but needs to wait for base scene to change.
@@ -233,7 +235,7 @@ class SuperLoader():
                 geoms.append(g)
         return geoms
 
-    def change_textures(self, lightsout=False):        
+    def change_textures(self, lightsout=False):      
         settings.texloading = True
         if settings.g_bools['power_off']:
             lightsout = True
@@ -285,7 +287,8 @@ class SuperLoader():
                 t = loader.loadTexture(new_path)
                 geom.setTexture(t, 1)
             except:
-                print("No new texture for %s found." % geom.name)
+                if settings.report_load:
+                    print("No new texture for %s found." % geom.name)
         
         if len(geoms) == 1:
             print("Scene is probably flattenedStrong. Cannot change textures.")

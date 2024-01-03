@@ -1,6 +1,7 @@
 import settings
 from direct.interval.IntervalGlobal import *
 import functions
+import threading
 
 def help_func(*args):
 
@@ -60,6 +61,10 @@ def get_state():
     state_name = settings.conversation_state.name
     return f"State: {state_name}"
 
+def fog():
+    settings.time = 2
+    threading.Thread(target=base.superloader.change_textures).start()
+
 def skip_conv():
     settings.skip_convs = not settings.skip_convs
     return f"Skip conversations set to {settings.skip_convs}"
@@ -114,6 +119,7 @@ commands_dict = {
     'movobj' : movobj,
     'setconv' : set_conv,
     'models' : models,
+    'fog' : fog,
     }
 
 help_strings = {
