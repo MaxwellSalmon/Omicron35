@@ -45,7 +45,8 @@ def check_loading():
         settings.loading = True
     if sum([settings.envloading, settings.texloading]) == 0 and settings.loading == True:
         #Overall loading is True, but env/tex are done
-        render.setFog(settings.fog)
+        if settings.fog:
+            render.setFog(settings.fog)
         Sequence(Wait(0.5), Func(functions.fade,'in', 0.5)).start()
         settings.loading = False #No more overall loading
 
@@ -82,6 +83,8 @@ def control_night_radio():
     settings.g_bools['night_radio_started'] = True
     settings.g_bools['radio_used'] = False
     settings.g_bools['radio_conv_done'] = False
+    settings.g_bools['radio_reported'] = False
+    print(settings.g_bools['radio_conv_done'], "Setting to false!")
     base.taskMgr.doMethodLater(4.7, speak_night_radio_loop, "NightRadioTask")
     
 def speak_night_radio_loop(task):

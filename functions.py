@@ -184,13 +184,15 @@ def click_fusebox():
         settings.g_bools['generator_fixed'] = True
         get_model().set_tag('not_interactive')
         
-    elif not settings.g_bools['has_bad_fuse']:
+    elif settings.shed_screws == 4 and not settings.g_bools['has_bad_fuse']:
         plate_cutscene('to_fuse')
         settings.constraints = [339, -19.5]
 
 def take_fuse():
+    print("Take fuse")
     plate_cutscene('up')
     if 'ext' in settings.environment:
+        print("Taking fuse!")
         take_object('has_bad_fuse')
         base.conversation.talk('self/busted_fuse')
     else:
@@ -300,6 +302,8 @@ def split_firewood():
 
 def control_clock():
     if settings.environment[:4] == 'inte':
+        if settings.clock_seq:
+            settings.clock_seq.finish()
         pendulum = find_model('interior/pendulum').model
         tick_sphere = find_model('tick_sound')
         tock_sphere = find_model('tock_sound')

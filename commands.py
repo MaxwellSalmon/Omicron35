@@ -61,13 +61,22 @@ def get_state():
     state_name = settings.conversation_state.name
     return f"State: {state_name}"
 
-def fog():
-    settings.time = 2
-    threading.Thread(target=base.superloader.change_textures).start()
 
 def skip_conv():
     settings.skip_convs = not settings.skip_convs
     return f"Skip conversations set to {settings.skip_convs}"
+
+def rotobj(model, hpr=()):
+      
+    m = functions.find_model(model)
+    if not m:
+        return f"Could not find model {model}"
+    m = m.model
+    if not hpr:
+        return f"{m.name} rotation: {m.get_hpr()}"
+    interval = m.hprInterval(2.0, eval(hpr))
+    interval.start()
+    return f"Rotated to {hpr}"
 
 def movobj(model, pos=()):
       
@@ -119,7 +128,7 @@ commands_dict = {
     'movobj' : movobj,
     'setconv' : set_conv,
     'models' : models,
-    'fog' : fog,
+    'rotobj' : rotobj,
     }
 
 help_strings = {
@@ -138,5 +147,6 @@ help_strings = {
     'nextday' : "Changes the time to the morning, next day.",
     'movobj' : "Move object to position. movobj <model> <(x,y,z)>",
     'setconv' : "Sets conversation state. setconv <state name>",
-    'models' : "Show list of models in current scene."
+    'models' : "Show list of models in current scene.",
+    'rotobj' : "Rotates object using HPR. rotobj <model> <(h,p,r)>",
     }

@@ -125,7 +125,7 @@ def exterior():
     hangarwall4 = base.scene.attachNewNode(CollisionNode('hangarwall4'))
     hangarwall4.node().addSolid(CollisionCapsule(158,72,0.5, 136,125,0.5, 2))
     box = base.scene.attachNewNode(CollisionNode('weatherbox'))
-    box.node().addSolid(CollisionSphere(155.8,40,1,2))
+    box.node().addSolid(CollisionSphere(156.5,30.5,1,2))
 
     pallets = base.scene.attachNewNode(CollisionNode('palletsjunk'))
     pallets.node().addSolid(CollisionCapsule(162,68,1, 182,79,1, 3.8))
